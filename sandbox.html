@@ -3118,6 +3118,205 @@
         :root[data-theme="editorial"] .ed-thinking__grid { grid-template-columns: 1fr; }
     }
 
+    /* === SANDBOX — interactive case-study carousel =====================
+       Single-slide-visible carousel inspired by Huge-style work pages.
+       One track translates left/right; inactive slides fade + nudge so
+       you feel forward/back motion. Editorial palette — no new colors.
+    ====================================================================== */
+    :root[data-theme="editorial"] .sb-carousel {
+        background: var(--paper);
+        padding: clamp(72px, 9vw, 144px) 0;
+        border-top: 1px solid var(--rule);
+        border-bottom: 1px solid var(--rule);
+        overflow: hidden;
+    }
+    :root[data-theme="editorial"] .sb-carousel__head {
+        text-align: center;
+        margin: 0 auto clamp(48px, 7vw, 96px);
+        padding: 0 var(--gutter);
+    }
+    :root[data-theme="editorial"] .sb-carousel__stage {
+        max-width: var(--ed-max);
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+        overflow: hidden;
+    }
+    :root[data-theme="editorial"] .sb-carousel__track {
+        display: flex;
+        transition: transform 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        will-change: transform;
+    }
+    :root[data-theme="editorial"] .sb-carousel__slide {
+        flex: 0 0 100%;
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: clamp(32px, 5vw, 96px);
+        align-items: center;
+        padding: 0 4px;
+        opacity: 0.22;
+        transition: opacity 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    :root[data-theme="editorial"] .sb-carousel__slide.is-active { opacity: 1; }
+    :root[data-theme="editorial"] .sb-carousel__copy {
+        transform: translateY(24px);
+        opacity: 0;
+        transition: transform 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 80ms,
+                    opacity 600ms ease-out 80ms;
+    }
+    :root[data-theme="editorial"] .sb-carousel__slide.is-active .sb-carousel__copy {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    :root[data-theme="editorial"] .sb-carousel__media {
+        margin: 0;
+        transform: scale(0.92);
+        transition: transform 1000ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    :root[data-theme="editorial"] .sb-carousel__slide.is-active .sb-carousel__media {
+        transform: scale(1);
+    }
+    :root[data-theme="editorial"] .sb-carousel__media img {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-width: 560px;
+        margin: 0 auto;
+    }
+    :root[data-theme="editorial"] .sb-carousel__index {
+        font-family: var(--body);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--mid);
+        margin: 0 0 var(--ed-space-2);
+    }
+    :root[data-theme="editorial"] .sb-carousel__title {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: clamp(40px, 5.5vw, 72px);
+        line-height: 1.04;
+        letter-spacing: -0.025em;
+        color: var(--ink);
+        margin: 0 0 var(--ed-space-3);
+    }
+    :root[data-theme="editorial"] .sb-carousel__sub {
+        font-family: var(--body);
+        font-size: clamp(16px, 1.4vw, 19px);
+        line-height: 1.55;
+        color: var(--mid);
+        max-width: 40ch;
+        margin: 0 0 var(--ed-space-4);
+    }
+    :root[data-theme="editorial"] .sb-carousel__copy .cta-pill { display: inline-flex; }
+
+    /* Controls row */
+    :root[data-theme="editorial"] .sb-carousel__controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(20px, 3vw, 48px);
+        margin: clamp(48px, 7vw, 96px) auto 0;
+        padding: 0 var(--gutter);
+    }
+    :root[data-theme="editorial"] .sb-carousel__btn {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        border: 1px solid var(--rule);
+        background: var(--paper);
+        color: var(--ink);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 200ms ease, border-color 200ms ease, color 200ms ease, transform 200ms ease;
+    }
+    :root[data-theme="editorial"] .sb-carousel__btn:hover {
+        background: var(--ink);
+        color: var(--paper);
+        border-color: var(--ink);
+    }
+    :root[data-theme="editorial"] .sb-carousel__btn:active { transform: scale(0.95); }
+    :root[data-theme="editorial"] .sb-carousel__btn svg {
+        width: 22px;
+        height: 22px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+    :root[data-theme="editorial"] .sb-carousel__pagination {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+    }
+    :root[data-theme="editorial"] .sb-carousel__counter {
+        font-family: var(--body);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        color: var(--ink);
+        font-variant-numeric: tabular-nums;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+    :root[data-theme="editorial"] .sb-carousel__counter-current {
+        display: inline-block;
+        min-width: 1.4em;
+        text-align: right;
+    }
+    :root[data-theme="editorial"] .sb-carousel__counter-sep,
+    :root[data-theme="editorial"] .sb-carousel__counter-total {
+        color: var(--mid);
+        font-weight: 500;
+    }
+    :root[data-theme="editorial"] .sb-carousel__dots {
+        display: flex;
+        gap: 8px;
+    }
+    :root[data-theme="editorial"] .sb-carousel__dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--rule);
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition: background 200ms ease, transform 200ms ease;
+    }
+    :root[data-theme="editorial"] .sb-carousel__dot.is-active {
+        background: var(--ink);
+        transform: scale(1.25);
+    }
+    :root[data-theme="editorial"] .sb-carousel__dot:hover { background: var(--mid); }
+    :root[data-theme="editorial"] .sb-carousel__dot.is-active:hover { background: var(--ink); }
+
+    @media (max-width: 768px) {
+        :root[data-theme="editorial"] .sb-carousel__slide {
+            grid-template-columns: 1fr;
+            gap: var(--ed-space-3);
+            text-align: center;
+        }
+        :root[data-theme="editorial"] .sb-carousel__media { order: -1; }
+        :root[data-theme="editorial"] .sb-carousel__media img { max-width: 320px; }
+        :root[data-theme="editorial"] .sb-carousel__sub { margin-left: auto; margin-right: auto; }
+        :root[data-theme="editorial"] .sb-carousel__btn { width: 48px; height: 48px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        :root[data-theme="editorial"] .sb-carousel__track,
+        :root[data-theme="editorial"] .sb-carousel__slide,
+        :root[data-theme="editorial"] .sb-carousel__copy,
+        :root[data-theme="editorial"] .sb-carousel__media,
+        :root[data-theme="editorial"] .sb-carousel__btn,
+        :root[data-theme="editorial"] .sb-carousel__dot { transition: none; }
+        :root[data-theme="editorial"] .sb-carousel__slide { opacity: 1; }
+        :root[data-theme="editorial"] .sb-carousel__copy { opacity: 1; transform: none; }
+        :root[data-theme="editorial"] .sb-carousel__media { transform: none; }
+    }
+
     /* === RESPONSIVE === */
     @media (max-width: 880px) {
         :root[data-theme="editorial"] .ed-pillars__grid,
@@ -3348,70 +3547,77 @@
 <!-- WORK — one product-reveal band per case study -->
 <div id="ed-work"></div>
 
-<section class="ed-work-band" data-case="lace" data-device="phone" aria-label="Lace AI Pro">
-    <div class="ed-work-band__inner">
-        <p class="ed-work-band__eyebrow">Featured work — 01</p>
-        <h2 class="ed-work-band__title">Lace AI Pro</h2>
-        <div class="ed-work-band__tags">
-            <span class="ed-work-band__tag">Healthcare</span>
-            <span class="ed-work-band__tag">MedTech</span>
-            <span class="ed-work-band__tag">SaaS</span>
-        </div>
-        <p class="ed-work-band__sub">Brand identity, product design, email system, and trade show collateral for an auditory rehabilitation platform.</p>
-        <button type="button" class="cta-pill ed-work-band__cta" data-case="lace">See the work →</button>
+<!-- FEATURED WORK — interactive carousel (sandbox) -->
+<section class="sb-carousel" aria-label="Featured work">
+    <div class="sb-carousel__head">
+        <p class="ed-eyebrow">Selected work</p>
+        <h2 class="ed-h2">Featured case studies.</h2>
     </div>
-    <figure class="ed-work-band__device">
-        <img src="assets/devices/iphone-lace.png" alt="Lace AI Pro — mobile product mockup">
-    </figure>
-</section>
-
-<section class="ed-work-band" data-case="sharp" data-device="desktop" aria-label="SharpSpring">
-    <div class="ed-work-band__inner">
-        <p class="ed-work-band__eyebrow">Featured work — 02</p>
-        <h2 class="ed-work-band__title">SharpSpring</h2>
-        <div class="ed-work-band__tags">
-            <span class="ed-work-band__tag">B2B SaaS</span>
-            <span class="ed-work-band__tag">Marketing Automation</span>
+    <div class="sb-carousel__stage">
+        <div class="sb-carousel__track">
+            <article class="sb-carousel__slide is-active" data-case="lace" aria-label="Lace AI Pro">
+                <div class="sb-carousel__copy">
+                    <p class="sb-carousel__index">Healthcare · MedTech · SaaS</p>
+                    <h3 class="sb-carousel__title">Lace AI Pro</h3>
+                    <p class="sb-carousel__sub">Brand identity, product design, email system, and trade show collateral for an auditory rehabilitation platform.</p>
+                    <button type="button" class="cta-pill ed-work-band__cta" data-case="lace">See the work →</button>
+                </div>
+                <figure class="sb-carousel__media">
+                    <img src="assets/devices/iphone-lace.png" alt="Lace AI Pro — mobile product mockup" loading="lazy">
+                </figure>
+            </article>
+            <article class="sb-carousel__slide" data-case="sharp" aria-label="SharpSpring">
+                <div class="sb-carousel__copy">
+                    <p class="sb-carousel__index">B2B SaaS · Marketing Automation</p>
+                    <h3 class="sb-carousel__title">SharpSpring</h3>
+                    <p class="sb-carousel__sub">Platform redesign, identity refresh, and full-funnel marketing for a fast-scaling SaaS company.</p>
+                    <button type="button" class="cta-pill ed-work-band__cta" data-case="sharp">See the work →</button>
+                </div>
+                <figure class="sb-carousel__media">
+                    <img src="assets/devices/laptop-sharpspring.png" alt="SharpSpring — workflow automation builder on a MacBook" loading="lazy">
+                </figure>
+            </article>
+            <article class="sb-carousel__slide" data-case="pickers" aria-label="Pickers">
+                <div class="sb-carousel__copy">
+                    <p class="sb-carousel__index">Creator Economy · Design System</p>
+                    <h3 class="sb-carousel__title">Pickers</h3>
+                    <p class="sb-carousel__sub">First design system: tokens, components, documentation. 74.8% adoption · 28% faster delivery.</p>
+                    <button type="button" class="cta-pill ed-work-band__cta" data-case="pickers">See the work →</button>
+                </div>
+                <figure class="sb-carousel__media">
+                    <img src="assets/devices/desktop-pickers.png" alt="Pickers — design system documentation on a desktop monitor" loading="lazy">
+                </figure>
+            </article>
+            <article class="sb-carousel__slide" data-case="plremote" aria-label="PL Remote">
+                <div class="sb-carousel__copy">
+                    <p class="sb-carousel__index">IoT · Mobile · MVP Delivery</p>
+                    <h3 class="sb-carousel__title">PL Remote</h3>
+                    <p class="sb-carousel__sub">Product design for a mobile app replacing physical gate remotes. 10K+ users in month one.</p>
+                    <button type="button" class="cta-pill ed-work-band__cta" data-case="plremote">See the work →</button>
+                </div>
+                <figure class="sb-carousel__media">
+                    <img src="assets/devices/iphone-pl.png" alt="PL Remote — isometric mobile mockup showing the device setup screen" loading="lazy">
+                </figure>
+            </article>
         </div>
-        <p class="ed-work-band__sub">Platform redesign, identity refresh, and full-funnel marketing for a fast-scaling SaaS company.</p>
-        <button type="button" class="cta-pill ed-work-band__cta" data-case="sharp">See the work →</button>
     </div>
-    <figure class="ed-work-band__device">
-        <img src="assets/devices/laptop-sharpspring.png" alt="SharpSpring — workflow automation builder on a MacBook">
-    </figure>
-</section>
-
-<section class="ed-work-band" data-case="pickers" data-device="desktop" aria-label="Pickers">
-    <div class="ed-work-band__inner">
-        <p class="ed-work-band__eyebrow">Featured work — 03</p>
-        <h2 class="ed-work-band__title">Pickers</h2>
-        <div class="ed-work-band__tags">
-            <span class="ed-work-band__tag">Creator Economy</span>
-            <span class="ed-work-band__tag">Design System</span>
+    <div class="sb-carousel__controls">
+        <button type="button" class="sb-carousel__btn sb-carousel__prev" aria-label="Previous case study">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="sb-carousel__pagination">
+            <span class="sb-carousel__counter"><span class="sb-carousel__counter-current">01</span> <span class="sb-carousel__counter-sep">/</span> <span class="sb-carousel__counter-total">04</span></span>
+            <div class="sb-carousel__dots" role="tablist" aria-label="Case study slides">
+                <button class="sb-carousel__dot is-active" data-index="0" aria-label="Lace AI Pro" role="tab"></button>
+                <button class="sb-carousel__dot" data-index="1" aria-label="SharpSpring" role="tab"></button>
+                <button class="sb-carousel__dot" data-index="2" aria-label="Pickers" role="tab"></button>
+                <button class="sb-carousel__dot" data-index="3" aria-label="PL Remote" role="tab"></button>
+            </div>
         </div>
-        <p class="ed-work-band__sub">First design system: tokens, components, documentation. 74.8% adoption · 28% faster delivery.</p>
-        <button type="button" class="cta-pill ed-work-band__cta" data-case="pickers">See the work →</button>
+        <button type="button" class="sb-carousel__btn sb-carousel__next" aria-label="Next case study">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
     </div>
-    <figure class="ed-work-band__device">
-        <img src="assets/devices/desktop-pickers.png" alt="Pickers — design system documentation on a desktop monitor">
-    </figure>
-</section>
-
-<section class="ed-work-band" data-case="plremote" data-device="phone" aria-label="PL Remote">
-    <div class="ed-work-band__inner">
-        <p class="ed-work-band__eyebrow">Featured work — 04</p>
-        <h2 class="ed-work-band__title">PL Remote</h2>
-        <div class="ed-work-band__tags">
-            <span class="ed-work-band__tag">IoT</span>
-            <span class="ed-work-band__tag">Mobile</span>
-            <span class="ed-work-band__tag">MVP Delivery</span>
-        </div>
-        <p class="ed-work-band__sub">Product design for a mobile app replacing physical gate remotes. 10K+ users in month one.</p>
-        <button type="button" class="cta-pill ed-work-band__cta" data-case="plremote">See the work →</button>
-    </div>
-    <figure class="ed-work-band__device">
-        <img src="assets/devices/iphone-pl.png" alt="PL Remote — isometric mobile mockup showing the device setup screen">
-    </figure>
 </section>
 
 <!-- APPROACH — four principles -->
@@ -4353,6 +4559,64 @@ document.addEventListener('click', function(e) {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') btns.forEach(b => b.setAttribute('aria-expanded', 'false'));
     });
+})();
+
+// Sandbox carousel — index-driven slide with prev/next, dots, keyboard, swipe.
+(() => {
+    const carousel = document.querySelector('.sb-carousel');
+    if (!carousel) return;
+    const track = carousel.querySelector('.sb-carousel__track');
+    const slides = Array.from(carousel.querySelectorAll('.sb-carousel__slide'));
+    const dots = Array.from(carousel.querySelectorAll('.sb-carousel__dot'));
+    const prev = carousel.querySelector('.sb-carousel__prev');
+    const next = carousel.querySelector('.sb-carousel__next');
+    const counter = carousel.querySelector('.sb-carousel__counter-current');
+    const total = slides.length;
+    if (!total) return;
+    let current = 0;
+
+    const goTo = (i) => {
+        current = (i + total) % total;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        slides.forEach((s, idx) => s.classList.toggle('is-active', idx === current));
+        dots.forEach((d, idx) => d.classList.toggle('is-active', idx === current));
+        if (counter) counter.textContent = String(current + 1).padStart(2, '0');
+    };
+
+    if (prev) prev.addEventListener('click', () => goTo(current - 1));
+    if (next) next.addEventListener('click', () => goTo(current + 1));
+    dots.forEach((d, idx) => d.addEventListener('click', () => goTo(idx)));
+
+    // Keyboard arrows when carousel is in viewport
+    document.addEventListener('keydown', (e) => {
+        const rect = carousel.getBoundingClientRect();
+        const inView = rect.bottom > 60 && rect.top < window.innerHeight - 60;
+        if (!inView) return;
+        // Skip if user is typing in an input
+        const t = e.target;
+        if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+        if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
+    });
+
+    // Touch swipe (mobile)
+    let touchStartX = null;
+    let touchStartY = null;
+    track.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    track.addEventListener('touchend', (e) => {
+        if (touchStartX === null) return;
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        const dy = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+            if (dx < 0) goTo(current + 1); else goTo(current - 1);
+        }
+        touchStartX = touchStartY = null;
+    });
+
+    goTo(0);
 })();
 
 // Stats count-up — fires once when .ed-stats enters the viewport.
