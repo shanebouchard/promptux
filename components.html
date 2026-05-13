@@ -2146,24 +2146,117 @@
         color: var(--mid);
         margin-bottom: var(--ed-space-2);
     }
-    :root[data-theme="editorial"] .ed-pillar__item {
-        margin-top: var(--ed-space-3);
+    /* Components tabs — engagement-mode tablist + shared panel below. */
+    :root[data-theme="editorial"] .cm-tabs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        max-width: var(--ed-max);
+        margin: 0 auto clamp(28px, 4vw, 48px);
     }
-    :root[data-theme="editorial"] .ed-pillar__item h4 {
+    :root[data-theme="editorial"] .cm-tabs__tab {
+        appearance: none;
+        background: var(--paper);
+        border: 1px solid var(--rule);
+        border-radius: 12px;
+        padding: clamp(20px, 2.4vw, 28px);
+        cursor: pointer;
+        text-align: left;
+        font: inherit;
+        color: var(--ink);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        transition: background 200ms ease, border-color 200ms ease;
+    }
+    :root[data-theme="editorial"] .cm-tabs__tab:hover { border-color: var(--mid); }
+    :root[data-theme="editorial"] .cm-tabs__tab:focus-visible {
+        outline: 2px solid var(--ink);
+        outline-offset: 2px;
+    }
+    :root[data-theme="editorial"] .cm-tabs__tab.is-active {
+        border-color: var(--ink);
+        box-shadow: inset 0 0 0 1px var(--ink);
+    }
+    :root[data-theme="editorial"] .cm-tabs__num {
+        font-family: var(--body);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--mid);
+    }
+    :root[data-theme="editorial"] .cm-tabs__label {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: clamp(20px, 1.8vw, 26px);
+        line-height: 1.15;
+        letter-spacing: -0.015em;
+        color: var(--ink);
+    }
+    :root[data-theme="editorial"] .cm-tabs__blurb {
         font-family: var(--body);
         font-size: 14px;
-        font-weight: 600;
-        line-height: 1.3;
-        color: var(--ink);
-        margin: 0 0 6px;
-        letter-spacing: -0.005em;
-    }
-    :root[data-theme="editorial"] .ed-pillar__item p {
-        font-family: var(--body);
-        font-size: 14.5px;
-        line-height: 1.55;
+        line-height: 1.5;
         color: var(--mid);
+    }
+    :root[data-theme="editorial"] .cm-tabs__panels {
+        max-width: var(--ed-max);
+        margin: 0 auto;
+    }
+    :root[data-theme="editorial"] .cm-tabs__panel {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(32px, 4vw, 80px);
+        padding: clamp(28px, 4vw, 56px);
+        background: var(--paper);
+        border: 1px solid var(--rule);
+        border-radius: 12px;
+        animation: cm-tabs-fade 240ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    :root[data-theme="editorial"] .cm-tabs__panel[hidden] { display: none; }
+    :root[data-theme="editorial"] .cm-tabs__group h4 {
+        font-family: var(--body);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--mid);
+        margin: 0 0 var(--ed-space-3);
+    }
+    :root[data-theme="editorial"] .cm-tabs__group ul {
+        list-style: none;
         margin: 0;
+        padding: 0;
+    }
+    :root[data-theme="editorial"] .cm-tabs__group li {
+        font-family: var(--body);
+        font-size: 15px;
+        line-height: 1.55;
+        color: var(--ink);
+        padding: 6px 0 6px 20px;
+        position: relative;
+    }
+    :root[data-theme="editorial"] .cm-tabs__group li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 15px;
+        width: 10px;
+        height: 1px;
+        background: var(--mid);
+    }
+    @keyframes cm-tabs-fade {
+        from { opacity: 0; transform: translateY(6px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 760px) {
+        :root[data-theme="editorial"] .cm-tabs { grid-template-columns: 1fr; }
+        :root[data-theme="editorial"] .cm-tabs__panel { grid-template-columns: 1fr; gap: var(--ed-space-3); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        :root[data-theme="editorial"] .cm-tabs__panel { animation: none; }
+        :root[data-theme="editorial"] .cm-tabs__tab { transition: none; }
     }
     :root[data-theme="editorial"] .ed-pillar h3 {
         font-family: var(--display);
@@ -3519,55 +3612,92 @@
     <div class="ed-block__inner">
         <div class="ed-pillars__head">
             <p class="ed-eyebrow">How we work</p>
-            <h2 class="ed-h2">We run these as focused cycles, not fixed steps.</h2>
+            <h2 class="ed-h2">We move through the work in focused cycles, adapting the depth and pace to what the moment needs.</h2>
         </div>
-        <div class="ed-pillars__grid">
-            <div class="ed-pillar">
-                <div class="ed-pillar__num">01</div>
-                <h3>Make it real</h3>
-                <div class="ed-pillar__item">
-                    <h4>Define direction</h4>
-                    <p>We define what matters and what to do next. Product direction, positioning, and experience strategy grounded in real outcomes.</p>
+
+        <div class="cm-tabs" role="tablist" aria-label="Engagement modes">
+            <button class="cm-tabs__tab is-active" role="tab" aria-selected="true" aria-controls="cm-panel-real" id="cm-tab-real" data-target="real" type="button">
+                <span class="cm-tabs__num">01</span>
+                <span class="cm-tabs__label">Make it real</span>
+                <span class="cm-tabs__blurb">For new ideas, launches, or opportunities that need to become real quickly and credibly.</span>
+            </button>
+            <button class="cm-tabs__tab" role="tab" aria-selected="false" aria-controls="cm-panel-better" id="cm-tab-better" data-target="better" type="button" tabindex="-1">
+                <span class="cm-tabs__num">02</span>
+                <span class="cm-tabs__label">Make it better</span>
+                <span class="cm-tabs__blurb">For products, funnels, or experiences that are live but could perform harder.</span>
+            </button>
+            <button class="cm-tabs__tab" role="tab" aria-selected="false" aria-controls="cm-panel-scale" id="cm-tab-scale" data-target="scale" type="button" tabindex="-1">
+                <span class="cm-tabs__num">03</span>
+                <span class="cm-tabs__label">Make it scale</span>
+                <span class="cm-tabs__blurb">For growing products or teams that need more structure without slowing down.</span>
+            </button>
+        </div>
+
+        <div class="cm-tabs__panels">
+            <div class="cm-tabs__panel" role="tabpanel" id="cm-panel-real" aria-labelledby="cm-tab-real" data-panel="real">
+                <div class="cm-tabs__group">
+                    <h4>What we do</h4>
+                    <ul>
+                        <li>Shape the opportunity and define what matters</li>
+                        <li>Clarify positioning, audience, and product direction</li>
+                        <li>Design core flows, screens, and experience patterns</li>
+                        <li>Prototype, test, and refine the concept</li>
+                        <li>Support launch readiness across product, brand, and growth</li>
+                    </ul>
                 </div>
-                <div class="ed-pillar__item">
-                    <h4>Shape the product</h4>
-                    <p>We turn ideas into clear flows and a product experience that makes sense from day one.</p>
-                </div>
-                <div class="ed-pillar__item">
-                    <h4>Design and launch</h4>
-                    <p>We design the product and move quickly into something real, ready for users and the market.</p>
+                <div class="cm-tabs__group">
+                    <h4>Best for</h4>
+                    <ul>
+                        <li>New product ideas</li>
+                        <li>MVPs or first releases</li>
+                        <li>Fundraising or sales moments</li>
+                        <li>Launch campaigns</li>
+                        <li>Turning loose ideas into something concrete</li>
+                    </ul>
                 </div>
             </div>
-            <div class="ed-pillar">
-                <div class="ed-pillar__num">02</div>
-                <h3>Make it better</h3>
-                <div class="ed-pillar__item">
-                    <h4>Diagnose performance</h4>
-                    <p>We identify what's working, what's not, and where results break down.</p>
+            <div class="cm-tabs__panel" role="tabpanel" id="cm-panel-better" aria-labelledby="cm-tab-better" data-panel="better" hidden>
+                <div class="cm-tabs__group">
+                    <h4>What we do</h4>
+                    <ul>
+                        <li>Diagnose friction across the experience</li>
+                        <li>Improve UX, messaging, and conversion paths</li>
+                        <li>Refine landing pages, onboarding, and key product flows</li>
+                        <li>Use research, analytics, and judgment to prioritize changes</li>
+                        <li>Iterate quickly toward clearer, stronger performance</li>
+                    </ul>
                 </div>
-                <div class="ed-pillar__item">
-                    <h4>Improve the experience</h4>
-                    <p>We refine product and growth touchpoints to make the experience clearer and more effective.</p>
-                </div>
-                <div class="ed-pillar__item">
-                    <h4>Optimize results</h4>
-                    <p>We test, iterate, and improve performance where it matters most.</p>
+                <div class="cm-tabs__group">
+                    <h4>Best for</h4>
+                    <ul>
+                        <li>Conversion improvement</li>
+                        <li>Growth design</li>
+                        <li>Funnel optimization</li>
+                        <li>Product experience refinement</li>
+                        <li>Messaging and clarity issues</li>
+                    </ul>
                 </div>
             </div>
-            <div class="ed-pillar">
-                <div class="ed-pillar__num">03</div>
-                <h3>Make it scale</h3>
-                <div class="ed-pillar__item">
-                    <h4>Stabilize and structure</h4>
-                    <p>We bring clarity and structure to products that are starting to stretch.</p>
+            <div class="cm-tabs__panel" role="tabpanel" id="cm-panel-scale" aria-labelledby="cm-tab-scale" data-panel="scale" hidden>
+                <div class="cm-tabs__group">
+                    <h4>What we do</h4>
+                    <ul>
+                        <li>Create reusable design patterns and systems</li>
+                        <li>Bring consistency across screens, journeys, and channels</li>
+                        <li>Improve team workflows and decision-making</li>
+                        <li>Extend product experiences into new surfaces or use cases</li>
+                        <li>Build the structure needed for speed, quality, and growth</li>
+                    </ul>
                 </div>
-                <div class="ed-pillar__item">
-                    <h4>Build for scale</h4>
-                    <p>We create systems and patterns that keep the product consistent and the team moving fast.</p>
-                </div>
-                <div class="ed-pillar__item">
-                    <h4>Extend and grow</h4>
-                    <p>We expand the product across surfaces and use cases without losing quality or speed.</p>
+                <div class="cm-tabs__group">
+                    <h4>Best for</h4>
+                    <ul>
+                        <li>Scaling UX quality</li>
+                        <li>Design systems</li>
+                        <li>Product expansion</li>
+                        <li>Cross-channel consistency</li>
+                        <li>Teams outgrowing ad hoc ways of working</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -4605,6 +4735,40 @@ document.addEventListener('click', function(e) {
     });
     if (next) next.addEventListener('click', () => {
         viewport.scrollBy({ left:  step(), behavior: 'smooth' });
+    });
+})();
+
+// Components tabs — click + arrow keys, ARIA selected/hidden state.
+(() => {
+    const root = document.querySelector('.cm-tabs');
+    if (!root) return;
+    const tabs = Array.from(root.querySelectorAll('.cm-tabs__tab'));
+    const panels = Array.from(document.querySelectorAll('.cm-tabs__panel'));
+    if (!tabs.length) return;
+
+    const activate = (target) => {
+        tabs.forEach(t => {
+            const active = t.dataset.target === target;
+            t.classList.toggle('is-active', active);
+            t.setAttribute('aria-selected', String(active));
+            t.setAttribute('tabindex', active ? '0' : '-1');
+        });
+        panels.forEach(p => {
+            if (p.dataset.panel === target) p.removeAttribute('hidden');
+            else p.setAttribute('hidden', '');
+        });
+    };
+
+    tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.target)));
+
+    root.addEventListener('keydown', (e) => {
+        if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+        const idx = tabs.indexOf(document.activeElement);
+        if (idx === -1) return;
+        e.preventDefault();
+        const next = (idx + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+        tabs[next].focus();
+        activate(tabs[next].dataset.target);
     });
 })();
 
