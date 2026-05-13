@@ -2146,6 +2146,23 @@
         color: var(--mid);
         margin-bottom: var(--ed-space-2);
     }
+    :root[data-theme="editorial"] .ed-pillar__cycle {
+        font-family: var(--body);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--mid);
+        margin: 0 0 var(--ed-space-2);
+    }
+    :root[data-theme="editorial"] .ed-pillar__loop {
+        font-family: var(--body);
+        font-size: 12px;
+        font-style: italic;
+        color: var(--mid);
+        margin: var(--ed-space-2) 0 0;
+        opacity: 0.85;
+    }
     :root[data-theme="editorial"] .ed-pillar h3 {
         font-family: var(--display);
         font-weight: 600;
@@ -3496,27 +3513,33 @@
 </section>
 
 <!-- PILLARS — three reasons companies engage -->
-<section class="ed-pillars ed-block" aria-label="When companies call us">
+<section class="ed-pillars ed-block" aria-label="How we work">
     <div class="ed-block__inner">
         <div class="ed-pillars__head">
-            <p class="ed-eyebrow">When companies call us</p>
-            <h2 class="ed-h2">Three moments companies call us.</h2>
+            <p class="ed-eyebrow">How we work</p>
+            <h2 class="ed-h2">We run these as focused cycles, not fixed steps.</h2>
         </div>
         <div class="ed-pillars__grid">
             <div class="ed-pillar">
                 <div class="ed-pillar__num">01</div>
                 <h3>Make it real</h3>
-                <p>You have something important and it needs to work. Whether it is a new product, a major launch, or a critical deal, the work has to hold up in front of customers, investors, and the market, and we make sure it does.</p>
+                <p class="ed-pillar__cycle">Focus · Shape · Design · Ship</p>
+                <p>When something has to land — a launch, a pitch, a critical release — we get aligned fast and ship work that doesn't need defending.</p>
+                <p class="ed-pillar__loop">→ Repeat as needed</p>
             </div>
             <div class="ed-pillar">
                 <div class="ed-pillar__num">02</div>
                 <h3>Make it better</h3>
-                <p>The product is live and gaining traction, but there is more to unlock. We identify and improve what matters so performance catches up with the opportunity.</p>
+                <p class="ed-pillar__cycle">See · Sharpen · Ship · Measure</p>
+                <p>The product is live and gaining traction, but the numbers don't match the opportunity. We find what's actually moving the curve and improve it without slowing the team down.</p>
+                <p class="ed-pillar__loop">→ Run as the work demands</p>
             </div>
             <div class="ed-pillar">
                 <div class="ed-pillar__num">03</div>
                 <h3>Make it scale</h3>
-                <p>What worked early on is starting to break down. The product is growing but the team is stretched, quality drops, speed slows, and execution starts to drift, so we bring structure, clarity, and execution so the experience scales cleanly.</p>
+                <p class="ed-pillar__cycle">Map · Codify · Equip · Scale</p>
+                <p>Growth is breaking the seams. We bring the structure and rhythm that let the team move faster without losing what made the product good in the first place.</p>
+                <p class="ed-pillar__loop">→ Loop in when needed</p>
             </div>
         </div>
     </div>
