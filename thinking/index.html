@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thinking — PromptUX</title>
+    <meta name="description" content="Strategy, craft, and honest takes on AI-native design from PromptUX.">
+    <meta property="og:title" content="Thinking — PromptUX">
+    <meta property="og:description" content="Strategy, craft, and honest takes on AI-native design.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://promptux.vercel.app/thinking/">
+    <link rel="canonical" href="https://promptux.vercel.app/thinking/">
+    <link rel="stylesheet" href="../assets/css/thinking.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+    <div class="nav__inner">
+        <a href="/" class="nav__logo">PROMPTUX</a>
+        <ul class="nav__links">
+            <li><a href="/#work">Work</a></li>
+            <li><a href="/#approach">How We Work</a></li>
+            <li><a href="/#team">Team</a></li>
+            <li><a href="/thinking/">Thinking</a></li>
+        </ul>
+        <a href="/#contact" class="nav__cta">Get in touch</a>
+    </div>
+</nav>
+
+<!-- HEADER -->
+<header class="page-head">
+    <p class="page-head__eyebrow">Thinking</p>
+    <h1 class="page-head__title">Thinking</h1>
+    <p class="page-head__sub">Strategy, craft, and honest takes on AI-native design.</p>
+</header>
+
+<!-- FILTERS -->
+<div class="filters" role="tablist" aria-label="Filter posts by category">
+    <button class="filter" data-category="all" aria-pressed="true">All</button>
+    <button class="filter" data-category="AI + Design" aria-pressed="false">AI + Design</button>
+    <button class="filter" data-category="Strategy" aria-pressed="false">Strategy</button>
+</div>
+
+<!-- POST GRID -->
+<div class="posts" id="posts">
+    <a class="post-card" data-category="AI + Design" href="/thinking/how-we-prompt-for-design-decisions">
+        <span class="post-card__tag">AI + Design</span>
+        <h2 class="post-card__title">How we prompt for design decisions</h2>
+        <p class="post-card__desc">Prompting isn't just for engineers. Here's how we use it to make faster, better design calls.</p>
+        <div class="post-card__meta">
+            <img src="../assets/team/member-shane.jpg" alt="" class="post-card__avatar">
+            <span>Shane Bouchard · 4 min · 2026-05-13</span>
+        </div>
+    </a>
+    <a class="post-card" data-category="Strategy" href="/thinking/sprint-vs-partnership">
+        <span class="post-card__tag">Strategy</span>
+        <h2 class="post-card__title">The sprint vs. the partnership: when each one wins</h2>
+        <p class="post-card__desc">Two engagement models, two different problems. Knowing which one you need changes the outcome.</p>
+        <div class="post-card__meta">
+            <img src="../assets/team/member-shane.jpg" alt="" class="post-card__avatar">
+            <span>Shane Bouchard · 5 min · 2026-05-12</span>
+        </div>
+    </a>
+    <a class="post-card" data-category="AI + Design" href="/thinking/ai-raised-the-floor">
+        <span class="post-card__tag">AI + Design</span>
+        <h2 class="post-card__title">AI raised the floor. Now what?</h2>
+        <p class="post-card__desc">The tools got better. The judgment gap got wider. What senior design actually means now.</p>
+        <div class="post-card__meta">
+            <img src="../assets/team/member-brandon.jpg" alt="" class="post-card__avatar">
+            <span>Brandon Dement · 6 min · 2026-05-11</span>
+        </div>
+    </a>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer__inner">
+        <span>PROMPTUX</span>
+        <span><em>Because how you direct AI is itself a design decision.</em></span>
+        <a href="mailto:hello@promptux.com" style="color:inherit;text-decoration:none">hello@promptux.com</a>
+        <span class="footer__social" aria-label="Social">
+            <a href="https://linkedin.com/company/promptux" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+            </a>
+            <a href="https://x.com/promptux" target="_blank" rel="noopener" aria-label="X">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+        </span>
+        <span>© 2026 PromptUX</span>
+    </div>
+</footer>
+
+<script>
+// Client-side category filter — toggles cards by data-category.
+(() => {
+    const filters = document.querySelectorAll('.filter');
+    const cards = document.querySelectorAll('.post-card');
+    filters.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const cat = btn.dataset.category;
+            filters.forEach(f => f.setAttribute('aria-pressed', String(f === btn)));
+            cards.forEach(card => {
+                card.hidden = cat !== 'all' && card.dataset.category !== cat;
+            });
+        });
+    });
+})();
+</script>
+
+</body>
+</html>
