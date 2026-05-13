@@ -2687,7 +2687,7 @@
         gap: clamp(48px, 7vw, 96px);
         align-items: center;
         width: max-content;
-        animation: ed-logos-scroll 40s linear infinite;
+        animation: ed-logos-scroll 80s linear infinite;
     }
     :root[data-theme="editorial"] .ed-logos__viewport:hover .ed-logos__track {
         animation-play-state: paused;
@@ -2811,7 +2811,7 @@
     }
     :root[data-theme="editorial"] .ed-testimonials__head {
         max-width: var(--ed-max);
-        margin: 0 auto var(--ed-space-4);
+        margin: 0 auto var(--ed-space-5);
         padding: 0 var(--gutter);
         text-align: center;
     }
@@ -2832,7 +2832,7 @@
         display: flex;
         gap: 0;
         width: max-content;
-        animation: ed-testimonials-scroll 30s linear infinite;
+        animation: ed-testimonials-scroll 60s linear infinite;
     }
     :root[data-theme="editorial"] .ed-testimonials__track--reverse {
         animation-direction: reverse;
@@ -3361,6 +3361,7 @@
 <!-- TESTIMONIALS — two opposing auto-scroll rows -->
 <section class="ed-testimonials" aria-label="What partners say">
     <div class="ed-testimonials__head">
+        <p class="ed-eyebrow">In their words</p>
         <h2 class="ed-h2">What clients are saying.</h2>
     </div>
     <div class="ed-testimonials__rows">
