@@ -2702,6 +2702,24 @@
     }
     :root[data-theme="editorial"] .ed-logos__mark:hover { opacity: 0.8; }
 
+    /* Per-logo overrides — visual weight tuning for the bar.
+       Veritas PNG is white-on-transparent (intended for dark bgs);
+       invert flips to black so it reads on paper. Sharpspring/symantec
+       /schwab get height tweaks because their natural aspect ratios
+       don't match the rest of the set. */
+    :root[data-theme="editorial"] .ed-logos__mark[src*="veritas"] {
+        filter: grayscale(1) invert(1);
+    }
+    :root[data-theme="editorial"] .ed-logos__mark[src*="sharpspring"] {
+        height: clamp(88px, 9.6vw, 136px);
+    }
+    :root[data-theme="editorial"] .ed-logos__mark[src*="symantec"] {
+        height: clamp(28.6px, 3.12vw, 44.2px);
+    }
+    :root[data-theme="editorial"] .ed-logos__mark[src*="schwab"] {
+        height: clamp(19.8px, 2.16vw, 30.6px);
+    }
+
     @keyframes ed-logos-scroll {
         from { transform: translateX(0); }
         to   { transform: translateX(-50%); }
@@ -3179,11 +3197,13 @@
             <img src="assets/logos/disney.svg" alt="Disney" class="ed-logos__mark">
             <img src="assets/logos/schwab.svg" alt="Charles Schwab" class="ed-logos__mark">
             <img src="assets/logos/gitlab.svg" alt="GitLab" class="ed-logos__mark">
+            <img src="assets/logos/sharpspring.png" alt="SharpSpring" class="ed-logos__mark">
             <img src="assets/logos/symantec.svg" alt="Symantec" class="ed-logos__mark">
             <img src="assets/logos/veritas.png" alt="Veritas" class="ed-logos__mark">
             <img src="assets/logos/disney.svg" alt="" class="ed-logos__mark" aria-hidden="true">
             <img src="assets/logos/schwab.svg" alt="" class="ed-logos__mark" aria-hidden="true">
             <img src="assets/logos/gitlab.svg" alt="" class="ed-logos__mark" aria-hidden="true">
+            <img src="assets/logos/sharpspring.png" alt="" class="ed-logos__mark" aria-hidden="true">
             <img src="assets/logos/symantec.svg" alt="" class="ed-logos__mark" aria-hidden="true">
             <img src="assets/logos/veritas.png" alt="" class="ed-logos__mark" aria-hidden="true">
         </div>
