@@ -3118,91 +3118,133 @@
         :root[data-theme="editorial"] .ed-thinking__grid { grid-template-columns: 1fr; }
     }
 
-    /* === SANDBOX — interactive case-study carousel =====================
-       Single-slide-visible carousel inspired by Huge-style work pages.
-       One track translates left/right; inactive slides fade + nudge so
-       you feel forward/back motion. Editorial palette — no new colors.
+    /* === SANDBOX — vertical-scroll-driven horizontal carousel =========
+       Hugeinc-style pinned scroll. The outer __pin wrapper is tall
+       enough that scrolling through it equals N viewport-heights;
+       inside, the __stage stays sticky at 100vh while the __track
+       translates horizontally based on scroll progress (set by JS).
     ====================================================================== */
     :root[data-theme="editorial"] .sb-carousel {
         position: relative;
         background: var(--paper);
-        padding: clamp(72px, 9vw, 144px) 0;
         border-top: 1px solid var(--rule);
         border-bottom: 1px solid var(--rule);
-        overflow: hidden;
-    }
-    /* Edge gradient fades — wide so any neighbor bleed fully dissolves. */
-    :root[data-theme="editorial"] .sb-carousel::before,
-    :root[data-theme="editorial"] .sb-carousel::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: clamp(120px, 18vw, 320px);
-        pointer-events: none;
-        z-index: 2;
-    }
-    :root[data-theme="editorial"] .sb-carousel::before {
-        left: 0;
-        background: linear-gradient(to right, var(--paper), transparent);
-    }
-    :root[data-theme="editorial"] .sb-carousel::after {
-        right: 0;
-        background: linear-gradient(to left, var(--paper), transparent);
     }
     :root[data-theme="editorial"] .sb-carousel__head {
         text-align: center;
-        margin: 0 auto clamp(48px, 7vw, 96px);
-        padding: 0 var(--gutter);
-    }
-    :root[data-theme="editorial"] .sb-carousel__stage {
         max-width: var(--ed-max);
         margin: 0 auto;
-        padding: 0 var(--gutter);
-        overflow: hidden;
+        padding: clamp(72px, 9vw, 144px) var(--gutter) clamp(40px, 5vw, 72px);
     }
+    /* The wrapper is tall — its scroll-through pages the carousel. */
+    :root[data-theme="editorial"] .sb-carousel__pin {
+        position: relative;
+        height: calc(var(--vh, 1vh) * 100 * 4); /* 4 cases × 1 viewport each */
+    }
+    :root[data-theme="editorial"] .sb-carousel__stage {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
+        overflow: hidden;
+        background: var(--paper);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    /* Counter overlay — top-left */
+    :root[data-theme="editorial"] .sb-carousel__overlay {
+        position: absolute;
+        top: clamp(24px, 4vw, 56px);
+        left: var(--gutter);
+        z-index: 3;
+        pointer-events: none;
+    }
+    :root[data-theme="editorial"] .sb-carousel__kicker {
+        font-family: var(--body);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--mid);
+        margin: 0 0 6px;
+    }
+    :root[data-theme="editorial"] .sb-carousel__meta {
+        font-family: var(--body);
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--ink);
+        margin: 0;
+        font-variant-numeric: tabular-nums;
+    }
+    :root[data-theme="editorial"] .sb-carousel__count-current {
+        display: inline-block;
+        min-width: 1.4em;
+        text-align: right;
+    }
+    :root[data-theme="editorial"] .sb-carousel__sep {
+        margin: 0 8px;
+        color: var(--mid);
+    }
+    :root[data-theme="editorial"] .sb-carousel__active {
+        color: var(--ink);
+    }
+    /* Soft side fades — narrow now so the peek of the next case shows. */
+    :root[data-theme="editorial"] .sb-carousel__stage::before,
+    :root[data-theme="editorial"] .sb-carousel__stage::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 2px;
+        width: clamp(40px, 6vw, 96px);
+        pointer-events: none;
+        z-index: 2;
+    }
+    :root[data-theme="editorial"] .sb-carousel__stage::before {
+        left: 0;
+        background: linear-gradient(to right, var(--paper), transparent);
+    }
+    :root[data-theme="editorial"] .sb-carousel__stage::after {
+        right: 0;
+        background: linear-gradient(to left, var(--paper), transparent);
+    }
+    /* Track + slides */
     :root[data-theme="editorial"] .sb-carousel__track {
         display: flex;
-        transition: transform 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        width: max-content;
         will-change: transform;
     }
     :root[data-theme="editorial"] .sb-carousel__slide {
-        flex: 0 0 100%;
+        flex: 0 0 100vw;
+        height: 100%;
         display: grid;
         grid-template-columns: 1fr 1.1fr;
         gap: clamp(32px, 5vw, 96px);
         align-items: center;
-        opacity: 0;
-        pointer-events: none;
+        padding: 0 var(--gutter);
+        max-width: 100vw;
+        opacity: 0.45;
+        transition: opacity 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
     :root[data-theme="editorial"] .sb-carousel__slide.is-active {
         opacity: 1;
-        pointer-events: auto;
     }
-    :root[data-theme="editorial"] .sb-carousel__slide.is-active { opacity: 1; }
     :root[data-theme="editorial"] .sb-carousel__copy {
-        transform: translateY(24px);
-        opacity: 0;
-        transition: transform 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 80ms,
-                    opacity 600ms ease-out 80ms;
-    }
-    :root[data-theme="editorial"] .sb-carousel__slide.is-active .sb-carousel__copy {
-        transform: translateY(0);
-        opacity: 1;
+        max-width: 480px;
     }
     :root[data-theme="editorial"] .sb-carousel__media {
         margin: 0;
-        transform: scale(0.92);
-        transition: transform 1000ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-    :root[data-theme="editorial"] .sb-carousel__slide.is-active .sb-carousel__media {
-        transform: scale(1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     :root[data-theme="editorial"] .sb-carousel__media img {
         display: block;
         width: 100%;
         height: auto;
         max-width: 560px;
+        max-height: 60vh;
+        object-fit: contain;
         margin: 0 auto;
     }
     :root[data-theme="editorial"] .sb-carousel__index {
@@ -3217,7 +3259,7 @@
     :root[data-theme="editorial"] .sb-carousel__title {
         font-family: var(--display);
         font-weight: 700;
-        font-size: clamp(40px, 5.5vw, 72px);
+        font-size: clamp(40px, 5.5vw, 80px);
         line-height: 1.04;
         letter-spacing: -0.025em;
         color: var(--ink);
@@ -3228,32 +3270,77 @@
         font-size: clamp(16px, 1.4vw, 19px);
         line-height: 1.55;
         color: var(--mid);
-        max-width: 40ch;
+        max-width: 44ch;
         margin: 0 0 var(--ed-space-4);
     }
     :root[data-theme="editorial"] .sb-carousel__copy .cta-pill { display: inline-flex; }
+    /* Bottom progress bar */
+    :root[data-theme="editorial"] .sb-carousel__progress {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 2px;
+        background: var(--rule);
+        z-index: 3;
+    }
+    :root[data-theme="editorial"] .sb-carousel__progress-fill {
+        height: 100%;
+        width: 0%;
+        background: var(--ink);
+        will-change: width;
+    }
 
-    @media (max-width: 768px) {
+    /* Mobile + reduced motion: drop the pinning, stack vertically. */
+    @media (max-width: 760px) {
+        :root[data-theme="editorial"] .sb-carousel__pin { height: auto; }
+        :root[data-theme="editorial"] .sb-carousel__stage {
+            position: static;
+            height: auto;
+            overflow: visible;
+        }
+        :root[data-theme="editorial"] .sb-carousel__overlay,
+        :root[data-theme="editorial"] .sb-carousel__progress,
+        :root[data-theme="editorial"] .sb-carousel__stage::before,
+        :root[data-theme="editorial"] .sb-carousel__stage::after { display: none; }
+        :root[data-theme="editorial"] .sb-carousel__track {
+            flex-direction: column;
+            width: 100%;
+            transform: none !important;
+        }
         :root[data-theme="editorial"] .sb-carousel__slide {
+            flex: 0 0 auto;
             grid-template-columns: 1fr;
             gap: var(--ed-space-3);
+            padding: var(--ed-space-5) var(--gutter);
+            opacity: 1;
             text-align: center;
         }
         :root[data-theme="editorial"] .sb-carousel__media { order: -1; }
-        :root[data-theme="editorial"] .sb-carousel__media img { max-width: 320px; }
+        :root[data-theme="editorial"] .sb-carousel__media img { max-width: 320px; max-height: none; }
         :root[data-theme="editorial"] .sb-carousel__sub { margin-left: auto; margin-right: auto; }
-        :root[data-theme="editorial"] .sb-carousel__btn { width: 48px; height: 48px; }
+        :root[data-theme="editorial"] .sb-carousel__copy { max-width: 100%; }
     }
     @media (prefers-reduced-motion: reduce) {
-        :root[data-theme="editorial"] .sb-carousel__track,
-        :root[data-theme="editorial"] .sb-carousel__slide,
-        :root[data-theme="editorial"] .sb-carousel__copy,
-        :root[data-theme="editorial"] .sb-carousel__media,
-        :root[data-theme="editorial"] .sb-carousel__btn,
-        :root[data-theme="editorial"] .sb-carousel__dot { transition: none; }
-        :root[data-theme="editorial"] .sb-carousel__slide { opacity: 1; }
-        :root[data-theme="editorial"] .sb-carousel__copy { opacity: 1; transform: none; }
-        :root[data-theme="editorial"] .sb-carousel__media { transform: none; }
+        :root[data-theme="editorial"] .sb-carousel__pin { height: auto; }
+        :root[data-theme="editorial"] .sb-carousel__stage {
+            position: static;
+            height: auto;
+            overflow: visible;
+        }
+        :root[data-theme="editorial"] .sb-carousel__track {
+            flex-direction: column;
+            width: 100%;
+            transform: none !important;
+        }
+        :root[data-theme="editorial"] .sb-carousel__slide {
+            flex: 0 0 auto;
+            padding: var(--ed-space-5) var(--gutter);
+            opacity: 1;
+            transition: none;
+        }
+        :root[data-theme="editorial"] .sb-carousel__overlay,
+        :root[data-theme="editorial"] .sb-carousel__progress { display: none; }
     }
 
     /* === RESPONSIVE === */
@@ -3489,52 +3576,69 @@
 
 <!-- FEATURED WORK — interactive carousel (sandbox) -->
 <section class="sb-carousel" aria-label="Featured work" aria-roledescription="carousel">
-    <div class="sb-carousel__stage">
-        <div class="sb-carousel__track">
-            <article class="sb-carousel__slide is-active" data-case="lace" aria-label="Lace AI Pro">
-                <div class="sb-carousel__copy">
-                    <p class="sb-carousel__index">Healthcare · MedTech · SaaS</p>
-                    <h3 class="sb-carousel__title">Lace AI Pro</h3>
-                    <p class="sb-carousel__sub">Brand identity, product design, email system, and trade show collateral for an auditory rehabilitation platform.</p>
-                    <button type="button" class="cta-pill ed-work-band__cta" data-case="lace">See the work →</button>
-                </div>
-                <figure class="sb-carousel__media">
-                    <img src="assets/devices/iphone-lace.png" alt="Lace AI Pro — mobile product mockup" loading="lazy">
-                </figure>
-            </article>
-            <article class="sb-carousel__slide" data-case="sharp" aria-label="SharpSpring">
-                <div class="sb-carousel__copy">
-                    <p class="sb-carousel__index">B2B SaaS · Marketing Automation</p>
-                    <h3 class="sb-carousel__title">SharpSpring</h3>
-                    <p class="sb-carousel__sub">Platform redesign, identity refresh, and full-funnel marketing for a fast-scaling SaaS company.</p>
-                    <button type="button" class="cta-pill ed-work-band__cta" data-case="sharp">See the work →</button>
-                </div>
-                <figure class="sb-carousel__media">
-                    <img src="assets/devices/laptop-sharpspring.png" alt="SharpSpring — workflow automation builder on a MacBook" loading="lazy">
-                </figure>
-            </article>
-            <article class="sb-carousel__slide" data-case="pickers" aria-label="Pickers">
-                <div class="sb-carousel__copy">
-                    <p class="sb-carousel__index">Creator Economy · Design System</p>
-                    <h3 class="sb-carousel__title">Pickers</h3>
-                    <p class="sb-carousel__sub">First design system: tokens, components, documentation. 74.8% adoption · 28% faster delivery.</p>
-                    <button type="button" class="cta-pill ed-work-band__cta" data-case="pickers">See the work →</button>
-                </div>
-                <figure class="sb-carousel__media">
-                    <img src="assets/devices/desktop-pickers.png" alt="Pickers — design system documentation on a desktop monitor" loading="lazy">
-                </figure>
-            </article>
-            <article class="sb-carousel__slide" data-case="plremote" aria-label="PL Remote">
-                <div class="sb-carousel__copy">
-                    <p class="sb-carousel__index">IoT · Mobile · MVP Delivery</p>
-                    <h3 class="sb-carousel__title">PL Remote</h3>
-                    <p class="sb-carousel__sub">Product design for a mobile app replacing physical gate remotes. 10K+ users in month one.</p>
-                    <button type="button" class="cta-pill ed-work-band__cta" data-case="plremote">See the work →</button>
-                </div>
-                <figure class="sb-carousel__media">
-                    <img src="assets/devices/iphone-pl.png" alt="PL Remote — isometric mobile mockup showing the device setup screen" loading="lazy">
-                </figure>
-            </article>
+    <div class="sb-carousel__head">
+        <p class="ed-eyebrow">Selected work</p>
+        <h2 class="ed-h2">Four case studies, in scroll.</h2>
+    </div>
+    <div class="sb-carousel__pin">
+        <div class="sb-carousel__stage">
+            <div class="sb-carousel__overlay" aria-live="polite" aria-atomic="true">
+                <p class="sb-carousel__kicker">Featured work</p>
+                <p class="sb-carousel__meta">
+                    <span class="sb-carousel__count"><span class="sb-carousel__count-current">01</span> / 04</span>
+                    <span class="sb-carousel__sep">·</span>
+                    <span class="sb-carousel__active">Lace AI Pro</span>
+                </p>
+            </div>
+            <div class="sb-carousel__track">
+                <article class="sb-carousel__slide is-active" data-case="lace" aria-label="Case 1 of 4: Lace AI Pro">
+                    <div class="sb-carousel__copy">
+                        <p class="sb-carousel__index">Healthcare · MedTech · SaaS</p>
+                        <h3 class="sb-carousel__title">Lace AI Pro</h3>
+                        <p class="sb-carousel__sub">Brand identity, product design, email system, and trade show collateral for an auditory rehabilitation platform.</p>
+                        <button type="button" class="cta-pill ed-work-band__cta" data-case="lace">See the work →</button>
+                    </div>
+                    <figure class="sb-carousel__media">
+                        <img src="assets/devices/iphone-lace.png" alt="Lace AI Pro — mobile product mockup" loading="lazy">
+                    </figure>
+                </article>
+                <article class="sb-carousel__slide" data-case="sharp" aria-label="Case 2 of 4: SharpSpring">
+                    <div class="sb-carousel__copy">
+                        <p class="sb-carousel__index">B2B SaaS · Marketing Automation</p>
+                        <h3 class="sb-carousel__title">SharpSpring</h3>
+                        <p class="sb-carousel__sub">Platform redesign, identity refresh, and full-funnel marketing for a fast-scaling SaaS company.</p>
+                        <button type="button" class="cta-pill ed-work-band__cta" data-case="sharp">See the work →</button>
+                    </div>
+                    <figure class="sb-carousel__media">
+                        <img src="assets/devices/laptop-sharpspring.png" alt="SharpSpring — workflow automation builder on a MacBook" loading="lazy">
+                    </figure>
+                </article>
+                <article class="sb-carousel__slide" data-case="pickers" aria-label="Case 3 of 4: Pickers">
+                    <div class="sb-carousel__copy">
+                        <p class="sb-carousel__index">Creator Economy · Design System</p>
+                        <h3 class="sb-carousel__title">Pickers</h3>
+                        <p class="sb-carousel__sub">First design system: tokens, components, documentation. 74.8% adoption · 28% faster delivery.</p>
+                        <button type="button" class="cta-pill ed-work-band__cta" data-case="pickers">See the work →</button>
+                    </div>
+                    <figure class="sb-carousel__media">
+                        <img src="assets/devices/desktop-pickers.png" alt="Pickers — design system documentation on a desktop monitor" loading="lazy">
+                    </figure>
+                </article>
+                <article class="sb-carousel__slide" data-case="plremote" aria-label="Case 4 of 4: PL Remote">
+                    <div class="sb-carousel__copy">
+                        <p class="sb-carousel__index">IoT · Mobile · MVP Delivery</p>
+                        <h3 class="sb-carousel__title">PL Remote</h3>
+                        <p class="sb-carousel__sub">Product design for a mobile app replacing physical gate remotes. 10K+ users in month one.</p>
+                        <button type="button" class="cta-pill ed-work-band__cta" data-case="plremote">See the work →</button>
+                    </div>
+                    <figure class="sb-carousel__media">
+                        <img src="assets/devices/iphone-pl.png" alt="PL Remote — isometric mobile mockup showing the device setup screen" loading="lazy">
+                    </figure>
+                </article>
+            </div>
+            <div class="sb-carousel__progress" aria-hidden="true">
+                <div class="sb-carousel__progress-fill"></div>
+            </div>
         </div>
     </div>
 </section>
@@ -4479,69 +4583,87 @@ document.addEventListener('click', function(e) {
     });
 })();
 
-// Sandbox carousel — chrome-free. Auto-advances every 6s, pauses on
-// hover. Keyboard arrows and touch swipe are invisible affordances
-// for power users + accessibility. No buttons, no dots, no counter.
+// Sandbox carousel — vertical-scroll-driven horizontal pinned carousel.
+// Wrapper is N×100vh tall; inside, the stage is sticky at 100vh.
+// As the user scrolls through the wrapper, progress drives translateX
+// on the track + counter + progress bar.
 (() => {
-    const carousel = document.querySelector('.sb-carousel');
-    if (!carousel) return;
-    const track = carousel.querySelector('.sb-carousel__track');
-    const slides = Array.from(carousel.querySelectorAll('.sb-carousel__slide'));
+    const pin = document.querySelector('.sb-carousel__pin');
+    if (!pin) return;
+    const track = pin.querySelector('.sb-carousel__track');
+    const slides = Array.from(pin.querySelectorAll('.sb-carousel__slide'));
+    const counter = pin.querySelector('.sb-carousel__count-current');
+    const activeLabel = pin.querySelector('.sb-carousel__active');
+    const progressFill = pin.querySelector('.sb-carousel__progress-fill');
     const total = slides.length;
     if (!total) return;
-    let current = 0;
-    let timer = null;
-    const AUTO_MS = 6000;
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const goTo = (i) => {
-        current = (i + total) % total;
-        track.style.transform = `translateX(-${current * 100}%)`;
-        slides.forEach((s, idx) => s.classList.toggle('is-active', idx === current));
-    };
-
-    const start = () => {
-        if (reduceMotion) return;
-        stop();
-        timer = setInterval(() => goTo(current + 1), AUTO_MS);
-    };
-    const stop = () => { if (timer) clearInterval(timer); timer = null; };
-
-    carousel.addEventListener('mouseenter', stop);
-    carousel.addEventListener('mouseleave', start);
-
-    // Keyboard arrows when carousel is in view
-    document.addEventListener('keydown', (e) => {
-        const rect = carousel.getBoundingClientRect();
-        const inView = rect.bottom > 60 && rect.top < window.innerHeight - 60;
-        if (!inView) return;
-        const t = e.target;
-        if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
-        if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1); start(); }
-        if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); start(); }
+    const titles = slides.map(s => {
+        const t = s.querySelector('.sb-carousel__title');
+        return t ? t.textContent.trim() : '';
     });
 
-    // Touch swipe (mobile)
-    let touchStartX = null;
-    let touchStartY = null;
-    track.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-        stop();
-    }, { passive: true });
-    track.addEventListener('touchend', (e) => {
-        if (touchStartX === null) return;
-        const dx = e.changedTouches[0].clientX - touchStartX;
-        const dy = e.changedTouches[0].clientY - touchStartY;
-        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
-            if (dx < 0) goTo(current + 1); else goTo(current - 1);
+    // iOS Safari: 100vh includes the URL bar; lock to the actual inner
+    // height so the pin math doesn't drift. Updated on resize.
+    const setVh = () => {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+    setVh();
+
+    let rafScheduled = false;
+    let lastIdx = -1;
+
+    function update() {
+        rafScheduled = false;
+        const rect = pin.getBoundingClientRect();
+        const scrollable = pin.offsetHeight - window.innerHeight;
+        if (scrollable <= 0) return;
+        const raw = -rect.top / scrollable;
+        const progress = Math.max(0, Math.min(1, raw));
+
+        // Translate the track. (total - 1) transitions across `total` slides.
+        const tx = -progress * (total - 1) * 100;
+        track.style.transform = `translateX(${tx}%)`;
+
+        // Active slide = the one closest to the centred position.
+        const idx = Math.min(total - 1, Math.round(progress * (total - 1)));
+        if (idx !== lastIdx) {
+            slides.forEach((s, i) => s.classList.toggle('is-active', i === idx));
+            if (counter) counter.textContent = String(idx + 1).padStart(2, '0');
+            if (activeLabel) activeLabel.textContent = titles[idx] || '';
+            lastIdx = idx;
         }
-        touchStartX = touchStartY = null;
-        start();
-    });
 
-    goTo(0);
-    start();
+        if (progressFill) progressFill.style.width = (progress * 100) + '%';
+    }
+
+    function schedule() {
+        if (rafScheduled) return;
+        rafScheduled = true;
+        requestAnimationFrame(update);
+    }
+
+    // Bypass the scroll driver if reduced motion is set OR the
+    // viewport is narrow (mobile fallback turns the section into a
+    // vertical stack via CSS).
+    const isPinningActive = () =>
+        !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+        !window.matchMedia('(max-width: 760px)').matches;
+
+    if (isPinningActive()) {
+        window.addEventListener('scroll', schedule, { passive: true });
+        update();
+    }
+    window.addEventListener('resize', () => {
+        setVh();
+        if (isPinningActive()) schedule();
+        else {
+            // Drop any inline transform so the static stack renders cleanly.
+            track.style.transform = '';
+            slides.forEach(s => s.classList.add('is-active'));
+        }
+    });
 })();
 
 // Stats count-up — fires once when .ed-stats enters the viewport.
