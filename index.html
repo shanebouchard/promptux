@@ -2791,6 +2791,15 @@
         border-bottom: 1px solid var(--rule);
         overflow: hidden;
     }
+    :root[data-theme="editorial"] .ed-testimonials__head {
+        max-width: var(--ed-max);
+        margin: 0 auto var(--ed-space-4);
+        padding: 0 var(--gutter);
+        text-align: center;
+    }
+    :root[data-theme="editorial"] .ed-testimonials__head h2 {
+        margin: 0;
+    }
     :root[data-theme="editorial"] .ed-testimonials__rows {
         display: flex;
         flex-direction: column;
@@ -2803,7 +2812,7 @@
     }
     :root[data-theme="editorial"] .ed-testimonials__track {
         display: flex;
-        gap: 24px;
+        gap: 0;
         width: max-content;
         animation: ed-testimonials-scroll 30s linear infinite;
     }
@@ -2819,6 +2828,7 @@
         border: 1px solid var(--rule);
         border-radius: 16px;
         padding: 32px;
+        margin-right: 24px;
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -3170,12 +3180,12 @@
             <img src="assets/logos/schwab.svg" alt="Charles Schwab" class="ed-logos__mark">
             <img src="assets/logos/gitlab.svg" alt="GitLab" class="ed-logos__mark">
             <img src="assets/logos/symantec.svg" alt="Symantec" class="ed-logos__mark">
-            <img src="assets/logos/veritas.svg" alt="Veritas" class="ed-logos__mark">
+            <img src="assets/logos/veritas.png" alt="Veritas" class="ed-logos__mark">
             <img src="assets/logos/disney.svg" alt="" class="ed-logos__mark" aria-hidden="true">
             <img src="assets/logos/schwab.svg" alt="" class="ed-logos__mark" aria-hidden="true">
             <img src="assets/logos/gitlab.svg" alt="" class="ed-logos__mark" aria-hidden="true">
             <img src="assets/logos/symantec.svg" alt="" class="ed-logos__mark" aria-hidden="true">
-            <img src="assets/logos/veritas.svg" alt="" class="ed-logos__mark" aria-hidden="true">
+            <img src="assets/logos/veritas.png" alt="" class="ed-logos__mark" aria-hidden="true">
         </div>
     </div>
 </section>
@@ -3330,6 +3340,9 @@
 
 <!-- TESTIMONIALS — two opposing auto-scroll rows -->
 <section class="ed-testimonials" aria-label="What partners say">
+    <div class="ed-testimonials__head">
+        <h2 class="ed-h2">What clients are saying.</h2>
+    </div>
     <div class="ed-testimonials__rows">
         <div class="ed-testimonials__viewport">
             <div class="ed-testimonials__track" aria-hidden="true">
@@ -3364,7 +3377,7 @@
                         </div>
                     </div>
                     <p class="ed-testimonials__quote">They think at the strategic level and execute at the component level. That combination is almost impossible to find.</p>
-                    <img src="assets/logos/veritas.svg" alt="Veritas" class="ed-testimonials__logo">
+                    <img src="assets/logos/veritas.png" alt="Veritas" class="ed-testimonials__logo">
                 </article>
                 <article class="ed-testimonials__card" aria-hidden="true">
                     <div class="ed-testimonials__header">
@@ -3397,7 +3410,7 @@
                         </div>
                     </div>
                     <p class="ed-testimonials__quote">They think at the strategic level and execute at the component level. That combination is almost impossible to find.</p>
-                    <img src="assets/logos/veritas.svg" alt="" class="ed-testimonials__logo">
+                    <img src="assets/logos/veritas.png" alt="" class="ed-testimonials__logo">
                 </article>
             </div>
         </div>
