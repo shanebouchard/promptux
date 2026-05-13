@@ -1404,57 +1404,7 @@
         to   { opacity: 0.09; }
     }
 
-    /* =============================================
-       THEME SELECTOR — floating pill, bottom right.
-       Stays themed via CSS variables so it adapts to
-       whichever theme is active.
-    ============================================= */
-    #theme-selector {
-        position: fixed;
-        bottom: 24px;
-        right: 24px;
-        z-index: 600;
-        display: inline-flex;
-        gap: 2px;
-        padding: 4px;
-        border-radius: 999px;
-        background: var(--ink);
-        font-family: var(--body);
-        box-shadow: 0 8px 28px rgba(0,0,0,0.18);
-    }
-    #theme-selector button,
-    #theme-selector a {
-        appearance: none;
-        border: 0;
-        background: transparent;
-        color: rgba(255,255,255,0.55);
-        font-family: inherit;
-        font-size: 11px;
-        font-weight: 500;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        padding: 8px 14px;
-        border-radius: 999px;
-        cursor: pointer;
-        text-decoration: none;
-        transition: background 0.18s ease, color 0.18s ease;
-    }
-    #theme-selector button:hover,
-    #theme-selector a:hover {
-        color: var(--paper);
-    }
-    #theme-selector button.is-active,
-    #theme-selector a.is-active {
-        background: var(--paper);
-        color: var(--ink);
-    }
-    @media (max-width: 540px) {
-        #theme-selector { bottom: 12px; right: 12px; }
-        #theme-selector button,
-        #theme-selector a { padding: 6px 10px; font-size: 10px; }
-    }
-
-    /* =============================================
+/* =============================================
        CASE STUDY PANEL — media blocks
        Mirrors the Figma SSOT: white page bg with
        cool-gray image cards. Sampled exact bg color
@@ -3268,9 +3218,6 @@ document.addEventListener('click', function(e) {
     const a = e.target.closest('a');
     if (!a) return;
 
-    // Theme-pill links are real cross-page navigation — let them through.
-    if (a.closest('#theme-selector')) return;
-
     e.preventDefault();
 
     const href = a.getAttribute('href') || '';
@@ -3377,18 +3324,7 @@ document.addEventListener('click', function(e) {
     transition: opacity 0.4s ease;
 "></div>
 
-<!-- Theme selector — floating pill, bottom right.
-     Each theme is its own page; the pill is anchor-link based. -->
-<div id="theme-selector" role="navigation" aria-label="Theme">
-    <a href="promptux-homepage.html"><span>Athletic</span></a>
-    <a href="promptux-swiss.html"><span>Swiss</span></a>
-    <a href="promptux-editorial.html" class="is-active"><span>Editorial</span></a>
-    <a href="promptux-device.html"><span>Device</span></a>
-</div>
-
-
 <script>
-// Athletic (default) theme. Theme pill links to sibling pages.
 
 // =============================================
 // CASE STUDY DATA
