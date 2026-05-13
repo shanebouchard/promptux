@@ -3009,7 +3009,7 @@
     ====================================================================== */
     :root[data-theme="editorial"] .ed-testimonials {
         background: var(--paper);
-        padding: var(--ed-space-5) 0;
+        padding: clamp(96px, 12vw, 160px) 0;
         border-bottom: 1px solid var(--rule);
         overflow: hidden;
     }
@@ -3067,14 +3067,15 @@
     }
     :root[data-theme="editorial"] .ed-testimonials__card {
         flex: 0 0 480px;
+        min-height: 480px;
         background: var(--paper-2);
         border: 1px solid var(--rule);
         border-radius: 16px;
-        padding: 32px;
+        padding: 40px;
         margin-right: 24px;
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 24px;
     }
     :root[data-theme="editorial"] .ed-testimonials__header {
         display: flex;
@@ -3886,65 +3887,6 @@
                 </article>
                 <article class="ed-testimonials__card">
                     <div class="ed-testimonials__header">
-                        <div class="ed-testimonials__avatar" aria-hidden="true">PP</div>
-                        <div class="ed-testimonials__person">
-                            <div class="ed-testimonials__name">Priya Patel</div>
-                            <div class="ed-testimonials__title">EVP, Charles Schwab</div>
-                        </div>
-                    </div>
-                    <p class="ed-testimonials__quote">The Sprint gave us a map. We'd been building without one and didn't know it until they showed us.</p>
-                    <img src="assets/logos/schwab.svg" alt="Charles Schwab" class="ed-testimonials__logo">
-                </article>
-                <article class="ed-testimonials__card">
-                    <div class="ed-testimonials__header">
-                        <div class="ed-testimonials__avatar" aria-hidden="true">RA</div>
-                        <div class="ed-testimonials__person">
-                            <div class="ed-testimonials__name">Rachel Adams</div>
-                            <div class="ed-testimonials__title">CPO, Veritas</div>
-                        </div>
-                    </div>
-                    <p class="ed-testimonials__quote">They think at the strategic level and execute at the component level. That combination is almost impossible to find.</p>
-                    <img src="assets/logos/veritas.png" alt="Veritas" class="ed-testimonials__logo">
-                </article>
-                <article class="ed-testimonials__card" aria-hidden="true">
-                    <div class="ed-testimonials__header">
-                        <div class="ed-testimonials__avatar" aria-hidden="true">SC</div>
-                        <div class="ed-testimonials__person">
-                            <div class="ed-testimonials__name">Sarah Chen</div>
-                            <div class="ed-testimonials__title">VP Product, Disney</div>
-                        </div>
-                    </div>
-                    <p class="ed-testimonials__quote">They got aligned in a day and shipped something better than we'd produced in six months of trying internally.</p>
-                    <img src="assets/logos/disney.svg" alt="" class="ed-testimonials__logo">
-                </article>
-                <article class="ed-testimonials__card" aria-hidden="true">
-                    <div class="ed-testimonials__header">
-                        <div class="ed-testimonials__avatar" aria-hidden="true">PP</div>
-                        <div class="ed-testimonials__person">
-                            <div class="ed-testimonials__name">Priya Patel</div>
-                            <div class="ed-testimonials__title">EVP, Charles Schwab</div>
-                        </div>
-                    </div>
-                    <p class="ed-testimonials__quote">The Sprint gave us a map. We'd been building without one and didn't know it until they showed us.</p>
-                    <img src="assets/logos/schwab.svg" alt="" class="ed-testimonials__logo">
-                </article>
-                <article class="ed-testimonials__card" aria-hidden="true">
-                    <div class="ed-testimonials__header">
-                        <div class="ed-testimonials__avatar" aria-hidden="true">RA</div>
-                        <div class="ed-testimonials__person">
-                            <div class="ed-testimonials__name">Rachel Adams</div>
-                            <div class="ed-testimonials__title">CPO, Veritas</div>
-                        </div>
-                    </div>
-                    <p class="ed-testimonials__quote">They think at the strategic level and execute at the component level. That combination is almost impossible to find.</p>
-                    <img src="assets/logos/veritas.png" alt="" class="ed-testimonials__logo">
-                </article>
-            </div>
-        </div>
-        <div class="ed-testimonials__viewport">
-            <div class="ed-testimonials__track ed-testimonials__track--reverse" aria-hidden="true">
-                <article class="ed-testimonials__card">
-                    <div class="ed-testimonials__header">
                         <div class="ed-testimonials__avatar" aria-hidden="true">MB</div>
                         <div class="ed-testimonials__person">
                             <div class="ed-testimonials__name">Marcus Bell</div>
@@ -3953,6 +3895,17 @@
                     </div>
                     <p class="ed-testimonials__quote">What stood out wasn't the speed — it was that nothing got lost in translation. What we decided in the room is what shipped.</p>
                     <img src="assets/logos/symantec.svg" alt="Symantec" class="ed-testimonials__logo">
+                </article>
+                <article class="ed-testimonials__card">
+                    <div class="ed-testimonials__header">
+                        <div class="ed-testimonials__avatar" aria-hidden="true">PP</div>
+                        <div class="ed-testimonials__person">
+                            <div class="ed-testimonials__name">Priya Patel</div>
+                            <div class="ed-testimonials__title">EVP, Charles Schwab</div>
+                        </div>
+                    </div>
+                    <p class="ed-testimonials__quote">The Sprint gave us a map. We'd been building without one and didn't know it until they showed us.</p>
+                    <img src="assets/logos/schwab.svg" alt="Charles Schwab" class="ed-testimonials__logo">
                 </article>
                 <article class="ed-testimonials__card">
                     <div class="ed-testimonials__header">
@@ -3967,6 +3920,17 @@
                 </article>
                 <article class="ed-testimonials__card">
                     <div class="ed-testimonials__header">
+                        <div class="ed-testimonials__avatar" aria-hidden="true">RA</div>
+                        <div class="ed-testimonials__person">
+                            <div class="ed-testimonials__name">Rachel Adams</div>
+                            <div class="ed-testimonials__title">CPO, Veritas</div>
+                        </div>
+                    </div>
+                    <p class="ed-testimonials__quote">They think at the strategic level and execute at the component level. That combination is almost impossible to find.</p>
+                    <img src="assets/logos/veritas.png" alt="Veritas" class="ed-testimonials__logo">
+                </article>
+                <article class="ed-testimonials__card">
+                    <div class="ed-testimonials__header">
                         <div class="ed-testimonials__avatar" aria-hidden="true">TH</div>
                         <div class="ed-testimonials__person">
                             <div class="ed-testimonials__name">Tom Hayes</div>
@@ -3975,6 +3939,17 @@
                     </div>
                     <p class="ed-testimonials__quote">Every agency promises senior talent. These are the first people who actually delivered it.</p>
                     <img src="assets/logos/lace.png" alt="Lace AI Pro" class="ed-testimonials__logo">
+                </article>
+                <article class="ed-testimonials__card" aria-hidden="true">
+                    <div class="ed-testimonials__header">
+                        <div class="ed-testimonials__avatar" aria-hidden="true">SC</div>
+                        <div class="ed-testimonials__person">
+                            <div class="ed-testimonials__name">Sarah Chen</div>
+                            <div class="ed-testimonials__title">VP Product, Disney</div>
+                        </div>
+                    </div>
+                    <p class="ed-testimonials__quote">They got aligned in a day and shipped something better than we'd produced in six months of trying internally.</p>
+                    <img src="assets/logos/disney.svg" alt="" class="ed-testimonials__logo">
                 </article>
                 <article class="ed-testimonials__card" aria-hidden="true">
                     <div class="ed-testimonials__header">
@@ -3989,6 +3964,17 @@
                 </article>
                 <article class="ed-testimonials__card" aria-hidden="true">
                     <div class="ed-testimonials__header">
+                        <div class="ed-testimonials__avatar" aria-hidden="true">PP</div>
+                        <div class="ed-testimonials__person">
+                            <div class="ed-testimonials__name">Priya Patel</div>
+                            <div class="ed-testimonials__title">EVP, Charles Schwab</div>
+                        </div>
+                    </div>
+                    <p class="ed-testimonials__quote">The Sprint gave us a map. We'd been building without one and didn't know it until they showed us.</p>
+                    <img src="assets/logos/schwab.svg" alt="" class="ed-testimonials__logo">
+                </article>
+                <article class="ed-testimonials__card" aria-hidden="true">
+                    <div class="ed-testimonials__header">
                         <div class="ed-testimonials__avatar" aria-hidden="true">DL</div>
                         <div class="ed-testimonials__person">
                             <div class="ed-testimonials__name">David Lin</div>
@@ -3997,6 +3983,17 @@
                     </div>
                     <p class="ed-testimonials__quote">Design system went from 0 to team-adopted in one engagement. The 74% adoption stat is real — I watched it happen.</p>
                     <img src="assets/logos/gitlab.svg" alt="" class="ed-testimonials__logo">
+                </article>
+                <article class="ed-testimonials__card" aria-hidden="true">
+                    <div class="ed-testimonials__header">
+                        <div class="ed-testimonials__avatar" aria-hidden="true">RA</div>
+                        <div class="ed-testimonials__person">
+                            <div class="ed-testimonials__name">Rachel Adams</div>
+                            <div class="ed-testimonials__title">CPO, Veritas</div>
+                        </div>
+                    </div>
+                    <p class="ed-testimonials__quote">They think at the strategic level and execute at the component level. That combination is almost impossible to find.</p>
+                    <img src="assets/logos/veritas.png" alt="" class="ed-testimonials__logo">
                 </article>
                 <article class="ed-testimonials__card" aria-hidden="true">
                     <div class="ed-testimonials__header">
