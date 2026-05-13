@@ -4273,7 +4273,7 @@ document.addEventListener('click', function(e) {
     const section = document.querySelector('.ed-stats');
     if (!section) return;
     const stats = section.querySelectorAll('.ed-stats__num');
-    const ease = (t) => 1 - Math.pow(1 - t, 3); // ease-out cubic
+    const ease = (t) => t; // linear
 
     const fmt = (el, value) => {
         const decimals = parseInt(el.dataset.decimals, 10) || 0;
@@ -4298,8 +4298,8 @@ document.addEventListener('click', function(e) {
         started = true;
         stats.forEach((el, i) => {
             const target = parseFloat(el.dataset.value);
-            const duration = 1200;
-            const begin = performance.now() + 150 * i;
+            const duration = 2000;
+            const begin = performance.now() + 80 * i;
             const tick = (now) => {
                 if (now < begin) { requestAnimationFrame(tick); return; }
                 const t = Math.min((now - begin) / duration, 1);
