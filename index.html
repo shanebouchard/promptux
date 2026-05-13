@@ -2580,8 +2580,8 @@
             </div>
             <div class="ed-pillar">
                 <div class="ed-pillar__num">02</div>
-                <h3>Make it work</h3>
-                <p>It is live but not performing as it should. You are getting traffic but not conversion, the experience is inconsistent, and the numbers do not line up, so we focus on what is driving results and fix it.</p>
+                <h3>Make it better</h3>
+                <p>The product is live and gaining traction, but there is more to unlock. We identify and improve what matters so performance catches up with the opportunity.</p>
             </div>
             <div class="ed-pillar">
                 <div class="ed-pillar__num">03</div>
@@ -2801,8 +2801,8 @@
         </div>
         <div class="moment reveal">
             <div class="moment-index">02</div>
-            <h3 class="d3">Make it work</h3>
-            <p>It is live but not performing as it should. You are getting traffic but not conversion, the experience is inconsistent, and the numbers do not line up, so we focus on what is driving results and fix it.</p>
+            <h3 class="d3">Make it better</h3>
+            <p>The product is live and gaining traction, but there is more to unlock. We identify and improve what matters so performance catches up with the opportunity.</p>
         </div>
         <div class="moment reveal">
             <div class="moment-index">03</div>
@@ -3384,7 +3384,6 @@ const CASES = {
                         type: "media-row",
                         rowKind: "phones",
                         items: [
-                            { src: "assets/lace/lace-touchscreen.png", alt: "Training Screen", caption: { heading: "Training Screen", body: "The new training card unifies setup and action. Adjust lessons, voices, or content in seconds — or start training instantly." } },
                             { src: "assets/lace/lace-lessontype.png", alt: "Lesson type", caption: { heading: "Lesson type", body: "Dedicated lesson view with large tap targets and space for context — making discovery intuitive and future features easy to extend." } },
                             { src: "assets/lace/lace-mycontent.png", alt: "My Content", caption: { heading: "My Content", body: "The new My Content screen provides ample space to configure options and grow the feature in the future." } }
                         ]
@@ -3568,7 +3567,7 @@ function openCase(key) {
             `).join('');
             return `
                 <div class="cs-media cs-media--row" data-row-kind="${m.rowKind || 'generic'}" data-carousel="row">
-                    <ul class="cs-row__track">
+                    <ul class="cs-row__track" style="grid-template-columns: repeat(${m.items.length}, 1fr);">
                         ${itemsHtml}
                     </ul>
                     <div class="cs-carousel__controls">
