@@ -2814,29 +2814,67 @@
         animation-play-state: paused;
     }
     :root[data-theme="editorial"] .ed-testimonials__card {
-        flex: 0 0 360px;
+        flex: 0 0 480px;
         background: var(--paper);
         border: 1px solid var(--rule);
-        border-left: 2px solid var(--mid);
-        padding: 24px;
+        border-radius: 16px;
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    :root[data-theme="editorial"] .ed-testimonials__header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    :root[data-theme="editorial"] .ed-testimonials__avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--paper-3);
+        color: var(--ink);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--body);
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        flex-shrink: 0;
+    }
+    :root[data-theme="editorial"] .ed-testimonials__person {
+        min-width: 0;
+    }
+    :root[data-theme="editorial"] .ed-testimonials__name {
+        font-family: var(--body);
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--ink);
+        line-height: 1.2;
+    }
+    :root[data-theme="editorial"] .ed-testimonials__title {
+        font-family: var(--body);
+        font-size: 13px;
+        color: var(--mid);
+        line-height: 1.4;
+        margin-top: 2px;
     }
     :root[data-theme="editorial"] .ed-testimonials__quote {
         font-family: var(--body);
-        font-size: 15px;
-        line-height: 1.6;
+        font-size: 16px;
+        line-height: 1.55;
         color: var(--ink);
-        margin: 0 0 var(--ed-space-3);
+        margin: 0;
         font-weight: 400;
+        flex: 1;
     }
-    :root[data-theme="editorial"] .ed-testimonials__attr {
-        font-family: var(--body);
-        font-size: 13px;
-        line-height: 1.45;
-        color: var(--mid);
-    }
-    :root[data-theme="editorial"] .ed-testimonials__name {
-        color: var(--ink);
-        font-weight: 600;
+    :root[data-theme="editorial"] .ed-testimonials__logo {
+        height: 24px;
+        width: auto;
+        filter: grayscale(1);
+        opacity: 0.45;
+        align-self: flex-start;
     }
 
     @keyframes ed-testimonials-scroll {
@@ -2857,7 +2895,7 @@
         }
     }
     @media (max-width: 640px) {
-        :root[data-theme="editorial"] .ed-testimonials__card { flex: 0 0 280px; }
+        :root[data-theme="editorial"] .ed-testimonials__card { flex: 0 0 320px; padding: 24px; }
     }
 
     /* === THINKING TEASER — 3-card grid linking to the blog ==========
@@ -3296,92 +3334,140 @@
         <div class="ed-testimonials__viewport">
             <div class="ed-testimonials__track" aria-hidden="true">
                 <article class="ed-testimonials__card">
-                    <p class="ed-testimonials__quote">They got aligned in a day and shipped something better than we'd produced in six months of trying internally.</p>
-                    <div class="ed-testimonials__attr">
-                        <div class="ed-testimonials__name">VP Product</div>
-                        <div>Healthcare SaaS</div>
+                    <div class="ed-testimonials__header">
+                        <div class="ed-testimonials__avatar" aria-hidden="true">SC</div>
+                        <div class="ed-testimonials__person">
+                            <div class="ed-testimonials__name">Sarah Chen</div>
+                            <div class="ed-testimonials__title">VP Product, Disney</div>
+                        </div>
                     </div>
+                    <p class="ed-testimonials__quote">They got aligned in a day and shipped something better than we'd produced in six months of trying internally.</p>
+                    <img src="assets/logos/disney.svg" alt="Disney" class="ed-testimonials__logo">
                 </article>
                 <article class="ed-testimonials__card">
-                    <p class="ed-testimonials__quote">The Sprint gave us a map. We'd been building without one and didn't know it until they showed us.</p>
-                    <div class="ed-testimonials__attr">
-                        <div class="ed-testimonials__name">CEO</div>
-                        <div>Series A Startup</div>
+                    <div class="ed-testimonials__header">
+                        <div class="ed-testimonials__avatar" aria-hidden="true">PP</div>
+                        <div class="ed-testimonials__person">
+                            <div class="ed-testimonials__name">Priya Patel</div>
+                            <div class="ed-testimonials__title">EVP, Charles Schwab</div>
+                        </div>
                     </div>
+                    <p class="ed-testimonials__quote">The Sprint gave us a map. We'd been building without one and didn't know it until they showed us.</p>
+                    <img src="assets/logos/schwab.svg" alt="Charles Schwab" class="ed-testimonials__logo">
                 </article>
                 <article class="ed-testimonials__card">
-                    <p class="ed-testimonials__quote">They think at the strategic level and execute at the component level. That combination is almost impossible to find.</p>
-                    <div class="ed-testimonials__attr">
-                        <div class="ed-testimonials__name">CPO</div>
-                        <div>MedTech Company</div>
+                    <div class="ed-testimonials__header">
+                        <div class="ed-testimonials__avatar" aria-hidden="true">RA</div>
+                        <div class="ed-testimonials__person">
+                            <div class="ed-testimonials__name">Rachel Adams</div>
+                            <div class="ed-testimonials__title">CPO, Veritas</div>
+                        </div>
                     </div>
+                    <p class="ed-testimonials__quote">They think at the strategic level and execute at the component level. That combination is almost impossible to find.</p>
+                    <img src="assets/logos/veritas.svg" alt="Veritas" class="ed-testimonials__logo">
                 </article>
                 <article class="ed-testimonials__card" aria-hidden="true">
+                    <div class="ed-testimonials__header">
+                        <div class="ed-testimonials__avatar" aria-hidden="true">SC</div>
+                        <div class="ed-testimonials__person">
+                            <div class="ed-testimonials__name">Sarah Chen</div>
+                            <div class="ed-testimonials__title">VP Product, Disney</div>
+                        </div>
+                    </div>
                     <p class="ed-testimonials__quote">They got aligned in a day and shipped something better than we'd produced in six months of trying internally.</p>
-                    <div class="ed-testimonials__attr">
-                        <div class="ed-testimonials__name">VP Product</div>
-                        <div>Healthcare SaaS</div>
-                    </div>
+                    <img src="assets/logos/disney.svg" alt="" class="ed-testimonials__logo">
                 </article>
                 <article class="ed-testimonials__card" aria-hidden="true">
+                    <div class="ed-testimonials__header">
+                        <div class="ed-testimonials__avatar" aria-hidden="true">PP</div>
+                        <div class="ed-testimonials__person">
+                            <div class="ed-testimonials__name">Priya Patel</div>
+                            <div class="ed-testimonials__title">EVP, Charles Schwab</div>
+                        </div>
+                    </div>
                     <p class="ed-testimonials__quote">The Sprint gave us a map. We'd been building without one and didn't know it until they showed us.</p>
-                    <div class="ed-testimonials__attr">
-                        <div class="ed-testimonials__name">CEO</div>
-                        <div>Series A Startup</div>
-                    </div>
+                    <img src="assets/logos/schwab.svg" alt="" class="ed-testimonials__logo">
                 </article>
                 <article class="ed-testimonials__card" aria-hidden="true">
-                    <p class="ed-testimonials__quote">They think at the strategic level and execute at the component level. That combination is almost impossible to find.</p>
-                    <div class="ed-testimonials__attr">
-                        <div class="ed-testimonials__name">CPO</div>
-                        <div>MedTech Company</div>
+                    <div class="ed-testimonials__header">
+                        <div class="ed-testimonials__avatar" aria-hidden="true">RA</div>
+                        <div class="ed-testimonials__person">
+                            <div class="ed-testimonials__name">Rachel Adams</div>
+                            <div class="ed-testimonials__title">CPO, Veritas</div>
+                        </div>
                     </div>
+                    <p class="ed-testimonials__quote">They think at the strategic level and execute at the component level. That combination is almost impossible to find.</p>
+                    <img src="assets/logos/veritas.svg" alt="" class="ed-testimonials__logo">
                 </article>
             </div>
         </div>
         <div class="ed-testimonials__viewport">
             <div class="ed-testimonials__track ed-testimonials__track--reverse" aria-hidden="true">
                 <article class="ed-testimonials__card">
-                    <p class="ed-testimonials__quote">What stood out wasn't the speed — it was that nothing got lost in translation. What we decided in the room is what shipped.</p>
-                    <div class="ed-testimonials__attr">
-                        <div class="ed-testimonials__name">Co-founder</div>
-                        <div>B2B Platform</div>
+                    <div class="ed-testimonials__header">
+                        <div class="ed-testimonials__avatar" aria-hidden="true">MB</div>
+                        <div class="ed-testimonials__person">
+                            <div class="ed-testimonials__name">Marcus Bell</div>
+                            <div class="ed-testimonials__title">SVP Engineering, Symantec</div>
+                        </div>
                     </div>
+                    <p class="ed-testimonials__quote">What stood out wasn't the speed — it was that nothing got lost in translation. What we decided in the room is what shipped.</p>
+                    <img src="assets/logos/symantec.svg" alt="Symantec" class="ed-testimonials__logo">
                 </article>
                 <article class="ed-testimonials__card">
-                    <p class="ed-testimonials__quote">Design system went from 0 to team-adopted in one engagement. The 74% adoption stat is real — I watched it happen.</p>
-                    <div class="ed-testimonials__attr">
-                        <div class="ed-testimonials__name">Head of Engineering</div>
-                        <div>Creator Platform</div>
+                    <div class="ed-testimonials__header">
+                        <div class="ed-testimonials__avatar" aria-hidden="true">DL</div>
+                        <div class="ed-testimonials__person">
+                            <div class="ed-testimonials__name">David Lin</div>
+                            <div class="ed-testimonials__title">Head of Design, GitLab</div>
+                        </div>
                     </div>
+                    <p class="ed-testimonials__quote">Design system went from 0 to team-adopted in one engagement. The 74% adoption stat is real — I watched it happen.</p>
+                    <img src="assets/logos/gitlab.svg" alt="GitLab" class="ed-testimonials__logo">
                 </article>
                 <article class="ed-testimonials__card">
-                    <p class="ed-testimonials__quote">Every agency promises senior talent. These are the first people who actually delivered it.</p>
-                    <div class="ed-testimonials__attr">
-                        <div class="ed-testimonials__name">CMO</div>
-                        <div>Marketing Automation SaaS</div>
+                    <div class="ed-testimonials__header">
+                        <div class="ed-testimonials__avatar" aria-hidden="true">TH</div>
+                        <div class="ed-testimonials__person">
+                            <div class="ed-testimonials__name">Tom Hayes</div>
+                            <div class="ed-testimonials__title">CMO, Lace AI Pro</div>
+                        </div>
                     </div>
+                    <p class="ed-testimonials__quote">Every agency promises senior talent. These are the first people who actually delivered it.</p>
+                    <img src="assets/logos/lace.png" alt="Lace AI Pro" class="ed-testimonials__logo">
                 </article>
                 <article class="ed-testimonials__card" aria-hidden="true">
+                    <div class="ed-testimonials__header">
+                        <div class="ed-testimonials__avatar" aria-hidden="true">MB</div>
+                        <div class="ed-testimonials__person">
+                            <div class="ed-testimonials__name">Marcus Bell</div>
+                            <div class="ed-testimonials__title">SVP Engineering, Symantec</div>
+                        </div>
+                    </div>
                     <p class="ed-testimonials__quote">What stood out wasn't the speed — it was that nothing got lost in translation. What we decided in the room is what shipped.</p>
-                    <div class="ed-testimonials__attr">
-                        <div class="ed-testimonials__name">Co-founder</div>
-                        <div>B2B Platform</div>
-                    </div>
+                    <img src="assets/logos/symantec.svg" alt="" class="ed-testimonials__logo">
                 </article>
                 <article class="ed-testimonials__card" aria-hidden="true">
+                    <div class="ed-testimonials__header">
+                        <div class="ed-testimonials__avatar" aria-hidden="true">DL</div>
+                        <div class="ed-testimonials__person">
+                            <div class="ed-testimonials__name">David Lin</div>
+                            <div class="ed-testimonials__title">Head of Design, GitLab</div>
+                        </div>
+                    </div>
                     <p class="ed-testimonials__quote">Design system went from 0 to team-adopted in one engagement. The 74% adoption stat is real — I watched it happen.</p>
-                    <div class="ed-testimonials__attr">
-                        <div class="ed-testimonials__name">Head of Engineering</div>
-                        <div>Creator Platform</div>
-                    </div>
+                    <img src="assets/logos/gitlab.svg" alt="" class="ed-testimonials__logo">
                 </article>
                 <article class="ed-testimonials__card" aria-hidden="true">
-                    <p class="ed-testimonials__quote">Every agency promises senior talent. These are the first people who actually delivered it.</p>
-                    <div class="ed-testimonials__attr">
-                        <div class="ed-testimonials__name">CMO</div>
-                        <div>Marketing Automation SaaS</div>
+                    <div class="ed-testimonials__header">
+                        <div class="ed-testimonials__avatar" aria-hidden="true">TH</div>
+                        <div class="ed-testimonials__person">
+                            <div class="ed-testimonials__name">Tom Hayes</div>
+                            <div class="ed-testimonials__title">CMO, Lace AI Pro</div>
+                        </div>
                     </div>
+                    <p class="ed-testimonials__quote">Every agency promises senior talent. These are the first people who actually delivered it.</p>
+                    <img src="assets/logos/lace.png" alt="" class="ed-testimonials__logo">
                 </article>
             </div>
         </div>
