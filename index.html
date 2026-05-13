@@ -2469,6 +2469,70 @@
         :root[data-theme="editorial"] .ed-social a { transition: none; }
     }
 
+    /* === LOGO BANNER — marquee scroll of client logos =================
+       Between hero and pillars. Curated 5-logo set, duplicated for
+       seamless loop. Desaturated and faded; individual logos brighten
+       on hover. Static flex row at mobile widths and on reduced-motion.
+    ====================================================================== */
+    :root[data-theme="editorial"] .ed-logos {
+        background: var(--paper);
+        padding: var(--ed-space-5) 0;
+        border-bottom: 1px solid var(--rule);
+    }
+    :root[data-theme="editorial"] .ed-logos__label {
+        text-align: center;
+        margin: 0 auto var(--ed-space-4);
+        color: var(--mid);
+    }
+    :root[data-theme="editorial"] .ed-logos__viewport {
+        overflow: hidden;
+        mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    }
+    :root[data-theme="editorial"] .ed-logos__track {
+        display: flex;
+        gap: clamp(48px, 7vw, 96px);
+        align-items: center;
+        width: max-content;
+        animation: ed-logos-scroll 40s linear infinite;
+    }
+    :root[data-theme="editorial"] .ed-logos__viewport:hover .ed-logos__track {
+        animation-play-state: paused;
+    }
+    :root[data-theme="editorial"] .ed-logos__mark {
+        height: clamp(22px, 2.4vw, 34px);
+        width: auto;
+        filter: grayscale(1);
+        opacity: 0.2;
+        transition: opacity 200ms ease;
+        flex-shrink: 0;
+    }
+    :root[data-theme="editorial"] .ed-logos__mark:hover { opacity: 0.8; }
+
+    @keyframes ed-logos-scroll {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        :root[data-theme="editorial"] .ed-logos__track {
+            animation: none;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+    }
+    @media (max-width: 640px) {
+        :root[data-theme="editorial"] .ed-logos__viewport { mask-image: none; -webkit-mask-image: none; }
+        :root[data-theme="editorial"] .ed-logos__track {
+            animation: none;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 32px;
+            width: 100%;
+        }
+    }
+
     /* === RESPONSIVE === */
     @media (max-width: 880px) {
         :root[data-theme="editorial"] .ed-pillars__grid,
@@ -2629,6 +2693,25 @@
     <figure class="ed-hero-new__device">
         <img src="assets/devices/iphone-lace.png" alt="Mobile product mockup">
     </figure>
+</section>
+
+<!-- LOGO BANNER — brands the founders have shaped -->
+<section class="ed-logos" aria-label="Brands our partners have shaped">
+    <p class="ed-eyebrow ed-logos__label">Brands our partners have shaped</p>
+    <div class="ed-logos__viewport">
+        <div class="ed-logos__track" aria-hidden="true">
+            <img src="assets/logos/disney.svg" alt="Disney" class="ed-logos__mark">
+            <img src="assets/logos/schwab.svg" alt="Charles Schwab" class="ed-logos__mark">
+            <img src="assets/logos/gitlab.svg" alt="GitLab" class="ed-logos__mark">
+            <img src="assets/logos/symantec.svg" alt="Symantec" class="ed-logos__mark">
+            <img src="assets/logos/veritas.svg" alt="Veritas" class="ed-logos__mark">
+            <img src="assets/logos/disney.svg" alt="" class="ed-logos__mark" aria-hidden="true">
+            <img src="assets/logos/schwab.svg" alt="" class="ed-logos__mark" aria-hidden="true">
+            <img src="assets/logos/gitlab.svg" alt="" class="ed-logos__mark" aria-hidden="true">
+            <img src="assets/logos/symantec.svg" alt="" class="ed-logos__mark" aria-hidden="true">
+            <img src="assets/logos/veritas.svg" alt="" class="ed-logos__mark" aria-hidden="true">
+        </div>
+    </div>
 </section>
 
 <!-- PILLARS — three reasons companies engage -->
