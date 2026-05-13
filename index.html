@@ -2684,10 +2684,11 @@
     }
     :root[data-theme="editorial"] .ed-logos__track {
         display: flex;
-        gap: clamp(48px, 7vw, 96px);
+        gap: 0;
         align-items: center;
         width: max-content;
-        animation: ed-logos-scroll 80s linear infinite;
+        animation: ed-logos-scroll 45s linear infinite;
+        will-change: transform;
     }
     :root[data-theme="editorial"] .ed-logos__viewport:hover .ed-logos__track {
         animation-play-state: paused;
@@ -2699,6 +2700,7 @@
         opacity: 0.2;
         transition: opacity 200ms ease;
         flex-shrink: 0;
+        margin-right: clamp(48px, 7vw, 96px);
     }
     :root[data-theme="editorial"] .ed-logos__mark:hover { opacity: 0.8; }
 
@@ -2709,6 +2711,11 @@
        don't match the rest of the set. */
     :root[data-theme="editorial"] .ed-logos__mark[src*="sharpspring"] {
         height: clamp(44px, 4.8vw, 68px);
+    }
+    /* Microsoft is a 23x23 square mark (no wordmark); bump height
+       so it doesn't read as a tiny block next to the wordmarks. */
+    :root[data-theme="editorial"] .ed-logos__mark[src*="microsoft"] {
+        height: clamp(33px, 3.6vw, 51px);
     }
     :root[data-theme="editorial"] .ed-logos__mark[src*="symantec"] {
         height: clamp(28.6px, 3.12vw, 44.2px);
@@ -3211,13 +3218,17 @@
             <img src="assets/logos/disney.svg" alt="Disney" class="ed-logos__mark">
             <img src="assets/logos/schwab.svg" alt="Charles Schwab" class="ed-logos__mark">
             <img src="assets/logos/gitlab.svg" alt="GitLab" class="ed-logos__mark">
+            <img src="assets/logos/microsoft.svg" alt="Microsoft" class="ed-logos__mark">
             <img src="assets/logos/sharpspring.png" alt="SharpSpring" class="ed-logos__mark">
+            <img src="assets/logos/lace.png" alt="Lace AI Pro" class="ed-logos__mark">
             <img src="assets/logos/symantec.svg" alt="Symantec" class="ed-logos__mark">
             <img src="assets/logos/veritas.png" alt="Veritas" class="ed-logos__mark">
             <img src="assets/logos/disney.svg" alt="" class="ed-logos__mark" aria-hidden="true">
             <img src="assets/logos/schwab.svg" alt="" class="ed-logos__mark" aria-hidden="true">
             <img src="assets/logos/gitlab.svg" alt="" class="ed-logos__mark" aria-hidden="true">
+            <img src="assets/logos/microsoft.svg" alt="" class="ed-logos__mark" aria-hidden="true">
             <img src="assets/logos/sharpspring.png" alt="" class="ed-logos__mark" aria-hidden="true">
+            <img src="assets/logos/lace.png" alt="" class="ed-logos__mark" aria-hidden="true">
             <img src="assets/logos/symantec.svg" alt="" class="ed-logos__mark" aria-hidden="true">
             <img src="assets/logos/veritas.png" alt="" class="ed-logos__mark" aria-hidden="true">
         </div>
