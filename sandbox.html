@@ -3124,11 +3124,31 @@
        you feel forward/back motion. Editorial palette — no new colors.
     ====================================================================== */
     :root[data-theme="editorial"] .sb-carousel {
+        position: relative;
         background: var(--paper);
         padding: clamp(72px, 9vw, 144px) 0;
         border-top: 1px solid var(--rule);
         border-bottom: 1px solid var(--rule);
         overflow: hidden;
+    }
+    /* Edge gradient fades — soften any neighbor-slide bleed at left/right. */
+    :root[data-theme="editorial"] .sb-carousel::before,
+    :root[data-theme="editorial"] .sb-carousel::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: clamp(80px, 12vw, 200px);
+        pointer-events: none;
+        z-index: 2;
+    }
+    :root[data-theme="editorial"] .sb-carousel::before {
+        left: 0;
+        background: linear-gradient(to right, var(--paper), transparent);
+    }
+    :root[data-theme="editorial"] .sb-carousel::after {
+        right: 0;
+        background: linear-gradient(to left, var(--paper), transparent);
     }
     :root[data-theme="editorial"] .sb-carousel__head {
         text-align: center;
@@ -3152,8 +3172,7 @@
         grid-template-columns: 1fr 1.1fr;
         gap: clamp(32px, 5vw, 96px);
         align-items: center;
-        padding: 0 4px;
-        opacity: 0.22;
+        opacity: 0.12;
         transition: opacity 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
     :root[data-theme="editorial"] .sb-carousel__slide.is-active { opacity: 1; }
@@ -3212,6 +3231,8 @@
 
     /* Controls row */
     :root[data-theme="editorial"] .sb-carousel__controls {
+        position: relative;
+        z-index: 3;
         display: flex;
         align-items: center;
         justify-content: center;
