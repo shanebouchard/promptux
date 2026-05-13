@@ -2829,10 +2829,14 @@
         gap: 24px;
     }
     :root[data-theme="editorial"] .ed-testimonials__viewport {
-        overflow: hidden;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
         mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
         -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
     }
+    :root[data-theme="editorial"] .ed-testimonials__viewport::-webkit-scrollbar { display: none; }
     :root[data-theme="editorial"] .ed-testimonials__track {
         display: flex;
         gap: 0;
@@ -2840,10 +2844,7 @@
         animation: ed-testimonials-scroll 60s linear infinite;
     }
     :root[data-theme="editorial"] .ed-testimonials__track--reverse {
-        animation-direction: reverse;
-    }
-    :root[data-theme="editorial"] .ed-testimonials:hover .ed-testimonials__track {
-        animation-play-state: paused;
+        animation-name: ed-testimonials-scroll-reverse;
     }
     :root[data-theme="editorial"] .ed-testimonials__card {
         flex: 0 0 480px;
@@ -2909,10 +2910,18 @@
         opacity: 0.45;
         align-self: flex-start;
     }
+    /* Veritas PNG is white-on-transparent — invert so it shows on light cards */
+    :root[data-theme="editorial"] .ed-testimonials__logo[src*="veritas"] {
+        filter: grayscale(1) invert(1);
+    }
 
     @keyframes ed-testimonials-scroll {
         from { transform: translateX(0); }
         to   { transform: translateX(-50%); }
+    }
+    @keyframes ed-testimonials-scroll-reverse {
+        from { transform: translateX(-50%); }
+        to   { transform: translateX(0); }
     }
 
     @media (prefers-reduced-motion: reduce) {
