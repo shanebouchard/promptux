@@ -1592,6 +1592,13 @@
         max-width: 960px;
         margin: 0 auto;
     }
+    /* Hero image — 30% smaller, more breathing room below */
+    #cs-content[data-case="lace"] .cs-hero-image {
+        padding-bottom: clamp(48px, 7vw, 112px);
+    }
+    #cs-content[data-case="lace"] .cs-hero-image img {
+        max-width: 896px;
+    }
     /* Mobile design "Intuitive & scalable" split — full-width gray bg,
        phone anchored to the bottom edge, caption stays vertical-center. */
     #cs-content[data-case="lace"] .cs-media--split {
