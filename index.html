@@ -2707,16 +2707,21 @@
        invert flips to black so it reads on paper. Sharpspring/symantec
        /schwab get height tweaks because their natural aspect ratios
        don't match the rest of the set. */
-    :root[data-theme="editorial"] .ed-logos__mark[src*="veritas"] {
-        filter: grayscale(1) invert(1);
-    }
     :root[data-theme="editorial"] .ed-logos__mark[src*="sharpspring"] {
-        height: clamp(33px, 3.6vw, 51px);
+        height: clamp(44px, 4.8vw, 68px);
     }
     :root[data-theme="editorial"] .ed-logos__mark[src*="symantec"] {
         height: clamp(28.6px, 3.12vw, 44.2px);
     }
     :root[data-theme="editorial"] .ed-logos__mark[src*="schwab"] {
+        height: clamp(19.8px, 2.16vw, 30.6px);
+        transform: translateY(-4px);
+    }
+    :root[data-theme="editorial"] .ed-logos__mark[src*="veritas"] {
+        filter: grayscale(1) invert(1);
+        height: clamp(19.8px, 2.16vw, 30.6px);
+    }
+    :root[data-theme="editorial"] .ed-logos__mark[src*="gitlab"] {
         height: clamp(19.8px, 2.16vw, 30.6px);
     }
 
