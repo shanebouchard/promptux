@@ -1427,7 +1427,7 @@
         padding: 64px 0;
     }
     .cs-section__copy {
-        max-width: 720px;
+        max-width: 960px;
         margin: 0 auto 48px;
         padding: 0 var(--gutter);
         text-align: center;
@@ -1592,9 +1592,44 @@
         max-width: 960px;
         margin: 0 auto;
     }
+    /* Mobile design "Intuitive & scalable" split — full-width gray bg,
+       phone anchored to the bottom edge, caption stays vertical-center. */
     #cs-content[data-case="lace"] .cs-media--split {
-        max-width: 1040px;
-        margin: 0 auto;
+        padding-bottom: 0;
+        align-items: end;
+    }
+    #cs-content[data-case="lace"] .cs-media--split .cs-media__caption {
+        align-self: center;
+    }
+    /* Lesson type / My Content phone row — double the caption heading. */
+    #cs-content[data-case="lace"] .cs-media--row[data-row-kind="phones"] .cs-row__item figcaption h5 {
+        font-size: 34px;
+        line-height: 1.1;
+        letter-spacing: -0.01em;
+    }
+    /* Email row — strip vertical padding so middle email bleeds top to
+       bottom; left email anchors top, right anchors bottom (staircase). */
+    #cs-content[data-case="lace"] .cs-media--row[data-row-kind="emails"] {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    #cs-content[data-case="lace"] .cs-media--row[data-row-kind="emails"] .cs-row__item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #cs-content[data-case="lace"] .cs-media--row[data-row-kind="emails"] .cs-row__item:nth-child(1) {
+        justify-content: flex-start;
+    }
+    #cs-content[data-case="lace"] .cs-media--row[data-row-kind="emails"] .cs-row__item:nth-child(3) {
+        justify-content: flex-end;
+    }
+
+    /* Flush modifier — image bleeds top to bottom (no vertical padding).
+       Horizontal gutter padding still applies. */
+    .cs-media--flush {
+        padding-top: 0;
+        padding-bottom: 0;
     }
 
     /* Grid + carousel block — desktop shows full grid image,
@@ -3394,7 +3429,7 @@ const CASES = {
                             { src: "assets/lace/lace-mycontent.png", alt: "My Content", caption: { heading: "My Content", body: "The new My Content screen provides ample space to configure options and grow the feature in the future." } }
                         ]
                     },
-                    { type: "full-bleed", src: "assets/lace/lace-email-system.png", alt: "Comprehensive auditory training and Aural rehab education feature cards" }
+                    { type: "full-bleed", src: "assets/lace/lace-email-system.png", alt: "Comprehensive auditory training and Aural rehab education feature cards", flush: true }
                 ]
             },
             {
@@ -3525,8 +3560,9 @@ function openCase(key) {
     // Render an individual media block based on its layout type
     const renderMedia = (m) => {
         if (m.type === 'full-bleed') {
+            const flushCls = m.flush ? ' cs-media--flush' : '';
             return `
-                <figure class="cs-media cs-media--full">
+                <figure class="cs-media cs-media--full${flushCls}">
                     <img src="${m.src}" alt="${m.alt}" loading="lazy" />
                 </figure>
             `;
