@@ -2146,22 +2146,24 @@
         color: var(--mid);
         margin-bottom: var(--ed-space-2);
     }
-    :root[data-theme="editorial"] .ed-pillar__cycle {
-        font-family: var(--body);
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: var(--mid);
-        margin: 0 0 var(--ed-space-2);
+    :root[data-theme="editorial"] .ed-pillar__item {
+        margin-top: var(--ed-space-3);
     }
-    :root[data-theme="editorial"] .ed-pillar__loop {
+    :root[data-theme="editorial"] .ed-pillar__item h4 {
         font-family: var(--body);
-        font-size: 12px;
-        font-style: italic;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.3;
+        color: var(--ink);
+        margin: 0 0 6px;
+        letter-spacing: -0.005em;
+    }
+    :root[data-theme="editorial"] .ed-pillar__item p {
+        font-family: var(--body);
+        font-size: 14.5px;
+        line-height: 1.55;
         color: var(--mid);
-        margin: var(--ed-space-2) 0 0;
-        opacity: 0.85;
+        margin: 0;
     }
     :root[data-theme="editorial"] .ed-pillar h3 {
         font-family: var(--display);
@@ -3523,23 +3525,50 @@
             <div class="ed-pillar">
                 <div class="ed-pillar__num">01</div>
                 <h3>Make it real</h3>
-                <p class="ed-pillar__cycle">Focus · Shape · Design · Ship</p>
-                <p>When something has to land — a launch, a pitch, a critical release — we get aligned fast and ship work that doesn't need defending.</p>
-                <p class="ed-pillar__loop">→ Repeat as needed</p>
+                <div class="ed-pillar__item">
+                    <h4>Define direction</h4>
+                    <p>We define what matters and what to do next. Product direction, positioning, and experience strategy grounded in real outcomes.</p>
+                </div>
+                <div class="ed-pillar__item">
+                    <h4>Shape the product</h4>
+                    <p>We turn ideas into clear flows and a product experience that makes sense from day one.</p>
+                </div>
+                <div class="ed-pillar__item">
+                    <h4>Design and launch</h4>
+                    <p>We design the product and move quickly into something real, ready for users and the market.</p>
+                </div>
             </div>
             <div class="ed-pillar">
                 <div class="ed-pillar__num">02</div>
                 <h3>Make it better</h3>
-                <p class="ed-pillar__cycle">See · Sharpen · Ship · Measure</p>
-                <p>The product is live and gaining traction, but the numbers don't match the opportunity. We find what's actually moving the curve and improve it without slowing the team down.</p>
-                <p class="ed-pillar__loop">→ Run as the work demands</p>
+                <div class="ed-pillar__item">
+                    <h4>Diagnose performance</h4>
+                    <p>We identify what's working, what's not, and where results break down.</p>
+                </div>
+                <div class="ed-pillar__item">
+                    <h4>Improve the experience</h4>
+                    <p>We refine product and growth touchpoints to make the experience clearer and more effective.</p>
+                </div>
+                <div class="ed-pillar__item">
+                    <h4>Optimize results</h4>
+                    <p>We test, iterate, and improve performance where it matters most.</p>
+                </div>
             </div>
             <div class="ed-pillar">
                 <div class="ed-pillar__num">03</div>
                 <h3>Make it scale</h3>
-                <p class="ed-pillar__cycle">Map · Codify · Equip · Scale</p>
-                <p>Growth is breaking the seams. We bring the structure and rhythm that let the team move faster without losing what made the product good in the first place.</p>
-                <p class="ed-pillar__loop">→ Loop in when needed</p>
+                <div class="ed-pillar__item">
+                    <h4>Stabilize and structure</h4>
+                    <p>We bring clarity and structure to products that are starting to stretch.</p>
+                </div>
+                <div class="ed-pillar__item">
+                    <h4>Build for scale</h4>
+                    <p>We create systems and patterns that keep the product consistent and the team moving fast.</p>
+                </div>
+                <div class="ed-pillar__item">
+                    <h4>Extend and grow</h4>
+                    <p>We expand the product across surfaces and use cases without losing quality or speed.</p>
+                </div>
             </div>
         </div>
     </div>
