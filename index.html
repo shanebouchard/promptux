@@ -2587,6 +2587,86 @@
         :root[data-theme="editorial"] .ed-stats__cell:last-child { border-bottom: 0; }
     }
 
+    /* === TESTIMONIALS — two opposing auto-scroll rows =================
+       Sits between "How we work" and "Two ways to engage". Row 1 LTR,
+       row 2 RTL. Hovering anywhere in the section pauses both rows.
+       Left-border accent (neutral grey) stands in for quote glyphs.
+    ====================================================================== */
+    :root[data-theme="editorial"] .ed-testimonials {
+        background: var(--paper-2);
+        padding: var(--ed-space-5) 0;
+        border-bottom: 1px solid var(--rule);
+        overflow: hidden;
+    }
+    :root[data-theme="editorial"] .ed-testimonials__rows {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+    :root[data-theme="editorial"] .ed-testimonials__viewport {
+        overflow: hidden;
+        mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+    }
+    :root[data-theme="editorial"] .ed-testimonials__track {
+        display: flex;
+        gap: 24px;
+        width: max-content;
+        animation: ed-testimonials-scroll 30s linear infinite;
+    }
+    :root[data-theme="editorial"] .ed-testimonials__track--reverse {
+        animation-direction: reverse;
+    }
+    :root[data-theme="editorial"] .ed-testimonials:hover .ed-testimonials__track {
+        animation-play-state: paused;
+    }
+    :root[data-theme="editorial"] .ed-testimonials__card {
+        flex: 0 0 360px;
+        background: var(--paper);
+        border: 1px solid var(--rule);
+        border-left: 2px solid var(--mid);
+        padding: 24px;
+    }
+    :root[data-theme="editorial"] .ed-testimonials__quote {
+        font-family: var(--body);
+        font-size: 15px;
+        line-height: 1.6;
+        color: var(--ink);
+        margin: 0 0 var(--ed-space-3);
+        font-weight: 400;
+    }
+    :root[data-theme="editorial"] .ed-testimonials__attr {
+        font-family: var(--body);
+        font-size: 13px;
+        line-height: 1.45;
+        color: var(--mid);
+    }
+    :root[data-theme="editorial"] .ed-testimonials__name {
+        color: var(--ink);
+        font-weight: 600;
+    }
+
+    @keyframes ed-testimonials-scroll {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        :root[data-theme="editorial"] .ed-testimonials__track {
+            animation: none;
+            flex-wrap: wrap;
+            width: 100%;
+            justify-content: center;
+        }
+        :root[data-theme="editorial"] .ed-testimonials__viewport {
+            mask-image: none;
+            -webkit-mask-image: none;
+        }
+    }
+    @media (max-width: 640px) {
+        :root[data-theme="editorial"] .ed-testimonials__card { flex: 0 0 280px; }
+    }
+
     /* === RESPONSIVE === */
     @media (max-width: 880px) {
         :root[data-theme="editorial"] .ed-pillars__grid,
@@ -2912,6 +2992,104 @@
             <span>04</span>
             <h3>No layers. No drag.</h3>
             <p>You work directly with the people doing the work, without account managers or handoffs. What gets decided is what actually gets built.</p>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS — two opposing auto-scroll rows -->
+<section class="ed-testimonials" aria-label="What partners say">
+    <div class="ed-testimonials__rows">
+        <div class="ed-testimonials__viewport">
+            <div class="ed-testimonials__track" aria-hidden="true">
+                <article class="ed-testimonials__card">
+                    <p class="ed-testimonials__quote">They got aligned in a day and shipped something better than we'd produced in six months of trying internally.</p>
+                    <div class="ed-testimonials__attr">
+                        <div class="ed-testimonials__name">VP Product</div>
+                        <div>Healthcare SaaS</div>
+                    </div>
+                </article>
+                <article class="ed-testimonials__card">
+                    <p class="ed-testimonials__quote">The Sprint gave us a map. We'd been building without one and didn't know it until they showed us.</p>
+                    <div class="ed-testimonials__attr">
+                        <div class="ed-testimonials__name">CEO</div>
+                        <div>Series A Startup</div>
+                    </div>
+                </article>
+                <article class="ed-testimonials__card">
+                    <p class="ed-testimonials__quote">They think at the strategic level and execute at the component level. That combination is almost impossible to find.</p>
+                    <div class="ed-testimonials__attr">
+                        <div class="ed-testimonials__name">CPO</div>
+                        <div>MedTech Company</div>
+                    </div>
+                </article>
+                <article class="ed-testimonials__card" aria-hidden="true">
+                    <p class="ed-testimonials__quote">They got aligned in a day and shipped something better than we'd produced in six months of trying internally.</p>
+                    <div class="ed-testimonials__attr">
+                        <div class="ed-testimonials__name">VP Product</div>
+                        <div>Healthcare SaaS</div>
+                    </div>
+                </article>
+                <article class="ed-testimonials__card" aria-hidden="true">
+                    <p class="ed-testimonials__quote">The Sprint gave us a map. We'd been building without one and didn't know it until they showed us.</p>
+                    <div class="ed-testimonials__attr">
+                        <div class="ed-testimonials__name">CEO</div>
+                        <div>Series A Startup</div>
+                    </div>
+                </article>
+                <article class="ed-testimonials__card" aria-hidden="true">
+                    <p class="ed-testimonials__quote">They think at the strategic level and execute at the component level. That combination is almost impossible to find.</p>
+                    <div class="ed-testimonials__attr">
+                        <div class="ed-testimonials__name">CPO</div>
+                        <div>MedTech Company</div>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <div class="ed-testimonials__viewport">
+            <div class="ed-testimonials__track ed-testimonials__track--reverse" aria-hidden="true">
+                <article class="ed-testimonials__card">
+                    <p class="ed-testimonials__quote">What stood out wasn't the speed — it was that nothing got lost in translation. What we decided in the room is what shipped.</p>
+                    <div class="ed-testimonials__attr">
+                        <div class="ed-testimonials__name">Co-founder</div>
+                        <div>B2B Platform</div>
+                    </div>
+                </article>
+                <article class="ed-testimonials__card">
+                    <p class="ed-testimonials__quote">Design system went from 0 to team-adopted in one engagement. The 74% adoption stat is real — I watched it happen.</p>
+                    <div class="ed-testimonials__attr">
+                        <div class="ed-testimonials__name">Head of Engineering</div>
+                        <div>Creator Platform</div>
+                    </div>
+                </article>
+                <article class="ed-testimonials__card">
+                    <p class="ed-testimonials__quote">Every agency promises senior talent. These are the first people who actually delivered it.</p>
+                    <div class="ed-testimonials__attr">
+                        <div class="ed-testimonials__name">CMO</div>
+                        <div>Marketing Automation SaaS</div>
+                    </div>
+                </article>
+                <article class="ed-testimonials__card" aria-hidden="true">
+                    <p class="ed-testimonials__quote">What stood out wasn't the speed — it was that nothing got lost in translation. What we decided in the room is what shipped.</p>
+                    <div class="ed-testimonials__attr">
+                        <div class="ed-testimonials__name">Co-founder</div>
+                        <div>B2B Platform</div>
+                    </div>
+                </article>
+                <article class="ed-testimonials__card" aria-hidden="true">
+                    <p class="ed-testimonials__quote">Design system went from 0 to team-adopted in one engagement. The 74% adoption stat is real — I watched it happen.</p>
+                    <div class="ed-testimonials__attr">
+                        <div class="ed-testimonials__name">Head of Engineering</div>
+                        <div>Creator Platform</div>
+                    </div>
+                </article>
+                <article class="ed-testimonials__card" aria-hidden="true">
+                    <p class="ed-testimonials__quote">Every agency promises senior talent. These are the first people who actually delivered it.</p>
+                    <div class="ed-testimonials__attr">
+                        <div class="ed-testimonials__name">CMO</div>
+                        <div>Marketing Automation SaaS</div>
+                    </div>
+                </article>
+            </div>
         </div>
     </div>
 </section>
