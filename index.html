@@ -1428,7 +1428,9 @@
     }
     .cs-section__copy {
         max-width: 720px;
-        margin: 0 var(--gutter) 48px;
+        margin: 0 auto 48px;
+        padding: 0 var(--gutter);
+        text-align: center;
     }
     .cs-section__copy h3 {
         font-family: var(--display);
@@ -1464,15 +1466,20 @@
     }
 
     /* Generic media wrapper — full-bleed so image cards run edge-to-edge like Figma.
-       No vertical padding by default: artwork sits flush with the gray bg top/bottom
-       so devices/screens read as cropped rather than floating in a padded box. */
+       Vertical padding gives designed images (devices, framework slides, email rows,
+       event kiosks) breathing room within their gray frame. Lifestyle photos that
+       are meant to crop top/bottom override this back to flush below. */
     .cs-media {
         margin: 0;
         background: var(--cs-image-bg);
-        padding: 0 var(--gutter);
+        padding: clamp(40px, 5.5vw, 80px) var(--gutter);
         overflow: hidden;
     }
     .cs-section .cs-media + .cs-media { margin-top: 24px; }
+
+    /* Image-first lifestyle photos are designed to crop edge-to-edge —
+       cancel the breathing room and let the cover image bleed. */
+    .cs-media--image-first { padding: 0; }
 
     /* Full-bleed image — image floats on the bg block, capped wide */
     .cs-media--full img {
@@ -1570,6 +1577,24 @@
     /* Email row — emails are taller/narrower so different max-width */
     .cs-media--row[data-row-kind="emails"] .cs-row__item img {
         max-width: 360px;
+    }
+
+    /* === Per-case width caps ============================================
+       Lace AI Pro: cap image sets so they don't sprawl on wide screens.
+       Trial scope — if it works, lift the [data-case="lace"] selector to
+       apply globally. Easy to extend per-case by duplicating the block.
+    ===================================================================== */
+    #cs-content[data-case="lace"] .cs-media--full img,
+    #cs-content[data-case="lace"] .cs-media--grid-carousel .cs-media__grid img {
+        max-width: 960px;
+    }
+    #cs-content[data-case="lace"] .cs-row__track {
+        max-width: 960px;
+        margin: 0 auto;
+    }
+    #cs-content[data-case="lace"] .cs-media--split {
+        max-width: 1040px;
+        margin: 0 auto;
     }
 
     /* Grid + carousel block — desktop shows full grid image,
@@ -3477,6 +3502,7 @@ function openCase(key) {
 
     titleNav.textContent = c.title;
     figmaLink.href = c.figma;
+    content.setAttribute('data-case', key);
 
     // Build content HTML
     const tagsHtml = c.tags.map(t =>
@@ -3620,10 +3646,10 @@ function openCase(key) {
 
     content.innerHTML = `
         <!-- Hero band — neutral grey gradient, matches homepage .ed-work-band -->
-        <div style="background:linear-gradient(180deg,var(--paper-2) 0%,var(--paper-3) 50%,var(--paper-2) 100%);padding:80px var(--gutter) 64px;position:relative;overflow:hidden;">
-            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;">${tagsHtml}</div>
-            <h2 style="font-family:var(--display);font-weight:700;font-size:clamp(44px,6.2vw,88px);line-height:1.05;letter-spacing:-0.025em;color:var(--ink);margin-bottom:28px;max-width:18ch;">${c.title}</h2>
-            <p style="font-family:var(--body);font-size:clamp(17px,1.6vw,22px);font-weight:400;line-height:1.45;color:var(--mid);max-width:640px;">${c.summary}</p>
+        <div style="background:linear-gradient(180deg,var(--paper-2) 0%,var(--paper-3) 50%,var(--paper-2) 100%);padding:clamp(72px,9vw,128px) var(--gutter) clamp(56px,7vw,96px);position:relative;overflow:hidden;text-align:center;">
+            <div style="display:inline-flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:28px;">${tagsHtml}</div>
+            <h2 style="font-family:var(--display);font-weight:700;font-size:clamp(44px,6.2vw,88px);line-height:1.05;letter-spacing:-0.025em;color:var(--ink);margin:0 auto 28px;max-width:18ch;">${c.title}</h2>
+            <p style="font-family:var(--body);font-size:clamp(17px,1.6vw,22px);font-weight:400;line-height:1.45;color:var(--mid);max-width:640px;margin:0 auto;">${c.summary}</p>
         </div>
 
         <!-- Hero image (devices on the brand color, continuing the band visually) -->
