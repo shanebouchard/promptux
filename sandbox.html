@@ -3131,14 +3131,14 @@
         border-bottom: 1px solid var(--rule);
         overflow: hidden;
     }
-    /* Edge gradient fades — soften any neighbor-slide bleed at left/right. */
+    /* Edge gradient fades — wide so any neighbor bleed fully dissolves. */
     :root[data-theme="editorial"] .sb-carousel::before,
     :root[data-theme="editorial"] .sb-carousel::after {
         content: "";
         position: absolute;
         top: 0;
         bottom: 0;
-        width: clamp(80px, 12vw, 200px);
+        width: clamp(120px, 18vw, 320px);
         pointer-events: none;
         z-index: 2;
     }
@@ -3172,8 +3172,12 @@
         grid-template-columns: 1fr 1.1fr;
         gap: clamp(32px, 5vw, 96px);
         align-items: center;
-        opacity: 0.12;
-        transition: opacity 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        opacity: 0;
+        pointer-events: none;
+    }
+    :root[data-theme="editorial"] .sb-carousel__slide.is-active {
+        opacity: 1;
+        pointer-events: auto;
     }
     :root[data-theme="editorial"] .sb-carousel__slide.is-active { opacity: 1; }
     :root[data-theme="editorial"] .sb-carousel__copy {
@@ -3228,92 +3232,6 @@
         margin: 0 0 var(--ed-space-4);
     }
     :root[data-theme="editorial"] .sb-carousel__copy .cta-pill { display: inline-flex; }
-
-    /* Controls row */
-    :root[data-theme="editorial"] .sb-carousel__controls {
-        position: relative;
-        z-index: 3;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: clamp(20px, 3vw, 48px);
-        margin: clamp(48px, 7vw, 96px) auto 0;
-        padding: 0 var(--gutter);
-    }
-    :root[data-theme="editorial"] .sb-carousel__btn {
-        width: 56px;
-        height: 56px;
-        border-radius: 50%;
-        border: 1px solid var(--rule);
-        background: var(--paper);
-        color: var(--ink);
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 200ms ease, border-color 200ms ease, color 200ms ease, transform 200ms ease;
-    }
-    :root[data-theme="editorial"] .sb-carousel__btn:hover {
-        background: var(--ink);
-        color: var(--paper);
-        border-color: var(--ink);
-    }
-    :root[data-theme="editorial"] .sb-carousel__btn:active { transform: scale(0.95); }
-    :root[data-theme="editorial"] .sb-carousel__btn svg {
-        width: 22px;
-        height: 22px;
-        fill: none;
-        stroke: currentColor;
-        stroke-width: 1.8;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-    }
-    :root[data-theme="editorial"] .sb-carousel__pagination {
-        display: flex;
-        align-items: center;
-        gap: 18px;
-    }
-    :root[data-theme="editorial"] .sb-carousel__counter {
-        font-family: var(--body);
-        font-size: 13px;
-        font-weight: 600;
-        letter-spacing: 0.14em;
-        color: var(--ink);
-        font-variant-numeric: tabular-nums;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-    }
-    :root[data-theme="editorial"] .sb-carousel__counter-current {
-        display: inline-block;
-        min-width: 1.4em;
-        text-align: right;
-    }
-    :root[data-theme="editorial"] .sb-carousel__counter-sep,
-    :root[data-theme="editorial"] .sb-carousel__counter-total {
-        color: var(--mid);
-        font-weight: 500;
-    }
-    :root[data-theme="editorial"] .sb-carousel__dots {
-        display: flex;
-        gap: 8px;
-    }
-    :root[data-theme="editorial"] .sb-carousel__dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--rule);
-        border: none;
-        padding: 0;
-        cursor: pointer;
-        transition: background 200ms ease, transform 200ms ease;
-    }
-    :root[data-theme="editorial"] .sb-carousel__dot.is-active {
-        background: var(--ink);
-        transform: scale(1.25);
-    }
-    :root[data-theme="editorial"] .sb-carousel__dot:hover { background: var(--mid); }
-    :root[data-theme="editorial"] .sb-carousel__dot.is-active:hover { background: var(--ink); }
 
     @media (max-width: 768px) {
         :root[data-theme="editorial"] .sb-carousel__slide {
@@ -3570,11 +3488,7 @@
 <div id="ed-work"></div>
 
 <!-- FEATURED WORK — interactive carousel (sandbox) -->
-<section class="sb-carousel" aria-label="Featured work">
-    <div class="sb-carousel__head">
-        <p class="ed-eyebrow">Selected work</p>
-        <h2 class="ed-h2">Featured case studies.</h2>
-    </div>
+<section class="sb-carousel" aria-label="Featured work" aria-roledescription="carousel">
     <div class="sb-carousel__stage">
         <div class="sb-carousel__track">
             <article class="sb-carousel__slide is-active" data-case="lace" aria-label="Lace AI Pro">
@@ -3622,23 +3536,6 @@
                 </figure>
             </article>
         </div>
-    </div>
-    <div class="sb-carousel__controls">
-        <button type="button" class="sb-carousel__btn sb-carousel__prev" aria-label="Previous case study">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <div class="sb-carousel__pagination">
-            <span class="sb-carousel__counter"><span class="sb-carousel__counter-current">01</span> <span class="sb-carousel__counter-sep">/</span> <span class="sb-carousel__counter-total">04</span></span>
-            <div class="sb-carousel__dots" role="tablist" aria-label="Case study slides">
-                <button class="sb-carousel__dot is-active" data-index="0" aria-label="Lace AI Pro" role="tab"></button>
-                <button class="sb-carousel__dot" data-index="1" aria-label="SharpSpring" role="tab"></button>
-                <button class="sb-carousel__dot" data-index="2" aria-label="Pickers" role="tab"></button>
-                <button class="sb-carousel__dot" data-index="3" aria-label="PL Remote" role="tab"></button>
-            </div>
-        </div>
-        <button type="button" class="sb-carousel__btn sb-carousel__next" aria-label="Next case study">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
     </div>
 </section>
 
@@ -4582,42 +4479,46 @@ document.addEventListener('click', function(e) {
     });
 })();
 
-// Sandbox carousel — index-driven slide with prev/next, dots, keyboard, swipe.
+// Sandbox carousel — chrome-free. Auto-advances every 6s, pauses on
+// hover. Keyboard arrows and touch swipe are invisible affordances
+// for power users + accessibility. No buttons, no dots, no counter.
 (() => {
     const carousel = document.querySelector('.sb-carousel');
     if (!carousel) return;
     const track = carousel.querySelector('.sb-carousel__track');
     const slides = Array.from(carousel.querySelectorAll('.sb-carousel__slide'));
-    const dots = Array.from(carousel.querySelectorAll('.sb-carousel__dot'));
-    const prev = carousel.querySelector('.sb-carousel__prev');
-    const next = carousel.querySelector('.sb-carousel__next');
-    const counter = carousel.querySelector('.sb-carousel__counter-current');
     const total = slides.length;
     if (!total) return;
     let current = 0;
+    let timer = null;
+    const AUTO_MS = 6000;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const goTo = (i) => {
         current = (i + total) % total;
         track.style.transform = `translateX(-${current * 100}%)`;
         slides.forEach((s, idx) => s.classList.toggle('is-active', idx === current));
-        dots.forEach((d, idx) => d.classList.toggle('is-active', idx === current));
-        if (counter) counter.textContent = String(current + 1).padStart(2, '0');
     };
 
-    if (prev) prev.addEventListener('click', () => goTo(current - 1));
-    if (next) next.addEventListener('click', () => goTo(current + 1));
-    dots.forEach((d, idx) => d.addEventListener('click', () => goTo(idx)));
+    const start = () => {
+        if (reduceMotion) return;
+        stop();
+        timer = setInterval(() => goTo(current + 1), AUTO_MS);
+    };
+    const stop = () => { if (timer) clearInterval(timer); timer = null; };
 
-    // Keyboard arrows when carousel is in viewport
+    carousel.addEventListener('mouseenter', stop);
+    carousel.addEventListener('mouseleave', start);
+
+    // Keyboard arrows when carousel is in view
     document.addEventListener('keydown', (e) => {
         const rect = carousel.getBoundingClientRect();
         const inView = rect.bottom > 60 && rect.top < window.innerHeight - 60;
         if (!inView) return;
-        // Skip if user is typing in an input
         const t = e.target;
         if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
-        if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1); }
-        if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
+        if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1); start(); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); start(); }
     });
 
     // Touch swipe (mobile)
@@ -4626,6 +4527,7 @@ document.addEventListener('click', function(e) {
     track.addEventListener('touchstart', (e) => {
         touchStartX = e.touches[0].clientX;
         touchStartY = e.touches[0].clientY;
+        stop();
     }, { passive: true });
     track.addEventListener('touchend', (e) => {
         if (touchStartX === null) return;
@@ -4635,9 +4537,11 @@ document.addEventListener('click', function(e) {
             if (dx < 0) goTo(current + 1); else goTo(current - 1);
         }
         touchStartX = touchStartY = null;
+        start();
     });
 
     goTo(0);
+    start();
 })();
 
 // Stats count-up — fires once when .ed-stats enters the viewport.
