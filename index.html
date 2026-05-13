@@ -2702,6 +2702,24 @@
     }
     :root[data-theme="editorial"] .ed-logos__mark:hover { opacity: 0.8; }
 
+    /* Per-logo overrides — visual weight tuning for the bar.
+       Veritas PNG is white-on-transparent (intended for dark bgs);
+       invert flips to black so it reads on paper. Sharpspring/symantec
+       /schwab get height tweaks because their natural aspect ratios
+       don't match the rest of the set. */
+    :root[data-theme="editorial"] .ed-logos__mark[src*="veritas"] {
+        filter: grayscale(1) invert(1);
+    }
+    :root[data-theme="editorial"] .ed-logos__mark[src*="sharpspring"] {
+        height: clamp(88px, 9.6vw, 136px);
+    }
+    :root[data-theme="editorial"] .ed-logos__mark[src*="symantec"] {
+        height: clamp(28.6px, 3.12vw, 44.2px);
+    }
+    :root[data-theme="editorial"] .ed-logos__mark[src*="schwab"] {
+        height: clamp(19.8px, 2.16vw, 30.6px);
+    }
+
     @keyframes ed-logos-scroll {
         from { transform: translateX(0); }
         to   { transform: translateX(-50%); }
