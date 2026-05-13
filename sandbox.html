@@ -4499,21 +4499,19 @@ window.addEventListener('scroll', updateNav, { passive: true });
 updateNav();
 
 // =============================================
-// PROTOTYPE LINK INTERCEPTION
-// Prevent all link clicks from navigating away.
-// Anchor links (#section) smooth-scroll instead.
-// mailto: and external links are no-ops in prototype.
+// LINK HANDLING
+// Hash anchors smooth-scroll; mailto shows a small note then opens
+// the mail client; everything else (real URLs like /thinking/,
+// /sandbox.html, http*) navigates naturally.
 // =============================================
 document.addEventListener('click', function(e) {
     const a = e.target.closest('a');
     if (!a) return;
-
-    e.preventDefault();
-
     const href = a.getAttribute('href') || '';
 
     // Smooth scroll to section anchors
     if (href.startsWith('#') && href.length > 1) {
+        e.preventDefault();
         const target = document.querySelector(href);
         if (target) {
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -4521,24 +4519,25 @@ document.addEventListener('click', function(e) {
         return;
     }
 
-    // Logo clicks scroll to top
+    // Logo / empty href: scroll to top
     if (href === '#' || href === '') {
+        e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
     }
 
-    // mailto: — show a friendly prototype note
+    // mailto: surface a quick note, then let the browser open the mail client
     if (href.startsWith('mailto:')) {
         const banner = document.getElementById('proto-banner');
         if (banner) {
-            banner.textContent = '✉ In production this opens your mail client: ' + href.replace('mailto:', '');
+            banner.textContent = '✉ Opening your mail client: ' + href.replace('mailto:', '');
             banner.style.opacity = '1';
             setTimeout(() => { banner.style.opacity = '0'; }, 3000);
         }
         return;
     }
 
-    // Everything else — no-op in prototype
+    // Real URLs — fall through, let the browser navigate.
 });
 
 // Nav "more" dropdown — click to toggle, click outside or Escape to close.
