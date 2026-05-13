@@ -1588,179 +1588,13 @@
     #cs-content[data-case="lace"] .cs-media--grid-carousel .cs-media__grid img {
         max-width: 960px;
     }
-    #cs-content[data-case="lace"] .cs-row__track,
-    #cs-content[data-case="lace"] .cs-media--pair {
+    #cs-content[data-case="lace"] .cs-row__track {
         max-width: 960px;
         margin: 0 auto;
     }
     #cs-content[data-case="lace"] .cs-media--split {
         max-width: 1040px;
         margin: 0 auto;
-    }
-
-    /* === Hero band — title block + optional logo ========================
-       Default: centered single-column title block.
-       With .cs-hero--has-logo: left title block, right logo image.
-    ===================================================================== */
-    .cs-hero {
-        background: linear-gradient(180deg, var(--paper-2) 0%, var(--paper-3) 50%, var(--paper-2) 100%);
-        padding: clamp(72px, 9vw, 128px) var(--gutter) clamp(56px, 7vw, 96px);
-        position: relative;
-        overflow: hidden;
-    }
-    .cs-hero__inner {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-    .cs-hero__title-block {
-        text-align: center;
-        max-width: 800px;
-        margin: 0 auto;
-    }
-    .cs-hero__title {
-        font-family: var(--display);
-        font-weight: 700;
-        font-size: clamp(44px, 6.2vw, 88px);
-        line-height: 1.05;
-        letter-spacing: -0.025em;
-        color: var(--ink);
-        margin: 0 auto 24px;
-        max-width: 18ch;
-    }
-    .cs-hero__summary {
-        font-family: var(--body);
-        font-size: clamp(17px, 1.6vw, 22px);
-        font-weight: 400;
-        line-height: 1.45;
-        color: var(--mid);
-        max-width: 640px;
-        margin: 0 auto;
-    }
-    .cs-hero__logo { display: none; }
-
-    .cs-hero--has-logo .cs-hero__inner {
-        display: flex;
-        gap: clamp(32px, 5vw, 80px);
-        align-items: center;
-    }
-    .cs-hero--has-logo .cs-hero__title-block {
-        text-align: left;
-        flex: 1 1 auto;
-        margin: 0;
-        max-width: none;
-        min-width: 0;
-    }
-    .cs-hero--has-logo .cs-hero__title {
-        margin: 0 0 20px;
-        max-width: none;
-    }
-    .cs-hero--has-logo .cs-hero__summary {
-        margin: 0;
-        max-width: 56ch;
-    }
-    .cs-hero--has-logo .cs-hero__logo {
-        display: block;
-        flex: 0 0 auto;
-        width: clamp(180px, 22vw, 300px);
-    }
-    .cs-hero--has-logo .cs-hero__logo img {
-        display: block;
-        width: 100%;
-        height: auto;
-    }
-    @media (max-width: 768px) {
-        .cs-hero--has-logo .cs-hero__inner { flex-direction: column; gap: 32px; }
-        .cs-hero--has-logo .cs-hero__title-block { text-align: center; }
-        .cs-hero--has-logo .cs-hero__title { margin: 0 auto 20px; }
-        .cs-hero--has-logo .cs-hero__summary { margin: 0 auto; }
-        .cs-hero--has-logo .cs-hero__logo { width: clamp(140px, 38vw, 220px); order: -1; }
-    }
-
-    /* === Description block — 2-col: paragraph left, tag groups right
-       Replaces the legacy outcomes/services meta row when c.description present.
-    ===================================================================== */
-    .cs-meta {
-        display: grid;
-        grid-template-columns: 1.4fr 1fr;
-        gap: clamp(48px, 6vw, 96px);
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: clamp(64px, 8vw, 120px) var(--gutter);
-        border-bottom: 1px solid var(--rule);
-    }
-    .cs-meta__desc p {
-        font-family: var(--body);
-        font-size: clamp(17px, 1.5vw, 21px);
-        font-weight: 400;
-        line-height: 1.55;
-        color: var(--ink);
-        margin: 0;
-        max-width: 50ch;
-    }
-    .cs-meta__group + .cs-meta__group { margin-top: 28px; }
-    .cs-meta__label {
-        font-size: 10px;
-        font-weight: 500;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: var(--mid);
-        margin-bottom: 10px;
-    }
-    .cs-meta__chips {
-        font-family: var(--body);
-        font-size: 15px;
-        line-height: 1.5;
-        color: var(--ink);
-        font-weight: 400;
-    }
-    @media (max-width: 768px) {
-        .cs-meta { grid-template-columns: 1fr; gap: 40px; }
-    }
-
-    /* === Phone pair — 2-up grid, each cell is phone-left + caption-right
-    ===================================================================== */
-    .cs-media--pair {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: clamp(32px, 5vw, 80px);
-    }
-    .cs-pair__item {
-        display: grid;
-        grid-template-columns: 1fr 1.1fr;
-        gap: clamp(16px, 2.5vw, 32px);
-        align-items: center;
-    }
-    .cs-pair__phone { margin: 0; }
-    .cs-pair__phone img {
-        display: block;
-        width: 100%;
-        max-width: 240px;
-        height: auto;
-        margin: 0 auto;
-    }
-    .cs-pair__caption { text-align: left; }
-    .cs-pair__caption h4 {
-        font-family: var(--body);
-        font-size: clamp(17px, 1.5vw, 22px);
-        font-weight: 500;
-        line-height: 1.2;
-        color: var(--ink);
-        margin: 0 0 12px;
-    }
-    .cs-pair__caption p {
-        font-family: var(--body);
-        font-size: 14.5px;
-        line-height: 1.6;
-        color: var(--mid);
-        font-weight: 300;
-        margin: 0;
-    }
-    @media (max-width: 900px) {
-        .cs-media--pair { grid-template-columns: 1fr; gap: 40px; }
-    }
-    @media (max-width: 480px) {
-        .cs-pair__item { grid-template-columns: 1fr; gap: 16px; }
-        .cs-pair__caption { text-align: center; }
     }
 
     /* Grid + carousel block — desktop shows full grid image,
@@ -3526,50 +3360,48 @@ const CASES = {
         figma: "https://www.figma.com/design/dF4HzAFH7Z6KIbh0WGkX9W/Agency-case-studies?node-id=350-8202",
         tags: ["Healthcare", "MedTech", "SaaS"],
         outcomes: ["Engagement", "Adoption", "Growth", "Consistency"],
-        services: ["Brand Identity", "Product Design", "UI", "AI", "Advertising", "Platform Design"],
-        summary: "Brand and product evolution for a hyper-growth SaaS company revolutionizing auditory rehabilitation with AI.",
-        description: "PromptUX partnered with Lace AI Pro to elevate their brand identity and unify their digital ecosystem. We optimized core mobile workflows, extended the experience seamlessly to desktop and tablet, and built a consistent design language across every channel.",
-        logo: {
-            src: "assets/logos/lace.png",
-            alt: "Lace AI Pro logo"
-        },
+        services: ["Brand Identity", "Product Design", "UI", "Advertising", "Platform Design"],
+        summary: "Our founding partner led brand identity, product design, and marketing systems for Lace AI Pro — a clinically validated auditory training platform built for people with hearing loss.",
         hero: {
             src: "assets/lace/WC_Lace AI Pro_Hero.png",
             alt: "Lace AI Pro across phone, MacBook, and tablet — the Speech in noise training screen"
         },
         sections: [
             {
+                heading: "Brand and product evolution",
+                body: "Work spanned mobile product redesign, web mode extension, a modular email system, and event collateral for trade show activations. We expanded the brand identity for scale — new lesson types, a show-not-tell visual philosophy, and fresh avatar treatments that gave Content and Familiar Voices greater presence.",
                 media: [
                     { type: "image-first", src: "assets/lace/lace-ai-user.png", alt: "An older couple smiling and using a phone together — show-not-tell brand photography" },
                     { type: "full-bleed", src: "assets/lace/lace-innovativecare.png", alt: "Lace AI Pro Innovative Care framework — Speech in Noise, Working Memory, Education, Gamification, Personalized Content, Familiar Voices" }
                 ]
             },
             {
-                heading: "Lace AI Pro mobile design",
+                heading: "Mobile design",
                 body: "The training flow redesign streamlined the workflow while increasing discoverability of lesson types and personalization features like My Voices and My Content. The interaction pattern is flexible and scalable — currently being applied to a sister product, Tinnitus Pro.",
                 media: [
                     { type: "split", src: "assets/lace/lace-inutitiveandscalable.png", alt: "Lace mobile training card — Speech in Noise, Level 2", caption: { heading: "Intuitive & scalable", body: "The new training card unifies setup and action. Adjust lessons, voices, or content in seconds — or start training instantly." } },
                     {
-                        type: "phone-pair",
+                        type: "media-row",
+                        rowKind: "phones",
                         items: [
-                            { src: "assets/lace/lace-lessontype.png", alt: "Lesson type screen", caption: { heading: "Lesson type", body: "Dedicated lesson view with large tap targets and space for context — making discovery intuitive and future features easy to extend." } },
-                            { src: "assets/lace/lace-mycontent.png", alt: "My Content screen", caption: { heading: "My Content", body: "The new My Content screen provides ample space to configure options and grow the feature in the future." } }
+                            { src: "assets/lace/lace-lessontype.png", alt: "Lesson type", caption: { heading: "Lesson type", body: "Dedicated lesson view with large tap targets and space for context — making discovery intuitive and future features easy to extend." } },
+                            { src: "assets/lace/lace-mycontent.png", alt: "My Content", caption: { heading: "My Content", body: "The new My Content screen provides ample space to configure options and grow the feature in the future." } }
                         ]
-                    }
+                    },
+                    { type: "full-bleed", src: "assets/lace/lace-email-system.png", alt: "Comprehensive auditory training and Aural rehab education feature cards" }
                 ]
             },
             {
-                heading: "Lace AI Pro web mode",
+                heading: "Web mode",
                 body: "Lace AI Pro web mode extends the proven mobile experience to desktop, using Material 3's adaptive layout strategy. We introduced side sheets, onboarding cards to boost adoption, and optimized key flows for a familiar yet desktop-optimized experience.",
                 media: [
                     { type: "full-bleed", src: "assets/lace/lace-webmode-desktop.png", alt: "Lace AI Pro on a MacBook — Speech in noise training in web mode" }
                 ]
             },
             {
-                heading: "Lace AI Pro email system",
+                heading: "Email system",
                 body: "The Lace email system was designed to move fast, stay coherent, and convert. With modular design language and visual storytelling, we accelerated campaign creation, simplified approvals, and gave both patient and provider audiences a consistent, engaging experience.",
                 media: [
-                    { type: "full-bleed", src: "assets/lace/lace-email-system.png", alt: "Lace email system overview — feature cards across auditory training and aural rehab education" },
                     {
                         type: "media-row",
                         rowKind: "emails",
@@ -3716,20 +3548,6 @@ function openCase(key) {
                 </div>
             `;
         }
-        if (m.type === 'phone-pair') {
-            const itemsHtml = (m.items || []).map(it => `
-                <div class="cs-pair__item">
-                    <figure class="cs-pair__phone">
-                        <img src="${it.src}" alt="${it.alt}" loading="lazy" />
-                    </figure>
-                    <div class="cs-pair__caption">
-                        <h4>${it.caption?.heading || ''}</h4>
-                        ${it.caption?.body ? `<p>${it.caption.body}</p>` : ''}
-                    </div>
-                </div>
-            `).join('');
-            return `<div class="cs-media cs-media--pair">${itemsHtml}</div>`;
-        }
         if (m.type === 'media-row') {
             const itemsHtml = (m.items || []).map((it, i) => `
                 <li class="cs-row__item" data-index="${i}">
@@ -3792,15 +3610,12 @@ function openCase(key) {
 
     const sectionsHtml = c.sections.map(s => {
         const mediaHtml = (s.media || []).map(renderMedia).join('');
-        const copyHtml = (s.heading || s.body) ? `
-                <div class="cs-section__copy">
-                    ${s.heading ? `<h3>${s.heading}</h3>` : ''}
-                    ${s.body ? `<p>${s.body}</p>` : ''}
-                </div>
-            ` : '';
         return `
             <section class="cs-section">
-                ${copyHtml}
+                <div class="cs-section__copy">
+                    <h3>${s.heading}</h3>
+                    <p>${s.body}</p>
+                </div>
                 ${mediaHtml}
             </section>
         `;
@@ -3828,28 +3643,18 @@ function openCase(key) {
         </div>
     ` : '';
 
-    const heroClass = c.logo ? 'cs-hero cs-hero--has-logo' : 'cs-hero';
-    const logoHtml = c.logo ? `<div class="cs-hero__logo"><img src="${c.logo.src}" alt="${c.logo.alt}" /></div>` : '';
-
-    const metaBlock = c.description ? `
-        <div class="cs-meta">
-            <div class="cs-meta__desc"><p>${c.description}</p></div>
-            <div class="cs-meta__tags">
-                <div class="cs-meta__group">
-                    <div class="cs-meta__label">Industry</div>
-                    <div class="cs-meta__chips">${c.tags.join(' · ')}</div>
-                </div>
-                <div class="cs-meta__group">
-                    <div class="cs-meta__label">Outcomes</div>
-                    <div class="cs-meta__chips">${c.outcomes.join(' · ')}</div>
-                </div>
-                <div class="cs-meta__group">
-                    <div class="cs-meta__label">Services</div>
-                    <div class="cs-meta__chips">${c.services.join(' · ')}</div>
-                </div>
-            </div>
+    content.innerHTML = `
+        <!-- Hero band — neutral grey gradient, matches homepage .ed-work-band -->
+        <div style="background:linear-gradient(180deg,var(--paper-2) 0%,var(--paper-3) 50%,var(--paper-2) 100%);padding:clamp(72px,9vw,128px) var(--gutter) clamp(56px,7vw,96px);position:relative;overflow:hidden;text-align:center;">
+            <div style="display:inline-flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:28px;">${tagsHtml}</div>
+            <h2 style="font-family:var(--display);font-weight:700;font-size:clamp(44px,6.2vw,88px);line-height:1.05;letter-spacing:-0.025em;color:var(--ink);margin:0 auto 28px;max-width:18ch;">${c.title}</h2>
+            <p style="font-family:var(--body);font-size:clamp(17px,1.6vw,22px);font-weight:400;line-height:1.45;color:var(--mid);max-width:640px;margin:0 auto;">${c.summary}</p>
         </div>
-    ` : `
+
+        <!-- Hero image (devices on the brand color, continuing the band visually) -->
+        ${heroImageHtml}
+
+        <!-- Meta row -->
         <div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--rule);">
             <div style="padding:32px var(--gutter);border-right:1px solid var(--rule);">
                 <div style="font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink);margin-bottom:14px;">Outcomes</div>
@@ -3860,25 +3665,6 @@ function openCase(key) {
                 <div style="display:flex;gap:6px;flex-wrap:wrap;">${servicesHtml}</div>
             </div>
         </div>
-    `;
-
-    content.innerHTML = `
-        <!-- Hero band — title block (centered or with logo to the right) -->
-        <div class="${heroClass}">
-            <div class="cs-hero__inner">
-                <div class="cs-hero__title-block">
-                    <h2 class="cs-hero__title">${c.title}</h2>
-                    <p class="cs-hero__summary">${c.summary}</p>
-                </div>
-                ${logoHtml}
-            </div>
-        </div>
-
-        <!-- Hero image -->
-        ${heroImageHtml}
-
-        <!-- Meta / Description block -->
-        ${metaBlock}
 
         <!-- Sections -->
         ${sectionsHtml}
