@@ -2421,6 +2421,199 @@
         margin: 0 auto var(--ed-space-4);
     }
 
+    /* === FORM — conditional 3-step contact ===========================
+       Step 1 intent cards always visible. Picking an intent reveals
+       Step 2 (path-specific) and Step 3 (contact details) via the
+       JS toggling data-visible. All visuals use existing tokens.
+    ====================================================================== */
+    :root[data-theme="editorial"] .ed-form {
+        max-width: 600px;
+        margin: var(--ed-space-4) auto 0;
+        text-align: left;
+    }
+    :root[data-theme="editorial"] .ed-form__step {
+        border: 0;
+        padding: 0;
+        margin: 0 0 var(--ed-space-4);
+        min-inline-size: 0;
+    }
+    /* Hidden-then-revealed steps animate up + fade in */
+    :root[data-theme="editorial"] .ed-form__step[hidden] { display: none; }
+    :root[data-theme="editorial"] .ed-form__step:not(.ed-form__step--1) {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 200ms ease-out, transform 200ms ease-out;
+    }
+    :root[data-theme="editorial"] .ed-form__step[data-visible="true"] {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    :root[data-theme="editorial"] .ed-form__legend {
+        font-family: var(--body);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--mid);
+        padding: 0;
+        margin: 0 0 var(--ed-space-2);
+    }
+    :root[data-theme="editorial"] .ed-form__field {
+        margin: 0 0 var(--ed-space-3);
+    }
+    :root[data-theme="editorial"] .ed-form__label {
+        display: block;
+        font-family: var(--body);
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--ink);
+        margin: 0 0 8px;
+    }
+    :root[data-theme="editorial"] .ed-form__optional {
+        color: var(--mid);
+        font-weight: 400;
+    }
+
+    /* Intent cards */
+    :root[data-theme="editorial"] .ed-form__intent {
+        display: grid;
+        gap: 12px;
+    }
+    :root[data-theme="editorial"] .ed-intent {
+        appearance: none;
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 18px 22px;
+        background: var(--paper);
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        cursor: pointer;
+        font-family: var(--body);
+        color: var(--ink);
+        transition: background 150ms ease, border-color 150ms ease;
+    }
+    :root[data-theme="editorial"] .ed-intent:hover { background: var(--paper-2); }
+    :root[data-theme="editorial"] .ed-intent:focus-visible {
+        outline: 2px solid var(--ink);
+        outline-offset: 2px;
+    }
+    :root[data-theme="editorial"] .ed-intent[aria-pressed="true"] {
+        background: var(--paper-3);
+        border-color: var(--ink);
+    }
+    :root[data-theme="editorial"] .ed-intent__title {
+        display: block;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.3;
+        color: var(--ink);
+        margin-bottom: 4px;
+    }
+    :root[data-theme="editorial"] .ed-intent__sub {
+        display: block;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--mid);
+    }
+
+    /* Chips — single-select pill row */
+    :root[data-theme="editorial"] .ed-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    :root[data-theme="editorial"] .ed-chip {
+        appearance: none;
+        padding: 7px 14px;
+        background: var(--paper);
+        border: 1px solid var(--rule);
+        border-radius: 999px;
+        font-family: var(--body);
+        font-size: 13px;
+        color: var(--ink);
+        cursor: pointer;
+        transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+    }
+    :root[data-theme="editorial"] .ed-chip:hover { background: var(--paper-2); }
+    :root[data-theme="editorial"] .ed-chip:focus-visible {
+        outline: 2px solid var(--ink);
+        outline-offset: 2px;
+    }
+    :root[data-theme="editorial"] .ed-chip[aria-pressed="true"] {
+        background: var(--ink);
+        color: var(--paper);
+        border-color: var(--ink);
+    }
+
+    /* Inputs / textarea */
+    :root[data-theme="editorial"] .ed-input,
+    :root[data-theme="editorial"] .ed-textarea {
+        display: block;
+        width: 100%;
+        padding: 11px 14px;
+        background: var(--paper);
+        border: 1px solid var(--rule);
+        border-radius: 4px;
+        font-family: var(--body);
+        font-size: 15px;
+        line-height: 1.4;
+        color: var(--ink);
+        transition: border-color 150ms ease;
+        appearance: none;
+    }
+    :root[data-theme="editorial"] .ed-textarea { resize: vertical; min-height: 84px; }
+    :root[data-theme="editorial"] .ed-input:focus,
+    :root[data-theme="editorial"] .ed-textarea:focus {
+        outline: 2px solid var(--ink);
+        outline-offset: 1px;
+        border-color: var(--ink);
+    }
+    :root[data-theme="editorial"] .ed-form__submit {
+        margin-top: var(--ed-space-2);
+    }
+
+    /* Confirmation */
+    :root[data-theme="editorial"] .ed-form__confirm {
+        padding: var(--ed-space-3);
+        background: var(--paper-2);
+        border: 1px solid var(--rule);
+        border-radius: 4px;
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 200ms ease-out, transform 200ms ease-out;
+    }
+    :root[data-theme="editorial"] .ed-form__confirm[data-visible="true"] {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    :root[data-theme="editorial"] .ed-form__confirm p {
+        font-size: 15px;
+        line-height: 1.55;
+        color: var(--ink);
+        margin: 0;
+        max-width: none;
+    }
+    :root[data-theme="editorial"] .ed-form__confirm a {
+        color: var(--ink);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        :root[data-theme="editorial"] .ed-form__step,
+        :root[data-theme="editorial"] .ed-form__confirm {
+            transition: none;
+            transform: none;
+        }
+        :root[data-theme="editorial"] .ed-intent,
+        :root[data-theme="editorial"] .ed-chip,
+        :root[data-theme="editorial"] .ed-input,
+        :root[data-theme="editorial"] .ed-textarea { transition: none; }
+    }
+
     /* === FOOTER — Apple-style mini === */
     :root[data-theme="editorial"] .ed-footer {
         background: var(--paper-2);
@@ -3171,7 +3364,95 @@
     <p class="ed-contact__eyebrow">Ready to start</p>
     <h2>Tell us what you're working on.</h2>
     <p>You tell us what's going on. We ask the right questions and tell you if we can help. No pitch on the first call.</p>
-    <a href="mailto:hello@promptux.com" class="ed-btn">Tell us what you're working on →</a>
+
+    <form class="ed-form" id="ed-form" novalidate>
+        <!-- Step 1 — Intent (always visible) -->
+        <fieldset class="ed-form__step ed-form__step--1" data-step="1">
+            <legend class="ed-form__legend">What kind of help do you need?</legend>
+            <div class="ed-form__intent">
+                <button type="button" class="ed-intent" data-intent="sprint" aria-pressed="false">
+                    <span class="ed-intent__title">I have a specific project or deadline</span>
+                    <span class="ed-intent__sub">Sprint engagement</span>
+                </button>
+                <button type="button" class="ed-intent" data-intent="partnership" aria-pressed="false">
+                    <span class="ed-intent__title">I'm looking for an ongoing design partner</span>
+                    <span class="ed-intent__sub">Partnership engagement</span>
+                </button>
+            </div>
+        </fieldset>
+
+        <!-- Step 2a — Sprint path -->
+        <fieldset class="ed-form__step" data-step="2a" hidden>
+            <legend class="ed-form__legend">Tell us about the project.</legend>
+            <div class="ed-form__field">
+                <span class="ed-form__label">Budget</span>
+                <div class="ed-chips" role="radiogroup" aria-label="Budget">
+                    <button type="button" class="ed-chip" data-name="budget" data-value="&lt; $15K" aria-pressed="false">&lt; $15K</button>
+                    <button type="button" class="ed-chip" data-name="budget" data-value="$15–30K" aria-pressed="false">$15–30K</button>
+                    <button type="button" class="ed-chip" data-name="budget" data-value="$30K+" aria-pressed="false">$30K+</button>
+                </div>
+            </div>
+            <div class="ed-form__field">
+                <span class="ed-form__label">Timeline</span>
+                <div class="ed-chips" role="radiogroup" aria-label="Timeline">
+                    <button type="button" class="ed-chip" data-name="timeline" data-value="ASAP" aria-pressed="false">ASAP</button>
+                    <button type="button" class="ed-chip" data-name="timeline" data-value="1–3 months" aria-pressed="false">1–3 months</button>
+                    <button type="button" class="ed-chip" data-name="timeline" data-value="Flexible" aria-pressed="false">Flexible</button>
+                </div>
+            </div>
+            <div class="ed-form__field">
+                <label class="ed-form__label" for="ed-sprint-details">What are you building?</label>
+                <textarea class="ed-textarea" id="ed-sprint-details" name="details" rows="3"></textarea>
+            </div>
+        </fieldset>
+
+        <!-- Step 2b — Partnership path -->
+        <fieldset class="ed-form__step" data-step="2b" hidden>
+            <legend class="ed-form__legend">Tell us about the team.</legend>
+            <div class="ed-form__field">
+                <span class="ed-form__label">Team size</span>
+                <div class="ed-chips" role="radiogroup" aria-label="Team size">
+                    <button type="button" class="ed-chip" data-name="team-size" data-value="1–10" aria-pressed="false">1–10</button>
+                    <button type="button" class="ed-chip" data-name="team-size" data-value="11–50" aria-pressed="false">11–50</button>
+                    <button type="button" class="ed-chip" data-name="team-size" data-value="50+" aria-pressed="false">50+</button>
+                </div>
+            </div>
+            <div class="ed-form__field">
+                <span class="ed-form__label">Design capacity</span>
+                <div class="ed-chips" role="radiogroup" aria-label="Design capacity">
+                    <button type="button" class="ed-chip" data-name="design-capacity" data-value="None" aria-pressed="false">None</button>
+                    <button type="button" class="ed-chip" data-name="design-capacity" data-value="1 designer" aria-pressed="false">1 designer</button>
+                    <button type="button" class="ed-chip" data-name="design-capacity" data-value="Small team" aria-pressed="false">Small team</button>
+                </div>
+            </div>
+            <div class="ed-form__field">
+                <label class="ed-form__label" for="ed-partnership-details">What's not working?</label>
+                <textarea class="ed-textarea" id="ed-partnership-details" name="details" rows="3"></textarea>
+            </div>
+        </fieldset>
+
+        <!-- Step 3 — Contact details -->
+        <fieldset class="ed-form__step" data-step="3" hidden>
+            <legend class="ed-form__legend">Where can we reach you?</legend>
+            <div class="ed-form__field">
+                <label class="ed-form__label" for="ed-name">Name</label>
+                <input class="ed-input" id="ed-name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="ed-form__field">
+                <label class="ed-form__label" for="ed-email">Email</label>
+                <input class="ed-input" id="ed-email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="ed-form__field">
+                <label class="ed-form__label" for="ed-source">How did you find us? <span class="ed-form__optional">(optional)</span></label>
+                <input class="ed-input" id="ed-source" name="source" type="text">
+            </div>
+            <button type="submit" class="ed-btn ed-form__submit">Send →</button>
+        </fieldset>
+
+        <div class="ed-form__confirm" hidden role="status" aria-live="polite">
+            <p>Thanks. Your email client should be opening now — if it doesn't, write to <a href="mailto:hello@promptux.com">hello@promptux.com</a> and we'll take it from there.</p>
+        </div>
+    </form>
 </section>
 
 <!-- FOOTER -->
@@ -3732,6 +4013,100 @@ document.addEventListener('click', function(e) {
     new IntersectionObserver((entries, obs) => {
         entries.forEach(e => { if (e.isIntersecting) { start(); obs.disconnect(); } });
     }, { threshold: 0.3 }).observe(section);
+})();
+
+// Contact form — conditional 3-step flow, mailto-based submission.
+(() => {
+    const form = document.getElementById('ed-form');
+    if (!form) return;
+    const intentBtns = form.querySelectorAll('.ed-intent');
+    const steps = {
+        '2a': form.querySelector('[data-step="2a"]'),
+        '2b': form.querySelector('[data-step="2b"]'),
+        '3':  form.querySelector('[data-step="3"]'),
+    };
+    const confirmEl = form.querySelector('.ed-form__confirm');
+    const intentWrap = form.querySelector('.ed-form__intent');
+    let currentIntent = null;
+    let resetTimer = null;
+
+    const reveal = (el, delay = 0) => {
+        if (!el) return;
+        el.hidden = false;
+        // double-rAF so the initial style applies before we transition
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            setTimeout(() => el.setAttribute('data-visible', 'true'), delay);
+        }));
+    };
+    const hide = (el) => {
+        if (!el) return;
+        el.removeAttribute('data-visible');
+        el.hidden = true;
+    };
+
+    // Intent selection
+    intentBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const next = btn.dataset.intent;
+            intentBtns.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+            if (currentIntent === next) return;
+            currentIntent = next;
+            if (next === 'sprint') { hide(steps['2b']); reveal(steps['2a']); }
+            else                   { hide(steps['2a']); reveal(steps['2b']); }
+            reveal(steps['3'], 100);
+        });
+    });
+
+    // Chip single-select (delegated)
+    form.addEventListener('click', (e) => {
+        const chip = e.target.closest('.ed-chip');
+        if (!chip) return;
+        const name = chip.dataset.name;
+        form.querySelectorAll(`.ed-chip[data-name="${name}"]`).forEach(c => {
+            c.setAttribute('aria-pressed', String(c === chip));
+        });
+    });
+
+    const selectedChip = (name) => {
+        const el = form.querySelector(`.ed-chip[data-name="${name}"][aria-pressed="true"]`);
+        return el ? el.dataset.value : '';
+    };
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!currentIntent) return;
+        const fd = new FormData(form);
+        const isSprint = currentIntent === 'sprint';
+
+        const subject = `New ${isSprint ? 'Sprint' : 'Partnership'} inquiry — ${fd.get('name') || 'no name'}`;
+        const lines = [
+            `Intent: ${isSprint ? 'Sprint engagement' : 'Partnership engagement'}`,
+            isSprint ? `Budget: ${selectedChip('budget')}`     : `Team size: ${selectedChip('team-size')}`,
+            isSprint ? `Timeline: ${selectedChip('timeline')}` : `Design capacity: ${selectedChip('design-capacity')}`,
+            '',
+            isSprint ? 'What are you building:' : "What's not working:",
+            (fd.get('details') || '').toString(),
+            '',
+            `Name: ${fd.get('name') || ''}`,
+            `Email: ${fd.get('email') || ''}`,
+        ];
+        if ((fd.get('source') || '').toString().trim()) lines.push(`Found via: ${fd.get('source')}`);
+
+        window.location.href = `mailto:hello@promptux.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
+
+        // Surface the inline confirmation
+        if (intentWrap) intentWrap.setAttribute('aria-hidden', 'true');
+        reveal(confirmEl);
+
+        clearTimeout(resetTimer);
+        resetTimer = setTimeout(() => {
+            form.reset();
+            currentIntent = null;
+            form.querySelectorAll('[aria-pressed="true"]').forEach(el => el.setAttribute('aria-pressed', 'false'));
+            hide(steps['2a']); hide(steps['2b']); hide(steps['3']); hide(confirmEl);
+            if (intentWrap) intentWrap.removeAttribute('aria-hidden');
+        }, 4000);
+    });
 })();
 </script>
 
