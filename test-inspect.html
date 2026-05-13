@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html><head><script>
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const f = document.getElementById('f');
+    const doc = f.contentDocument;
+    const win = f.contentWindow;
+    const els = ['.ed-hero', '.ed-slide', '.ed-slide__copy', '.ed-slide__device', '.hero', 'nav'];
+    const out = els.map(sel => {
+      const el = doc.querySelector(sel);
+      if (!el) return sel + ': MISSING';
+      const r = el.getBoundingClientRect();
+      const c = win.getComputedStyle(el);
+      return sel + ': h=' + Math.round(r.height) + ' y=' + Math.round(r.y) + ' display=' + c.display + ' position=' + c.position + ' minH=' + c.minHeight;
+    }).join('\n');
+    document.body.innerText = out;
+  }, 1500);
+});
+</script></head><body><iframe id="f" src="http://localhost:8000/promptux-editorial.html" style="width:1463px;height:900px;border:0"></iframe></body></html>
