@@ -2146,76 +2146,103 @@
         color: var(--mid);
         margin-bottom: var(--ed-space-2);
     }
-    /* Components tabs — engagement-mode tablist + shared panel below. */
-    :root[data-theme="editorial"] .cm-tabs {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-        max-width: var(--ed-max);
-        margin: 0 auto clamp(28px, 4vw, 48px);
-    }
-    :root[data-theme="editorial"] .cm-tabs__tab {
-        appearance: none;
-        background: var(--paper);
-        border: 1px solid var(--rule);
-        border-radius: 12px;
-        padding: clamp(20px, 2.4vw, 28px);
-        cursor: pointer;
-        text-align: left;
-        font: inherit;
-        color: var(--ink);
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        transition: background 200ms ease, border-color 200ms ease;
-    }
-    :root[data-theme="editorial"] .cm-tabs__tab:hover { border-color: var(--mid); }
-    :root[data-theme="editorial"] .cm-tabs__tab:focus-visible {
-        outline: 2px solid var(--ink);
-        outline-offset: 2px;
-    }
-    :root[data-theme="editorial"] .cm-tabs__tab.is-active {
-        border-color: var(--ink);
-        box-shadow: inset 0 0 0 1px var(--ink);
-    }
-    :root[data-theme="editorial"] .cm-tabs__num {
-        font-family: var(--body);
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--mid);
-    }
-    :root[data-theme="editorial"] .cm-tabs__label {
-        font-family: var(--display);
-        font-weight: 700;
-        font-size: clamp(20px, 1.8vw, 26px);
-        line-height: 1.15;
-        letter-spacing: -0.015em;
-        color: var(--ink);
-    }
-    :root[data-theme="editorial"] .cm-tabs__blurb {
-        font-family: var(--body);
-        font-size: 14px;
-        line-height: 1.5;
-        color: var(--mid);
-    }
-    :root[data-theme="editorial"] .cm-tabs__panels {
+    /* Components accordion — three stacked full-width rows. */
+    :root[data-theme="editorial"] .cm-accord {
         max-width: var(--ed-max);
         margin: 0 auto;
+        border-top: 1px solid var(--rule);
+        border-bottom: 1px solid var(--rule);
     }
-    :root[data-theme="editorial"] .cm-tabs__panel {
+    :root[data-theme="editorial"] .cm-accord__row + .cm-accord__row {
+        border-top: 1px solid var(--rule);
+    }
+    :root[data-theme="editorial"] .cm-accord__head {
+        appearance: none;
+        background: transparent;
+        border: 0;
+        width: 100%;
+        padding: 32px 0;
+        cursor: pointer;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: clamp(24px, 4vw, 64px);
+        font: inherit;
+        color: var(--ink);
+        text-align: left;
+    }
+    :root[data-theme="editorial"] .cm-accord__head:focus-visible {
+        outline: 2px solid var(--ink);
+        outline-offset: 4px;
+    }
+    :root[data-theme="editorial"] .cm-accord__num {
+        font-family: var(--body);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        color: var(--mid);
+    }
+    :root[data-theme="editorial"] .cm-accord__title {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: clamp(28px, 3.5vw, 48px);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+    }
+    :root[data-theme="editorial"] .cm-accord__icon {
+        position: relative;
+        width: 22px;
+        height: 22px;
+        flex-shrink: 0;
+        transition: transform 200ms ease;
+    }
+    :root[data-theme="editorial"] .cm-accord__icon::before,
+    :root[data-theme="editorial"] .cm-accord__icon::after {
+        content: "";
+        position: absolute;
+        background: var(--ink);
+    }
+    :root[data-theme="editorial"] .cm-accord__icon::before {
+        left: 0; right: 0;
+        top: 50%;
+        height: 1.5px;
+        transform: translateY(-50%);
+    }
+    :root[data-theme="editorial"] .cm-accord__icon::after {
+        top: 0; bottom: 0;
+        left: 50%;
+        width: 1.5px;
+        transform: translateX(-50%);
+    }
+    :root[data-theme="editorial"] .cm-accord__row.is-open .cm-accord__icon {
+        transform: rotate(45deg);
+    }
+    :root[data-theme="editorial"] .cm-accord__body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 300ms ease-out;
+    }
+    :root[data-theme="editorial"] .cm-accord__row.is-open .cm-accord__body {
+        max-height: 2000px;
+    }
+    :root[data-theme="editorial"] .cm-accord__body-inner {
+        padding: 40px 0 48px;
+    }
+    :root[data-theme="editorial"] .cm-accord__blurb {
+        font-family: var(--body);
+        font-size: clamp(16px, 1.4vw, 19px);
+        line-height: 1.5;
+        color: var(--mid);
+        max-width: 60ch;
+        margin: 0 0 var(--ed-space-4);
+    }
+    :root[data-theme="editorial"] .cm-accord__cols {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: clamp(32px, 4vw, 80px);
-        padding: clamp(28px, 4vw, 56px);
-        background: var(--paper);
-        border: 1px solid var(--rule);
-        border-radius: 12px;
-        animation: cm-tabs-fade 240ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
-    :root[data-theme="editorial"] .cm-tabs__panel[hidden] { display: none; }
-    :root[data-theme="editorial"] .cm-tabs__group h4 {
+    :root[data-theme="editorial"] .cm-accord__col h4 {
         font-family: var(--body);
         font-size: 11px;
         font-weight: 600;
@@ -2224,12 +2251,12 @@
         color: var(--mid);
         margin: 0 0 var(--ed-space-3);
     }
-    :root[data-theme="editorial"] .cm-tabs__group ul {
+    :root[data-theme="editorial"] .cm-accord__col ul {
         list-style: none;
         margin: 0;
         padding: 0;
     }
-    :root[data-theme="editorial"] .cm-tabs__group li {
+    :root[data-theme="editorial"] .cm-accord__col li {
         font-family: var(--body);
         font-size: 15px;
         line-height: 1.55;
@@ -2237,7 +2264,7 @@
         padding: 6px 0 6px 20px;
         position: relative;
     }
-    :root[data-theme="editorial"] .cm-tabs__group li::before {
+    :root[data-theme="editorial"] .cm-accord__col li::before {
         content: "";
         position: absolute;
         left: 0;
@@ -2246,17 +2273,15 @@
         height: 1px;
         background: var(--mid);
     }
-    @keyframes cm-tabs-fade {
-        from { opacity: 0; transform: translateY(6px); }
-        to   { opacity: 1; transform: translateY(0); }
-    }
     @media (max-width: 760px) {
-        :root[data-theme="editorial"] .cm-tabs { grid-template-columns: 1fr; }
-        :root[data-theme="editorial"] .cm-tabs__panel { grid-template-columns: 1fr; gap: var(--ed-space-3); }
+        :root[data-theme="editorial"] .cm-accord__cols {
+            grid-template-columns: 1fr;
+            gap: var(--ed-space-3);
+        }
     }
     @media (prefers-reduced-motion: reduce) {
-        :root[data-theme="editorial"] .cm-tabs__panel { animation: none; }
-        :root[data-theme="editorial"] .cm-tabs__tab { transition: none; }
+        :root[data-theme="editorial"] .cm-accord__body,
+        :root[data-theme="editorial"] .cm-accord__icon { transition: none; }
     }
     :root[data-theme="editorial"] .ed-pillar h3 {
         font-family: var(--display);
@@ -3611,89 +3636,109 @@
             <h2 class="ed-h2">Three reasons companies call us.</h2>
         </div>
 
-        <div class="cm-tabs" role="tablist" aria-label="Engagement modes">
-            <button class="cm-tabs__tab is-active" role="tab" aria-selected="true" aria-controls="cm-panel-real" id="cm-tab-real" data-target="real" type="button">
-                <span class="cm-tabs__num">01</span>
-                <span class="cm-tabs__label">Make it real</span>
-                <span class="cm-tabs__blurb">For new ideas, launches, or opportunities that need to become real quickly and credibly.</span>
-            </button>
-            <button class="cm-tabs__tab" role="tab" aria-selected="false" aria-controls="cm-panel-better" id="cm-tab-better" data-target="better" type="button" tabindex="-1">
-                <span class="cm-tabs__num">02</span>
-                <span class="cm-tabs__label">Make it better</span>
-                <span class="cm-tabs__blurb">For products, funnels, or experiences that are live but could perform harder.</span>
-            </button>
-            <button class="cm-tabs__tab" role="tab" aria-selected="false" aria-controls="cm-panel-scale" id="cm-tab-scale" data-target="scale" type="button" tabindex="-1">
-                <span class="cm-tabs__num">03</span>
-                <span class="cm-tabs__label">Make it scale</span>
-                <span class="cm-tabs__blurb">For growing products or teams that need more structure without slowing down.</span>
-            </button>
-        </div>
+        <div class="cm-accord">
+            <div class="cm-accord__row is-open" data-row="real">
+                <button class="cm-accord__head" type="button" aria-expanded="true" aria-controls="cm-accord-body-real">
+                    <span class="cm-accord__num">01</span>
+                    <span class="cm-accord__title">Make it real</span>
+                    <span class="cm-accord__icon" aria-hidden="true"></span>
+                </button>
+                <div class="cm-accord__body" id="cm-accord-body-real" role="region">
+                    <div class="cm-accord__body-inner">
+                        <p class="cm-accord__blurb">For new ideas, launches, or opportunities that need to become real quickly and credibly.</p>
+                        <div class="cm-accord__cols">
+                            <div class="cm-accord__col">
+                                <h4>What we do</h4>
+                                <ul>
+                                    <li>Shape the opportunity and define what matters</li>
+                                    <li>Clarify positioning, audience, and product direction</li>
+                                    <li>Design core flows, screens, and experience patterns</li>
+                                    <li>Prototype, test, and refine the concept</li>
+                                    <li>Support launch readiness across product, brand, and growth</li>
+                                </ul>
+                            </div>
+                            <div class="cm-accord__col">
+                                <h4>Best for</h4>
+                                <ul>
+                                    <li>New product ideas</li>
+                                    <li>MVPs or first releases</li>
+                                    <li>Fundraising or sales moments</li>
+                                    <li>Launch campaigns</li>
+                                    <li>Turning loose ideas into something concrete</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div class="cm-tabs__panels">
-            <div class="cm-tabs__panel" role="tabpanel" id="cm-panel-real" aria-labelledby="cm-tab-real" data-panel="real">
-                <div class="cm-tabs__group">
-                    <h4>What we do</h4>
-                    <ul>
-                        <li>Shape the opportunity and define what matters</li>
-                        <li>Clarify positioning, audience, and product direction</li>
-                        <li>Design core flows, screens, and experience patterns</li>
-                        <li>Prototype, test, and refine the concept</li>
-                        <li>Support launch readiness across product, brand, and growth</li>
-                    </ul>
-                </div>
-                <div class="cm-tabs__group">
-                    <h4>Best for</h4>
-                    <ul>
-                        <li>New product ideas</li>
-                        <li>MVPs or first releases</li>
-                        <li>Fundraising or sales moments</li>
-                        <li>Launch campaigns</li>
-                        <li>Turning loose ideas into something concrete</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="cm-tabs__panel" role="tabpanel" id="cm-panel-better" aria-labelledby="cm-tab-better" data-panel="better" hidden>
-                <div class="cm-tabs__group">
-                    <h4>What we do</h4>
-                    <ul>
-                        <li>Diagnose friction across the experience</li>
-                        <li>Improve UX, messaging, and conversion paths</li>
-                        <li>Refine landing pages, onboarding, and key product flows</li>
-                        <li>Use research, analytics, and judgment to prioritize changes</li>
-                        <li>Iterate quickly toward clearer, stronger performance</li>
-                    </ul>
-                </div>
-                <div class="cm-tabs__group">
-                    <h4>Best for</h4>
-                    <ul>
-                        <li>Conversion improvement</li>
-                        <li>Growth design</li>
-                        <li>Funnel optimization</li>
-                        <li>Product experience refinement</li>
-                        <li>Messaging and clarity issues</li>
-                    </ul>
+            <div class="cm-accord__row" data-row="better">
+                <button class="cm-accord__head" type="button" aria-expanded="false" aria-controls="cm-accord-body-better">
+                    <span class="cm-accord__num">02</span>
+                    <span class="cm-accord__title">Make it better</span>
+                    <span class="cm-accord__icon" aria-hidden="true"></span>
+                </button>
+                <div class="cm-accord__body" id="cm-accord-body-better" role="region">
+                    <div class="cm-accord__body-inner">
+                        <p class="cm-accord__blurb">For products, funnels, or experiences that are live but could perform harder.</p>
+                        <div class="cm-accord__cols">
+                            <div class="cm-accord__col">
+                                <h4>What we do</h4>
+                                <ul>
+                                    <li>Diagnose friction across the experience</li>
+                                    <li>Improve UX, messaging, and conversion paths</li>
+                                    <li>Refine landing pages, onboarding, and key product flows</li>
+                                    <li>Use research, analytics, and judgment to prioritize changes</li>
+                                    <li>Iterate quickly toward clearer, stronger performance</li>
+                                </ul>
+                            </div>
+                            <div class="cm-accord__col">
+                                <h4>Best for</h4>
+                                <ul>
+                                    <li>Conversion improvement</li>
+                                    <li>Growth design</li>
+                                    <li>Funnel optimization</li>
+                                    <li>Product experience refinement</li>
+                                    <li>Messaging and clarity issues</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="cm-tabs__panel" role="tabpanel" id="cm-panel-scale" aria-labelledby="cm-tab-scale" data-panel="scale" hidden>
-                <div class="cm-tabs__group">
-                    <h4>What we do</h4>
-                    <ul>
-                        <li>Create reusable design patterns and systems</li>
-                        <li>Bring consistency across screens, journeys, and channels</li>
-                        <li>Improve team workflows and decision-making</li>
-                        <li>Extend product experiences into new surfaces or use cases</li>
-                        <li>Build the structure needed for speed, quality, and growth</li>
-                    </ul>
-                </div>
-                <div class="cm-tabs__group">
-                    <h4>Best for</h4>
-                    <ul>
-                        <li>Scaling UX quality</li>
-                        <li>Design systems</li>
-                        <li>Product expansion</li>
-                        <li>Cross-channel consistency</li>
-                        <li>Teams outgrowing ad hoc ways of working</li>
-                    </ul>
+
+            <div class="cm-accord__row" data-row="scale">
+                <button class="cm-accord__head" type="button" aria-expanded="false" aria-controls="cm-accord-body-scale">
+                    <span class="cm-accord__num">03</span>
+                    <span class="cm-accord__title">Make it scale</span>
+                    <span class="cm-accord__icon" aria-hidden="true"></span>
+                </button>
+                <div class="cm-accord__body" id="cm-accord-body-scale" role="region">
+                    <div class="cm-accord__body-inner">
+                        <p class="cm-accord__blurb">For growing products or teams that need more structure without slowing down.</p>
+                        <div class="cm-accord__cols">
+                            <div class="cm-accord__col">
+                                <h4>What we do</h4>
+                                <ul>
+                                    <li>Create reusable design patterns and systems</li>
+                                    <li>Bring consistency across screens, journeys, and channels</li>
+                                    <li>Improve team workflows and decision-making</li>
+                                    <li>Extend product experiences into new surfaces or use cases</li>
+                                    <li>Build the structure needed for speed, quality, and growth</li>
+                                </ul>
+                            </div>
+                            <div class="cm-accord__col">
+                                <h4>Best for</h4>
+                                <ul>
+                                    <li>Scaling UX quality</li>
+                                    <li>Design systems</li>
+                                    <li>Product expansion</li>
+                                    <li>Cross-channel consistency</li>
+                                    <li>Teams outgrowing ad hoc ways of working</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -4734,37 +4779,17 @@ document.addEventListener('click', function(e) {
     });
 })();
 
-// Components tabs — click + arrow keys, ARIA selected/hidden state.
+// Components accordion — click toggles each row independently.
 (() => {
-    const root = document.querySelector('.cm-tabs');
-    if (!root) return;
-    const tabs = Array.from(root.querySelectorAll('.cm-tabs__tab'));
-    const panels = Array.from(document.querySelectorAll('.cm-tabs__panel'));
-    if (!tabs.length) return;
-
-    const activate = (target) => {
-        tabs.forEach(t => {
-            const active = t.dataset.target === target;
-            t.classList.toggle('is-active', active);
-            t.setAttribute('aria-selected', String(active));
-            t.setAttribute('tabindex', active ? '0' : '-1');
+    const rows = document.querySelectorAll('.cm-accord__row');
+    if (!rows.length) return;
+    rows.forEach(row => {
+        const head = row.querySelector('.cm-accord__head');
+        if (!head) return;
+        head.addEventListener('click', () => {
+            const open = row.classList.toggle('is-open');
+            head.setAttribute('aria-expanded', String(open));
         });
-        panels.forEach(p => {
-            if (p.dataset.panel === target) p.removeAttribute('hidden');
-            else p.setAttribute('hidden', '');
-        });
-    };
-
-    tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.target)));
-
-    root.addEventListener('keydown', (e) => {
-        if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
-        const idx = tabs.indexOf(document.activeElement);
-        if (idx === -1) return;
-        e.preventDefault();
-        const next = (idx + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
-        tabs[next].focus();
-        activate(tabs[next].dataset.target);
     });
 })();
 
