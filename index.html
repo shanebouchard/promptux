@@ -2533,6 +2533,60 @@
         }
     }
 
+    /* === STATS — 4-up row with count-up animation =====================
+       After the logo banner, before the pillars. Numbers count up via
+       IntersectionObserver; tabular-nums keeps the column widths
+       steady during animation.
+    ====================================================================== */
+    :root[data-theme="editorial"] .ed-stats {
+        background: var(--paper);
+        padding: var(--ed-space-5) var(--gutter);
+        border-bottom: 1px solid var(--rule);
+    }
+    :root[data-theme="editorial"] .ed-stats__row {
+        max-width: var(--ed-max);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    :root[data-theme="editorial"] .ed-stats__cell {
+        padding: var(--ed-space-4) var(--ed-space-3);
+        border-right: 1px solid var(--rule);
+        text-align: center;
+    }
+    :root[data-theme="editorial"] .ed-stats__cell:last-child { border-right: 0; }
+    :root[data-theme="editorial"] .ed-stats__num {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: clamp(40px, 6vw, 80px);
+        line-height: 1;
+        letter-spacing: -0.025em;
+        color: var(--ink);
+        margin-bottom: var(--ed-space-2);
+        font-variant-numeric: tabular-nums;
+    }
+    :root[data-theme="editorial"] .ed-stats__label {
+        font-family: var(--body);
+        font-size: 13px;
+        line-height: 1.45;
+        color: var(--mid);
+        max-width: 22ch;
+        margin: 0 auto;
+    }
+    @media (max-width: 768px) {
+        :root[data-theme="editorial"] .ed-stats__row { grid-template-columns: repeat(2, 1fr); }
+        :root[data-theme="editorial"] .ed-stats__cell:nth-child(2) { border-right: 0; }
+        :root[data-theme="editorial"] .ed-stats__cell:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+    }
+    @media (max-width: 480px) {
+        :root[data-theme="editorial"] .ed-stats__row { grid-template-columns: 1fr; }
+        :root[data-theme="editorial"] .ed-stats__cell {
+            border-right: 0 !important;
+            border-bottom: 1px solid var(--rule);
+        }
+        :root[data-theme="editorial"] .ed-stats__cell:last-child { border-bottom: 0; }
+    }
+
     /* === RESPONSIVE === */
     @media (max-width: 880px) {
         :root[data-theme="editorial"] .ed-pillars__grid,
@@ -2710,6 +2764,28 @@
             <img src="assets/logos/gitlab.svg" alt="" class="ed-logos__mark" aria-hidden="true">
             <img src="assets/logos/symantec.svg" alt="" class="ed-logos__mark" aria-hidden="true">
             <img src="assets/logos/veritas.svg" alt="" class="ed-logos__mark" aria-hidden="true">
+        </div>
+    </div>
+</section>
+
+<!-- STATS -->
+<section class="ed-stats" aria-label="Numbers from PromptUX engagements">
+    <div class="ed-stats__row">
+        <div class="ed-stats__cell">
+            <div class="ed-stats__num" data-value="30" data-suffix="+" data-suffix-after="true" data-decimals="0">0</div>
+            <div class="ed-stats__label">Years combined design leadership</div>
+        </div>
+        <div class="ed-stats__cell">
+            <div class="ed-stats__num" data-value="74.8" data-suffix="%" data-decimals="1">0.0%</div>
+            <div class="ed-stats__label">Design system adoption — single engagement</div>
+        </div>
+        <div class="ed-stats__cell">
+            <div class="ed-stats__num" data-value="28" data-suffix="%" data-decimals="0">0%</div>
+            <div class="ed-stats__label">Reduction in task completion time</div>
+        </div>
+        <div class="ed-stats__cell">
+            <div class="ed-stats__num" data-value="4" data-suffix="" data-decimals="0">0</div>
+            <div class="ed-stats__label">Industries across active engagements</div>
         </div>
     </div>
 </section>
@@ -3432,6 +3508,53 @@ document.addEventListener('click', function(e) {
 
     // Everything else — no-op in prototype
 });
+
+// Stats count-up — fires once when .ed-stats enters the viewport.
+(() => {
+    const section = document.querySelector('.ed-stats');
+    if (!section) return;
+    const stats = section.querySelectorAll('.ed-stats__num');
+    const ease = (t) => 1 - Math.pow(1 - t, 3); // ease-out cubic
+
+    const fmt = (el, value) => {
+        const decimals = parseInt(el.dataset.decimals, 10) || 0;
+        const suffix = el.dataset.suffix || '';
+        const suffixAfter = el.dataset.suffixAfter === 'true';
+        return value.toFixed(decimals) + (suffixAfter ? '' : suffix);
+    };
+    const settle = (el) => {
+        const target = parseFloat(el.dataset.value);
+        const decimals = parseInt(el.dataset.decimals, 10) || 0;
+        el.textContent = target.toFixed(decimals) + (el.dataset.suffix || '');
+    };
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        stats.forEach(settle);
+        return;
+    }
+
+    let started = false;
+    const start = () => {
+        if (started) return;
+        started = true;
+        stats.forEach((el, i) => {
+            const target = parseFloat(el.dataset.value);
+            const duration = 1200;
+            const begin = performance.now() + 150 * i;
+            const tick = (now) => {
+                if (now < begin) { requestAnimationFrame(tick); return; }
+                const t = Math.min((now - begin) / duration, 1);
+                el.textContent = fmt(el, target * ease(t));
+                if (t < 1) requestAnimationFrame(tick); else settle(el);
+            };
+            requestAnimationFrame(tick);
+        });
+    };
+
+    new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => { if (e.isIntersecting) { start(); obs.disconnect(); } });
+    }, { threshold: 0.3 }).observe(section);
+})();
 </script>
 
 <!-- Prototype toast banner -->
