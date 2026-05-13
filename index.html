@@ -2831,17 +2831,37 @@
         margin: 0;
     }
     :root[data-theme="editorial"] .ed-testimonials__rows {
+        position: relative;
         display: flex;
         flex-direction: column;
         gap: 24px;
+    }
+    /* Edge fades — pseudo-element overlays anchored to the rows
+       wrapper (not the scrolling viewport, so they stay put when
+       the user drag-scrolls a row). Color matches section bg. */
+    :root[data-theme="editorial"] .ed-testimonials__rows::before,
+    :root[data-theme="editorial"] .ed-testimonials__rows::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 120px;
+        pointer-events: none;
+        z-index: 2;
+    }
+    :root[data-theme="editorial"] .ed-testimonials__rows::before {
+        left: 0;
+        background: linear-gradient(to right, var(--paper), transparent);
+    }
+    :root[data-theme="editorial"] .ed-testimonials__rows::after {
+        right: 0;
+        background: linear-gradient(to left, var(--paper), transparent);
     }
     :root[data-theme="editorial"] .ed-testimonials__viewport {
         overflow-x: auto;
         overflow-y: hidden;
         scrollbar-width: none;
         -ms-overflow-style: none;
-        mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
-        -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
     }
     :root[data-theme="editorial"] .ed-testimonials__viewport::-webkit-scrollbar { display: none; }
     :root[data-theme="editorial"] .ed-testimonials__track {
@@ -2937,10 +2957,6 @@
             flex-wrap: wrap;
             width: 100%;
             justify-content: center;
-        }
-        :root[data-theme="editorial"] .ed-testimonials__viewport {
-            mask-image: none;
-            -webkit-mask-image: none;
         }
     }
     @media (max-width: 640px) {
