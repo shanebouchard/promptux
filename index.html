@@ -3407,8 +3407,7 @@ const CASES = {
                     { type: "full-bleed", src: "assets/lace/lace tradeshow boot.png", alt: "Lace AI Pro tradeshow booth" }
                 ]
             }
-        ],
-        color: "#1a2c48"
+        ]
     },
     sharp: {
         title: "SharpSpring",
@@ -3422,8 +3421,7 @@ const CASES = {
             { heading: "Identity and website refresh", body: "SharpSpring's website was reimagined to better reflect its growing position in the market. We modernized the identity system, refreshed the visual language, and ensured clear, consistent, conversion-driven experiences end-to-end." },
             { heading: "Content marketing", body: "We helped SharpSpring demonstrate thought leadership and drive demand through content marketing. From creative campaigns to conversion-driven landing pages, our work spanned the full funnel — attracting prospects, nurturing them with value, and converting." },
             { heading: "Lead Zen — advertising campaign", body: "One standout campaign introduced 'Funnel Shui' to capture the idea of a perfectly optimized funnel — balanced, efficient, and flowing. Signature visuals included a bonsai shaped like a funnel, a symbol for growth through design." }
-        ],
-        color: "#1e1408"
+        ]
     },
     pickers: {
         title: "Pickers",
@@ -3441,8 +3439,7 @@ const CASES = {
         stats: [
             { n: "74.8%", label: "Design system adoption" },
             { n: "28%", label: "Reduction in task completion time" }
-        ],
-        color: "#1a120a"
+        ]
     },
     plremote: {
         title: "PL Remote",
@@ -3460,8 +3457,7 @@ const CASES = {
         stats: [
             { n: "10K+", label: "Users in first month" },
             { n: "48%", label: "Reported improvement in gate management" }
-        ],
-        color: "#0e1a28"
+        ]
     }
 };
 
@@ -3484,7 +3480,7 @@ function openCase(key) {
 
     // Build content HTML
     const tagsHtml = c.tags.map(t =>
-        `<span style="font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--lime);border:1px solid rgba(200,241,53,0.35);padding:4px 10px;">${t}</span>`
+        `<span style="font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--mid);border:1px solid var(--rule);padding:4px 10px;">${t}</span>`
     ).join('');
 
     const outcomesHtml = c.outcomes.map(t =>
@@ -3601,34 +3597,33 @@ function openCase(key) {
     }).join('');
 
     const heroImageHtml = c.hero ? `
-        <figure class="cs-hero-image" style="background:${c.color};">
+        <figure class="cs-hero-image" style="background:var(--paper-2);">
             <img src="${c.hero.src}" alt="${c.hero.alt}" />
         </figure>
     ` : '';
 
     const statsHtml = (c.stats || []).map(s => `
-        <div style="flex:1;padding:40px;border-right:1px solid var(--rule-inv);">
-            <div style="font-family:var(--display);font-weight:900;font-size:clamp(40px,6vw,80px);color:var(--lime);line-height:1;letter-spacing:-0.02em;margin-bottom:10px;">${s.n}</div>
-            <div style="font-size:12px;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:rgba(240,235,225,0.45);">${s.label}</div>
+        <div style="flex:1;padding:40px;border-right:1px solid var(--rule);">
+            <div style="font-family:var(--display);font-weight:700;font-size:clamp(40px,6vw,80px);color:var(--ink);line-height:1;letter-spacing:-0.025em;margin-bottom:10px;">${s.n}</div>
+            <div style="font-size:12px;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);">${s.label}</div>
         </div>
     `).join('');
 
     const statsSection = c.stats ? `
-        <div style="background:var(--ink);display:flex;gap:0;border-top:1px solid var(--rule-inv);">
+        <div style="background:var(--paper-3);display:flex;gap:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);">
             ${statsHtml}
             <div style="flex:1;padding:40px;display:flex;align-items:center;justify-content:flex-end;">
-                <a href="${c.figma}" style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--lime);text-decoration:none;">View full case study in Figma ↗</a>
+                <a href="${c.figma}" target="_blank" rel="noopener" style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px;">View full case study in Figma ↗</a>
             </div>
         </div>
     ` : '';
 
     content.innerHTML = `
-        <!-- Hero band -->
-        <div style="background:${c.color};padding:60px var(--gutter) 80px;position:relative;overflow:hidden;">
-            <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(200,241,53,0.06) 0%,transparent 65%);pointer-events:none;"></div>
-            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;">${tagsHtml}</div>
-            <h2 style="font-family:var(--display);font-weight:900;font-size:clamp(48px,7vw,96px);line-height:0.9;letter-spacing:-0.02em;color:var(--paper);margin-bottom:28px;">${c.title}</h2>
-            <p style="font-size:clamp(18px,2.5vw,26px);font-weight:300;line-height:1.35;color:rgba(240,235,225,0.7);max-width:640px;">${c.summary}</p>
+        <!-- Hero band — neutral grey gradient, matches homepage .ed-work-band -->
+        <div style="background:linear-gradient(180deg,var(--paper-2) 0%,var(--paper-3) 50%,var(--paper-2) 100%);padding:80px var(--gutter) 64px;position:relative;overflow:hidden;">
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;">${tagsHtml}</div>
+            <h2 style="font-family:var(--display);font-weight:700;font-size:clamp(44px,6.2vw,88px);line-height:1.05;letter-spacing:-0.025em;color:var(--ink);margin-bottom:28px;max-width:18ch;">${c.title}</h2>
+            <p style="font-family:var(--body);font-size:clamp(17px,1.6vw,22px);font-weight:400;line-height:1.45;color:var(--mid);max-width:640px;">${c.summary}</p>
         </div>
 
         <!-- Hero image (devices on the brand color, continuing the band visually) -->
