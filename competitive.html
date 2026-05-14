@@ -3232,29 +3232,30 @@
         background: linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
         overflow: hidden;
     }
-    .cp-hero__inner { max-width: 1080px; margin: 0 auto; position: relative; z-index: 1; }
+    .cp-hero__inner { max-width: 1080px; margin: 0 auto; position: relative; z-index: 1; text-align: center; }
     .cp-hero__title {
         font-family: var(--display);
         font-weight: 900;
         letter-spacing: -0.015em;
-        font-size: clamp(44px, 7vw, 104px);
-        line-height: 0.92;
-        margin: 0 0 36px;
-        max-width: 22ch;
+        font-size: clamp(40px, 6vw, 88px);
+        line-height: 1.0;
+        margin: 0 auto 36px;
+        max-width: 24ch;
         color: var(--ink);
     }
     .cp-hero__sub {
         font-size: clamp(18px, 1.7vw, 24px);
         line-height: 1.45;
         color: var(--mid);
-        max-width: 62ch;
-        margin: 0 0 48px;
+        max-width: 58ch;
+        margin: 0 auto 48px;
     }
     .cp-hero__ctas {
         display: flex;
         flex-wrap: wrap;
         gap: 12px 24px;
         align-items: center;
+        justify-content: center;
     }
     .cp-btn {
         display: inline-flex;
@@ -3826,13 +3827,12 @@
 <section class="cp-hero" aria-labelledby="cp-hero-title">
     <div class="cp-hero__field" aria-hidden="true"></div>
     <div class="cp-hero__inner">
-        <span class="cp-internal" aria-label="Internal sandbox page">Internal sandbox</span>
-        <p class="cp-eyebrow">Competitive positioning</p>
-        <h1 id="cp-hero-title" class="cp-hero__title">Different operating models create different outcomes.</h1>
-        <p class="cp-hero__sub">PromptUX combines senior strategy, AI-enabled execution, product thinking, and rapid delivery — without the overhead and friction of traditional agency models.</p>
+        <p class="cp-eyebrow">How we compare</p>
+        <h1 id="cp-hero-title" class="cp-hero__title">Faster than a freelancer.<br>Sharper than an agency.<br>Smarter than a tool.</h1>
+        <p class="cp-hero__sub">We built PromptUX for the work the old models can’t move on fast enough. Here’s how the choices line up.</p>
         <div class="cp-hero__ctas">
-            <a href="#cp-matrix" class="cp-btn">Explore comparisons →</a>
-            <a href="#cp-tradeoffs" class="cp-btn cp-btn--ghost">View positioning framework</a>
+            <a href="#cp-matrix" class="cp-btn">See the comparison →</a>
+            <a href="#cp-tradeoffs" class="cp-btn cp-btn--ghost">How each model thinks</a>
         </div>
     </div>
 </section>
@@ -4207,28 +4207,6 @@
             <div class="cp-panel__visual-mark">03</div>
         </div>
     </article>
-</section>
-
-<!-- =============================================
-     SECTION 7 — FUTURE MODULE PLACEHOLDERS
-============================================= -->
-<section class="cp-section cp-section--paper cp-future" aria-labelledby="cp-future-title">
-    <header class="cp-section__head">
-        <span class="cp-internal">Internal</span>
-        <p class="cp-eyebrow">Roadmap</p>
-        <h2 id="cp-future-title" class="cp-h2">Planned expansions.</h2>
-        <p class="cp-lede">Modules to develop as the positioning sharpens. Each is a stub for content, data, or interaction yet to come.</p>
-    </header>
-    <ul class="cp-future__grid">
-        <li class="cp-future__card"><span class="cp-future__num">F01</span><span class="cp-future__label">Detailed competitor profiles</span></li>
-        <li class="cp-future__card"><span class="cp-future__num">F02</span><span class="cp-future__label">Industry-specific positioning</span></li>
-        <li class="cp-future__card"><span class="cp-future__num">F03</span><span class="cp-future__label">ROI frameworks</span></li>
-        <li class="cp-future__card"><span class="cp-future__num">F04</span><span class="cp-future__label">AI workflow breakdowns</span></li>
-        <li class="cp-future__card"><span class="cp-future__num">F05</span><span class="cp-future__label">Delivery model comparisons</span></li>
-        <li class="cp-future__card"><span class="cp-future__num">F06</span><span class="cp-future__label">FAQ system</span></li>
-        <li class="cp-future__card"><span class="cp-future__num">F07</span><span class="cp-future__label">Interactive calculators</span></li>
-        <li class="cp-future__card"><span class="cp-future__num">F08</span><span class="cp-future__label">Case-study-based comparisons</span></li>
-    </ul>
 </section>
 
 <!-- FOOTER -->
