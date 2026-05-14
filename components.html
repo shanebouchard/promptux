@@ -3527,14 +3527,24 @@
     :root[data-theme="editorial"] .cm-capabilities__panel-title {
         display: none; /* shown on mobile where tabs are hidden */
     }
-    :root[data-theme="editorial"] .cm-capabilities__focus {
+    :root[data-theme="editorial"] .cm-capabilities__chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 0 0 var(--ed-space-4);
+    }
+    :root[data-theme="editorial"] .cm-capabilities__chip {
+        display: inline-block;
+        padding: 6px 12px;
+        border: 1px solid var(--rule);
+        border-radius: 999px;
+        background: var(--paper);
         font-family: var(--body);
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1.2;
         color: var(--mid);
-        margin: 0 0 var(--ed-space-3);
+        letter-spacing: -0.005em;
     }
     :root[data-theme="editorial"] .cm-capabilities__copy {
         font-family: var(--display);
@@ -3552,15 +3562,6 @@
         font-size: 14px;
         color: var(--mid);
         margin: 0 0 var(--ed-space-4);
-    }
-    :root[data-theme="editorial"] .cm-capabilities__caps h4 {
-        font-family: var(--body);
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: var(--mid);
-        margin: 0 0 var(--ed-space-3);
     }
     :root[data-theme="editorial"] .cm-capabilities__caps ul {
         list-style: none;
@@ -5025,7 +5026,7 @@ const CAPABILITIES = [
     {
         id: 'clear',
         label: 'Make it clear',
-        focus: 'Strategy, positioning, messaging, product clarity, customer journey clarity.',
+        focus: ['Strategy', 'Positioning', 'Messaging', 'Product clarity', 'Customer journey'],
         copy: 'We turn ambiguity into clear decisions, sharper narratives, and focused paths forward.',
         proof: 'Direction beats decoration.',
         items: [
@@ -5039,7 +5040,7 @@ const CAPABILITIES = [
     {
         id: 'useful',
         label: 'Make it useful',
-        focus: 'UX, product design, research-informed workflows, service design, usability.',
+        focus: ['UX', 'Product design', 'Research', 'Service design', 'Usability'],
         copy: 'We design experiences that help people understand, decide, act, and move forward.',
         proof: 'Useful means used.',
         items: [
@@ -5053,7 +5054,7 @@ const CAPABILITIES = [
     {
         id: 'work',
         label: 'Make it work',
-        focus: 'Execution, systems, design operations, AI workflows, delivery acceleration.',
+        focus: ['Execution', 'Systems', 'Design ops', 'AI workflows', 'Delivery'],
         copy: 'We build the systems, workflows, and assets needed to move from idea to execution faster.',
         proof: 'Ship the decision, not the deck.',
         items: [
@@ -5067,7 +5068,7 @@ const CAPABILITIES = [
     {
         id: 'grow',
         label: 'Make it grow',
-        focus: 'Growth, experimentation, conversion, performance, optimization.',
+        focus: ['Growth', 'Experimentation', 'Conversion', 'Performance', 'Optimization'],
         copy: 'We improve the moments that influence attention, trust, conversion, adoption, and repeat use.',
         proof: 'Outcomes, not output.',
         items: [
@@ -5114,13 +5115,13 @@ const CAPABILITIES = [
         panel.setAttribute('aria-labelledby', `cm-cap-tab-${cap.id}`);
         if (i !== 0) panel.hidden = true;
         const itemsHtml = cap.items.map(it => `<li>${escape(it)}</li>`).join('');
+        const chipsHtml = (cap.focus || []).map(f => `<span class="cm-capabilities__chip">${escape(f)}</span>`).join('');
         panel.innerHTML = `
             <h3 class="cm-capabilities__panel-title">${escape(cap.label)}</h3>
-            <p class="cm-capabilities__focus">${escape(cap.focus)}</p>
+            <div class="cm-capabilities__chips">${chipsHtml}</div>
             <p class="cm-capabilities__copy">${escape(cap.copy)}</p>
             <p class="cm-capabilities__proof">${escape(cap.proof)}</p>
             <div class="cm-capabilities__caps">
-                <h4>Capabilities</h4>
                 <ul>${itemsHtml}</ul>
             </div>
         `;
