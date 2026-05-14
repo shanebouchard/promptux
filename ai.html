@@ -3918,6 +3918,64 @@
     @media (max-width: 880px) { :root[data-theme="editorial"] .ai-metrics__grid { grid-template-columns: 1fr; } }
 
     /* =============================================
+       WHAT AI MAKES POSSIBLE — 3x2 outcome cards
+    ============================================= */
+    :root[data-theme="editorial"] .ai-unlocks__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: clamp(14px, 1.6vw, 22px);
+        max-width: var(--ed-max);
+        margin: 0 auto;
+    }
+    :root[data-theme="editorial"] .ai-unlocks__card {
+        padding: clamp(28px, 2.8vw, 40px);
+        background: var(--paper);
+        border: 1px solid var(--rule);
+        border-radius: var(--ai-radius);
+        box-shadow: var(--ai-shadow-soft);
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        transition: transform 280ms ease, border-color 280ms ease, box-shadow 280ms ease;
+    }
+    :root[data-theme="editorial"] .ai-unlocks__card:hover {
+        transform: translateY(-2px);
+        border-color: rgba(12,12,10,0.18);
+        box-shadow: var(--ai-shadow);
+    }
+    :root[data-theme="editorial"] .ai-unlocks__kicker {
+        font-family: var(--body);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--lime);
+        margin: 0;
+    }
+    :root[data-theme="editorial"] .ai-unlocks__title {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: clamp(20px, 1.8vw, 26px);
+        line-height: 1.18;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+        margin: 0;
+    }
+    :root[data-theme="editorial"] .ai-unlocks__body {
+        font-family: var(--body);
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--mid);
+        margin: 0;
+    }
+    @media (max-width: 1000px) {
+        :root[data-theme="editorial"] .ai-unlocks__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+        :root[data-theme="editorial"] .ai-unlocks__grid { grid-template-columns: 1fr; }
+    }
+
+    /* =============================================
        7. WHAT CHANGES — From → To cards
     ============================================= */
     :root[data-theme="editorial"] .ai-shifts__grid {
@@ -4229,6 +4287,51 @@
                         <li>Workflow acceleration end to end</li>
                     </ul>
                 </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- =============================================
+     3.5 WHAT AI MAKES POSSIBLE — 3x2 outcome cards
+============================================= -->
+<section class="ai-section" aria-label="What AI makes possible">
+    <div class="ai-section__inner">
+        <div class="ai-section__head ai-reveal">
+            <p class="ai-eyebrow">The work</p>
+            <h2 class="ai-h2">Specific things AI unlocks in the engagement.</h2>
+            <p class="ai-lede">Not faster versions of the same work. Different work entirely.</p>
+        </div>
+        <div class="ai-unlocks__grid">
+            <article class="ai-unlocks__card ai-reveal">
+                <p class="ai-unlocks__kicker">Strategy</p>
+                <h3 class="ai-unlocks__title">Three positioning territories in 48 hours.</h3>
+                <p class="ai-unlocks__body">AI synthesis compresses weeks of stakeholder input and competitive signal into a set of options worth reacting to — before the first client review.</p>
+            </article>
+            <article class="ai-unlocks__card ai-reveal">
+                <p class="ai-unlocks__kicker">Strategy</p>
+                <h3 class="ai-unlocks__title">Competitive landscape mapped and synthesized in a day.</h3>
+                <p class="ai-unlocks__body">Signal from dozens of sources structured into a clear picture of where the category is and where the gaps are.</p>
+            </article>
+            <article class="ai-unlocks__card ai-reveal">
+                <p class="ai-unlocks__kicker">Design</p>
+                <h3 class="ai-unlocks__title">Five landing page concepts before alignment even starts.</h3>
+                <p class="ai-unlocks__body">Real directions, not wireframe sketches — so the team reacts to actual creative rather than abstract descriptions.</p>
+            </article>
+            <article class="ai-unlocks__card ai-reveal">
+                <p class="ai-unlocks__kicker">Design</p>
+                <h3 class="ai-unlocks__title">Experience concepts explored in parallel, not sequence.</h3>
+                <p class="ai-unlocks__body">AI removes the bottleneck of one direction at a time — whether that's a product flow, a landing page, or a campaign moment. More paths explored means the right one surfaces faster.</p>
+            </article>
+            <article class="ai-unlocks__card ai-reveal">
+                <p class="ai-unlocks__kicker">Growth</p>
+                <h3 class="ai-unlocks__title">Messaging variants ready at experiment scale.</h3>
+                <p class="ai-unlocks__body">Copy for every funnel stage, every audience segment, tested before production spend — not after.</p>
+            </article>
+            <article class="ai-unlocks__card ai-reveal">
+                <p class="ai-unlocks__kicker">Growth</p>
+                <h3 class="ai-unlocks__title">Onboarding and acquisition flows prototyped in a sprint.</h3>
+                <p class="ai-unlocks__body">Full-funnel thinking compressed into a working prototype before engineering is involved.</p>
             </article>
         </div>
     </div>
