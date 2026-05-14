@@ -4726,6 +4726,7 @@
     <div class="variant__toggle" role="tablist" aria-label="Case studies layout">
         <button type="button" class="variant__btn is-active" data-variant-target="A" aria-pressed="true">Featured + rail</button>
         <button type="button" class="variant__btn" data-variant-target="B" aria-pressed="false">Cards</button>
+        <button type="button" class="variant__btn" data-variant-target="C" aria-pressed="false">Parallax</button>
     </div>
     <div class="variant__pane" data-variant-pane="B" hidden>
 <section class="cm-cards" aria-label="Featured work">
@@ -4904,11 +4905,9 @@
     </div>
 </section>
     </div>
-</div>
-
-<!-- SCROLLPAN PANEL — prototype: tall image pans inside a fixed-height panel as the
-     user scrolls past. Test placement under Case Studies; not in nav or production. -->
-<section class="cm-scrollpan-section" aria-label="Scroll-pan panel prototype">
+    <div class="variant__pane" data-variant-pane="C" hidden>
+<!-- Parallax variant — single-case feature panel; tall image pans as you scroll past. -->
+<section class="cm-scrollpan-section" aria-label="Featured work — SharpSpring">
     <div class="cm-scrollpan-section__head">
         <p class="ed-eyebrow">Featured work</p>
         <h2 class="ed-h2">SharpSpring</h2>
@@ -4917,8 +4916,8 @@
          data-img-src="assets/sharpspring/sharpspring-contentmarketing.png"
          data-img-alt="SharpSpring — content marketing system across web and email"
          data-eyebrow="Selected detail"
-         data-title="Built to feel intuitive at any scale."
-         data-description="A tall composition that reveals as you read, anchored to the panel’s scroll progress."
+         data-title="SharpSpring — full-funnel marketing."
+         data-description="Brand, platform pages, and growth surfaces — built and shipped as one motion."
          data-cta-label="See the case study"
          data-cta-href="#work">
         <div class="cm-scrollpan__viewport">
@@ -4936,6 +4935,8 @@
         </div>
     </div>
 </section>
+    </div>
+</div>
 
 <!-- APPROACH — variant A: sandbox refined copy / variant B: components shorter copy -->
 <div class="variant" data-variant="A" data-variant-name="approach">
