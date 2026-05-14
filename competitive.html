@@ -3293,22 +3293,7 @@
     }
     .cp-btn--ghost:hover { transform: none; opacity: 1; }
     .cp-btn--ghost:hover::after { opacity: 1; }
-    .cp-hero__field {
-        position: absolute;
-        inset: 0;
-        background-image: radial-gradient(rgba(12,12,10,0.06) 1px, transparent 1px);
-        background-size: 32px 32px;
-        -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 55%, black 0%, transparent 75%);
-        mask-image: radial-gradient(ellipse 60% 55% at 50% 55%, black 0%, transparent 75%);
-        pointer-events: none;
-        animation: cp-drift 28s ease-in-out infinite alternate;
-    }
-    @keyframes cp-drift {
-        from { transform: translate3d(0, 0, 0); }
         to   { transform: translate3d(-12px, 8px, 0); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-        .cp-hero__field { animation: none; }
     }
 
     /* INTERNAL BADGE -------------------------------------------- */
@@ -3839,7 +3824,6 @@
      SECTION 1 — HERO
 ============================================= -->
 <section class="cp-hero" aria-labelledby="cp-hero-title">
-    <div class="cp-hero__field" aria-hidden="true"></div>
     <div class="cp-hero__inner">
         <p class="cp-eyebrow">How we compare</p>
         <h1 id="cp-hero-title" class="cp-hero__title">Senior thinking. AI speed.<br>None of the agency tax.</h1>
