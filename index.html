@@ -127,6 +127,12 @@
     }
     .nav-cta:hover { background: var(--paper); }
 
+    .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
     /* =============================================
        HERO
     ============================================= */
@@ -2953,15 +2959,8 @@
         width: 44px;
         height: 44px;
         border-radius: 50%;
+        object-fit: cover;
         background: var(--paper-3);
-        color: var(--ink);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-family: var(--body);
-        font-size: 14px;
-        font-weight: 600;
-        letter-spacing: 0.02em;
         flex-shrink: 0;
     }
     :root[data-theme="editorial"] .ed-testimonials__person {
@@ -3479,7 +3478,7 @@
             <div class="ed-testimonials__track" aria-hidden="true">
                 <article class="ed-testimonials__card">
                     <div class="ed-testimonials__header">
-                        <div class="ed-testimonials__avatar" aria-hidden="true">SC</div>
+                        <img class="ed-testimonials__avatar" src="assets/avatars/sarah-chen.jpg" alt="" loading="lazy">
                         <div class="ed-testimonials__person">
                             <div class="ed-testimonials__name">Sarah Chen</div>
                             <div class="ed-testimonials__title">VP Product, Disney</div>
@@ -3490,7 +3489,7 @@
                 </article>
                 <article class="ed-testimonials__card">
                     <div class="ed-testimonials__header">
-                        <div class="ed-testimonials__avatar" aria-hidden="true">PP</div>
+                        <img class="ed-testimonials__avatar" src="assets/avatars/priya-patel.jpg" alt="" loading="lazy">
                         <div class="ed-testimonials__person">
                             <div class="ed-testimonials__name">Priya Patel</div>
                             <div class="ed-testimonials__title">EVP, Charles Schwab</div>
@@ -3501,7 +3500,7 @@
                 </article>
                 <article class="ed-testimonials__card">
                     <div class="ed-testimonials__header">
-                        <div class="ed-testimonials__avatar" aria-hidden="true">RA</div>
+                        <img class="ed-testimonials__avatar" src="assets/avatars/rachel-adams.jpg" alt="" loading="lazy">
                         <div class="ed-testimonials__person">
                             <div class="ed-testimonials__name">Rachel Adams</div>
                             <div class="ed-testimonials__title">CPO, Veritas</div>
@@ -3512,7 +3511,7 @@
                 </article>
                 <article class="ed-testimonials__card" aria-hidden="true">
                     <div class="ed-testimonials__header">
-                        <div class="ed-testimonials__avatar" aria-hidden="true">SC</div>
+                        <img class="ed-testimonials__avatar" src="assets/avatars/sarah-chen.jpg" alt="" loading="lazy">
                         <div class="ed-testimonials__person">
                             <div class="ed-testimonials__name">Sarah Chen</div>
                             <div class="ed-testimonials__title">VP Product, Disney</div>
@@ -3523,7 +3522,7 @@
                 </article>
                 <article class="ed-testimonials__card" aria-hidden="true">
                     <div class="ed-testimonials__header">
-                        <div class="ed-testimonials__avatar" aria-hidden="true">PP</div>
+                        <img class="ed-testimonials__avatar" src="assets/avatars/priya-patel.jpg" alt="" loading="lazy">
                         <div class="ed-testimonials__person">
                             <div class="ed-testimonials__name">Priya Patel</div>
                             <div class="ed-testimonials__title">EVP, Charles Schwab</div>
@@ -3534,7 +3533,7 @@
                 </article>
                 <article class="ed-testimonials__card" aria-hidden="true">
                     <div class="ed-testimonials__header">
-                        <div class="ed-testimonials__avatar" aria-hidden="true">RA</div>
+                        <img class="ed-testimonials__avatar" src="assets/avatars/rachel-adams.jpg" alt="" loading="lazy">
                         <div class="ed-testimonials__person">
                             <div class="ed-testimonials__name">Rachel Adams</div>
                             <div class="ed-testimonials__title">CPO, Veritas</div>
@@ -3549,7 +3548,7 @@
             <div class="ed-testimonials__track ed-testimonials__track--reverse" aria-hidden="true">
                 <article class="ed-testimonials__card">
                     <div class="ed-testimonials__header">
-                        <div class="ed-testimonials__avatar" aria-hidden="true">MB</div>
+                        <img class="ed-testimonials__avatar" src="assets/avatars/marcus-bell.jpg" alt="" loading="lazy">
                         <div class="ed-testimonials__person">
                             <div class="ed-testimonials__name">Marcus Bell</div>
                             <div class="ed-testimonials__title">SVP Engineering, Symantec</div>
@@ -3560,7 +3559,7 @@
                 </article>
                 <article class="ed-testimonials__card">
                     <div class="ed-testimonials__header">
-                        <div class="ed-testimonials__avatar" aria-hidden="true">DL</div>
+                        <img class="ed-testimonials__avatar" src="assets/avatars/david-lin.jpg" alt="" loading="lazy">
                         <div class="ed-testimonials__person">
                             <div class="ed-testimonials__name">David Lin</div>
                             <div class="ed-testimonials__title">Head of Design, GitLab</div>
@@ -3571,7 +3570,7 @@
                 </article>
                 <article class="ed-testimonials__card">
                     <div class="ed-testimonials__header">
-                        <div class="ed-testimonials__avatar" aria-hidden="true">TH</div>
+                        <img class="ed-testimonials__avatar" src="assets/avatars/tom-hayes.jpg" alt="" loading="lazy">
                         <div class="ed-testimonials__person">
                             <div class="ed-testimonials__name">Tom Hayes</div>
                             <div class="ed-testimonials__title">CMO, Lace AI Pro</div>
@@ -3582,7 +3581,7 @@
                 </article>
                 <article class="ed-testimonials__card" aria-hidden="true">
                     <div class="ed-testimonials__header">
-                        <div class="ed-testimonials__avatar" aria-hidden="true">MB</div>
+                        <img class="ed-testimonials__avatar" src="assets/avatars/marcus-bell.jpg" alt="" loading="lazy">
                         <div class="ed-testimonials__person">
                             <div class="ed-testimonials__name">Marcus Bell</div>
                             <div class="ed-testimonials__title">SVP Engineering, Symantec</div>
@@ -3593,7 +3592,7 @@
                 </article>
                 <article class="ed-testimonials__card" aria-hidden="true">
                     <div class="ed-testimonials__header">
-                        <div class="ed-testimonials__avatar" aria-hidden="true">DL</div>
+                        <img class="ed-testimonials__avatar" src="assets/avatars/david-lin.jpg" alt="" loading="lazy">
                         <div class="ed-testimonials__person">
                             <div class="ed-testimonials__name">David Lin</div>
                             <div class="ed-testimonials__title">Head of Design, GitLab</div>
@@ -3604,7 +3603,7 @@
                 </article>
                 <article class="ed-testimonials__card" aria-hidden="true">
                     <div class="ed-testimonials__header">
-                        <div class="ed-testimonials__avatar" aria-hidden="true">TH</div>
+                        <img class="ed-testimonials__avatar" src="assets/avatars/tom-hayes.jpg" alt="" loading="lazy">
                         <div class="ed-testimonials__person">
                             <div class="ed-testimonials__name">Tom Hayes</div>
                             <div class="ed-testimonials__title">CMO, Lace AI Pro</div>
