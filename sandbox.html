@@ -128,6 +128,12 @@
     }
     .nav-cta:hover { background: var(--paper); }
 
+    .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
     /* =============================================
        HERO
     ============================================= */
@@ -3117,6 +3123,156 @@
         :root[data-theme="editorial"] .ed-thinking__grid { grid-template-columns: 1fr; }
     }
 
+    /* === SANDBOX — pillars as centered editorial tabs ==================
+       Three-tab module with a sliding ink underline. Active panel is
+       a centered "chapter": small counter, large display-weight blurb,
+       2-col list (What we do / Best for), quiet exit link. Editorial
+       palette only; selection = ink color + underline (no fills).
+    ====================================================================== */
+    :root[data-theme="editorial"] .sb-pillars {
+        background: var(--paper);
+        padding: clamp(96px, 12vw, 160px) var(--gutter);
+        border-top: 1px solid var(--rule);
+        border-bottom: 1px solid var(--rule);
+    }
+    :root[data-theme="editorial"] .sb-pillars__head {
+        max-width: 720px;
+        margin: 0 auto clamp(48px, 6vw, 80px);
+        text-align: center;
+    }
+    :root[data-theme="editorial"] .sb-pillars__tabs {
+        max-width: var(--ed-max);
+        margin: 0 auto;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        gap: clamp(24px, 5vw, 80px);
+        border-bottom: 1px solid var(--rule);
+    }
+    :root[data-theme="editorial"] .sb-pillars__tab {
+        appearance: none;
+        background: transparent;
+        border: 0;
+        padding: 18px 4px 22px;
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: clamp(20px, 2.1vw, 28px);
+        line-height: 1;
+        letter-spacing: -0.015em;
+        color: var(--mid);
+        cursor: pointer;
+        transition: color 220ms ease;
+        position: relative;
+    }
+    :root[data-theme="editorial"] .sb-pillars__tab:hover { color: var(--ink); }
+    :root[data-theme="editorial"] .sb-pillars__tab:focus-visible {
+        outline: 2px solid var(--ink);
+        outline-offset: 4px;
+        border-radius: 2px;
+    }
+    :root[data-theme="editorial"] .sb-pillars__tab.is-active { color: var(--ink); }
+    :root[data-theme="editorial"] .sb-pillars__indicator {
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        height: 2px;
+        background: var(--ink);
+        transition: transform 380ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                    width 380ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        pointer-events: none;
+    }
+    :root[data-theme="editorial"] .sb-pillars__panels {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: clamp(56px, 7vw, 96px) 0 0;
+        text-align: center;
+    }
+    :root[data-theme="editorial"] .sb-pillars__panel[hidden] { display: none; }
+    :root[data-theme="editorial"] .sb-pillars__panel:not([hidden]) {
+        animation: sbp-fade 380ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    :root[data-theme="editorial"] .sb-pillars__num {
+        font-family: var(--body);
+        font-weight: 600;
+        font-size: 12px;
+        letter-spacing: 0.22em;
+        color: var(--mid);
+        margin: 0 0 var(--ed-space-3);
+        font-variant-numeric: tabular-nums;
+    }
+    :root[data-theme="editorial"] .sb-pillars__blurb {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: clamp(24px, 2.8vw, 36px);
+        line-height: 1.25;
+        letter-spacing: -0.018em;
+        color: var(--ink);
+        margin: 0 auto clamp(48px, 6vw, 80px);
+        max-width: 26ch;
+    }
+    :root[data-theme="editorial"] .sb-pillars__cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(32px, 5vw, 80px);
+        margin-bottom: clamp(40px, 5vw, 64px);
+        text-align: left;
+    }
+    :root[data-theme="editorial"] .sb-pillars__col h4 {
+        font-family: var(--body);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--mid);
+        margin: 0 0 var(--ed-space-3);
+    }
+    :root[data-theme="editorial"] .sb-pillars__col ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border-top: 1px solid var(--rule);
+    }
+    :root[data-theme="editorial"] .sb-pillars__col li {
+        font-family: var(--body);
+        font-size: 15px;
+        line-height: 1.55;
+        color: var(--ink);
+        padding: 12px 0;
+        border-bottom: 1px solid var(--rule);
+    }
+    :root[data-theme="editorial"] .sb-pillars__cta {
+        display: inline-block;
+        font-family: var(--body);
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--ink);
+        text-decoration: none;
+        padding: 0 0 4px;
+        border-bottom: 1px solid var(--ink);
+        transition: opacity 200ms ease, transform 220ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    :root[data-theme="editorial"] .sb-pillars__cta:hover {
+        opacity: 0.7;
+        transform: translateY(-1px);
+    }
+    @keyframes sbp-fade {
+        from { opacity: 0; transform: translateY(8px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 760px) {
+        :root[data-theme="editorial"] .sb-pillars__tabs { gap: 24px; }
+        :root[data-theme="editorial"] .sb-pillars__cols {
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        :root[data-theme="editorial"] .sb-pillars__indicator,
+        :root[data-theme="editorial"] .sb-pillars__tab,
+        :root[data-theme="editorial"] .sb-pillars__cta { transition: none; }
+        :root[data-theme="editorial"] .sb-pillars__panel:not([hidden]) { animation: none; }
+    }
+
     /* === SANDBOX — interactive case-study carousel =====================
        Single-slide-visible carousel inspired by Huge-style work pages.
        One track translates left/right; inactive slides fade + nudge so
@@ -3344,7 +3500,10 @@
         <li><a href="#team">Team</a></li>
         <li><a href="/thinking/">Thinking</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li class="nav-more">
+    </ul>
+    <div class="nav-right">
+        <a href="#contact" class="nav-cta">Get in touch</a>
+        <div class="nav-more">
             <button type="button" class="nav-more__btn" aria-haspopup="true" aria-expanded="false" aria-label="More">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                     <circle cx="5" cy="12" r="2" />
@@ -3356,9 +3515,8 @@
                 <a href="/sandbox.html" role="menuitem">Sandbox</a>
                 <a href="/components.html" role="menuitem">Components</a>
             </div>
-        </li>
-    </ul>
-    <a href="#contact" class="nav-cta">Get in touch</a>
+        </div>
+    </div>
 </nav>
 <!-- nav copy edit: no changes -->
 <!-- hero copy edit: no changes (kicker, wordmark, headline, pills, scroll link all already strong) -->
@@ -3453,28 +3611,102 @@
 </section>
 
 <!-- PILLARS — three reasons companies engage -->
-<section class="ed-pillars ed-block" aria-label="When companies call us">
-    <div class="ed-block__inner">
-        <div class="ed-pillars__head">
-            <p class="ed-eyebrow">When companies call us</p>
-            <h2 class="ed-h2">Three moments companies call us.</h2>
+<section class="sb-pillars" aria-label="How we work">
+    <div class="sb-pillars__head">
+        <p class="ed-eyebrow">How we work</p>
+        <h2 class="ed-h2">How we engage.</h2>
+    </div>
+
+    <div class="sb-pillars__tabs" role="tablist" aria-label="Engagement modes">
+        <button class="sb-pillars__tab is-active" role="tab" aria-selected="true" aria-controls="sbp-real" id="sbp-tab-real" data-target="real" type="button">Make it real</button>
+        <button class="sb-pillars__tab" role="tab" aria-selected="false" aria-controls="sbp-better" id="sbp-tab-better" data-target="better" type="button" tabindex="-1">Make it better</button>
+        <button class="sb-pillars__tab" role="tab" aria-selected="false" aria-controls="sbp-scale" id="sbp-tab-scale" data-target="scale" type="button" tabindex="-1">Make it scale</button>
+        <span class="sb-pillars__indicator" aria-hidden="true"></span>
+    </div>
+
+    <div class="sb-pillars__panels">
+        <div class="sb-pillars__panel" role="tabpanel" id="sbp-real" aria-labelledby="sbp-tab-real" data-panel="real">
+            <p class="sb-pillars__num" aria-hidden="true">01 / 03</p>
+            <p class="sb-pillars__blurb">For new ideas, launches, or opportunities that need to become real quickly and credibly.</p>
+            <div class="sb-pillars__cols">
+                <div class="sb-pillars__col">
+                    <h4>What we do</h4>
+                    <ul>
+                        <li>Shape the opportunity and define what matters</li>
+                        <li>Clarify positioning, audience, and product direction</li>
+                        <li>Design core flows, screens, and experience patterns</li>
+                        <li>Prototype, test, and refine the concept</li>
+                        <li>Support launch readiness across product, brand, and growth</li>
+                    </ul>
+                </div>
+                <div class="sb-pillars__col">
+                    <h4>Best for</h4>
+                    <ul>
+                        <li>New product ideas</li>
+                        <li>MVPs or first releases</li>
+                        <li>Fundraising or sales moments</li>
+                        <li>Launch campaigns</li>
+                        <li>Turning loose ideas into something concrete</li>
+                    </ul>
+                </div>
+            </div>
+            <a class="sb-pillars__cta" href="#ed-contact">Talk to us about this →</a>
         </div>
-        <div class="ed-pillars__grid">
-            <div class="ed-pillar">
-                <div class="ed-pillar__num">01</div>
-                <h3>Make it real</h3>
-                <p>You have something important and it needs to work. Whether it is a new product, a major launch, or a critical deal, the work has to hold up in front of customers, investors, and the market, and we make sure it does.</p>
+
+        <div class="sb-pillars__panel" role="tabpanel" id="sbp-better" aria-labelledby="sbp-tab-better" data-panel="better" hidden>
+            <p class="sb-pillars__num" aria-hidden="true">02 / 03</p>
+            <p class="sb-pillars__blurb">For products, funnels, or experiences that are live but could perform harder.</p>
+            <div class="sb-pillars__cols">
+                <div class="sb-pillars__col">
+                    <h4>What we do</h4>
+                    <ul>
+                        <li>Diagnose friction across the experience</li>
+                        <li>Improve UX, messaging, and conversion paths</li>
+                        <li>Refine landing pages, onboarding, and key product flows</li>
+                        <li>Use research, analytics, and judgment to prioritize changes</li>
+                        <li>Iterate quickly toward clearer, stronger performance</li>
+                    </ul>
+                </div>
+                <div class="sb-pillars__col">
+                    <h4>Best for</h4>
+                    <ul>
+                        <li>Conversion improvement</li>
+                        <li>Growth design</li>
+                        <li>Funnel optimization</li>
+                        <li>Product experience refinement</li>
+                        <li>Messaging and clarity issues</li>
+                    </ul>
+                </div>
             </div>
-            <div class="ed-pillar">
-                <div class="ed-pillar__num">02</div>
-                <h3>Make it better</h3>
-                <p>The product is live and gaining traction, but there is more to unlock. We identify and improve what matters so performance catches up with the opportunity.</p>
+            <a class="sb-pillars__cta" href="#ed-contact">Talk to us about this →</a>
+        </div>
+
+        <div class="sb-pillars__panel" role="tabpanel" id="sbp-scale" aria-labelledby="sbp-tab-scale" data-panel="scale" hidden>
+            <p class="sb-pillars__num" aria-hidden="true">03 / 03</p>
+            <p class="sb-pillars__blurb">For growing products or teams that need more structure without slowing down.</p>
+            <div class="sb-pillars__cols">
+                <div class="sb-pillars__col">
+                    <h4>What we do</h4>
+                    <ul>
+                        <li>Create reusable design patterns and systems</li>
+                        <li>Bring consistency across screens, journeys, and channels</li>
+                        <li>Improve team workflows and decision-making</li>
+                        <li>Extend product experiences into new surfaces or use cases</li>
+                        <li>Build the structure needed for speed, quality, and growth</li>
+                    </ul>
+                </div>
+                <div class="sb-pillars__col">
+                    <h4>Best for</h4>
+                    <ul>
+                        <li>Scaling UX quality</li>
+                        <li>Design systems</li>
+                        <li>Product expansion</li>
+                        <li>Cross-channel consistency</li>
+                        <li>Teams outgrowing ad hoc ways of working</li>
+                    </ul>
+                </div>
             </div>
-            <div class="ed-pillar">
-                <div class="ed-pillar__num">03</div>
-                <h3>Make it scale</h3>
-                <p>What worked early on is starting to break down. The product is growing but the team is stretched, quality drops, speed slows, and execution starts to drift, so we bring structure, clarity, and execution so the experience scales cleanly.</p>
-            </div>
+            <a class="sb-pillars__cta" href="#ed-contact">Talk to us about this →</a>
         </div>
     </div>
 </section>
@@ -4468,6 +4700,59 @@ document.addEventListener('click', function(e) {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') btns.forEach(b => b.setAttribute('aria-expanded', 'false'));
     });
+})();
+
+// Sandbox pillars tabs — click + arrow keys; sliding underline tracks the active tab.
+(() => {
+    const tablist = document.querySelector('.sb-pillars__tabs');
+    if (!tablist) return;
+    const tabs = Array.from(tablist.querySelectorAll('.sb-pillars__tab'));
+    const indicator = tablist.querySelector('.sb-pillars__indicator');
+    const panels = Array.from(document.querySelectorAll('.sb-pillars__panel'));
+    if (!tabs.length) return;
+
+    const moveIndicator = (tab) => {
+        if (!indicator || !tab) return;
+        const rootRect = tablist.getBoundingClientRect();
+        const tabRect = tab.getBoundingClientRect();
+        indicator.style.transform = `translateX(${tabRect.left - rootRect.left}px)`;
+        indicator.style.width = `${tabRect.width}px`;
+    };
+
+    const activate = (target) => {
+        tabs.forEach(t => {
+            const active = t.dataset.target === target;
+            t.classList.toggle('is-active', active);
+            t.setAttribute('aria-selected', String(active));
+            t.setAttribute('tabindex', active ? '0' : '-1');
+            if (active) moveIndicator(t);
+        });
+        panels.forEach(p => {
+            if (p.dataset.panel === target) p.removeAttribute('hidden');
+            else p.setAttribute('hidden', '');
+        });
+    };
+
+    tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.target)));
+
+    tablist.addEventListener('keydown', (e) => {
+        if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+        const idx = tabs.indexOf(document.activeElement);
+        if (idx === -1) return;
+        e.preventDefault();
+        const next = (idx + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+        tabs[next].focus();
+        activate(tabs[next].dataset.target);
+    });
+
+    // Position the underline once initial layout settles, then on resize/font load.
+    const positionInitial = () => {
+        const active = tabs.find(t => t.classList.contains('is-active')) || tabs[0];
+        moveIndicator(active);
+    };
+    requestAnimationFrame(positionInitial);
+    window.addEventListener('resize', positionInitial);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(positionInitial);
 })();
 
 // Sandbox carousel — chrome-free. Auto-advances every 6s, pauses on
