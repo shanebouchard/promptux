@@ -128,6 +128,12 @@
     }
     .nav-cta:hover { background: var(--paper); }
 
+    .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
     /* =============================================
        HERO
     ============================================= */
@@ -3520,7 +3526,10 @@
         <li><a href="#team">Team</a></li>
         <li><a href="/thinking/">Thinking</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li class="nav-more">
+    </ul>
+    <div class="nav-right">
+        <a href="#contact" class="nav-cta">Get in touch</a>
+        <div class="nav-more">
             <button type="button" class="nav-more__btn" aria-haspopup="true" aria-expanded="false" aria-label="More">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                     <circle cx="5" cy="12" r="2" />
@@ -3532,9 +3541,8 @@
                 <a href="/sandbox.html" role="menuitem">Sandbox</a>
                 <a href="/components.html" role="menuitem">Components</a>
             </div>
-        </li>
-    </ul>
-    <a href="#contact" class="nav-cta">Get in touch</a>
+        </div>
+    </div>
 </nav>
 <!-- nav copy edit: no changes -->
 <!-- hero copy edit: no changes (kicker, wordmark, headline, pills, scroll link all already strong) -->
