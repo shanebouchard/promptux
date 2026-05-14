@@ -4206,6 +4206,102 @@
         .variant__toggle { transition: none; }
     }
 
+
+    /* === SCROLLPAN PANEL — prototype ====================================
+       Tall image inside a fixed-height panel. JS maps the panel's scroll
+       progress through the viewport to a translateY on the inner image
+       (0% → -20%) so the image pans upward as the panel scrolls past.
+    ====================================================================== */
+    :root[data-theme="editorial"] .cm-scrollpan-section {
+        background: var(--paper);
+        padding: clamp(64px, 8vw, 120px) var(--gutter) clamp(80px, 10vw, 144px);
+    }
+    :root[data-theme="editorial"] .cm-scrollpan-section__head {
+        max-width: var(--ed-max);
+        margin: 0 auto clamp(28px, 3vw, 44px);
+    }
+    :root[data-theme="editorial"] .cm-scrollpan {
+        position: relative;
+        max-width: var(--ed-max);
+        margin: 0 auto;
+        height: 560px;
+        overflow: hidden;
+        border-radius: 14px;
+        border: 1px solid var(--rule);
+        background: var(--paper-2);
+        box-shadow: 0 1px 0 rgba(12, 12, 10, 0.04);
+    }
+    :root[data-theme="editorial"] .cm-scrollpan__viewport {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+    }
+    :root[data-theme="editorial"] .cm-scrollpan__img {
+        display: block;
+        width: 100%;
+        height: auto;
+        transform: translate3d(0, 0, 0);
+        transform-origin: center top;
+        will-change: transform;
+    }
+    :root[data-theme="editorial"] .cm-scrollpan__overlay {
+        position: absolute;
+        left: clamp(20px, 3vw, 40px);
+        bottom: clamp(20px, 3vw, 40px);
+        max-width: min(440px, calc(100% - clamp(40px, 6vw, 80px)));
+        padding: clamp(20px, 2vw, 28px) clamp(22px, 2.4vw, 32px);
+        background: rgba(251, 251, 253, 0.92);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-radius: 10px;
+        border: 1px solid var(--rule);
+    }
+    :root[data-theme="editorial"] .cm-scrollpan__eyebrow {
+        font-family: var(--body);
+        font-weight: 600;
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        color: var(--mid);
+        margin: 0 0 8px;
+    }
+    :root[data-theme="editorial"] .cm-scrollpan__title {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: clamp(20px, 1.9vw, 26px);
+        line-height: 1.2;
+        letter-spacing: -0.014em;
+        color: var(--ink);
+        margin: 0 0 10px;
+    }
+    :root[data-theme="editorial"] .cm-scrollpan__desc {
+        font-family: var(--body);
+        font-size: 14px;
+        line-height: 1.55;
+        color: var(--mid);
+        margin: 0 0 14px;
+    }
+    :root[data-theme="editorial"] .cm-scrollpan__cta {
+        font-family: var(--body);
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--ink);
+        text-decoration: none;
+        border-bottom: 1px solid var(--ink);
+        padding-bottom: 2px;
+        transition: opacity 200ms ease;
+    }
+    :root[data-theme="editorial"] .cm-scrollpan__cta:hover { opacity: 0.7; }
+    @media (max-width: 880px) {
+        :root[data-theme="editorial"] .cm-scrollpan { height: 460px; }
+    }
+    @media (max-width: 560px) {
+        :root[data-theme="editorial"] .cm-scrollpan { height: 380px; border-radius: 10px; }
+        :root[data-theme="editorial"] .cm-scrollpan__overlay { padding: 16px 18px; border-radius: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        :root[data-theme="editorial"] .cm-scrollpan__img { transform: none !important; }
+    }
+
     </style>
 </head>
 <body>
@@ -4697,6 +4793,37 @@
 </section>
     </div>
 </div>
+
+<!-- SCROLLPAN PANEL — prototype: tall image pans inside a fixed-height panel as the
+     user scrolls past. Test placement under Case Studies; not in nav or production. -->
+<section class="cm-scrollpan-section" aria-label="Scroll-pan panel prototype">
+    <div class="cm-scrollpan-section__head">
+        <p class="ed-eyebrow">Prototype</p>
+        <h2 class="ed-h2">Scroll-pan panel.</h2>
+    </div>
+    <div class="cm-scrollpan"
+         data-img-src="assets/lace/lace-inutitiveandscalable.png"
+         data-img-alt="Intuitive and scalable — Lace AI Pro product detail"
+         data-eyebrow="Selected detail"
+         data-title="Built to feel intuitive at any scale."
+         data-description="A tall composition that reveals as you read, anchored to the panel’s scroll progress."
+         data-cta-label="See the case study"
+         data-cta-href="#work">
+        <div class="cm-scrollpan__viewport">
+            <img class="cm-scrollpan__img"
+                 src="assets/lace/lace-inutitiveandscalable.png"
+                 alt="Intuitive and scalable — Lace AI Pro product detail"
+                 loading="lazy"
+                 decoding="async">
+        </div>
+        <div class="cm-scrollpan__overlay">
+            <p class="cm-scrollpan__eyebrow">Selected detail</p>
+            <h3 class="cm-scrollpan__title">Built to feel intuitive at any scale.</h3>
+            <p class="cm-scrollpan__desc">A tall composition that reveals as you read, anchored to the panel’s scroll progress.</p>
+            <a class="cm-scrollpan__cta" href="#work">See the case study →</a>
+        </div>
+    </div>
+</section>
 
 <!-- APPROACH — variant A: sandbox refined copy / variant B: components shorter copy -->
 <div class="variant" data-variant="A" data-variant-name="approach">
@@ -6001,6 +6128,43 @@ const CAPABILITIES_CLASSIC = [
 
     goTo(0);
     start();
+})();
+// ScrollPanPanel — pan a tall image inside a fixed-height panel as the panel
+// scrolls through the viewport. rAF-throttled; honors prefers-reduced-motion.
+// Equivalent to a Framer Motion useScroll + useTransform on `target: panelRef`
+// mapping progress [0,1] → translateY [0%, -20%]; this site is vanilla JS.
+(() => {
+    const panels = document.querySelectorAll('.cm-scrollpan');
+    if (!panels.length) return;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return;
+
+    const MAX_PAN = -20;
+
+    const update = (panel) => {
+        const img = panel.querySelector('.cm-scrollpan__img');
+        if (!img) return;
+        const rect = panel.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        const total = vh + rect.height;
+        const scrolled = vh - rect.top;
+        const progress = Math.max(0, Math.min(1, scrolled / total));
+        img.style.transform = `translate3d(0, ${(progress * MAX_PAN).toFixed(3)}%, 0)`;
+    };
+
+    let ticking = false;
+    const onScroll = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+            panels.forEach(update);
+            ticking = false;
+        });
+    };
+
+    panels.forEach(update);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
 })();
 </script>
 
