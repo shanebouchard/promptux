@@ -3305,13 +3305,6 @@
         border-bottom: 1px solid var(--rule);
         overflow: hidden;
     }
-    :root[data-theme="editorial"] .sb-cases__head {
-        text-align: center;
-        max-width: 720px;
-        margin: 0 auto clamp(56px, 7vw, 96px);
-        padding: 0 var(--gutter);
-    }
-
     /* Featured panel — one shown at a time, large device image */
     :root[data-theme="editorial"] .sb-cases__stage {
         max-width: var(--ed-max);
@@ -3348,15 +3341,6 @@
         transform: translateY(0);
         opacity: 1;
     }
-    :root[data-theme="editorial"] .sb-cases__tags {
-        font-family: var(--body);
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--mid);
-        margin: 0 0 var(--ed-space-3);
-    }
     :root[data-theme="editorial"] .sb-cases__title {
         font-family: var(--display);
         font-weight: 700;
@@ -3372,7 +3356,26 @@
         line-height: 1.55;
         color: var(--mid);
         max-width: 44ch;
+        margin: 0 0 var(--ed-space-3);
+    }
+    :root[data-theme="editorial"] .sb-cases__tag-list {
+        list-style: none;
         margin: 0 0 var(--ed-space-4);
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    :root[data-theme="editorial"] .sb-cases__tag {
+        font-family: var(--body);
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--mid);
+        background: transparent;
+        border: 1px solid var(--rule);
+        padding: 5px 10px;
     }
     :root[data-theme="editorial"] .sb-cases__copy .cta-pill { display: inline-flex; }
     :root[data-theme="editorial"] .sb-cases__media {
@@ -3844,19 +3847,19 @@
 <div id="ed-work"></div>
 
 <!-- FEATURED WORK — case studies, featured panel + thumbnail rail (sandbox) -->
-<section class="sb-cases" aria-label="Case studies" aria-roledescription="carousel">
-    <div class="sb-cases__head">
-        <p class="ed-eyebrow">Featured work</p>
-        <h2 class="ed-h2">Case studies.</h2>
-    </div>
-
+<section class="sb-cases" aria-label="Featured work" aria-roledescription="carousel">
     <div class="sb-cases__stage">
         <div class="sb-cases__featured" aria-live="polite">
             <article class="sb-cases__panel is-active" data-case="lace" aria-label="Lace AI Pro">
                 <div class="sb-cases__copy">
-                    <p class="sb-cases__tags">Healthcare · MedTech · SaaS</p>
+                    <p class="ed-eyebrow">Featured work</p>
                     <h3 class="sb-cases__title">Lace AI Pro</h3>
                     <p class="sb-cases__sub">Brand identity, product design, email system, and trade show collateral for an auditory rehabilitation platform.</p>
+                    <ul class="sb-cases__tag-list" aria-label="Tags">
+                        <li class="sb-cases__tag">Healthcare</li>
+                        <li class="sb-cases__tag">MedTech</li>
+                        <li class="sb-cases__tag">SaaS</li>
+                    </ul>
                     <button type="button" class="cta-pill ed-work-band__cta" data-case="lace">See the work →</button>
                 </div>
                 <figure class="sb-cases__media">
@@ -3865,9 +3868,13 @@
             </article>
             <article class="sb-cases__panel" data-case="sharp" aria-label="SharpSpring">
                 <div class="sb-cases__copy">
-                    <p class="sb-cases__tags">B2B SaaS · Marketing Automation</p>
+                    <p class="ed-eyebrow">Featured work</p>
                     <h3 class="sb-cases__title">SharpSpring</h3>
                     <p class="sb-cases__sub">Platform redesign, identity refresh, and full-funnel marketing for a fast-scaling SaaS company.</p>
+                    <ul class="sb-cases__tag-list" aria-label="Tags">
+                        <li class="sb-cases__tag">B2B SaaS</li>
+                        <li class="sb-cases__tag">Marketing Automation</li>
+                    </ul>
                     <button type="button" class="cta-pill ed-work-band__cta" data-case="sharp">See the work →</button>
                 </div>
                 <figure class="sb-cases__media">
@@ -3876,9 +3883,13 @@
             </article>
             <article class="sb-cases__panel" data-case="pickers" aria-label="Pickers">
                 <div class="sb-cases__copy">
-                    <p class="sb-cases__tags">Creator Economy · Design System</p>
+                    <p class="ed-eyebrow">Featured work</p>
                     <h3 class="sb-cases__title">Pickers</h3>
                     <p class="sb-cases__sub">First design system: tokens, components, documentation. 74.8% adoption · 28% faster delivery.</p>
+                    <ul class="sb-cases__tag-list" aria-label="Tags">
+                        <li class="sb-cases__tag">Creator Economy</li>
+                        <li class="sb-cases__tag">Design System</li>
+                    </ul>
                     <button type="button" class="cta-pill ed-work-band__cta" data-case="pickers">See the work →</button>
                 </div>
                 <figure class="sb-cases__media">
@@ -3887,9 +3898,14 @@
             </article>
             <article class="sb-cases__panel" data-case="plremote" aria-label="PL Remote">
                 <div class="sb-cases__copy">
-                    <p class="sb-cases__tags">IoT · Mobile · MVP Delivery</p>
+                    <p class="ed-eyebrow">Featured work</p>
                     <h3 class="sb-cases__title">PL Remote</h3>
                     <p class="sb-cases__sub">Product design for a mobile app replacing physical gate remotes. 10K+ users in month one.</p>
+                    <ul class="sb-cases__tag-list" aria-label="Tags">
+                        <li class="sb-cases__tag">IoT</li>
+                        <li class="sb-cases__tag">Mobile</li>
+                        <li class="sb-cases__tag">MVP Delivery</li>
+                    </ul>
                     <button type="button" class="cta-pill ed-work-band__cta" data-case="plremote">See the work →</button>
                 </div>
                 <figure class="sb-cases__media">
