@@ -3544,7 +3544,8 @@
     .cp-tradeoff:last-child {
         border-bottom: 1px solid var(--rule);
     }
-    .cp-tradeoff > summary {
+    .cp-tradeoff > summary,
+    .cp-tradeoff > .cp-tradeoff__summary {
         list-style: none;
         padding: 26px 0;
         display: grid;
@@ -3553,6 +3554,7 @@
         align-items: center;
         cursor: pointer;
     }
+    .cp-tradeoff > .cp-tradeoff__summary { cursor: default; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); }
     .cp-tradeoff > summary::-webkit-details-marker { display: none; }
     .cp-tradeoff__name {
         font-family: var(--display);
@@ -3600,27 +3602,9 @@
         margin-bottom: 20px;
         position: relative;
     }
-    .cp-tradeoff--us::before {
-        content: "Where we fit";
-        position: absolute;
-        top: 18px;
-        right: 24px;
-        font-family: var(--body);
-        font-size: 10px;
-        font-weight: 600;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--ink);
-        background: var(--lime);
-        padding: 4px 8px;
-        line-height: 1;
+    .cp-tradeoff--us > .cp-tradeoff__summary {
+        padding: 28px;
     }
-    .cp-tradeoff--us > summary,
-    .cp-tradeoff--us .cp-tradeoff__body {
-        padding-left: 28px;
-        padding-right: 28px;
-    }
-    .cp-tradeoff--us > summary { padding-top: 56px; padding-bottom: 28px; }
     .cp-tradeoff--us .cp-tradeoff__name { color: var(--paper); }
     .cp-tradeoff--us .cp-tradeoff__for { color: rgba(240, 235, 225, 0.72); }
     .cp-tradeoff--us .cp-tradeoff__body { color: rgba(240, 235, 225, 0.78); }
@@ -4111,14 +4095,12 @@
         <p class="cp-lede">PromptUX exists for work that needs senior judgment moving at AI speed, where decisions and execution sit in the same hands.</p>
     </header>
     <div class="cp-tradeoffs__list">
-        <details class="cp-tradeoff cp-tradeoff--us" open>
-            <summary>
+        <div class="cp-tradeoff cp-tradeoff--us">
+            <div class="cp-tradeoff__summary">
                 <span class="cp-tradeoff__name">PromptUX</span>
-                <span class="cp-tradeoff__for">PromptUX excels at rapid results by connecting teams directly to senior strategy and AI-accelerated execution.</span>
-                <span class="cp-tradeoff__icon" aria-hidden="true"></span>
-            </summary>
-            <div class="cp-tradeoff__body">Senior strategists and AI-native execution sit in the same engagement, so decisions move straight into shipped work without account layers or coordination overhead.</div>
-        </details>
+                <span class="cp-tradeoff__for">Faster decisions and better outcomes, without the overhead.</span>
+            </div>
+        </div>
         <details class="cp-tradeoff">
             <summary>
                 <span class="cp-tradeoff__name">Subscriptions</span>
