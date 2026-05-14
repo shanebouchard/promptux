@@ -3450,31 +3450,49 @@
         margin: var(--ed-space-3) auto 0;
         max-width: 56ch;
     }
-    /* Grid variant — centered editorial cells inside a hairline grid framework.
-       Numbered (01–06), thin-line icon, title, description, operational keywords. */
+    /* Grid variant — single editorial plate divided by hairlines.
+       The 3x2 grid lives inside one rounded card; cells use internal
+       hairlines for the grid framework. Bigger icons + titles, an
+       animated underline on hover, and a quiet featured-cell accent
+       on the AI cell give the section more presence without losing
+       restraint. */
     :root[data-theme="editorial"] .cm-cap-grid {
         max-width: var(--ed-max);
         margin: 0 auto;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 0;
-        /* Hairline frame on the outside; cells add right + bottom borders. */
-        border-top: 1px solid var(--rule);
-        border-left: 1px solid var(--rule);
+        background: var(--paper);
+        border: 1px solid var(--rule);
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow:
+            0 1px 0 rgba(12, 12, 10, 0.04),
+            0 24px 48px -32px rgba(12, 12, 10, 0.16);
     }
     :root[data-theme="editorial"] .cm-cap-grid__item {
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding: clamp(40px, 4.5vw, 64px) clamp(20px, 2.5vw, 36px);
-        border-right: 1px solid var(--rule);
-        border-bottom: 1px solid var(--rule);
-        position: relative;
-        transition: background-color 280ms ease;
-    }
-    :root[data-theme="editorial"] .cm-cap-grid__item:hover {
+        padding: clamp(48px, 5vw, 72px) clamp(24px, 3vw, 40px);
         background: var(--paper);
+        transition: background-color 280ms ease, box-shadow 320ms ease;
+    }
+    /* Internal hairlines only — right border for cols 1+2, bottom border for row 1. */
+    :root[data-theme="editorial"] .cm-cap-grid__item:nth-child(3n+1),
+    :root[data-theme="editorial"] .cm-cap-grid__item:nth-child(3n+2) {
+        border-right: 1px solid var(--rule);
+    }
+    :root[data-theme="editorial"] .cm-cap-grid__item:nth-child(-n+3) {
+        border-bottom: 1px solid var(--rule);
+    }
+    /* Hover: cell brightens, icon shifts up + accent color, soft elevation. */
+    :root[data-theme="editorial"] .cm-cap-grid__item:hover {
+        background: #FFFFFF;
+        box-shadow: inset 0 0 0 1px rgba(0, 113, 227, 0.06);
+        z-index: 1;
     }
     :root[data-theme="editorial"] .cm-cap-grid__num {
         font-family: var(--body);
@@ -3482,66 +3500,106 @@
         font-weight: 600;
         letter-spacing: 0.18em;
         color: var(--mid);
-        margin: 0 0 28px;
+        margin: 0 0 32px;
     }
     :root[data-theme="editorial"] .cm-cap-grid__icon {
-        width: 44px;
-        height: 44px;
+        width: 60px;
+        height: 60px;
         color: var(--ink);
-        margin-bottom: 28px;
+        margin-bottom: 32px;
         opacity: 0.92;
-        transition: transform 320ms cubic-bezier(0.25,0.46,0.45,0.94),
+        transition: transform 360ms cubic-bezier(0.25,0.46,0.45,0.94),
                     color 280ms ease,
                     opacity 280ms ease;
     }
     :root[data-theme="editorial"] .cm-cap-grid__item:hover .cm-cap-grid__icon {
-        transform: translateY(-2px);
+        transform: translateY(-3px);
         color: var(--lime);
         opacity: 1;
     }
     :root[data-theme="editorial"] .cm-cap-grid__icon svg { display: block; width: 100%; height: 100%; }
     :root[data-theme="editorial"] .cm-cap-grid__title {
         font-family: var(--display);
-        font-weight: 600;
-        font-size: clamp(22px, 1.8vw, 26px);
-        line-height: 1.15;
-        letter-spacing: -0.016em;
+        font-weight: 700;
+        font-size: clamp(24px, 2vw, 30px);
+        line-height: 1.12;
+        letter-spacing: -0.02em;
         color: var(--ink);
         margin: 0 0 14px;
+        position: relative;
+        padding-bottom: 18px;
+    }
+    /* Title underline — small ink bar that animates in on hover. */
+    :root[data-theme="editorial"] .cm-cap-grid__title::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: 24px;
+        height: 1px;
+        background: var(--ink);
+        transform: translateX(-50%) scaleX(0.4);
+        opacity: 0.4;
+        transition: transform 320ms cubic-bezier(0.25,0.46,0.45,0.94),
+                    opacity 280ms ease,
+                    background-color 280ms ease;
+    }
+    :root[data-theme="editorial"] .cm-cap-grid__item:hover .cm-cap-grid__title::after {
+        transform: translateX(-50%) scaleX(1);
+        opacity: 1;
+        background: var(--lime);
     }
     :root[data-theme="editorial"] .cm-cap-grid__desc {
         font-family: var(--body);
         font-size: 15px;
-        line-height: 1.5;
+        line-height: 1.55;
         color: var(--mid);
-        margin: 0 0 22px;
+        margin: 8px 0 26px;
         max-width: 32ch;
     }
     :root[data-theme="editorial"] .cm-cap-grid__keywords {
         font-family: var(--body);
         font-size: 11px;
-        font-weight: 500;
-        letter-spacing: 0.08em;
+        font-weight: 600;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--ink);
         margin: auto 0 0;
-        line-height: 1.6;
+        line-height: 1.7;
         max-width: 30ch;
     }
     :root[data-theme="editorial"] .cm-cap-grid__keywords .sep {
         color: var(--mid);
         opacity: 0.5;
-        margin: 0 6px;
+        margin: 0 8px;
+    }
+    /* Featured cell — AI in the work gets a quiet lime accent stripe at top. */
+    :root[data-theme="editorial"] .cm-cap-grid__item--featured::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 56px;
+        height: 2px;
+        background: var(--lime);
+        border-radius: 0 0 2px 2px;
     }
     @media (max-width: 880px) {
-        :root[data-theme="editorial"] .cm-cap-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
+        :root[data-theme="editorial"] .cm-cap-grid { grid-template-columns: repeat(2, 1fr); border-radius: 14px; }
+        :root[data-theme="editorial"] .cm-cap-grid__item { border-right: 0 !important; border-bottom: 0 !important; }
+        :root[data-theme="editorial"] .cm-cap-grid__item:nth-child(2n+1) { border-right: 1px solid var(--rule) !important; }
+        :root[data-theme="editorial"] .cm-cap-grid__item:nth-child(-n+4) { border-bottom: 1px solid var(--rule) !important; }
     }
     @media (max-width: 560px) {
-        :root[data-theme="editorial"] .cm-cap-grid {
-            grid-template-columns: 1fr;
-        }
+        :root[data-theme="editorial"] .cm-cap-grid { grid-template-columns: 1fr; border-radius: 12px; }
+        :root[data-theme="editorial"] .cm-cap-grid__item { border-right: 0 !important; }
+        :root[data-theme="editorial"] .cm-cap-grid__item:not(:last-child) { border-bottom: 1px solid var(--rule) !important; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        :root[data-theme="editorial"] .cm-cap-grid__item,
+        :root[data-theme="editorial"] .cm-cap-grid__icon,
+        :root[data-theme="editorial"] .cm-cap-grid__title::after { transition: none; }
     }
 
     :root[data-theme="editorial"] .cm-capabilities__layout {
@@ -5809,7 +5867,7 @@ const CAPABILITIES_CLASSIC = [
     // GRID — render from new capabilities data
     CAPABILITIES.forEach((cap, i) => {
         const cell = document.createElement('div');
-        cell.className = 'cm-cap-grid__item';
+        cell.className = 'cm-cap-grid__item' + (cap.id === 'ai' ? ' cm-cap-grid__item--featured' : '');
         cell.setAttribute('role', 'listitem');
         const num = String(i + 1).padStart(2, '0');
         const keywordsHtml = (cap.grid.keywords || []).map((k, idx) => {
