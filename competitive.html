@@ -3591,15 +3591,44 @@
         font-size: 16px;
         line-height: 1.7;
     }
-    .cp-tradeoff--us .cp-tradeoff__name { color: var(--ink); }
     .cp-tradeoff--us {
-        background: rgba(12,12,10,0.025);
+        background: var(--ink);
+        color: var(--paper);
+        border: 0;
+        border-radius: 6px;
+        margin-bottom: 20px;
+        position: relative;
+    }
+    .cp-tradeoff--us::before {
+        content: "Where we fit";
+        position: absolute;
+        top: 18px;
+        right: 24px;
+        font-family: var(--body);
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--ink);
+        background: var(--lime);
+        padding: 4px 8px;
+        line-height: 1;
     }
     .cp-tradeoff--us > summary,
     .cp-tradeoff--us .cp-tradeoff__body {
-        padding-left: 24px;
-        padding-right: 24px;
+        padding-left: 28px;
+        padding-right: 28px;
     }
+    .cp-tradeoff--us > summary { padding-top: 56px; padding-bottom: 28px; }
+    .cp-tradeoff--us .cp-tradeoff__name { color: var(--paper); }
+    .cp-tradeoff--us .cp-tradeoff__for { color: rgba(240, 235, 225, 0.72); }
+    .cp-tradeoff--us .cp-tradeoff__body { color: rgba(240, 235, 225, 0.78); }
+    .cp-tradeoff--us .cp-tradeoff__icon { opacity: 0.85; }
+    .cp-tradeoff--us .cp-tradeoff__icon::before,
+    .cp-tradeoff--us .cp-tradeoff__icon::after { background: var(--lime); }
+    /* Since PromptUX sits on its own card, suppress the top border on the
+       neighbor that now begins the rule-separated list. */
+    .cp-tradeoff--us + .cp-tradeoff { border-top: 0; }
     @media (max-width: 720px) {
         .cp-tradeoff > summary {
             grid-template-columns: 1fr auto;
@@ -4076,15 +4105,23 @@
 ============================================= -->
 <section class="cp-section cp-section--grey cp-tradeoffs" id="cp-tradeoffs" aria-labelledby="cp-tradeoffs-title">
     <header class="cp-section__head">
-        <p class="cp-eyebrow">Tradeoff framework</p>
-        <h2 id="cp-tradeoffs-title" class="cp-h2">Every model optimizes for something.</h2>
-        <p class="cp-lede">Each operating model is intentional. The right question isn't which is better — it's which optimizations match the moment you're in.</p>
+        <p class="cp-eyebrow">Where each one fits</p>
+        <h2 id="cp-tradeoffs-title" class="cp-h2">Different work needs different teams.</h2>
+        <p class="cp-lede">We’re built for one kind of job. The rest of the market is built for others. Here’s the honest breakdown — and where PromptUX is the right call.</p>
     </header>
     <div class="cp-tradeoffs__list">
+        <details class="cp-tradeoff cp-tradeoff--us" open>
+            <summary>
+                <span class="cp-tradeoff__name">PromptUX</span>
+                <span class="cp-tradeoff__for">Best for senior judgment, AI leverage, and short feedback loops.</span>
+                <span class="cp-tradeoff__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="cp-tradeoff__body">Small senior pods, AI-native delivery, direct collaboration. Designed for the cases where decision quality and pace matter more than headcount.</div>
+        </details>
         <details class="cp-tradeoff">
             <summary>
                 <span class="cp-tradeoff__name">Enterprise creative subscriptions</span>
-                <span class="cp-tradeoff__for">Optimize for predictable creative throughput at fixed cost.</span>
+                <span class="cp-tradeoff__for">Best for predictable creative throughput at fixed cost.</span>
                 <span class="cp-tradeoff__icon" aria-hidden="true"></span>
             </summary>
             <div class="cp-tradeoff__body">Designed for steady, on-demand output volume. The structure works when scope is broad and senior judgment isn't the binding constraint.</div>
@@ -4092,7 +4129,7 @@
         <details class="cp-tradeoff">
             <summary>
                 <span class="cp-tradeoff__name">Traditional agencies</span>
-                <span class="cp-tradeoff__for">Optimize for craft, polish, and large-scale brand work.</span>
+                <span class="cp-tradeoff__for">Best for craft, polish, and large-scale brand work.</span>
                 <span class="cp-tradeoff__icon" aria-hidden="true"></span>
             </summary>
             <div class="cp-tradeoff__body">Built around layered teams and structured process. Excellent at coordinated, multi-channel programs. Carries the overhead that produces it.</div>
@@ -4100,7 +4137,7 @@
         <details class="cp-tradeoff">
             <summary>
                 <span class="cp-tradeoff__name">Freelancers</span>
-                <span class="cp-tradeoff__for">Optimize for cost and flexibility on focused work.</span>
+                <span class="cp-tradeoff__for">Best for cost and flexibility on focused work.</span>
                 <span class="cp-tradeoff__icon" aria-hidden="true"></span>
             </summary>
             <div class="cp-tradeoff__body">Strong for bounded, well-scoped tasks. Coordination, continuity, and systems thinking are the things that don't come with the engagement.</div>
@@ -4108,18 +4145,10 @@
         <details class="cp-tradeoff">
             <summary>
                 <span class="cp-tradeoff__name">AI tools</span>
-                <span class="cp-tradeoff__for">Optimize for raw speed on isolated tasks.</span>
+                <span class="cp-tradeoff__for">Best for raw speed on isolated tasks.</span>
                 <span class="cp-tradeoff__icon" aria-hidden="true"></span>
             </summary>
             <div class="cp-tradeoff__body">Remarkable leverage in the hands of an operator who knows what to ask. Without senior judgment shaping the work, the output reflects the prompt — not the problem.</div>
-        </details>
-        <details class="cp-tradeoff cp-tradeoff--us" open>
-            <summary>
-                <span class="cp-tradeoff__name">PromptUX</span>
-                <span class="cp-tradeoff__for">Optimize for senior judgment, AI leverage, and short feedback loops.</span>
-                <span class="cp-tradeoff__icon" aria-hidden="true"></span>
-            </summary>
-            <div class="cp-tradeoff__body">Small senior pods, AI-native delivery, direct collaboration. Designed for the cases where decision quality and pace matter more than headcount.</div>
         </details>
     </div>
 </section>
