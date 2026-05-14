@@ -2546,20 +2546,26 @@
         padding: 18px 22px;
         background: var(--paper);
         border: 1px solid var(--rule);
-        border-radius: 6px;
+        border-radius: 8px;
         cursor: pointer;
         font-family: var(--body);
         color: var(--ink);
-        transition: background 150ms ease, border-color 150ms ease;
+        box-shadow: 0 1px 2px rgba(12, 12, 10, 0.03);
+        transform: translateY(0);
+        transition: box-shadow 180ms ease, transform 180ms ease, border-color 180ms ease;
     }
-    :root[data-theme="editorial"] .ed-intent:hover { background: var(--paper-2); }
+    :root[data-theme="editorial"] .ed-intent:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(12, 12, 10, 0.06);
+    }
     :root[data-theme="editorial"] .ed-intent:focus-visible {
         outline: 2px solid var(--ink);
         outline-offset: 2px;
     }
     :root[data-theme="editorial"] .ed-intent[aria-pressed="true"] {
-        background: var(--paper-3);
-        border-color: var(--ink);
+        border-color: var(--mid);
+        transform: translateY(-3px);
+        box-shadow: 0 12px 28px rgba(12, 12, 10, 0.09);
     }
     :root[data-theme="editorial"] .ed-intent__title {
         display: block;
