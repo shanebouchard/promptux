@@ -3450,6 +3450,53 @@
         margin: var(--ed-space-3) auto 0;
         max-width: 56ch;
     }
+    /* Grid variant — scannable 3-up cards. No backgrounds, left-aligned. */
+    :root[data-theme="editorial"] .cm-cap-grid {
+        max-width: var(--ed-max);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: clamp(40px, 4.5vw, 72px) clamp(40px, 5vw, 80px);
+    }
+    :root[data-theme="editorial"] .cm-cap-grid__item {
+        max-width: 36ch;
+    }
+    :root[data-theme="editorial"] .cm-cap-grid__title {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: clamp(20px, 1.6vw, 24px);
+        line-height: 1.2;
+        letter-spacing: -0.012em;
+        color: var(--ink);
+        margin: 0 0 var(--ed-space-3);
+    }
+    :root[data-theme="editorial"] .cm-cap-grid__head {
+        font-family: var(--body);
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.45;
+        color: var(--ink);
+        margin: 0 0 8px;
+    }
+    :root[data-theme="editorial"] .cm-cap-grid__sub {
+        font-family: var(--body);
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--mid);
+        margin: 0;
+    }
+    @media (max-width: 880px) {
+        :root[data-theme="editorial"] .cm-cap-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    @media (max-width: 560px) {
+        :root[data-theme="editorial"] .cm-cap-grid {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+    }
+
     :root[data-theme="editorial"] .cm-capabilities__layout {
         max-width: var(--ed-max);
         margin: 0 auto;
@@ -3524,15 +3571,6 @@
         color: var(--ink);
         margin: 0 0 var(--ed-space-4);
         max-width: 40ch;
-    }
-    :root[data-theme="editorial"] .cm-capabilities__proof {
-        font-family: var(--body);
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: var(--mid);
-        margin: 0 0 var(--ed-space-3);
     }
     :root[data-theme="editorial"] .cm-capabilities__caps {
         list-style: none;
@@ -4736,16 +4774,27 @@
     </div>
 </section>
 
-<!-- CAPABILITIES — vertical tabs + content panel, rendered from JS data -->
+<!-- CAPABILITIES — variant A: Grid (default, scannable) / variant B: Explore (interactive) -->
 <section class="cm-capabilities" aria-label="What we do">
     <div class="cm-capabilities__head">
         <p class="ed-eyebrow">Capabilities</p>
         <h2 class="ed-h2">What we do.</h2>
         <p class="cm-capabilities__sub">Senior strategy, product thinking, UX, growth, and AI-enabled execution built into one operating model.</p>
     </div>
-    <div class="cm-capabilities__layout">
-        <div class="cm-capabilities__tabs" role="tablist" aria-orientation="vertical" aria-label="Capabilities"></div>
-        <div class="cm-capabilities__panels"></div>
+    <div class="variant" data-variant="A" data-variant-name="capabilities">
+        <div class="variant__toggle" role="tablist" aria-label="Capabilities layout">
+            <button type="button" class="variant__btn is-active" data-variant-target="A" aria-pressed="true">Grid</button>
+            <button type="button" class="variant__btn" data-variant-target="B" aria-pressed="false">Explore</button>
+        </div>
+        <div class="variant__pane" data-variant-pane="A">
+            <div class="cm-cap-grid" role="list"></div>
+        </div>
+        <div class="variant__pane" data-variant-pane="B" hidden>
+            <div class="cm-capabilities__layout">
+                <div class="cm-capabilities__tabs" role="tablist" aria-orientation="vertical" aria-label="Capabilities"></div>
+                <div class="cm-capabilities__panels"></div>
+            </div>
+        </div>
     </div>
     <div class="cm-capabilities__cta-wrap">
         <a href="#approach" class="cm-capabilities__cta">See how we work →</a>
@@ -5407,77 +5456,113 @@ document.addEventListener('click', function(e) {
     });
 })();
 
-// Capabilities — rendered from a reusable data object. Vertical tabs
-// on desktop with an animated arrow indicator on the active tab.
-// Mobile (≤760px): tabs hidden, all panels shown stacked.
+// Capabilities — single data source feeds both Grid and Explore variants.
+// Grid: 3x2 scannable cards. Explore: vertical tabs + content panel.
 const CAPABILITIES = [
     {
-        id: 'clear',
-        label: 'Make it clear',
-        copy: 'We turn ambiguity into clear decisions, sharper narratives, and focused paths forward.',
-        proof: 'Direction beats decoration.',
-        items: [
-            'Product and experience strategy',
-            'Positioning and messaging',
-            'Customer journey mapping',
-            'Opportunity framing',
-            'Executive narratives'
-        ]
+        id: 'strategy',
+        grid: {
+            title: 'Strategic design',
+            head: 'Define what matters and what to do next.',
+            sub: 'Direction, positioning, and experience strategy tied to outcomes.'
+        },
+        explore: {
+            title: 'Strategic design',
+            intro: 'We define what matters and what to do next. Product direction, positioning, and experience strategy grounded in real outcomes.',
+            items: ['Product direction', 'Positioning and messaging', 'Experience strategy', 'Opportunity framing']
+        }
     },
     {
-        id: 'useful',
-        label: 'Make it useful',
-        copy: 'We design experiences that help people understand, decide, act, and move forward.',
-        proof: 'Useful means used.',
-        items: [
-            'UX and product design',
-            'Service design',
-            'Workflow design',
-            'Research-informed concepts',
-            'Usability improvement'
-        ]
+        id: 'product',
+        grid: {
+            title: 'Product design',
+            head: 'Design products that hold up in the real world.',
+            sub: 'Clear, usable, and built to perform.'
+        },
+        explore: {
+            title: 'Product design',
+            intro: 'We design products that hold up in the real world. Clear, usable, and built to perform.',
+            items: ['UX and UI design', 'Core flows', 'Prototyping', 'Execution']
+        }
     },
     {
-        id: 'work',
-        label: 'Make it work',
-        copy: 'We build the systems, workflows, and assets needed to move from idea to execution faster.',
-        proof: 'Ship the decision, not the deck.',
-        items: [
-            'Design systems and playbooks',
-            'AI-enabled workflows',
-            'Content and asset production',
-            'Rapid prototyping',
-            'Launch support'
-        ]
+        id: 'growth',
+        grid: {
+            title: 'Growth design',
+            head: 'Design how products get found and chosen.',
+            sub: 'Funnels, landing pages, and conversion-focused experiences.'
+        },
+        explore: {
+            title: 'Growth design',
+            intro: 'We design how products get found and chosen.',
+            items: ['Landing pages', 'Funnels', 'Acquisition and onboarding', 'Conversion paths']
+        }
     },
     {
-        id: 'grow',
-        label: 'Make it grow',
-        copy: 'We improve the moments that influence attention, trust, conversion, adoption, and repeat use.',
-        proof: 'Outcomes, not output.',
-        items: [
-            'Growth design',
-            'Funnel optimization',
-            'Landing pages',
-            'Experiment concepts',
-            'Conversion-focused messaging'
-        ]
+        id: 'optimization',
+        grid: {
+            title: 'Optimization',
+            head: "Improve what's already live.",
+            sub: 'Focused iteration that drives performance.'
+        },
+        explore: {
+            title: 'Optimization',
+            intro: "We improve what's already live and make it perform.",
+            items: ['Conversion improvement', 'UX refinement', 'Testing and iteration', 'Performance tuning']
+        }
+    },
+    {
+        id: 'systems',
+        grid: {
+            title: 'Systems',
+            head: 'Build structure for scale.',
+            sub: 'Reusable patterns that keep teams fast and consistent.'
+        },
+        explore: {
+            title: 'Systems',
+            intro: 'We build the structure that lets products scale.',
+            items: ['Design systems', 'Reusable patterns', 'Cross-product consistency', 'Workflow support']
+        }
+    },
+    {
+        id: 'ai',
+        grid: {
+            title: 'AI in the work',
+            head: 'Move faster and make better calls.',
+            sub: 'AI built into how we explore, design, and deliver.'
+        },
+        explore: {
+            title: 'AI',
+            intro: 'We use AI to move faster and make better calls.',
+            items: ['Exploration and concepts', 'Workflow acceleration', 'Faster iteration', 'Decision support']
+        }
     }
 ];
 
 (() => {
     const root = document.querySelector('.cm-capabilities');
     if (!root) return;
+    const gridRoot = root.querySelector('.cm-cap-grid');
     const tabsRoot = root.querySelector('.cm-capabilities__tabs');
     const panelsRoot = root.querySelector('.cm-capabilities__panels');
-    if (!tabsRoot || !panelsRoot) return;
+    if (!gridRoot || !tabsRoot || !panelsRoot) return;
 
     const arrowSvg = '<svg class="cm-capabilities__tab-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>';
-
     const escape = (s) => String(s).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
     CAPABILITIES.forEach((cap, i) => {
-        // Tab button
+        // Grid cell
+        const cell = document.createElement('div');
+        cell.className = 'cm-cap-grid__item';
+        cell.setAttribute('role', 'listitem');
+        cell.innerHTML = `
+            <h3 class="cm-cap-grid__title">${escape(cap.grid.title)}</h3>
+            <p class="cm-cap-grid__head">${escape(cap.grid.head)}</p>
+            <p class="cm-cap-grid__sub">${escape(cap.grid.sub)}</p>
+        `;
+        gridRoot.appendChild(cell);
+
+        // Explore tab
         const tab = document.createElement('button');
         tab.type = 'button';
         tab.className = 'cm-capabilities__tab' + (i === 0 ? ' is-active' : '');
@@ -5487,10 +5572,10 @@ const CAPABILITIES = [
         tab.setAttribute('aria-controls', `cm-cap-panel-${cap.id}`);
         tab.dataset.target = cap.id;
         if (i !== 0) tab.tabIndex = -1;
-        tab.innerHTML = `<span class="cm-capabilities__tab-label">${escape(cap.label)}</span>${arrowSvg}`;
+        tab.innerHTML = `<span class="cm-capabilities__tab-label">${escape(cap.explore.title)}</span>${arrowSvg}`;
         tabsRoot.appendChild(tab);
 
-        // Panel
+        // Explore panel
         const panel = document.createElement('div');
         panel.className = 'cm-capabilities__panel';
         panel.id = `cm-cap-panel-${cap.id}`;
@@ -5498,11 +5583,10 @@ const CAPABILITIES = [
         panel.setAttribute('role', 'tabpanel');
         panel.setAttribute('aria-labelledby', `cm-cap-tab-${cap.id}`);
         if (i !== 0) panel.hidden = true;
-        const itemsHtml = cap.items.map(it => `<li>${escape(it)}</li>`).join('');
+        const itemsHtml = cap.explore.items.map(it => `<li>${escape(it)}</li>`).join('');
         panel.innerHTML = `
-            <h3 class="cm-capabilities__panel-title">${escape(cap.label)}</h3>
-            <p class="cm-capabilities__copy">${escape(cap.copy)}</p>
-            <p class="cm-capabilities__proof">${escape(cap.proof)}</p>
+            <h3 class="cm-capabilities__panel-title">${escape(cap.explore.title)}</h3>
+            <p class="cm-capabilities__copy">${escape(cap.explore.intro)}</p>
             <ul class="cm-capabilities__caps" aria-label="What's included">${itemsHtml}</ul>
         `;
         panelsRoot.appendChild(panel);
