@@ -3861,6 +3861,28 @@
         min-height: 96px;
     }
     :root[data-theme="editorial"] .ai-vs__diagram svg { width: 100%; height: 96px; display: block; }
+    :root[data-theme="editorial"] .ai-vs__caption {
+        font-family: var(--body);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--mid);
+        margin: -8px 0 24px;
+        text-align: center;
+    }
+    :root[data-theme="editorial"] .ai-vs__card--native .ai-vs__caption { color: var(--lime); }
+    :root[data-theme="editorial"] .ai-vs__outcome {
+        font-family: var(--body);
+        font-size: 14px;
+        font-weight: 500;
+        font-style: italic;
+        line-height: 1.5;
+        color: var(--lime);
+        margin: 22px 0 0;
+        padding-top: 18px;
+        border-top: 1px solid rgba(251,251,253,0.12);
+    }
     :root[data-theme="editorial"] .ai-vs__list {
         list-style: none;
         padding: 0;
@@ -3886,6 +3908,24 @@
         flex-shrink: 0;
     }
     :root[data-theme="editorial"] .ai-vs__card--native .ai-vs__list li::before { background: var(--lime); }
+    :root[data-theme="editorial"] .ai-vs__diagram-label {
+        margin-top: 8px;
+        font-family: var(--body);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--mid);
+        text-align: center;
+    }
+    :root[data-theme="editorial"] .ai-vs__card--native .ai-vs__diagram-label { color: rgba(251,251,253,0.65); }
+    :root[data-theme="editorial"] .ai-vs__outcome {
+        margin: 18px 0 0;
+        font-family: var(--body);
+        font-size: 14px;
+        line-height: 1.5;
+        color: var(--lime);
+    }
     @media (max-width: 880px) {
         :root[data-theme="editorial"] .ai-vs__grid { grid-template-columns: 1fr; }
     }
@@ -4355,14 +4395,14 @@
     <div class="ai-section__inner">
         <div class="ai-section__head ai-reveal">
             <p class="ai-eyebrow">Two shapes of work</p>
-            <h2 class="ai-h2">Linear and layered, or parallel and senior-led.</h2>
-            <p class="ai-lede">Same brief. Different operating model. The difference shows up in how many directions get explored, how fast a decision lands, and how often the launch holds up.</p>
+            <h2 class="ai-h2">One direction at a time, or many before you commit.</h2>
+            <p class="ai-lede">AI compresses exploration so teams can test more directions before committing.</p>
         </div>
         <div class="ai-vs__grid">
             <article class="ai-vs__card ai-vs__card--legacy ai-reveal">
                 <p class="ai-vs__kicker">Traditional</p>
-                <h3 class="ai-vs__title">Sequential. Layered. Slow to change.</h3>
-                <p class="ai-vs__sub">Built before AI changed the math on exploration and iteration.</p>
+                <h3 class="ai-vs__title">Sequential. One direction at a time.</h3>
+                <p class="ai-vs__sub">Work moves step by step, with limited exploration before decisions are made.</p>
                 <div class="ai-vs__diagram" aria-hidden="true">
                     <svg viewBox="0 0 360 96" preserveAspectRatio="none">
                         <rect x="10" y="38" width="48" height="20" rx="3" fill="rgba(12,12,10,0.08)"/>
@@ -4377,16 +4417,16 @@
                     </svg>
                 </div>
                 <ul class="ai-vs__list">
-                    <li>One direction at a time</li>
-                    <li>Multiple handoffs</li>
-                    <li>Slower iteration loops</li>
+                    <li>One direction explored at a time</li>
+                    <li>Slower feedback cycles</li>
+                    <li>Fewer options tested before committing</li>
                     <li>Late-stage pivots</li>
                 </ul>
             </article>
             <article class="ai-vs__card ai-vs__card--native ai-reveal">
                 <p class="ai-vs__kicker">AI-native</p>
-                <h3 class="ai-vs__title">Parallel. Senior-led. Built to learn fast.</h3>
-                <p class="ai-vs__sub">AI in the room from day one — alongside senior judgment, not in place of it.</p>
+                <h3 class="ai-vs__title">Parallel. Multiple directions explored.</h3>
+                <p class="ai-vs__sub">AI enables teams to generate and test more options earlier, so better decisions happen faster.</p>
                 <div class="ai-vs__diagram" aria-hidden="true">
                     <svg viewBox="0 0 360 96" preserveAspectRatio="none">
                         <circle cx="180" cy="48" r="6" fill="#0071E3"/>
@@ -4404,12 +4444,14 @@
                         <line x1="180" y1="48" x2="40" y2="48" stroke="rgba(0,113,227,0.4)" stroke-width="1"/>
                     </svg>
                 </div>
+                <p class="ai-vs__caption ai-vs__caption--native">Multiple directions explored in parallel</p>
                 <ul class="ai-vs__list">
-                    <li>Many directions in parallel</li>
-                    <li>Direct senior execution</li>
-                    <li>Tight feedback loops</li>
-                    <li>Decisions land earlier</li>
+                    <li>Multiple directions explored in parallel</li>
+                    <li>Faster feedback and iteration cycles</li>
+                    <li>Stronger signals earlier in the process</li>
+                    <li>Decisions land sooner with more confidence</li>
                 </ul>
+                <p class="ai-vs__outcome">More exploration upfront leads to faster, stronger outcomes.</p>
             </article>
         </div>
     </div>
