@@ -4214,22 +4214,25 @@
     ====================================================================== */
     :root[data-theme="editorial"] .cm-scrollpan-section {
         background: var(--paper);
-        padding: clamp(64px, 8vw, 120px) var(--gutter) clamp(80px, 10vw, 144px);
+        /* Full-bleed panel: no horizontal gutter on the section itself. */
+        padding: clamp(64px, 8vw, 120px) 0 clamp(80px, 10vw, 144px);
     }
     :root[data-theme="editorial"] .cm-scrollpan-section__head {
+        /* Header keeps the normal gutter and max-width. */
         max-width: var(--ed-max);
         margin: 0 auto clamp(28px, 3vw, 44px);
+        padding: 0 var(--gutter);
     }
     :root[data-theme="editorial"] .cm-scrollpan {
         position: relative;
-        max-width: var(--ed-max);
-        margin: 0 auto;
-        height: 560px;
+        /* Full-width: edge-to-edge, no max-width or side margin. */
+        width: 100%;
+        height: 640px;
         overflow: hidden;
-        border-radius: 14px;
-        border: 1px solid var(--rule);
+        border-radius: 0;
+        border-top: 1px solid var(--rule);
+        border-bottom: 1px solid var(--rule);
         background: var(--paper-2);
-        box-shadow: 0 1px 0 rgba(12, 12, 10, 0.04);
     }
     :root[data-theme="editorial"] .cm-scrollpan__viewport {
         position: absolute;
@@ -4292,10 +4295,10 @@
     }
     :root[data-theme="editorial"] .cm-scrollpan__cta:hover { opacity: 0.7; }
     @media (max-width: 880px) {
-        :root[data-theme="editorial"] .cm-scrollpan { height: 460px; }
+        :root[data-theme="editorial"] .cm-scrollpan { height: 520px; }
     }
     @media (max-width: 560px) {
-        :root[data-theme="editorial"] .cm-scrollpan { height: 380px; border-radius: 10px; }
+        :root[data-theme="editorial"] .cm-scrollpan { height: 420px; }
         :root[data-theme="editorial"] .cm-scrollpan__overlay { padding: 16px 18px; border-radius: 8px; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -4802,8 +4805,8 @@
         <h2 class="ed-h2">Scroll-pan panel.</h2>
     </div>
     <div class="cm-scrollpan"
-         data-img-src="assets/lace/lace-inutitiveandscalable.png"
-         data-img-alt="Intuitive and scalable — Lace AI Pro product detail"
+         data-img-src="assets/sharpspring/sharpspring-portfolio.png"
+         data-img-alt="SharpSpring marketing site — full portfolio composition"
          data-eyebrow="Selected detail"
          data-title="Built to feel intuitive at any scale."
          data-description="A tall composition that reveals as you read, anchored to the panel’s scroll progress."
@@ -4811,15 +4814,15 @@
          data-cta-href="#work">
         <div class="cm-scrollpan__viewport">
             <img class="cm-scrollpan__img"
-                 src="assets/lace/lace-inutitiveandscalable.png"
-                 alt="Intuitive and scalable — Lace AI Pro product detail"
+                 src="assets/sharpspring/sharpspring-portfolio.png"
+                 alt="SharpSpring marketing site — full portfolio composition"
                  loading="lazy"
                  decoding="async">
         </div>
         <div class="cm-scrollpan__overlay">
             <p class="cm-scrollpan__eyebrow">Selected detail</p>
-            <h3 class="cm-scrollpan__title">Built to feel intuitive at any scale.</h3>
-            <p class="cm-scrollpan__desc">A tall composition that reveals as you read, anchored to the panel’s scroll progress.</p>
+            <h3 class="cm-scrollpan__title">SharpSpring — full-funnel marketing.</h3>
+            <p class="cm-scrollpan__desc">Brand, platform pages, and growth surfaces — built and shipped as one motion. Scroll to reveal more.</p>
             <a class="cm-scrollpan__cta" href="#work">See the case study →</a>
         </div>
     </div>
