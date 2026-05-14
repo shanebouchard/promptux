@@ -3437,6 +3437,215 @@
         :root[data-theme="editorial"] .cm-cards__btn { transition: none; }
     }
 
+    /* === CAPABILITIES — vertical tabs + content panel ==================
+       Split layout: capability labels on the left, expanded content on
+       the right. Active state via ink color + arrow indicator (no fill,
+       no shadow on tabs). Mobile collapses to stacked panels — all
+       content visible, tabs hidden. Editorial palette only.
+    ====================================================================== */
+    :root[data-theme="editorial"] .cm-capabilities {
+        background: var(--paper);
+        padding: clamp(96px, 12vw, 160px) var(--gutter);
+        border-top: 1px solid var(--rule);
+        border-bottom: 1px solid var(--rule);
+    }
+    :root[data-theme="editorial"] .cm-capabilities__head {
+        max-width: 720px;
+        margin: 0 auto clamp(56px, 7vw, 96px);
+        text-align: center;
+    }
+    :root[data-theme="editorial"] .cm-capabilities__sub {
+        font-family: var(--body);
+        font-size: clamp(17px, 1.4vw, 20px);
+        line-height: 1.5;
+        color: var(--mid);
+        margin: var(--ed-space-3) auto 0;
+        max-width: 56ch;
+    }
+    :root[data-theme="editorial"] .cm-capabilities__layout {
+        max-width: var(--ed-max);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1.6fr;
+        gap: clamp(48px, 6vw, 112px);
+        align-items: flex-start;
+    }
+    /* Tab list (vertical, text-only with rules between) */
+    :root[data-theme="editorial"] .cm-capabilities__tabs {
+        display: flex;
+        flex-direction: column;
+        border-top: 1px solid var(--rule);
+    }
+    :root[data-theme="editorial"] .cm-capabilities__tab {
+        appearance: none;
+        background: transparent;
+        border: 0;
+        border-bottom: 1px solid var(--rule);
+        padding: 20px 0;
+        cursor: pointer;
+        text-align: left;
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: clamp(20px, 2vw, 28px);
+        line-height: 1.1;
+        letter-spacing: -0.015em;
+        color: var(--mid);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        transition: color 220ms ease;
+    }
+    :root[data-theme="editorial"] .cm-capabilities__tab:hover { color: var(--ink); }
+    :root[data-theme="editorial"] .cm-capabilities__tab:focus-visible {
+        outline: 2px solid var(--ink);
+        outline-offset: 4px;
+    }
+    :root[data-theme="editorial"] .cm-capabilities__tab.is-active { color: var(--ink); }
+    :root[data-theme="editorial"] .cm-capabilities__tab-arrow {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+        color: var(--ink);
+        opacity: 0;
+        transform: translateX(-8px);
+        transition: opacity 240ms ease,
+                    transform 280ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    :root[data-theme="editorial"] .cm-capabilities__tab.is-active .cm-capabilities__tab-arrow {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    /* Panel */
+    :root[data-theme="editorial"] .cm-capabilities__panels {
+        min-height: 380px;
+    }
+    :root[data-theme="editorial"] .cm-capabilities__panel[hidden] { display: none; }
+    :root[data-theme="editorial"] .cm-capabilities__panel:not([hidden]) {
+        animation: cm-cap-fade 320ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    :root[data-theme="editorial"] .cm-capabilities__panel-title {
+        display: none; /* shown on mobile where tabs are hidden */
+    }
+    :root[data-theme="editorial"] .cm-capabilities__focus {
+        font-family: var(--body);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--mid);
+        margin: 0 0 var(--ed-space-3);
+    }
+    :root[data-theme="editorial"] .cm-capabilities__copy {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: clamp(22px, 2.4vw, 32px);
+        line-height: 1.3;
+        letter-spacing: -0.018em;
+        color: var(--ink);
+        margin: 0 0 var(--ed-space-3);
+        max-width: 40ch;
+    }
+    :root[data-theme="editorial"] .cm-capabilities__proof {
+        font-family: var(--body);
+        font-style: italic;
+        font-size: 14px;
+        color: var(--mid);
+        margin: 0 0 var(--ed-space-4);
+    }
+    :root[data-theme="editorial"] .cm-capabilities__caps h4 {
+        font-family: var(--body);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--mid);
+        margin: 0 0 var(--ed-space-3);
+    }
+    :root[data-theme="editorial"] .cm-capabilities__caps ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border-top: 1px solid var(--rule);
+    }
+    :root[data-theme="editorial"] .cm-capabilities__caps li {
+        font-family: var(--body);
+        font-size: 15px;
+        line-height: 1.55;
+        color: var(--ink);
+        padding: 12px 0 12px 26px;
+        border-bottom: 1px solid var(--rule);
+        position: relative;
+    }
+    :root[data-theme="editorial"] .cm-capabilities__caps li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 18px;
+        width: 14px;
+        height: 8px;
+        border-left: 1.5px solid var(--ink);
+        border-bottom: 1.5px solid var(--ink);
+        transform: rotate(-45deg);
+        transform-origin: 0 100%;
+    }
+    /* CTA */
+    :root[data-theme="editorial"] .cm-capabilities__cta-wrap {
+        text-align: center;
+        margin-top: clamp(56px, 7vw, 96px);
+    }
+    :root[data-theme="editorial"] .cm-capabilities__cta {
+        display: inline-block;
+        font-family: var(--body);
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--ink);
+        text-decoration: none;
+        padding: 0 0 4px;
+        border-bottom: 1px solid var(--ink);
+        transition: opacity 200ms ease,
+                    transform 220ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    :root[data-theme="editorial"] .cm-capabilities__cta:hover {
+        opacity: 0.7;
+        transform: translateY(-1px);
+    }
+    @keyframes cm-cap-fade {
+        from { opacity: 0; transform: translateY(8px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 760px) {
+        :root[data-theme="editorial"] .cm-capabilities__layout {
+            grid-template-columns: 1fr;
+            gap: clamp(40px, 6vw, 64px);
+        }
+        :root[data-theme="editorial"] .cm-capabilities__tabs { display: none; }
+        :root[data-theme="editorial"] .cm-capabilities__panels {
+            min-height: auto;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(56px, 9vw, 80px);
+        }
+        :root[data-theme="editorial"] .cm-capabilities__panel[hidden] { display: block; }
+        :root[data-theme="editorial"] .cm-capabilities__panel { animation: none; }
+        :root[data-theme="editorial"] .cm-capabilities__panel-title {
+            display: block;
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: clamp(24px, 5.5vw, 32px);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+            margin: 0 0 var(--ed-space-3);
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        :root[data-theme="editorial"] .cm-capabilities__tab,
+        :root[data-theme="editorial"] .cm-capabilities__tab-arrow,
+        :root[data-theme="editorial"] .cm-capabilities__cta { transition: none; }
+        :root[data-theme="editorial"] .cm-capabilities__panel:not([hidden]) { animation: none; }
+    }
+
     /* === RESPONSIVE === */
     @media (max-width: 880px) {
         :root[data-theme="editorial"] .ed-pillars__grid,
@@ -3865,6 +4074,22 @@
             <div class="ed-stats__num" data-value="28" data-suffix="%" data-decimals="0">0%</div>
             <div class="ed-stats__label">Reduction in task completion time</div>
         </div>
+    </div>
+</section>
+
+<!-- CAPABILITIES — vertical tabs + content panel, rendered from JS data -->
+<section class="cm-capabilities" aria-label="What we do">
+    <div class="cm-capabilities__head">
+        <p class="ed-eyebrow">Capabilities</p>
+        <h2 class="ed-h2">What we do.</h2>
+        <p class="cm-capabilities__sub">Senior strategy, product thinking, UX, growth, and AI-enabled execution built into one operating model.</p>
+    </div>
+    <div class="cm-capabilities__layout">
+        <div class="cm-capabilities__tabs" role="tablist" aria-orientation="vertical" aria-label="Capabilities"></div>
+        <div class="cm-capabilities__panels"></div>
+    </div>
+    <div class="cm-capabilities__cta-wrap">
+        <a href="#approach" class="cm-capabilities__cta">See how we work →</a>
     </div>
 </section>
 
@@ -4790,6 +5015,144 @@ document.addEventListener('click', function(e) {
             const open = row.classList.toggle('is-open');
             head.setAttribute('aria-expanded', String(open));
         });
+    });
+})();
+
+// Capabilities — rendered from a reusable data object. Vertical tabs
+// on desktop with an animated arrow indicator on the active tab.
+// Mobile (≤760px): tabs hidden, all panels shown stacked.
+const CAPABILITIES = [
+    {
+        id: 'clear',
+        label: 'Make it clear',
+        focus: 'Strategy, positioning, messaging, product clarity, customer journey clarity.',
+        copy: 'We turn ambiguity into clear decisions, sharper narratives, and focused paths forward.',
+        proof: 'Direction beats decoration.',
+        items: [
+            'Product and experience strategy',
+            'Positioning and messaging',
+            'Customer journey mapping',
+            'Opportunity framing',
+            'Executive narratives'
+        ]
+    },
+    {
+        id: 'useful',
+        label: 'Make it useful',
+        focus: 'UX, product design, research-informed workflows, service design, usability.',
+        copy: 'We design experiences that help people understand, decide, act, and move forward.',
+        proof: 'Useful means used.',
+        items: [
+            'UX and product design',
+            'Service design',
+            'Workflow design',
+            'Research-informed concepts',
+            'Usability improvement'
+        ]
+    },
+    {
+        id: 'work',
+        label: 'Make it work',
+        focus: 'Execution, systems, design operations, AI workflows, delivery acceleration.',
+        copy: 'We build the systems, workflows, and assets needed to move from idea to execution faster.',
+        proof: 'Ship the decision, not the deck.',
+        items: [
+            'Design systems and playbooks',
+            'AI-enabled workflows',
+            'Content and asset production',
+            'Rapid prototyping',
+            'Launch support'
+        ]
+    },
+    {
+        id: 'grow',
+        label: 'Make it grow',
+        focus: 'Growth, experimentation, conversion, performance, optimization.',
+        copy: 'We improve the moments that influence attention, trust, conversion, adoption, and repeat use.',
+        proof: 'Outcomes, not output.',
+        items: [
+            'Growth design',
+            'Funnel optimization',
+            'Landing pages',
+            'Experiment concepts',
+            'Conversion-focused messaging'
+        ]
+    }
+];
+
+(() => {
+    const root = document.querySelector('.cm-capabilities');
+    if (!root) return;
+    const tabsRoot = root.querySelector('.cm-capabilities__tabs');
+    const panelsRoot = root.querySelector('.cm-capabilities__panels');
+    if (!tabsRoot || !panelsRoot) return;
+
+    const arrowSvg = '<svg class="cm-capabilities__tab-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>';
+
+    const escape = (s) => String(s).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+    CAPABILITIES.forEach((cap, i) => {
+        // Tab button
+        const tab = document.createElement('button');
+        tab.type = 'button';
+        tab.className = 'cm-capabilities__tab' + (i === 0 ? ' is-active' : '');
+        tab.setAttribute('role', 'tab');
+        tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+        tab.id = `cm-cap-tab-${cap.id}`;
+        tab.setAttribute('aria-controls', `cm-cap-panel-${cap.id}`);
+        tab.dataset.target = cap.id;
+        if (i !== 0) tab.tabIndex = -1;
+        tab.innerHTML = `<span class="cm-capabilities__tab-label">${escape(cap.label)}</span>${arrowSvg}`;
+        tabsRoot.appendChild(tab);
+
+        // Panel
+        const panel = document.createElement('div');
+        panel.className = 'cm-capabilities__panel';
+        panel.id = `cm-cap-panel-${cap.id}`;
+        panel.dataset.id = cap.id;
+        panel.setAttribute('role', 'tabpanel');
+        panel.setAttribute('aria-labelledby', `cm-cap-tab-${cap.id}`);
+        if (i !== 0) panel.hidden = true;
+        const itemsHtml = cap.items.map(it => `<li>${escape(it)}</li>`).join('');
+        panel.innerHTML = `
+            <h3 class="cm-capabilities__panel-title">${escape(cap.label)}</h3>
+            <p class="cm-capabilities__focus">${escape(cap.focus)}</p>
+            <p class="cm-capabilities__copy">${escape(cap.copy)}</p>
+            <p class="cm-capabilities__proof">${escape(cap.proof)}</p>
+            <div class="cm-capabilities__caps">
+                <h4>Capabilities</h4>
+                <ul>${itemsHtml}</ul>
+            </div>
+        `;
+        panelsRoot.appendChild(panel);
+    });
+
+    const tabs = Array.from(tabsRoot.querySelectorAll('.cm-capabilities__tab'));
+    const panels = Array.from(panelsRoot.querySelectorAll('.cm-capabilities__panel'));
+
+    const activate = (id) => {
+        tabs.forEach(t => {
+            const active = t.dataset.target === id;
+            t.classList.toggle('is-active', active);
+            t.setAttribute('aria-selected', String(active));
+            t.tabIndex = active ? 0 : -1;
+        });
+        panels.forEach(p => {
+            if (p.dataset.id === id) p.removeAttribute('hidden');
+            else p.setAttribute('hidden', '');
+        });
+    };
+
+    tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.target)));
+
+    tabsRoot.addEventListener('keydown', (e) => {
+        if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
+        const idx = tabs.indexOf(document.activeElement);
+        if (idx === -1) return;
+        e.preventDefault();
+        const next = (idx + (e.key === 'ArrowDown' ? 1 : -1) + tabs.length) % tabs.length;
+        tabs[next].focus();
+        activate(tabs[next].dataset.target);
     });
 })();
 
