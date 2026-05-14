@@ -4667,7 +4667,43 @@
     </div>
 </div>
 
-<!-- APPROACH — four principles -->
+<!-- APPROACH — variant A: sandbox refined copy / variant B: components shorter copy -->
+<div class="variant" data-variant="A" data-variant-name="approach">
+    <div class="variant__toggle" role="tablist" aria-label="Approach copy">
+        <button type="button" class="variant__btn is-active" data-variant-target="A" aria-pressed="true">A</button>
+        <button type="button" class="variant__btn" data-variant-target="B" aria-pressed="false">B</button>
+    </div>
+    <div class="variant__pane" data-variant-pane="A">
+<section class="ed-approach" aria-label="How we work">
+    <div class="ed-approach__head">
+        <p class="ed-eyebrow">How we work</p>
+        <h2 class="ed-h2">Why companies choose us.</h2>
+    </div>
+    <div class="ed-approach__grid">
+        <div class="ed-approach__item">
+            <span>01</span>
+            <h3>Sharp from the start</h3>
+            <p>We get aligned quickly and move into the work without a long ramp-up. From the first conversation, we focus on what matters and what to do next. Clear direction early keeps the work moving and avoids wasted cycles.</p>
+        </div>
+        <div class="ed-approach__item">
+            <span>02</span>
+            <h3>Faster by design</h3>
+            <p>AI is built into how the work gets done across research, design, and delivery. We explore more options, make decisions faster, and move into execution quickly. Timelines that typically take weeks compress into days without losing quality.</p>
+        </div>
+        <div class="ed-approach__item">
+            <span>03</span>
+            <h3>Impact over output</h3>
+            <p>We focus the work on outcomes that actually move the business forward. That can mean stronger conversion, clearer positioning, or better product adoption. Every decision is tied back to performance, not just shipping more work.</p>
+        </div>
+        <div class="ed-approach__item">
+            <span>04</span>
+            <h3>No layers. No drag.</h3>
+            <p>You work directly with the people doing the work, from start to finish. No account managers, no handoffs, and no translation between teams. What gets decided is what gets built, without dilution along the way.</p>
+        </div>
+    </div>
+</section>
+    </div>
+    <div class="variant__pane" data-variant-pane="B" hidden>
 <section class="ed-approach" aria-label="How we work">
     <div class="ed-approach__head">
         <p class="ed-eyebrow">How we work</p>
@@ -4696,6 +4732,8 @@
         </div>
     </div>
 </section>
+    </div>
+</div>
 
 <!-- STATS -->
 <section class="ed-stats" aria-label="Numbers from PromptUX engagements">
