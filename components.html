@@ -3450,40 +3450,88 @@
         margin: var(--ed-space-3) auto 0;
         max-width: 56ch;
     }
-    /* Grid variant — scannable 3-up cards. No backgrounds, left-aligned. */
+    /* Grid variant — centered editorial cells inside a hairline grid framework.
+       Numbered (01–06), thin-line icon, title, description, operational keywords. */
     :root[data-theme="editorial"] .cm-cap-grid {
         max-width: var(--ed-max);
         margin: 0 auto;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: clamp(40px, 4.5vw, 72px) clamp(40px, 5vw, 80px);
+        gap: 0;
+        /* Hairline frame on the outside; cells add right + bottom borders. */
+        border-top: 1px solid var(--rule);
+        border-left: 1px solid var(--rule);
     }
     :root[data-theme="editorial"] .cm-cap-grid__item {
-        max-width: 36ch;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: clamp(40px, 4.5vw, 64px) clamp(20px, 2.5vw, 36px);
+        border-right: 1px solid var(--rule);
+        border-bottom: 1px solid var(--rule);
+        position: relative;
+        transition: background-color 280ms ease;
     }
+    :root[data-theme="editorial"] .cm-cap-grid__item:hover {
+        background: var(--paper);
+    }
+    :root[data-theme="editorial"] .cm-cap-grid__num {
+        font-family: var(--body);
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        color: var(--mid);
+        margin: 0 0 28px;
+    }
+    :root[data-theme="editorial"] .cm-cap-grid__icon {
+        width: 44px;
+        height: 44px;
+        color: var(--ink);
+        margin-bottom: 28px;
+        opacity: 0.92;
+        transition: transform 320ms cubic-bezier(0.25,0.46,0.45,0.94),
+                    color 280ms ease,
+                    opacity 280ms ease;
+    }
+    :root[data-theme="editorial"] .cm-cap-grid__item:hover .cm-cap-grid__icon {
+        transform: translateY(-2px);
+        color: var(--lime);
+        opacity: 1;
+    }
+    :root[data-theme="editorial"] .cm-cap-grid__icon svg { display: block; width: 100%; height: 100%; }
     :root[data-theme="editorial"] .cm-cap-grid__title {
         font-family: var(--display);
         font-weight: 600;
-        font-size: clamp(20px, 1.6vw, 24px);
-        line-height: 1.2;
-        letter-spacing: -0.012em;
+        font-size: clamp(22px, 1.8vw, 26px);
+        line-height: 1.15;
+        letter-spacing: -0.016em;
         color: var(--ink);
-        margin: 0 0 var(--ed-space-3);
+        margin: 0 0 14px;
     }
-    :root[data-theme="editorial"] .cm-cap-grid__head {
+    :root[data-theme="editorial"] .cm-cap-grid__desc {
         font-family: var(--body);
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 1.45;
-        color: var(--ink);
-        margin: 0 0 8px;
-    }
-    :root[data-theme="editorial"] .cm-cap-grid__sub {
-        font-family: var(--body);
-        font-size: 14px;
-        line-height: 1.6;
+        font-size: 15px;
+        line-height: 1.5;
         color: var(--mid);
-        margin: 0;
+        margin: 0 0 22px;
+        max-width: 32ch;
+    }
+    :root[data-theme="editorial"] .cm-cap-grid__keywords {
+        font-family: var(--body);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink);
+        margin: auto 0 0;
+        line-height: 1.6;
+        max-width: 30ch;
+    }
+    :root[data-theme="editorial"] .cm-cap-grid__keywords .sep {
+        color: var(--mid);
+        opacity: 0.5;
+        margin: 0 6px;
     }
     @media (max-width: 880px) {
         :root[data-theme="editorial"] .cm-cap-grid {
@@ -3493,7 +3541,6 @@
     @media (max-width: 560px) {
         :root[data-theme="editorial"] .cm-cap-grid {
             grid-template-columns: 1fr;
-            gap: 40px;
         }
     }
 
@@ -5612,8 +5659,9 @@ const CAPABILITIES = [
         id: 'strategy',
         grid: {
             title: 'Strategic design',
-            head: 'Define what matters and what to do next.',
-            sub: 'Direction, positioning, and experience strategy tied to outcomes.'
+            desc: 'Direction, prioritization, and experience strategy tied to business outcomes.',
+            keywords: ['Research synthesis', 'Product framing', 'Opportunity mapping'],
+            icon: '<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true"><circle cx="22" cy="22" r="14"/><circle cx="22" cy="22" r="6"/><path d="M22 2v8M22 34v8M2 22h8M34 22h8"/></svg>'
         },
         explore: {
             title: 'Strategic design',
@@ -5625,8 +5673,9 @@ const CAPABILITIES = [
         id: 'product',
         grid: {
             title: 'Product design',
-            head: 'Design products that hold up in the real world.',
-            sub: 'Clear, usable, and built to perform.'
+            desc: 'Products that hold up in the real world — clear, usable, and built to perform.',
+            keywords: ['UX and UI', 'Core flows', 'Prototyping'],
+            icon: '<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="22" height="22" rx="1.5"/><rect x="16" y="16" width="22" height="22" rx="1.5"/></svg>'
         },
         explore: {
             title: 'Product design',
@@ -5638,8 +5687,9 @@ const CAPABILITIES = [
         id: 'growth',
         grid: {
             title: 'Growth design',
-            head: 'Design how products get found and chosen.',
-            sub: 'Funnels, landing pages, and conversion-focused experiences.'
+            desc: 'How products get found and chosen — funnels, landing pages, and conversion paths.',
+            keywords: ['Landing pages', 'Funnels', 'Conversion paths'],
+            icon: '<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 36L14 28L22 30L32 16L40 8"/><circle cx="4" cy="36" r="1.5" fill="currentColor" stroke="none"/><circle cx="14" cy="28" r="1.5" fill="currentColor" stroke="none"/><circle cx="22" cy="30" r="1.5" fill="currentColor" stroke="none"/><circle cx="32" cy="16" r="1.5" fill="currentColor" stroke="none"/><circle cx="40" cy="8" r="2" fill="currentColor" stroke="none"/></svg>'
         },
         explore: {
             title: 'Growth design',
@@ -5651,8 +5701,9 @@ const CAPABILITIES = [
         id: 'optimization',
         grid: {
             title: 'Optimization',
-            head: "Improve what's already live.",
-            sub: 'Focused iteration that drives performance.'
+            desc: 'Focused iteration on what is already live, with measurable performance gains.',
+            keywords: ['Testing', 'Iteration', 'Performance tuning'],
+            icon: '<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.0" aria-hidden="true"><circle cx="22" cy="22" r="18"/><circle cx="22" cy="22" r="12"/><circle cx="22" cy="22" r="6"/><circle cx="22" cy="22" r="1.6" fill="currentColor" stroke="none"/></svg>'
         },
         explore: {
             title: 'Optimization',
@@ -5664,8 +5715,9 @@ const CAPABILITIES = [
         id: 'systems',
         grid: {
             title: 'Systems',
-            head: 'Build structure for scale.',
-            sub: 'Reusable patterns that keep teams fast and consistent.'
+            desc: 'Reusable patterns and structure that keep teams fast and consistent at scale.',
+            keywords: ['Design systems', 'Reusable patterns', 'Cross-product'],
+            icon: '<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="0.8" aria-hidden="true"><path d="M8 8h28M8 22h28M8 36h28M8 8v28M22 8v28M36 8v28"/><g fill="currentColor" stroke="none"><circle cx="8" cy="8" r="1.5"/><circle cx="22" cy="8" r="1.5"/><circle cx="36" cy="8" r="1.5"/><circle cx="8" cy="22" r="1.5"/><circle cx="22" cy="22" r="1.5"/><circle cx="36" cy="22" r="1.5"/><circle cx="8" cy="36" r="1.5"/><circle cx="22" cy="36" r="1.5"/><circle cx="36" cy="36" r="1.5"/></g></svg>'
         },
         explore: {
             title: 'Systems',
@@ -5677,8 +5729,9 @@ const CAPABILITIES = [
         id: 'ai',
         grid: {
             title: 'AI in the work',
-            head: 'Move faster and make better calls.',
-            sub: 'AI built into how we explore, design, and deliver.'
+            desc: 'AI built into how we explore, design, and decide — never bolted on top.',
+            keywords: ['Exploration', 'Workflow speed', 'Decision support'],
+            icon: '<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true"><path d="M6 22h11M27 22h11"/><path d="M14 14l4-4M14 30l4 4M30 10l-4 4M30 34l-4-4"/><circle cx="22" cy="22" r="4" fill="currentColor" stroke="none"/><circle cx="22" cy="22" r="7" stroke-width="0.8" opacity="0.4"/></svg>'
         },
         explore: {
             title: 'AI',
@@ -5754,14 +5807,21 @@ const CAPABILITIES_CLASSIC = [
     const escape = (s) => String(s).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
     // GRID — render from new capabilities data
-    CAPABILITIES.forEach((cap) => {
+    CAPABILITIES.forEach((cap, i) => {
         const cell = document.createElement('div');
         cell.className = 'cm-cap-grid__item';
         cell.setAttribute('role', 'listitem');
+        const num = String(i + 1).padStart(2, '0');
+        const keywordsHtml = (cap.grid.keywords || []).map((k, idx) => {
+            const sep = idx === 0 ? '' : '<span class="sep">·</span>';
+            return `${sep}<span>${escape(k)}</span>`;
+        }).join('');
         cell.innerHTML = `
+            <p class="cm-cap-grid__num">${num}</p>
+            <div class="cm-cap-grid__icon">${cap.grid.icon || ''}</div>
             <h3 class="cm-cap-grid__title">${escape(cap.grid.title)}</h3>
-            <p class="cm-cap-grid__head">${escape(cap.grid.head)}</p>
-            <p class="cm-cap-grid__sub">${escape(cap.grid.sub)}</p>
+            <p class="cm-cap-grid__desc">${escape(cap.grid.desc)}</p>
+            <p class="cm-cap-grid__keywords">${keywordsHtml}</p>
         `;
         gridRoot.appendChild(cell);
     });
