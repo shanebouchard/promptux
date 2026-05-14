@@ -3572,6 +3572,15 @@
         margin: 0 0 var(--ed-space-4);
         max-width: 40ch;
     }
+    :root[data-theme="editorial"] .cm-capabilities__proof {
+        font-family: var(--body);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--mid);
+        margin: 0 0 var(--ed-space-3);
+    }
     :root[data-theme="editorial"] .cm-capabilities__caps {
         list-style: none;
         margin: 0;
@@ -4224,6 +4233,7 @@
                 </svg>
             </button>
             <div class="nav-more__menu" role="menu">
+                <a href="/ai.html" role="menuitem">AI Excellence</a>
                 <a href="/components.html" role="menuitem">Components Library</a>
                 <a href="/competitive.html" role="menuitem">Competitive</a>
             </div>
@@ -4785,13 +4795,20 @@
         <div class="variant__toggle" role="tablist" aria-label="Capabilities layout">
             <button type="button" class="variant__btn is-active" data-variant-target="A" aria-pressed="true">Grid</button>
             <button type="button" class="variant__btn" data-variant-target="B" aria-pressed="false">Explore</button>
+            <button type="button" class="variant__btn" data-variant-target="C" aria-pressed="false">Classic</button>
         </div>
         <div class="variant__pane" data-variant-pane="A">
             <div class="cm-cap-grid" role="list"></div>
         </div>
         <div class="variant__pane" data-variant-pane="B" hidden>
-            <div class="cm-capabilities__layout">
-                <div class="cm-capabilities__tabs" role="tablist" aria-orientation="vertical" aria-label="Capabilities"></div>
+            <div class="cm-capabilities__layout" data-cap-variant="new">
+                <div class="cm-capabilities__tabs" role="tablist" aria-orientation="vertical" aria-label="Capabilities — new"></div>
+                <div class="cm-capabilities__panels"></div>
+            </div>
+        </div>
+        <div class="variant__pane" data-variant-pane="C" hidden>
+            <div class="cm-capabilities__layout" data-cap-variant="classic">
+                <div class="cm-capabilities__tabs" role="tablist" aria-orientation="vertical" aria-label="Capabilities — classic"></div>
                 <div class="cm-capabilities__panels"></div>
             </div>
         </div>
@@ -5539,19 +5556,73 @@ const CAPABILITIES = [
     }
 ];
 
+// Classic data — the original four-capability set with proof line.
+const CAPABILITIES_CLASSIC = [
+    {
+        id: 'clear',
+        label: 'Make it clear',
+        copy: 'We turn ambiguity into clear decisions, sharper narratives, and focused paths forward.',
+        proof: 'Direction beats decoration.',
+        items: [
+            'Product and experience strategy',
+            'Positioning and messaging',
+            'Customer journey mapping',
+            'Opportunity framing',
+            'Executive narratives'
+        ]
+    },
+    {
+        id: 'useful',
+        label: 'Make it useful',
+        copy: 'We design experiences that help people understand, decide, act, and move forward.',
+        proof: 'Useful means used.',
+        items: [
+            'UX and product design',
+            'Service design',
+            'Workflow design',
+            'Research-informed concepts',
+            'Usability improvement'
+        ]
+    },
+    {
+        id: 'work',
+        label: 'Make it work',
+        copy: 'We build the systems, workflows, and assets needed to move from idea to execution faster.',
+        proof: 'Ship the decision, not the deck.',
+        items: [
+            'Design systems and playbooks',
+            'AI-enabled workflows',
+            'Content and asset production',
+            'Rapid prototyping',
+            'Launch support'
+        ]
+    },
+    {
+        id: 'grow',
+        label: 'Make it grow',
+        copy: 'We improve the moments that influence attention, trust, conversion, adoption, and repeat use.',
+        proof: 'Outcomes, not output.',
+        items: [
+            'Growth design',
+            'Funnel optimization',
+            'Landing pages',
+            'Experiment concepts',
+            'Conversion-focused messaging'
+        ]
+    }
+];
+
 (() => {
     const root = document.querySelector('.cm-capabilities');
     if (!root) return;
     const gridRoot = root.querySelector('.cm-cap-grid');
-    const tabsRoot = root.querySelector('.cm-capabilities__tabs');
-    const panelsRoot = root.querySelector('.cm-capabilities__panels');
-    if (!gridRoot || !tabsRoot || !panelsRoot) return;
+    if (!gridRoot) return;
 
     const arrowSvg = '<svg class="cm-capabilities__tab-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>';
     const escape = (s) => String(s).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-    CAPABILITIES.forEach((cap, i) => {
-        // Grid cell
+    // GRID — render from new capabilities data
+    CAPABILITIES.forEach((cap) => {
         const cell = document.createElement('div');
         cell.className = 'cm-cap-grid__item';
         cell.setAttribute('role', 'listitem');
@@ -5561,63 +5632,88 @@ const CAPABILITIES = [
             <p class="cm-cap-grid__sub">${escape(cap.grid.sub)}</p>
         `;
         gridRoot.appendChild(cell);
-
-        // Explore tab
-        const tab = document.createElement('button');
-        tab.type = 'button';
-        tab.className = 'cm-capabilities__tab' + (i === 0 ? ' is-active' : '');
-        tab.setAttribute('role', 'tab');
-        tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
-        tab.id = `cm-cap-tab-${cap.id}`;
-        tab.setAttribute('aria-controls', `cm-cap-panel-${cap.id}`);
-        tab.dataset.target = cap.id;
-        if (i !== 0) tab.tabIndex = -1;
-        tab.innerHTML = `<span class="cm-capabilities__tab-label">${escape(cap.explore.title)}</span>${arrowSvg}`;
-        tabsRoot.appendChild(tab);
-
-        // Explore panel
-        const panel = document.createElement('div');
-        panel.className = 'cm-capabilities__panel';
-        panel.id = `cm-cap-panel-${cap.id}`;
-        panel.dataset.id = cap.id;
-        panel.setAttribute('role', 'tabpanel');
-        panel.setAttribute('aria-labelledby', `cm-cap-tab-${cap.id}`);
-        if (i !== 0) panel.hidden = true;
-        const itemsHtml = cap.explore.items.map(it => `<li>${escape(it)}</li>`).join('');
-        panel.innerHTML = `
-            <h3 class="cm-capabilities__panel-title">${escape(cap.explore.title)}</h3>
-            <p class="cm-capabilities__copy">${escape(cap.explore.intro)}</p>
-            <ul class="cm-capabilities__caps" aria-label="What's included">${itemsHtml}</ul>
-        `;
-        panelsRoot.appendChild(panel);
     });
 
-    const tabs = Array.from(tabsRoot.querySelectorAll('.cm-capabilities__tab'));
-    const panels = Array.from(panelsRoot.querySelectorAll('.cm-capabilities__panel'));
+    // EXPLORE + CLASSIC — render each tab/panel layout from its own data
+    root.querySelectorAll('.cm-capabilities__layout').forEach(layout => {
+        const variant = layout.dataset.capVariant;
+        const tabsRoot = layout.querySelector('.cm-capabilities__tabs');
+        const panelsRoot = layout.querySelector('.cm-capabilities__panels');
+        if (!tabsRoot || !panelsRoot) return;
 
-    const activate = (id) => {
-        tabs.forEach(t => {
-            const active = t.dataset.target === id;
-            t.classList.toggle('is-active', active);
-            t.setAttribute('aria-selected', String(active));
-            t.tabIndex = active ? 0 : -1;
+        const data = variant === 'classic' ? CAPABILITIES_CLASSIC : CAPABILITIES;
+        const idPrefix = variant === 'classic' ? 'cm-cap-c' : 'cm-cap-n';
+
+        const tabLabelFor = (cap) => variant === 'classic' ? cap.label : cap.explore.title;
+        const panelHtmlFor = (cap) => {
+            if (variant === 'classic') {
+                const itemsHtml = cap.items.map(it => `<li>${escape(it)}</li>`).join('');
+                return `
+                    <h3 class="cm-capabilities__panel-title">${escape(cap.label)}</h3>
+                    <p class="cm-capabilities__copy">${escape(cap.copy)}</p>
+                    <p class="cm-capabilities__proof">${escape(cap.proof)}</p>
+                    <ul class="cm-capabilities__caps" aria-label="What's included">${itemsHtml}</ul>
+                `;
+            }
+            const itemsHtml = cap.explore.items.map(it => `<li>${escape(it)}</li>`).join('');
+            return `
+                <h3 class="cm-capabilities__panel-title">${escape(cap.explore.title)}</h3>
+                <p class="cm-capabilities__copy">${escape(cap.explore.intro)}</p>
+                <ul class="cm-capabilities__caps" aria-label="What's included">${itemsHtml}</ul>
+            `;
+        };
+
+        data.forEach((cap, i) => {
+            const tab = document.createElement('button');
+            tab.type = 'button';
+            tab.className = 'cm-capabilities__tab' + (i === 0 ? ' is-active' : '');
+            tab.setAttribute('role', 'tab');
+            tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+            tab.id = `${idPrefix}-tab-${cap.id}`;
+            tab.setAttribute('aria-controls', `${idPrefix}-panel-${cap.id}`);
+            tab.dataset.target = cap.id;
+            if (i !== 0) tab.tabIndex = -1;
+            tab.innerHTML = `<span class="cm-capabilities__tab-label">${escape(tabLabelFor(cap))}</span>${arrowSvg}`;
+            tabsRoot.appendChild(tab);
+
+            const panel = document.createElement('div');
+            panel.className = 'cm-capabilities__panel';
+            panel.id = `${idPrefix}-panel-${cap.id}`;
+            panel.dataset.id = cap.id;
+            panel.setAttribute('role', 'tabpanel');
+            panel.setAttribute('aria-labelledby', `${idPrefix}-tab-${cap.id}`);
+            if (i !== 0) panel.hidden = true;
+            panel.innerHTML = panelHtmlFor(cap);
+            panelsRoot.appendChild(panel);
         });
-        panels.forEach(p => {
-            if (p.dataset.id === id) p.removeAttribute('hidden');
-            else p.setAttribute('hidden', '');
+
+        const tabs = Array.from(tabsRoot.querySelectorAll('.cm-capabilities__tab'));
+        const panels = Array.from(panelsRoot.querySelectorAll('.cm-capabilities__panel'));
+
+        const activate = (id) => {
+            tabs.forEach(t => {
+                const active = t.dataset.target === id;
+                t.classList.toggle('is-active', active);
+                t.setAttribute('aria-selected', String(active));
+                t.tabIndex = active ? 0 : -1;
+            });
+            panels.forEach(p => {
+                if (p.dataset.id === id) p.removeAttribute('hidden');
+                else p.setAttribute('hidden', '');
+            });
+        };
+
+        tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.target)));
+
+        tabsRoot.addEventListener('keydown', (e) => {
+            if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
+            const idx = tabs.indexOf(document.activeElement);
+            if (idx === -1) return;
+            e.preventDefault();
+            const next = (idx + (e.key === 'ArrowDown' ? 1 : -1) + tabs.length) % tabs.length;
+            tabs[next].focus();
+            activate(tabs[next].dataset.target);
         });
-    };
-
-    tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.target)));
-
-    tabsRoot.addEventListener('keydown', (e) => {
-        if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
-        const idx = tabs.indexOf(document.activeElement);
-        if (idx === -1) return;
-        e.preventDefault();
-        const next = (idx + (e.key === 'ArrowDown' ? 1 : -1) + tabs.length) % tabs.length;
-        tabs[next].focus();
-        activate(tabs[next].dataset.target);
     });
 })();
 
