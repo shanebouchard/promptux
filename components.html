@@ -3534,24 +3534,32 @@
         color: var(--mid);
         margin: 0 0 var(--ed-space-3);
     }
-    :root[data-theme="editorial"] .cm-capabilities__tags {
+    :root[data-theme="editorial"] .cm-capabilities__caps {
         list-style: none;
         margin: 0;
         padding: 0;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
+        border-top: 1px solid var(--rule);
     }
-    :root[data-theme="editorial"] .cm-capabilities__tag {
+    :root[data-theme="editorial"] .cm-capabilities__caps li {
         font-family: var(--body);
-        font-size: 10px;
-        font-weight: 500;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--mid);
-        background: transparent;
-        border: 1px solid var(--rule);
-        padding: 5px 10px;
+        font-size: 15px;
+        line-height: 1.55;
+        color: var(--ink);
+        padding: 12px 0 12px 26px;
+        border-bottom: 1px solid var(--rule);
+        position: relative;
+    }
+    :root[data-theme="editorial"] .cm-capabilities__caps li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 18px;
+        width: 14px;
+        height: 8px;
+        border-left: 1.5px solid var(--ink);
+        border-bottom: 1.5px solid var(--ink);
+        transform: rotate(-45deg);
+        transform-origin: 0 100%;
     }
     /* CTA */
     :root[data-theme="editorial"] .cm-capabilities__cta-wrap {
@@ -5490,12 +5498,12 @@ const CAPABILITIES = [
         panel.setAttribute('role', 'tabpanel');
         panel.setAttribute('aria-labelledby', `cm-cap-tab-${cap.id}`);
         if (i !== 0) panel.hidden = true;
-        const tagsHtml = cap.items.map(it => `<li class="cm-capabilities__tag">${escape(it)}</li>`).join('');
+        const itemsHtml = cap.items.map(it => `<li>${escape(it)}</li>`).join('');
         panel.innerHTML = `
             <h3 class="cm-capabilities__panel-title">${escape(cap.label)}</h3>
             <p class="cm-capabilities__copy">${escape(cap.copy)}</p>
             <p class="cm-capabilities__proof">${escape(cap.proof)}</p>
-            <ul class="cm-capabilities__tags" aria-label="What's included">${tagsHtml}</ul>
+            <ul class="cm-capabilities__caps" aria-label="What's included">${itemsHtml}</ul>
         `;
         panelsRoot.appendChild(panel);
     });
