@@ -4251,10 +4251,10 @@
 <!-- PILLARS — variant A: accordion (components) / variant B: pill tabs (sandbox) -->
 <div class="variant" data-variant="A" data-variant-name="pillars">
     <div class="variant__toggle" role="tablist" aria-label="Pillars layout">
-        <button type="button" class="variant__btn is-active" data-variant-target="A" aria-pressed="true">Accordion</button>
-        <button type="button" class="variant__btn" data-variant-target="B" aria-pressed="false">Pill tabs</button>
+        <button type="button" class="variant__btn is-active" data-variant-target="A" aria-pressed="true">Pill tabs</button>
+        <button type="button" class="variant__btn" data-variant-target="B" aria-pressed="false">Accordion</button>
     </div>
-    <div class="variant__pane" data-variant-pane="A">
+    <div class="variant__pane" data-variant-pane="B" hidden>
 <section class="ed-pillars ed-block" aria-label="How we work">
     <div class="ed-block__inner">
         <div class="ed-pillars__head">
@@ -4371,7 +4371,7 @@
     </div>
 </section>
     </div>
-    <div class="variant__pane" data-variant-pane="B" hidden>
+    <div class="variant__pane" data-variant-pane="A">
 <section class="sb-pillars" aria-label="How we work">
     <div class="sb-pillars__head">
         <p class="ed-eyebrow">How we work</p>
@@ -4485,10 +4485,10 @@
 <!-- CASE STUDIES — variant A: card row (components) / variant B: featured + rail (sandbox) -->
 <div class="variant" data-variant="A" data-variant-name="cases">
     <div class="variant__toggle" role="tablist" aria-label="Case studies layout">
-        <button type="button" class="variant__btn is-active" data-variant-target="A" aria-pressed="true">Cards</button>
-        <button type="button" class="variant__btn" data-variant-target="B" aria-pressed="false">Featured + rail</button>
+        <button type="button" class="variant__btn is-active" data-variant-target="A" aria-pressed="true">Featured + rail</button>
+        <button type="button" class="variant__btn" data-variant-target="B" aria-pressed="false">Cards</button>
     </div>
-    <div class="variant__pane" data-variant-pane="A">
+    <div class="variant__pane" data-variant-pane="B" hidden>
 <section class="cm-cards" aria-label="Featured work">
     <div class="cm-cards__head">
         <p class="ed-eyebrow">Selected work</p>
@@ -4552,7 +4552,7 @@
     </div>
 </section>
     </div>
-    <div class="variant__pane" data-variant-pane="B" hidden>
+    <div class="variant__pane" data-variant-pane="A">
 <section class="sb-cases" aria-label="Featured work" aria-roledescription="carousel">
     <div class="sb-cases__stage">
         <div class="sb-cases__featured" aria-live="polite">
