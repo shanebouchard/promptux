@@ -3461,140 +3461,64 @@
         margin: 0 auto;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 0;
-        background: var(--paper);
-        border: 1px solid var(--rule);
-        border-radius: 18px;
-        overflow: hidden;
-        box-shadow:
-            0 1px 0 rgba(12, 12, 10, 0.04),
-            0 24px 48px -32px rgba(12, 12, 10, 0.16);
+        gap: clamp(40px, 5vw, 72px) clamp(20px, 2.5vw, 40px);
     }
     :root[data-theme="editorial"] .cm-cap-grid__item {
-        position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding: clamp(48px, 5vw, 72px) clamp(24px, 3vw, 40px);
-        background: var(--paper);
-        transition: background-color 280ms ease, box-shadow 320ms ease;
-    }
-    /* Internal hairlines only — right border for cols 1+2, bottom border for row 1. */
-    :root[data-theme="editorial"] .cm-cap-grid__item:nth-child(3n+1),
-    :root[data-theme="editorial"] .cm-cap-grid__item:nth-child(3n+2) {
-        border-right: 1px solid var(--rule);
-    }
-    :root[data-theme="editorial"] .cm-cap-grid__item:nth-child(-n+3) {
-        border-bottom: 1px solid var(--rule);
-    }
-    /* Hover: cell brightens, icon shifts up + accent color, soft elevation. */
-    :root[data-theme="editorial"] .cm-cap-grid__item:hover {
-        background: #FFFFFF;
-        box-shadow: inset 0 0 0 1px rgba(0, 113, 227, 0.06);
-        z-index: 1;
-    }
-    :root[data-theme="editorial"] .cm-cap-grid__num {
-        font-family: var(--body);
-        font-size: 10px;
-        font-weight: 600;
-        letter-spacing: 0.18em;
-        color: var(--mid);
-        margin: 0 0 32px;
+        padding: clamp(8px, 1vw, 16px);
     }
     :root[data-theme="editorial"] .cm-cap-grid__icon {
-        width: 60px;
-        height: 60px;
-        color: var(--ink);
-        margin-bottom: 32px;
-        opacity: 0.92;
-        transition: transform 360ms cubic-bezier(0.25,0.46,0.45,0.94),
-                    color 280ms ease,
-                    opacity 280ms ease;
-    }
-    :root[data-theme="editorial"] .cm-cap-grid__item:hover .cm-cap-grid__icon {
-        transform: translateY(-3px);
-        color: var(--lime);
-        opacity: 1;
+        width: 52px;
+        height: 52px;
+        color: rgba(12, 12, 10, 0.22);
+        margin-bottom: 24px;
     }
     :root[data-theme="editorial"] .cm-cap-grid__icon svg { display: block; width: 100%; height: 100%; }
     :root[data-theme="editorial"] .cm-cap-grid__title {
         font-family: var(--display);
         font-weight: 700;
-        font-size: clamp(24px, 2vw, 30px);
-        line-height: 1.12;
-        letter-spacing: -0.02em;
+        font-size: clamp(22px, 1.8vw, 28px);
+        line-height: 1.15;
+        letter-spacing: -0.015em;
         color: var(--ink);
-        margin: 0 0 14px;
-        position: relative;
-        padding-bottom: 18px;
-    }
-    /* Title underline — small ink bar that animates in on hover. */
-    :root[data-theme="editorial"] .cm-cap-grid__title::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        bottom: 0;
-        width: 24px;
-        height: 1px;
-        background: var(--ink);
-        transform: translateX(-50%) scaleX(0.4);
-        opacity: 0.4;
-        transition: transform 320ms cubic-bezier(0.25,0.46,0.45,0.94),
-                    opacity 280ms ease,
-                    background-color 280ms ease;
-    }
-    :root[data-theme="editorial"] .cm-cap-grid__item:hover .cm-cap-grid__title::after {
-        transform: translateX(-50%) scaleX(1);
-        opacity: 1;
-        background: var(--lime);
+        margin: 0 0 10px;
     }
     :root[data-theme="editorial"] .cm-cap-grid__desc {
         font-family: var(--body);
         font-size: 15px;
         line-height: 1.55;
         color: var(--mid);
-        margin: 8px 0 26px;
+        margin: 0 0 20px;
         max-width: 32ch;
     }
-    :root[data-theme="editorial"] .cm-cap-grid__keywords {
-        font-family: var(--body);
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--ink);
+    :root[data-theme="editorial"] .cm-cap-grid__tag-list {
+        list-style: none;
+        padding: 0;
         margin: auto 0 0;
-        line-height: 1.7;
-        max-width: 30ch;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        justify-content: center;
     }
-    :root[data-theme="editorial"] .cm-cap-grid__keywords .sep {
+    :root[data-theme="editorial"] .cm-cap-grid__tag {
+        font-family: var(--body);
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
         color: var(--mid);
-        opacity: 0.5;
-        margin: 0 8px;
-    }
-    /* Featured cell — AI in the work gets a quiet lime accent stripe at top. */
-    :root[data-theme="editorial"] .cm-cap-grid__item--featured::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 56px;
-        height: 2px;
-        background: var(--lime);
-        border-radius: 0 0 2px 2px;
+        background: transparent;
+        border: 1px solid var(--rule);
+        padding: 5px 10px;
     }
     @media (max-width: 880px) {
-        :root[data-theme="editorial"] .cm-cap-grid { grid-template-columns: repeat(2, 1fr); border-radius: 14px; }
-        :root[data-theme="editorial"] .cm-cap-grid__item { border-right: 0 !important; border-bottom: 0 !important; }
-        :root[data-theme="editorial"] .cm-cap-grid__item:nth-child(2n+1) { border-right: 1px solid var(--rule) !important; }
-        :root[data-theme="editorial"] .cm-cap-grid__item:nth-child(-n+4) { border-bottom: 1px solid var(--rule) !important; }
+        :root[data-theme="editorial"] .cm-cap-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 560px) {
-        :root[data-theme="editorial"] .cm-cap-grid { grid-template-columns: 1fr; border-radius: 12px; }
-        :root[data-theme="editorial"] .cm-cap-grid__item { border-right: 0 !important; }
-        :root[data-theme="editorial"] .cm-cap-grid__item:not(:last-child) { border-bottom: 1px solid var(--rule) !important; }
+        :root[data-theme="editorial"] .cm-cap-grid { grid-template-columns: 1fr; }
     }
     @media (prefers-reduced-motion: reduce) {
         :root[data-theme="editorial"] .cm-cap-grid__item,
@@ -5790,7 +5714,7 @@ const CAPABILITIES = [
             title: 'AI in the work',
             desc: 'AI built into how we explore, design, and decide — never bolted on top.',
             keywords: ['Exploration', 'Workflow speed', 'Decision support'],
-            icon: '<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true"><path d="M6 22h11M27 22h11"/><path d="M14 14l4-4M14 30l4 4M30 10l-4 4M30 34l-4-4"/><circle cx="22" cy="22" r="4" fill="currentColor" stroke="none"/><circle cx="22" cy="22" r="7" stroke-width="0.8" opacity="0.4"/></svg>'
+            icon: '<svg viewBox="0 0 44 44" fill="currentColor" aria-hidden="true"><path d="M22 4 L24 20 L40 22 L24 24 L22 40 L20 24 L4 22 L20 20 Z"/><path d="M34 6 L34.8 9.2 L38 10 L34.8 10.8 L34 14 L33.2 10.8 L30 10 L33.2 9.2 Z" opacity="0.6"/></svg>'
         },
         explore: {
             title: 'AI',
@@ -5866,21 +5790,16 @@ const CAPABILITIES_CLASSIC = [
     const escape = (s) => String(s).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
     // GRID — render from new capabilities data
-    CAPABILITIES.forEach((cap, i) => {
+    CAPABILITIES.forEach((cap) => {
         const cell = document.createElement('div');
-        cell.className = 'cm-cap-grid__item' + (cap.id === 'ai' ? ' cm-cap-grid__item--featured' : '');
+        cell.className = 'cm-cap-grid__item';
         cell.setAttribute('role', 'listitem');
-        const num = String(i + 1).padStart(2, '0');
-        const keywordsHtml = (cap.grid.keywords || []).map((k, idx) => {
-            const sep = idx === 0 ? '' : '<span class="sep">·</span>';
-            return `${sep}<span>${escape(k)}</span>`;
-        }).join('');
+        const tagsHtml = (cap.grid.keywords || []).map(k => `<li class="cm-cap-grid__tag">${escape(k)}</li>`).join('');
         cell.innerHTML = `
-            <p class="cm-cap-grid__num">${num}</p>
             <div class="cm-cap-grid__icon">${cap.grid.icon || ''}</div>
             <h3 class="cm-cap-grid__title">${escape(cap.grid.title)}</h3>
             <p class="cm-cap-grid__desc">${escape(cap.grid.desc)}</p>
-            <p class="cm-cap-grid__keywords">${keywordsHtml}</p>
+            <ul class="cm-cap-grid__tag-list" aria-label="Tags">${tagsHtml}</ul>
         `;
         gridRoot.appendChild(cell);
     });
