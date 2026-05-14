@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PromptUX — Strategic Design Consultancy</title>
+    <title>AI Excellence — PromptUX</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700;900&family=Source+Serif+4:wght@300;400;600&display=swap" rel="stylesheet">
@@ -3196,6 +3196,88 @@
         filter: grayscale(100%);
     }
 
+    /* =========================================================
+       AI EXCELLENCE — small extensions on top of ed-* patterns
+    ========================================================= */
+    /* Hero variant: same as ed-hero-new but no device figure → tighter bottom padding */
+    :root[data-theme="editorial"] .ed-hero-new.ed-hero-new--text-only {
+        padding-bottom: clamp(96px, 12vw, 144px);
+        background: linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
+    }
+
+    /* Where AI shows up — bullet list inside ed-approach__item */
+    :root[data-theme="editorial"] .ed-approach__item ul {
+        list-style: none;
+        padding: 0;
+        margin: 12px 0 0;
+        font-family: var(--body);
+        font-size: 15px;
+        line-height: 1.55;
+        color: var(--mid);
+    }
+    :root[data-theme="editorial"] .ed-approach__item ul li {
+        padding: 6px 0;
+        border-top: 1px solid var(--rule);
+    }
+    :root[data-theme="editorial"] .ed-approach__item ul li:first-child {
+        border-top: 0;
+        padding-top: 0;
+    }
+
+    /* Proof strip — a quiet 4-up row of statements (no animated numbers) */
+    :root[data-theme="editorial"] .ed-proof-strip {
+        padding: clamp(72px, 9vw, 120px) var(--gutter);
+        background: var(--paper-2);
+        border-top: 1px solid var(--rule);
+        border-bottom: 1px solid var(--rule);
+    }
+    :root[data-theme="editorial"] .ed-proof-strip__head {
+        max-width: 760px;
+        margin: 0 auto clamp(40px, 5vw, 64px);
+        text-align: center;
+    }
+    :root[data-theme="editorial"] .ed-proof-strip__row {
+        max-width: 1120px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+    }
+    :root[data-theme="editorial"] .ed-proof-strip__cell {
+        padding: 0 24px;
+        border-left: 1px solid var(--rule);
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: clamp(18px, 1.8vw, 24px);
+        line-height: 1.2;
+        color: var(--ink);
+        letter-spacing: -0.005em;
+    }
+    :root[data-theme="editorial"] .ed-proof-strip__cell:first-child {
+        border-left: 0;
+        padding-left: 0;
+    }
+    @media (max-width: 880px) {
+        :root[data-theme="editorial"] .ed-proof-strip__row { grid-template-columns: repeat(2, 1fr); row-gap: 28px; }
+        :root[data-theme="editorial"] .ed-proof-strip__cell { border-left: 0; padding-left: 0; }
+        :root[data-theme="editorial"] .ed-proof-strip__cell:nth-child(2n) { border-left: 1px solid var(--rule); padding-left: 24px; }
+    }
+    @media (max-width: 520px) {
+        :root[data-theme="editorial"] .ed-proof-strip__row { grid-template-columns: 1fr; }
+        :root[data-theme="editorial"] .ed-proof-strip__cell:nth-child(2n) { border-left: 0; padding-left: 0; }
+    }
+
+    /* Final CTA — centered headline + button (reuses ed-btn) */
+    :root[data-theme="editorial"] .ed-final-cta {
+        padding: clamp(120px, 14vw, 200px) var(--gutter);
+        text-align: center;
+        background: var(--paper);
+    }
+    :root[data-theme="editorial"] .ed-final-cta h2 {
+        max-width: 18ch;
+        margin: 0 auto 36px;
+    }
+
     </style>
 </head>
 <body>
@@ -3231,600 +3313,217 @@
         </div>
     </div>
 </nav>
-<!-- nav copy edit: no changes -->
-<!-- hero copy edit: no changes (kicker, wordmark, headline, pills, scroll link all already strong) -->
-
 
 <!-- =============================================
-     HERO
+     HERO — ed-hero-new pattern, text only
 ============================================= -->
-<section class="hero">
-    <!-- Ghost portrait — very faint presence behind the type -->
-    <div class="hero-portrait"></div>
-    <div class="hero-grain"></div>
-    <div class="hero-glow"></div>
-
-    <!-- Animated visual layer: slow-drifting prompt grid -->
-    <div class="hero-visual" aria-hidden="true">
-        <div class="hero-grid"></div>
-        <div class="hero-orb hero-orb-1"></div>
-        <div class="hero-orb hero-orb-2"></div>
-        <div class="hero-orb hero-orb-3"></div>
-    </div>
-
-    <div class="hero-content">
-        <p class="hero-kicker" id="hero-kicker">Strategic Design Consultancy</p>
-
-        <h1 class="hero-wordmark" id="hero-wordmark">
-            <span id="typed"></span><span class="typed-cursor" id="cur">_</span>
-        </h1>
-
-        <div class="hero-lower">
-            <p class="hero-headline" id="hero-hl">
-                You're building something<br>
-                that matters.<br>
-                <strong>Let's make sure it lands.</strong>
-            </p>
-
-            <div class="hero-right" id="hero-rt">
-                <div class="hero-pills">
-                    <span class="hero-pill">Principal-Led</span>
-                    <span class="hero-pill">AI-Native</span>
-                    <span class="hero-pill">No Layers</span>
-                </div>
-                <a href="#work" class="cta-pill">See the work →</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<!-- =============================================
-     EDITORIAL THEME — Apple-style sections.
-     The Athletic-theme `.hero` and `.s` sections above/below this block
-     are hidden by `:root[data-theme="editorial"]` rules. Editorial renders
-     its own structure on light grey gradients with system-sans typography.
-============================================= -->
-
-<!-- HERO -->
-<section class="ed-hero-new" aria-label="PromptUX">
+<section class="ed-hero-new ed-hero-new--text-only" aria-label="AI Excellence">
     <div class="ed-hero-new__copy">
-        <p class="ed-hero-new__eyebrow">Strategic Design Consultancy</p>
-        <h1 class="ed-hero-new__title"><span class="line">Senior thinking.</span> <span class="line">AI speed.</span> <span class="line">No layers.</span></h1>
-        <p class="ed-hero-new__sub">Strategic design, sharpened by experience, accelerated by AI, and delivered without the usual drag.</p>
+        <p class="ed-hero-new__eyebrow">AI Excellence</p>
+        <h1 class="ed-hero-new__title"><span class="line">AI speed.</span> <span class="line">Senior thinking.</span> <span class="line">Real outcomes.</span></h1>
+        <p class="ed-hero-new__sub">We use AI across strategy, design, and delivery to move faster, explore more, and make better decisions — without adding layers.</p>
         <div class="ed-hero-new__ctas">
-            <a href="#ed-contact" class="ed-btn">Get in touch</a>
-            <a href="#ed-work" class="cta-pill">See the work →</a>
-        </div>
-    </div>
-    <figure class="ed-hero-new__device">
-        <img src="assets/devices/iphone-lace.png" alt="Mobile product mockup">
-    </figure>
-</section>
-
-<!-- LOGO BANNER — brands the founders have shaped -->
-<section class="ed-logos" aria-label="Brands our partners have shaped">
-    <p class="ed-eyebrow ed-logos__label">Brands our partners have shaped</p>
-    <div class="ed-logos__viewport">
-        <div class="ed-logos__track" aria-hidden="true">
-            <img src="assets/logos/disney.svg" alt="Disney" class="ed-logos__mark">
-            <img src="assets/logos/schwab.svg" alt="Charles Schwab" class="ed-logos__mark">
-            <img src="assets/logos/gitlab.svg" alt="GitLab" class="ed-logos__mark">
-            <img src="assets/logos/microsoft.svg" alt="Microsoft" class="ed-logos__mark">
-            <img src="assets/logos/sharpspring.png" alt="SharpSpring" class="ed-logos__mark">
-            <img src="assets/logos/lace.png" alt="Lace AI Pro" class="ed-logos__mark">
-            <img src="assets/logos/symantec.svg" alt="Symantec" class="ed-logos__mark">
-            <img src="assets/logos/veritas.png" alt="Veritas" class="ed-logos__mark">
-            <img src="assets/logos/disney.svg" alt="" class="ed-logos__mark" aria-hidden="true">
-            <img src="assets/logos/schwab.svg" alt="" class="ed-logos__mark" aria-hidden="true">
-            <img src="assets/logos/gitlab.svg" alt="" class="ed-logos__mark" aria-hidden="true">
-            <img src="assets/logos/microsoft.svg" alt="" class="ed-logos__mark" aria-hidden="true">
-            <img src="assets/logos/sharpspring.png" alt="" class="ed-logos__mark" aria-hidden="true">
-            <img src="assets/logos/lace.png" alt="" class="ed-logos__mark" aria-hidden="true">
-            <img src="assets/logos/symantec.svg" alt="" class="ed-logos__mark" aria-hidden="true">
-            <img src="assets/logos/veritas.png" alt="" class="ed-logos__mark" aria-hidden="true">
+            <a href="/#ed-contact" class="ed-btn">Book a call →</a>
         </div>
     </div>
 </section>
 
-<!-- PILLARS — three reasons companies engage -->
-<section class="ed-pillars ed-block" aria-label="When companies call us">
+<!-- =============================================
+     WHY IT MATTERS — ed-pillars pattern
+============================================= -->
+<section class="ed-pillars ed-block" aria-label="Why it matters">
     <div class="ed-block__inner">
         <div class="ed-pillars__head">
-            <p class="ed-eyebrow">When companies call us</p>
-            <h2 class="ed-h2">Three moments companies call us.</h2>
+            <p class="ed-eyebrow">Why it matters</p>
+            <h2 class="ed-h2">Most teams are moving faster. Few are getting better results.</h2>
         </div>
         <div class="ed-pillars__grid">
             <div class="ed-pillar">
                 <div class="ed-pillar__num">01</div>
-                <h3>Make it real</h3>
-                <p>You have something important and it needs to work. Whether it is a new product, a major launch, or a critical deal, the work has to hold up in front of customers, investors, and the market, and we make sure it does.</p>
+                <h3>Faster isn't enough</h3>
+                <p>Speed without direction creates more work, not better outcomes. Most teams are shipping more — and still missing.</p>
             </div>
             <div class="ed-pillar">
                 <div class="ed-pillar__num">02</div>
-                <h3>Make it better</h3>
-                <p>The product is live and gaining traction, but there is more to unlock. We identify and improve what matters so performance catches up with the opportunity.</p>
+                <h3>More output isn't better</h3>
+                <p>More ideas don't guarantee performance. Volume without judgment is just expensive noise.</p>
             </div>
             <div class="ed-pillar">
                 <div class="ed-pillar__num">03</div>
-                <h3>Make it scale</h3>
-                <p>What worked early on is starting to break down. The product is growing but the team is stretched, quality drops, speed slows, and execution starts to drift, so we bring structure, clarity, and execution so the experience scales cleanly.</p>
+                <h3>AI changes the equation</h3>
+                <p>Used correctly, AI improves speed and quality at the same time. That's the part most teams haven't figured out yet.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- WORK — one product-reveal band per case study -->
-<div id="ed-work"></div>
-
-<section class="ed-work-band" data-case="lace" data-device="phone" aria-label="Lace AI Pro">
-    <div class="ed-work-band__inner">
-        <p class="ed-work-band__eyebrow">Featured work — 01</p>
-        <h2 class="ed-work-band__title">Lace AI Pro</h2>
-        <div class="ed-work-band__tags">
-            <span class="ed-work-band__tag">Healthcare</span>
-            <span class="ed-work-band__tag">MedTech</span>
-            <span class="ed-work-band__tag">SaaS</span>
-        </div>
-        <p class="ed-work-band__sub">Brand identity, product design, email system, and trade show collateral for an auditory rehabilitation platform.</p>
-        <button type="button" class="cta-pill ed-work-band__cta" data-case="lace">See the work →</button>
-    </div>
-    <figure class="ed-work-band__device">
-        <img src="assets/devices/iphone-lace.png" alt="Lace AI Pro — mobile product mockup">
-    </figure>
-</section>
-
-<section class="ed-work-band" data-case="sharp" data-device="desktop" aria-label="SharpSpring">
-    <div class="ed-work-band__inner">
-        <p class="ed-work-band__eyebrow">Featured work — 02</p>
-        <h2 class="ed-work-band__title">SharpSpring</h2>
-        <div class="ed-work-band__tags">
-            <span class="ed-work-band__tag">B2B SaaS</span>
-            <span class="ed-work-band__tag">Marketing Automation</span>
-        </div>
-        <p class="ed-work-band__sub">Platform redesign, identity refresh, and full-funnel marketing for a fast-scaling SaaS company.</p>
-        <button type="button" class="cta-pill ed-work-band__cta" data-case="sharp">See the work →</button>
-    </div>
-    <figure class="ed-work-band__device">
-        <img src="assets/devices/laptop-sharpspring.png" alt="SharpSpring — workflow automation builder on a MacBook">
-    </figure>
-</section>
-
-<section class="ed-work-band" data-case="pickers" data-device="desktop" aria-label="Pickers">
-    <div class="ed-work-band__inner">
-        <p class="ed-work-band__eyebrow">Featured work — 03</p>
-        <h2 class="ed-work-band__title">Pickers</h2>
-        <div class="ed-work-band__tags">
-            <span class="ed-work-band__tag">Creator Economy</span>
-            <span class="ed-work-band__tag">Design System</span>
-        </div>
-        <p class="ed-work-band__sub">First design system: tokens, components, documentation. 74.8% adoption · 28% faster delivery.</p>
-        <button type="button" class="cta-pill ed-work-band__cta" data-case="pickers">See the work →</button>
-    </div>
-    <figure class="ed-work-band__device">
-        <img src="assets/devices/desktop-pickers.png" alt="Pickers — design system documentation on a desktop monitor">
-    </figure>
-</section>
-
-<section class="ed-work-band" data-case="plremote" data-device="phone" aria-label="PL Remote">
-    <div class="ed-work-band__inner">
-        <p class="ed-work-band__eyebrow">Featured work — 04</p>
-        <h2 class="ed-work-band__title">PL Remote</h2>
-        <div class="ed-work-band__tags">
-            <span class="ed-work-band__tag">IoT</span>
-            <span class="ed-work-band__tag">Mobile</span>
-            <span class="ed-work-band__tag">MVP Delivery</span>
-        </div>
-        <p class="ed-work-band__sub">Product design for a mobile app replacing physical gate remotes. 10K+ users in month one.</p>
-        <button type="button" class="cta-pill ed-work-band__cta" data-case="plremote">See the work →</button>
-    </div>
-    <figure class="ed-work-band__device">
-        <img src="assets/devices/iphone-pl.png" alt="PL Remote — isometric mobile mockup showing the device setup screen">
-    </figure>
-</section>
-
-<!-- APPROACH — four principles -->
-<section class="ed-approach" aria-label="How we work">
+<!-- =============================================
+     WHAT'S DIFFERENT — ed-approach pattern
+============================================= -->
+<section class="ed-approach" aria-label="What's different">
     <div class="ed-approach__head">
-        <p class="ed-eyebrow">How we work</p>
-        <h2 class="ed-h2">Why companies choose us.</h2>
+        <p class="ed-eyebrow">What's different</p>
+        <h2 class="ed-h2">A model built for the way AI actually changes work.</h2>
     </div>
     <div class="ed-approach__grid">
         <div class="ed-approach__item">
             <span>01</span>
-            <h3>Sharp from the start</h3>
-            <p>We get aligned quickly and move into the work with no long ramp-up. From the first conversation, we focus on what matters and what to do next.</p>
+            <h3>Built into the work</h3>
+            <p>AI is part of how we think and execute — research, exploration, design, delivery. Not a layer on top.</p>
         </div>
         <div class="ed-approach__item">
             <span>02</span>
-            <h3>Faster by design</h3>
-            <p>AI is built into how the work gets done across research, design, and delivery. It helps us explore more options, decide faster, and ship sooner.</p>
+            <h3>Senior-led</h3>
+            <p>The same people define and do the work. The judgment that shapes a brief is the judgment shipping the artifact.</p>
         </div>
         <div class="ed-approach__item">
             <span>03</span>
-            <h3>Meaningful wins</h3>
-            <p>We focus the work around the outcomes that matter most, whether that means stronger conversion, faster adoption, clearer positioning, or a product experience that works harder for the business.</p>
+            <h3>No layers</h3>
+            <p>Decisions move straight into execution. No account managers, no translation tax, no waiting for the right person.</p>
         </div>
         <div class="ed-approach__item">
             <span>04</span>
-            <h3>No layers. No drag.</h3>
-            <p>You work directly with the people doing the work, without account managers or handoffs. What gets decided is what actually gets built.</p>
+            <h3>Outcome-focused</h3>
+            <p>Everything ties back to performance. The work is judged by what it moves, not by what it costs to make.</p>
         </div>
     </div>
 </section>
 
-<!-- STATS -->
-<section class="ed-stats" aria-label="Numbers from PromptUX engagements">
-    <div class="ed-stats__row">
-        <div class="ed-stats__cell">
-            <div class="ed-stats__num" data-value="30" data-suffix="+" data-suffix-after="true" data-decimals="0">0</div>
-            <div class="ed-stats__label">Years combined design leadership</div>
+<!-- =============================================
+     WHERE AI SHOWS UP — ed-approach with ul lists
+============================================= -->
+<section class="ed-approach" aria-label="Where AI shows up">
+    <div class="ed-approach__head">
+        <p class="ed-eyebrow">Where AI shows up</p>
+        <h2 class="ed-h2">Across the workflow — not in one corner of it.</h2>
+    </div>
+    <div class="ed-approach__grid">
+        <div class="ed-approach__item">
+            <span>01</span>
+            <h3>Strategy</h3>
+            <ul>
+                <li>Opportunity framing</li>
+                <li>Research synthesis</li>
+                <li>Positioning exploration</li>
+            </ul>
         </div>
-        <div class="ed-stats__cell">
-            <div class="ed-stats__num" data-value="74.8" data-suffix="%" data-decimals="1">0.0%</div>
-            <div class="ed-stats__label">Design system adoption — single engagement</div>
+        <div class="ed-approach__item">
+            <span>02</span>
+            <h3>Design</h3>
+            <ul>
+                <li>Concept generation</li>
+                <li>UX and UI exploration</li>
+                <li>Rapid prototyping</li>
+            </ul>
         </div>
-        <div class="ed-stats__cell">
-            <div class="ed-stats__num" data-value="28" data-suffix="%" data-decimals="0">0%</div>
-            <div class="ed-stats__label">Reduction in task completion time</div>
+        <div class="ed-approach__item">
+            <span>03</span>
+            <h3>Growth</h3>
+            <ul>
+                <li>Messaging and copy</li>
+                <li>Landing pages and funnels</li>
+                <li>Experimentation</li>
+            </ul>
+        </div>
+        <div class="ed-approach__item">
+            <span>04</span>
+            <h3>Delivery</h3>
+            <ul>
+                <li>Faster iteration</li>
+                <li>Asset generation</li>
+                <li>Workflow acceleration</li>
+            </ul>
         </div>
     </div>
 </section>
 
-<!-- TESTIMONIALS — two opposing auto-scroll rows -->
-<section class="ed-testimonials" aria-label="What partners say">
-    <div class="ed-testimonials__head">
-        <p class="ed-eyebrow">In their words</p>
-        <h2 class="ed-h2">What clients are saying.</h2>
-    </div>
-    <div class="ed-testimonials__rows">
-        <div class="ed-testimonials__viewport">
-            <div class="ed-testimonials__track" aria-hidden="true">
-                <article class="ed-testimonials__card">
-                    <div class="ed-testimonials__header">
-                        <img class="ed-testimonials__avatar" src="assets/avatars/sarah-chen.jpg" alt="" loading="lazy">
-                        <div class="ed-testimonials__person">
-                            <div class="ed-testimonials__name">Sarah Chen</div>
-                            <div class="ed-testimonials__title">VP Product, Disney</div>
-                        </div>
-                    </div>
-                    <p class="ed-testimonials__quote">They got aligned in a day and shipped something better than we'd produced in six months of trying internally.</p>
-                    <img src="assets/logos/disney.svg" alt="Disney" class="ed-testimonials__logo">
-                </article>
-                <article class="ed-testimonials__card">
-                    <div class="ed-testimonials__header">
-                        <img class="ed-testimonials__avatar" src="assets/avatars/priya-patel.jpg" alt="" loading="lazy">
-                        <div class="ed-testimonials__person">
-                            <div class="ed-testimonials__name">Priya Patel</div>
-                            <div class="ed-testimonials__title">EVP, Charles Schwab</div>
-                        </div>
-                    </div>
-                    <p class="ed-testimonials__quote">The Sprint gave us a map. We'd been building without one and didn't know it until they showed us.</p>
-                    <img src="assets/logos/schwab.svg" alt="Charles Schwab" class="ed-testimonials__logo">
-                </article>
-                <article class="ed-testimonials__card">
-                    <div class="ed-testimonials__header">
-                        <img class="ed-testimonials__avatar" src="assets/avatars/rachel-adams.jpg" alt="" loading="lazy">
-                        <div class="ed-testimonials__person">
-                            <div class="ed-testimonials__name">Rachel Adams</div>
-                            <div class="ed-testimonials__title">CPO, Veritas</div>
-                        </div>
-                    </div>
-                    <p class="ed-testimonials__quote">They think at the strategic level and execute at the component level. That combination is almost impossible to find.</p>
-                    <img src="assets/logos/veritas.png" alt="Veritas" class="ed-testimonials__logo">
-                </article>
-                <article class="ed-testimonials__card" aria-hidden="true">
-                    <div class="ed-testimonials__header">
-                        <img class="ed-testimonials__avatar" src="assets/avatars/sarah-chen.jpg" alt="" loading="lazy">
-                        <div class="ed-testimonials__person">
-                            <div class="ed-testimonials__name">Sarah Chen</div>
-                            <div class="ed-testimonials__title">VP Product, Disney</div>
-                        </div>
-                    </div>
-                    <p class="ed-testimonials__quote">They got aligned in a day and shipped something better than we'd produced in six months of trying internally.</p>
-                    <img src="assets/logos/disney.svg" alt="" class="ed-testimonials__logo">
-                </article>
-                <article class="ed-testimonials__card" aria-hidden="true">
-                    <div class="ed-testimonials__header">
-                        <img class="ed-testimonials__avatar" src="assets/avatars/priya-patel.jpg" alt="" loading="lazy">
-                        <div class="ed-testimonials__person">
-                            <div class="ed-testimonials__name">Priya Patel</div>
-                            <div class="ed-testimonials__title">EVP, Charles Schwab</div>
-                        </div>
-                    </div>
-                    <p class="ed-testimonials__quote">The Sprint gave us a map. We'd been building without one and didn't know it until they showed us.</p>
-                    <img src="assets/logos/schwab.svg" alt="" class="ed-testimonials__logo">
-                </article>
-                <article class="ed-testimonials__card" aria-hidden="true">
-                    <div class="ed-testimonials__header">
-                        <img class="ed-testimonials__avatar" src="assets/avatars/rachel-adams.jpg" alt="" loading="lazy">
-                        <div class="ed-testimonials__person">
-                            <div class="ed-testimonials__name">Rachel Adams</div>
-                            <div class="ed-testimonials__title">CPO, Veritas</div>
-                        </div>
-                    </div>
-                    <p class="ed-testimonials__quote">They think at the strategic level and execute at the component level. That combination is almost impossible to find.</p>
-                    <img src="assets/logos/veritas.png" alt="" class="ed-testimonials__logo">
-                </article>
-            </div>
-        </div>
-        <div class="ed-testimonials__viewport">
-            <div class="ed-testimonials__track ed-testimonials__track--reverse" aria-hidden="true">
-                <article class="ed-testimonials__card">
-                    <div class="ed-testimonials__header">
-                        <img class="ed-testimonials__avatar" src="assets/avatars/marcus-bell.jpg" alt="" loading="lazy">
-                        <div class="ed-testimonials__person">
-                            <div class="ed-testimonials__name">Marcus Bell</div>
-                            <div class="ed-testimonials__title">SVP Engineering, Symantec</div>
-                        </div>
-                    </div>
-                    <p class="ed-testimonials__quote">What stood out wasn't the speed — it was that nothing got lost in translation. What we decided in the room is what shipped.</p>
-                    <img src="assets/logos/symantec.svg" alt="Symantec" class="ed-testimonials__logo">
-                </article>
-                <article class="ed-testimonials__card">
-                    <div class="ed-testimonials__header">
-                        <img class="ed-testimonials__avatar" src="assets/avatars/david-lin.jpg" alt="" loading="lazy">
-                        <div class="ed-testimonials__person">
-                            <div class="ed-testimonials__name">David Lin</div>
-                            <div class="ed-testimonials__title">Head of Design, GitLab</div>
-                        </div>
-                    </div>
-                    <p class="ed-testimonials__quote">Design system went from 0 to team-adopted in one engagement. The 74% adoption stat is real — I watched it happen.</p>
-                    <img src="assets/logos/gitlab.svg" alt="GitLab" class="ed-testimonials__logo">
-                </article>
-                <article class="ed-testimonials__card">
-                    <div class="ed-testimonials__header">
-                        <img class="ed-testimonials__avatar" src="assets/avatars/tom-hayes.jpg" alt="" loading="lazy">
-                        <div class="ed-testimonials__person">
-                            <div class="ed-testimonials__name">Tom Hayes</div>
-                            <div class="ed-testimonials__title">CMO, Lace AI Pro</div>
-                        </div>
-                    </div>
-                    <p class="ed-testimonials__quote">Every agency promises senior talent. These are the first people who actually delivered it.</p>
-                    <img src="assets/logos/lace.png" alt="Lace AI Pro" class="ed-testimonials__logo">
-                </article>
-                <article class="ed-testimonials__card" aria-hidden="true">
-                    <div class="ed-testimonials__header">
-                        <img class="ed-testimonials__avatar" src="assets/avatars/marcus-bell.jpg" alt="" loading="lazy">
-                        <div class="ed-testimonials__person">
-                            <div class="ed-testimonials__name">Marcus Bell</div>
-                            <div class="ed-testimonials__title">SVP Engineering, Symantec</div>
-                        </div>
-                    </div>
-                    <p class="ed-testimonials__quote">What stood out wasn't the speed — it was that nothing got lost in translation. What we decided in the room is what shipped.</p>
-                    <img src="assets/logos/symantec.svg" alt="" class="ed-testimonials__logo">
-                </article>
-                <article class="ed-testimonials__card" aria-hidden="true">
-                    <div class="ed-testimonials__header">
-                        <img class="ed-testimonials__avatar" src="assets/avatars/david-lin.jpg" alt="" loading="lazy">
-                        <div class="ed-testimonials__person">
-                            <div class="ed-testimonials__name">David Lin</div>
-                            <div class="ed-testimonials__title">Head of Design, GitLab</div>
-                        </div>
-                    </div>
-                    <p class="ed-testimonials__quote">Design system went from 0 to team-adopted in one engagement. The 74% adoption stat is real — I watched it happen.</p>
-                    <img src="assets/logos/gitlab.svg" alt="" class="ed-testimonials__logo">
-                </article>
-                <article class="ed-testimonials__card" aria-hidden="true">
-                    <div class="ed-testimonials__header">
-                        <img class="ed-testimonials__avatar" src="assets/avatars/tom-hayes.jpg" alt="" loading="lazy">
-                        <div class="ed-testimonials__person">
-                            <div class="ed-testimonials__name">Tom Hayes</div>
-                            <div class="ed-testimonials__title">CMO, Lace AI Pro</div>
-                        </div>
-                    </div>
-                    <p class="ed-testimonials__quote">Every agency promises senior talent. These are the first people who actually delivered it.</p>
-                    <img src="assets/logos/lace.png" alt="" class="ed-testimonials__logo">
-                </article>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ENGAGE — Sprint + Partnership -->
-<section class="ed-engage" aria-label="Two ways to engage">
+<!-- =============================================
+     HOW THE WORK CHANGES — ed-engage pattern
+============================================= -->
+<section class="ed-engage" aria-label="How the work changes">
     <div class="ed-engage__head">
-        <p class="ed-eyebrow">Two ways to engage</p>
-        <h2 class="ed-h2">How we start working together.</h2>
+        <p class="ed-eyebrow">How the work changes</p>
+        <h2 class="ed-h2">Two models. Different shapes.</h2>
     </div>
     <div class="ed-engage__grid">
         <div class="ed-engage__card">
-            <span class="ed-engage__type">Entry engagement</span>
-            <h3>The Sprint</h3>
-            <span class="ed-engage__time">2–3 weeks · Fixed fee</span>
-            <p>A focused diagnosis. You get clarity on where you are, what the real problems are, and what to do next. Most engagements start here.</p>
+            <span class="ed-engage__type">Most teams</span>
+            <h3>Traditional</h3>
+            <span class="ed-engage__time">Linear · Sequential · Layered</span>
+            <p>The standard delivery model — built before AI changed the math on exploration and iteration.</p>
             <ul>
-                <li>Current state audit: product, UX, workflows, AI maturity</li>
-                <li>Opportunity and priority map with ranked recommendations</li>
-                <li>90-day strategic action plan</li>
-                <li>AI workflow integration assessment</li>
-                <li>90-minute leadership readout session</li>
+                <li>Linear process</li>
+                <li>Limited exploration</li>
+                <li>Slower iteration</li>
+                <li>Multiple handoffs</li>
             </ul>
-            <span class="ed-engage__price">Starts at $15,000.</span>
-            <a href="#ed-contact" class="ed-btn--ghost ed-btn">Start with a Sprint →</a>
         </div>
         <div class="ed-engage__card ed-engage__card--dark">
-            <span class="ed-engage__type">Ongoing engagement</span>
-            <h3>The Partnership</h3>
-            <span class="ed-engage__time">Monthly · Direct access · No lock-in</span>
-            <p>Ongoing embedded work. We become part of your team — present when it matters, accountable for outcomes that compound over time.</p>
+            <span class="ed-engage__type">Our approach</span>
+            <h3>AI-native</h3>
+            <span class="ed-engage__time">Parallel · Senior-led · Direct</span>
+            <p>AI in the room from day one — running alongside senior judgment, not in place of it.</p>
             <ul>
-                <li>Product and UX strategy</li>
-                <li>Design execution across product, brand, and marketing</li>
-                <li>AI workflow integration and team training</li>
-                <li>Design systems and documentation</li>
-                <li>Access to all three team members across specialties</li>
+                <li>Parallel exploration</li>
+                <li>More directions tested</li>
+                <li>Faster decisions</li>
+                <li>Direct execution</li>
             </ul>
-            <span class="ed-engage__price">Structured based on scope and engagement.</span>
-            <a href="#ed-contact" class="ed-btn--ghost ed-btn">Start a Partnership →</a>
-        </div>
-    </div>
-    <p class="ed-engage__escape" style="text-align:center;margin-top:48px;font-family:var(--body);font-size:15px;color:var(--mid);">
-        Have a project that doesn't fit this model?
-        <a href="#ed-contact" class="ed-cta">Let's talk →</a>
-    </p>
-</section>
-
-<!-- TEAM -->
-<section class="ed-team" aria-label="The team">
-    <div class="ed-team__head">
-        <p class="ed-eyebrow">The team</p>
-        <h2 class="ed-h2">The people doing the work.</h2>
-    </div>
-    <div class="ed-team__grid">
-        <div class="ed-team__card">
-            <img src="assets/team/member-shane.jpg" alt="Shane Bouchard" class="ed-team__avatar">
-            <h3>Shane Bouchard</h3>
-            <span class="role">Founding Principal · Strategy & Experience Design</span>
-            <p>30 years of design leadership at Walt Disney World, Charles Schwab, GitLab, and SharpSpring. Strategic lead on every PromptUX engagement. Works at the level of brand positioning and component-library specification in the same week.</p>
-        </div>
-        <div class="ed-team__card">
-            <img src="assets/team/member-brandon.jpg" alt="Brandon Dement" class="ed-team__avatar">
-            <h3>Brandon Dement, CSP</h3>
-            <span class="role">AI Strategy & Operations</span>
-            <p>Currently leading AI transformation at an enterprise organization. When clients ask how to apply AI to their product workflows, design operations, or team structure — Brandon answers from what's working right now, not from a framework built on last year's tools.</p>
-        </div>
-        <div class="ed-team__card">
-            <img src="assets/team/member-eduard.jpg" alt="Eduard Hambardzumyan" class="ed-team__avatar">
-            <h3>Eduard Hambardzumyan</h3>
-            <span class="role">Design Lead · AI-Advanced Art Direction</span>
-            <p>Senior art director and product designer working at the intersection of craft and AI. Considered, precise, built to scale. Leads brand and product design execution.</p>
         </div>
     </div>
 </section>
 
-<!-- THINKING TEASER — 3 most recent posts -->
-<section class="ed-thinking" aria-label="Thinking">
-    <div class="ed-thinking__head">
-        <p class="ed-eyebrow">Thinking</p>
-        <h2 class="ed-h2">Honest takes on design.</h2>
-        <a href="/thinking/" class="ed-thinking__all">All thinking →</a>
-    </div>
-    <div class="ed-thinking__grid">
-        <a class="ed-thinking__card" href="/thinking/how-we-prompt-for-design-decisions">
-            <span class="ed-thinking__tag">AI + Design</span>
-            <h3 class="ed-thinking__title">How we prompt for design decisions</h3>
-            <p class="ed-thinking__desc">Prompting isn't just for engineers. Here's how we use it to make faster, better design calls.</p>
-            <div class="ed-thinking__meta">
-                <img src="assets/team/member-shane.jpg" alt="" class="ed-thinking__avatar">
-                <span>Shane Bouchard · 4 min read</span>
+<!-- =============================================
+     WHAT THIS UNLOCKS — ed-pillars pattern
+============================================= -->
+<section class="ed-pillars ed-block" aria-label="What this unlocks">
+    <div class="ed-block__inner">
+        <div class="ed-pillars__head">
+            <p class="ed-eyebrow">What this unlocks</p>
+            <h2 class="ed-h2">The outcomes that actually move.</h2>
+        </div>
+        <div class="ed-pillars__grid">
+            <div class="ed-pillar">
+                <div class="ed-pillar__num">01</div>
+                <h3>Faster path to launch</h3>
+                <p>Move from idea to real faster. Compressed cycles without compressed thinking.</p>
             </div>
-        </a>
-        <a class="ed-thinking__card" href="/thinking/sprint-vs-partnership">
-            <span class="ed-thinking__tag">Strategy</span>
-            <h3 class="ed-thinking__title">The sprint vs. the partnership: when each one wins</h3>
-            <p class="ed-thinking__desc">Two engagement models, two different problems. Knowing which one you need changes the outcome.</p>
-            <div class="ed-thinking__meta">
-                <img src="assets/team/member-shane.jpg" alt="" class="ed-thinking__avatar">
-                <span>Shane Bouchard · 5 min read</span>
+            <div class="ed-pillar">
+                <div class="ed-pillar__num">02</div>
+                <h3>Better decisions earlier</h3>
+                <p>Explore more before committing. The right direction surfaces faster when more directions are on the table.</p>
             </div>
-        </a>
-        <a class="ed-thinking__card" href="/thinking/ai-raised-the-floor">
-            <span class="ed-thinking__tag">AI + Design</span>
-            <h3 class="ed-thinking__title">AI raised the floor. Now what?</h3>
-            <p class="ed-thinking__desc">The tools got better. The judgment gap got wider. What senior design actually means now.</p>
-            <div class="ed-thinking__meta">
-                <img src="assets/team/member-brandon.jpg" alt="" class="ed-thinking__avatar">
-                <span>Brandon Dement · 6 min read</span>
+            <div class="ed-pillar">
+                <div class="ed-pillar__num">03</div>
+                <h3>Stronger outcomes</h3>
+                <p>Work is tied to performance. Speed and quality compound when AI runs inside the workflow.</p>
             </div>
-        </a>
+        </div>
     </div>
 </section>
 
-<!-- CONTACT -->
-<section class="ed-contact" id="ed-contact" aria-label="Contact">
-    <p class="ed-contact__eyebrow">Ready to start</p>
-    <h2>Tell us what you're working on.</h2>
-    <p>You tell us what's going on. We ask the right questions and tell you if we can help. No pitch on the first call.</p>
+<!-- =============================================
+     PROOF — light statement strip
+============================================= -->
+<section class="ed-proof-strip" aria-label="Proof">
+    <div class="ed-proof-strip__head">
+        <p class="ed-eyebrow">Proof</p>
+        <h2 class="ed-h2">AI shows up in the work, not just the pitch.</h2>
+    </div>
+    <div class="ed-proof-strip__row">
+        <div class="ed-proof-strip__cell">More concepts explored</div>
+        <div class="ed-proof-strip__cell">Faster iteration cycles</div>
+        <div class="ed-proof-strip__cell">Clearer direction earlier</div>
+        <div class="ed-proof-strip__cell">Better outcomes</div>
+    </div>
+</section>
 
-    <form class="ed-form" id="ed-form" novalidate>
-        <!-- Step 1 — Intent (always visible) -->
-        <fieldset class="ed-form__step ed-form__step--1" data-step="1">
-            <legend class="ed-form__legend">What kind of help do you need?</legend>
-            <div class="ed-form__intent">
-                <button type="button" class="ed-intent" data-intent="sprint" aria-pressed="false">
-                    <span class="ed-intent__title">I have a specific project or deadline</span>
-                    <span class="ed-intent__sub">Sprint engagement</span>
-                </button>
-                <button type="button" class="ed-intent" data-intent="partnership" aria-pressed="false">
-                    <span class="ed-intent__title">I'm looking for an ongoing design partner</span>
-                    <span class="ed-intent__sub">Partnership engagement</span>
-                </button>
-            </div>
-        </fieldset>
-
-        <!-- Step 2a — Sprint path -->
-        <fieldset class="ed-form__step" data-step="2a" hidden>
-            <legend class="ed-form__legend">Tell us about the project.</legend>
-            <div class="ed-form__field">
-                <span class="ed-form__label">Budget</span>
-                <div class="ed-chips" role="radiogroup" aria-label="Budget">
-                    <button type="button" class="ed-chip" data-name="budget" data-value="&lt; $15K" aria-pressed="false">&lt; $15K</button>
-                    <button type="button" class="ed-chip" data-name="budget" data-value="$15–30K" aria-pressed="false">$15–30K</button>
-                    <button type="button" class="ed-chip" data-name="budget" data-value="$30K+" aria-pressed="false">$30K+</button>
-                </div>
-            </div>
-            <div class="ed-form__field">
-                <span class="ed-form__label">Timeline</span>
-                <div class="ed-chips" role="radiogroup" aria-label="Timeline">
-                    <button type="button" class="ed-chip" data-name="timeline" data-value="ASAP" aria-pressed="false">ASAP</button>
-                    <button type="button" class="ed-chip" data-name="timeline" data-value="1–3 months" aria-pressed="false">1–3 months</button>
-                    <button type="button" class="ed-chip" data-name="timeline" data-value="Flexible" aria-pressed="false">Flexible</button>
-                </div>
-            </div>
-            <div class="ed-form__field">
-                <label class="ed-form__label" for="ed-sprint-details">What are you building?</label>
-                <textarea class="ed-textarea" id="ed-sprint-details" name="details" rows="3"></textarea>
-            </div>
-        </fieldset>
-
-        <!-- Step 2b — Partnership path -->
-        <fieldset class="ed-form__step" data-step="2b" hidden>
-            <legend class="ed-form__legend">Tell us about the team.</legend>
-            <div class="ed-form__field">
-                <span class="ed-form__label">Team size</span>
-                <div class="ed-chips" role="radiogroup" aria-label="Team size">
-                    <button type="button" class="ed-chip" data-name="team-size" data-value="1–10" aria-pressed="false">1–10</button>
-                    <button type="button" class="ed-chip" data-name="team-size" data-value="11–50" aria-pressed="false">11–50</button>
-                    <button type="button" class="ed-chip" data-name="team-size" data-value="50+" aria-pressed="false">50+</button>
-                </div>
-            </div>
-            <div class="ed-form__field">
-                <span class="ed-form__label">Design capacity</span>
-                <div class="ed-chips" role="radiogroup" aria-label="Design capacity">
-                    <button type="button" class="ed-chip" data-name="design-capacity" data-value="None" aria-pressed="false">None</button>
-                    <button type="button" class="ed-chip" data-name="design-capacity" data-value="1 designer" aria-pressed="false">1 designer</button>
-                    <button type="button" class="ed-chip" data-name="design-capacity" data-value="Small team" aria-pressed="false">Small team</button>
-                </div>
-            </div>
-            <div class="ed-form__field">
-                <label class="ed-form__label" for="ed-partnership-details">What's not working?</label>
-                <textarea class="ed-textarea" id="ed-partnership-details" name="details" rows="3"></textarea>
-            </div>
-        </fieldset>
-
-        <!-- Step 3 — Contact details -->
-        <fieldset class="ed-form__step" data-step="3" hidden>
-            <legend class="ed-form__legend">Where can we reach you?</legend>
-            <div class="ed-form__field">
-                <label class="ed-form__label" for="ed-name">Name</label>
-                <input class="ed-input" id="ed-name" name="name" type="text" autocomplete="name" required>
-            </div>
-            <div class="ed-form__field">
-                <label class="ed-form__label" for="ed-email">Email</label>
-                <input class="ed-input" id="ed-email" name="email" type="email" autocomplete="email" required>
-            </div>
-            <div class="ed-form__field">
-                <label class="ed-form__label" for="ed-source">How did you find us? <span class="ed-form__optional">(optional)</span></label>
-                <input class="ed-input" id="ed-source" name="source" type="text">
-            </div>
-            <button type="submit" class="ed-btn ed-form__submit">Send →</button>
-        </fieldset>
-
-        <div class="ed-form__confirm" hidden role="status" aria-live="polite">
-            <p>Thanks. Your email client should be opening now — if it doesn't, write to <a href="mailto:hello@promptux.com">hello@promptux.com</a> and we'll take it from there.</p>
-        </div>
-    </form>
+<!-- =============================================
+     FINAL CTA
+============================================= -->
+<section class="ed-final-cta" aria-label="Get in touch">
+    <h2 class="ed-h2">See how this works on your product.</h2>
+    <a href="/#ed-contact" class="ed-btn">Book a call →</a>
 </section>
 
 <!-- FOOTER -->
@@ -3845,1163 +3544,44 @@
     </div>
 </footer>
 
-
-<!-- =============================================
-     MOMENTS
-============================================= -->
-<section class="s" id="moments">
-    <div class="s-header">
-        <span class="s-num">01</span>
-        <span class="s-label">When companies call us</span>
-    </div>
-
-    <h2 class="d1 moments-hed reveal">Three moments<br>companies<br>call us.</h2>
-
-    <div class="moments-grid">
-        <div class="moment reveal">
-            <div class="moment-index">01</div>
-            <h3 class="d3">Make it real</h3>
-            <p>You have something important and it needs to work. Whether it is a new product, a major launch, or a critical deal, the work has to hold up in front of customers, investors, and the market, and we make sure it does.</p>
-        </div>
-        <div class="moment reveal">
-            <div class="moment-index">02</div>
-            <h3 class="d3">Make it better</h3>
-            <p>The product is live and gaining traction, but there is more to unlock. We identify and improve what matters so performance catches up with the opportunity.</p>
-        </div>
-        <div class="moment reveal">
-            <div class="moment-index">03</div>
-            <h3 class="d3">Make it scale</h3>
-            <p>What worked early on is starting to break down. The product is growing but the team is stretched, quality drops, speed slows, and execution starts to drift, so we bring structure, clarity, and execution so the experience scales cleanly.</p>
-        </div>
-    </div>
-</section>
-
-
-<!-- =============================================
-     PROOF STRIP
-============================================= -->
-<div class="proof">
-    <div class="proof-cell">
-        <span class="proof-n">30+</span>
-        <span class="proof-txt">Years design leadership</span>
-    </div>
-    <div class="proof-cell">
-        <span class="proof-n">74.8%</span>
-        <span class="proof-txt">Design system adoption — single engagement</span>
-    </div>
-    <div class="proof-cell">
-        <span class="proof-n">28%</span>
-        <span class="proof-txt">Reduction in task completion time</span>
-    </div>
-    <div class="proof-cell">
-        <span class="proof-n" style="font-size: clamp(14px, 1.8vw, 22px); line-height: 1.3;">Disney · Schwab<br>GitLab · SharpSpring</span>
-        <span class="proof-txt">Prior work</span>
-    </div>
-</div>
-<!-- proof strip copy edit: no changes -->
-<!-- human-led divider copy edit: no changes ("AI raises the floor. Senior judgment raises the ceiling." is the strongest line on the page) -->
-
-
-<!-- Human-centric divider -->
-<div class="human-led-strip" style="
-    background: var(--paper);
-    padding: 28px var(--gutter);
-    border-bottom: 1px solid var(--rule);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
-">
-    <p style="
-        font-family: var(--display);
-        font-weight: 900;
-        font-size: clamp(18px, 2.2vw, 28px);
-        letter-spacing: -0.01em;
-        color: var(--ink);
-        line-height: 1;
-    ">Human-led. AI-accelerated.</p>
-    <p style="
-        font-size: 13px;
-        font-weight: 300;
-        color: var(--mid);
-        max-width: 480px;
-        line-height: 1.6;
-    ">AI raises the floor. Senior judgment raises the ceiling.</p>
-</div>
-
-<!-- =============================================
-     WORK
-============================================= -->
-<section class="s" id="work">
-    <div class="s-header">
-        <span class="s-num">02</span>
-        <span class="s-label">Selected work</span>
-    </div>
-
-    <div class="work-intro">
-        <h2 class="d2 reveal" style="max-width:600px; color:var(--ink)">Work that<br>moves companies<br>forward.</h2>
-        <a href="#" class="work-intro-link reveal">See all work</a>
-    </div>
-
-    <div class="work-stack">
-
-        <!-- Lace AI Pro — featured full width -->
-        <div class="card card-featured card-lace reveal" data-case="lace">
-            <div class="card-photo"></div>
-            <div class="card-overlay"></div>
-
-            <div class="card-body">
-                <div class="card-tags">
-                    <span class="ctag">Healthcare</span>
-                    <span class="ctag">MedTech SaaS</span>
-                </div>
-                <h3 class="card-title">Lace AI Pro</h3>
-                <p class="card-desc">Brand identity, product design, email system, and trade show collateral for an auditory rehabilitation platform.</p>
-            </div>
-            <div class="card-arrow">↗</div>
-        </div>
-
-        <!-- SharpSpring -->
-        <div class="card card-sharp reveal" data-case="sharp">
-            <div class="card-photo"></div>
-            <div class="card-overlay"></div>
-
-            <div class="card-body">
-                <div class="card-tags">
-                    <span class="ctag">B2B SaaS</span>
-                    <span class="ctag">Marketing Automation</span>
-                </div>
-                <h3 class="card-title">SharpSpring</h3>
-                <p class="card-desc">Platform redesign, identity refresh, and full-funnel marketing for a fast-scaling SaaS company.</p>
-            </div>
-            <div class="card-arrow">↗</div>
-        </div>
-
-        <!-- Pickers -->
-        <div class="card card-pickers reveal" data-case="pickers">
-            <div class="card-photo"></div>
-            <div class="card-overlay"></div>
-
-            <div class="card-body">
-                <div class="card-tags">
-                    <span class="ctag">Creator Economy</span>
-                    <span class="ctag">Design System</span>
-                </div>
-                <h3 class="card-title">Pickers</h3>
-                <p class="card-desc">First design system: tokens, components, documentation. 74.8% adoption · 28% faster delivery.</p>
-            </div>
-            <div class="card-arrow">↗</div>
-        </div>
-
-        <!-- PL Remote -->
-        <div class="card card-plremote reveal" data-case="plremote">
-            <div class="card-photo"></div>
-            <div class="card-overlay"></div>
-
-            <div class="card-body">
-                <div class="card-tags">
-                    <span class="ctag">IoT · Mobile</span>
-                    <span class="ctag">MVP Delivery</span>
-                </div>
-                <h3 class="card-title">PL Remote</h3>
-                <p class="card-desc">Product design for a mobile app replacing physical gate remotes. 10K+ users in month one.</p>
-            </div>
-            <div class="card-arrow">↗</div>
-        </div>
-
-    </div>
-
-    <p style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--mid); margin-top:20px; font-weight:400;">
-        Work led by PromptUX founding partners in prior roles. Shown with client permission.
-    </p>
-</section>
-<!-- work copy edit: Lace card — cut "hyper-growth" buzz; other three cards already concrete and strong -->
-
-
-<!-- =============================================
-     APPROACH
-============================================= -->
-<section class="s s-dark" id="approach">
-    <div class="s-header">
-        <span class="s-num">03</span>
-        <span class="s-label">How we work</span>
-    </div>
-
-    <h2 class="d1 approach-hed reveal">Why companies choose us.</h2>
-    <!-- approach headline copy edit: no changes (this is core positioning) -->
-
-    <div class="approach-grid">
-        <div class="aitem reveal">
-            <span class="aitem-n">01</span>
-            <h3 class="d3">Sharp from the start</h3>
-            <p>We get aligned quickly and move into the work with no long ramp-up. From the first conversation, we focus on what matters and what to do next.</p>
-        </div>
-        <div class="aitem reveal">
-            <span class="aitem-n">02</span>
-            <h3 class="d3">Faster by design</h3>
-            <p>AI is built into how the work gets done across research, design, and delivery. It helps us explore more options, decide faster, and ship sooner.</p>
-        </div>
-        <div class="aitem reveal">
-            <span class="aitem-n">03</span>
-            <h3 class="d3">Meaningful wins</h3>
-            <p>We focus the work around the outcomes that matter most, whether that means stronger conversion, faster adoption, clearer positioning, or a product experience that works harder for the business.</p>
-        </div>
-        <div class="aitem reveal">
-            <span class="aitem-n">04</span>
-            <h3 class="d3">No layers. No drag.</h3>
-            <p>You work directly with the people doing the work, without account managers or handoffs. What gets decided is what actually gets built.</p>
-        </div>
-    </div>
-</section>
-<!-- approach principles copy edit: 01 no changes; 02 — em-dash to period (two short sentences hit harder than one); 03 no changes; 04 — em-dash to period and cut "each" + "genuinely" (qualifiers diluting a strong line) -->
-
-
-<!-- =============================================
-     ENGAGE
-============================================= -->
-<section class="s" id="engage">
-    <div class="s-header">
-        <span class="s-num">04</span>
-        <span class="s-label">Two ways to engage</span>
-    </div>
-
-    <h2 class="d1 engage-hed reveal">How we start<br>working together.</h2>
-
-    <div class="engage-grid">
-
-        <!-- Sprint -->
-        <div class="ecard ecard-light reveal">
-            <span class="ecard-type">Entry engagement</span>
-            <h3 class="d2">The Sprint</h3>
-            <span class="ecard-timeframe">2–3 weeks · Fixed fee</span>
-            <p class="ecard-desc">A focused diagnosis. You get clarity on where you are, what the real problems are, and what to do next. Most engagements start here.</p>
-            <ul class="ecard-list">
-                <li>Current state audit: product, UX, workflows, AI maturity</li>
-                <li>Opportunity and priority map with ranked recommendations</li>
-                <li>90-day strategic action plan, specific enough to be executable</li>
-                <li>AI workflow integration assessment</li>
-                <li>90-minute leadership readout session</li>
-            </ul>
-            <span class="ecard-price">Starts at $15,000.</span>
-            <a href="#contact" class="btn btn-lime">Start with a Sprint →</a>
-        </div>
-
-        <!-- Partnership -->
-        <div class="ecard ecard-dark reveal">
-            <span class="ecard-type">Ongoing engagement</span>
-            <h3 class="d2">The Partnership</h3>
-            <span class="ecard-timeframe">Monthly · Direct access · No lock-in</span>
-            <p class="ecard-desc">Ongoing embedded work. We become part of your team — present when it matters, accountable for outcomes that compound over time.</p>
-            <ul class="ecard-list">
-                <li>Product and UX strategy</li>
-                <li>Design execution across product, brand, and marketing</li>
-                <li>AI workflow integration and team training</li>
-                <li>Design systems and documentation</li>
-                <li>Access to all three team members across specialties</li>
-            </ul>
-            <span class="ecard-price">Structured based on scope and engagement.</span>
-            <a href="#contact" class="btn btn-ghost">Start a Partnership →</a>
-        </div>
-
-    </div>
-
-    <p class="ecard-escape" style="margin-top:32px;font-size:13px;color:var(--mid);text-align:center;">
-        Have a project that doesn't fit this model?
-        <a href="#contact" style="color:var(--ink);border-bottom:1px solid var(--ink);text-decoration:none;padding-bottom:1px;">Let's talk →</a>
-    </p>
-</section>
-<!-- engage copy edit: Sprint no changes; Partnership — em-dash to colon, dropped "to what you need" (redundant given "Scope adjusts monthly"); bullets — cut "and direction" from line 1 (Strategy implies direction); "team enablement" → "team training" (less corporate) -->
-
-
-<!-- =============================================
-     TEAM
-============================================= -->
-<section class="s" id="team">
-    <div class="s-header">
-        <span class="s-num">05</span>
-        <span class="s-label">The team</span>
-    </div>
-
-    <h2 class="d1 team-hed reveal">The people<br>doing<br>the work.</h2>
-
-    <div class="team-grid">
-
-        <div class="tcard tcard-has-photo reveal">
-            <!-- PHOTO SLOT: replace data-src with actual image path when available -->
-            <div class="tcard-photo" style="background-image: url('assets/team/member-shane.jpg')">
-                <span class="tcard-photo-fallback">SB</span>
-            </div>
-            <h3 class="d3">Shane Bouchard</h3>
-            <span class="tcard-role">Founding Principal · Strategy & Experience Design</span>
-            <p class="tcard-bio">30 years of design leadership at Walt Disney World, Charles Schwab, GitLab, and SharpSpring. Strategic lead on every PromptUX engagement. Works at the level of brand positioning and component-library specification in the same week.</p>
-            <div class="tcard-chips">
-                <span class="chip">Disney</span>
-                <span class="chip">Schwab</span>
-                <span class="chip">GitLab</span>
-                <span class="chip">SharpSpring</span>
-            </div>
-        </div>
-
-        <div class="tcard tcard-has-photo reveal">
-            <div class="tcard-photo" style="background-image: url('assets/team/member-brandon.jpg')">
-                <span class="tcard-photo-fallback">BD</span>
-            </div>
-            <h3 class="d3">Brandon Dement, CSP</h3>
-            <span class="tcard-role">AI Strategy & Operations</span>
-            <p class="tcard-bio">Currently leading AI transformation at an enterprise organization. When clients ask how to apply AI to their product workflows, design operations, or team structure — Brandon answers from what's working right now, not from a framework built on last year's tools.</p>
-            <div class="tcard-chips">
-                <span class="chip">AI Strategy</span>
-                <span class="chip">Workflow Integration</span>
-                <span class="chip">Operations</span>
-            </div>
-        </div>
-
-        <div class="tcard tcard-has-photo reveal">
-            <div class="tcard-photo" style="background-image: url('assets/team/member-eduard.jpg')">
-                <span class="tcard-photo-fallback">EH</span>
-            </div>
-            <h3 class="d3">Eduard Hambardzumyan</h3>
-            <span class="tcard-role">Design Lead · AI-Advanced Art Direction</span>
-            <p class="tcard-bio">Senior art director and product designer working at the intersection of craft and AI. Considered, precise, built to scale. Leads brand and product design execution.</p>
-            <div class="tcard-chips">
-                <span class="chip">Art Direction</span>
-                <span class="chip">Brand Design</span>
-                <span class="chip">AI-Advanced</span>
-            </div>
-        </div>
-
-    </div>
-</section>
-<!-- team copy edit: Shane — em-dash to period and dropped "The person who" framing for direct verbs ("Strategic lead. Works at the level..."); Brandon no changes; Eduard — cut "Brings distinctive visual and interaction quality to every engagement" filler so the three sharp words ("Considered, precise, built to scale.") carry on their own -->
-
-
-<!-- =============================================
-     FOOTER CTA
-============================================= -->
-<section class="fcta" id="contact">
-    <span class="fcta-kicker">Ready to start</span>
-    <h2 class="d1 fcta-hed reveal">Tell us<br>what you're<br>working on.</h2>
-    <a href="mailto:hello@promptux.com" class="btn btn-lime reveal">Tell us what you're working on →</a>
-    <p class="fcta-sub">You tell us what's going on. We ask the right questions and tell you if we can help. No pitch on the first call.</p>
-</section>
-<!-- contact copy edit: no changes (kicker, headline, sub all already direct and strong; "No pitch on the first call." is a load-bearing line) -->
-
-
-<!-- =============================================
-     FOOTER
-============================================= -->
-<footer>
-    <span class="footer-logo">PROMPTUX</span>
-    <span class="footer-line"><em>Because how you direct AI is itself a design decision.</em></span>
-</footer>
-<!-- footer copy edit: no changes (signature line) -->
-<!-- case study panel data (CASES) copy: no changes — these are second-layer detail; not in scope for this surgical pass -->
-
-
 <script>
-// =============================================
-// TYPING ANIMATION
-// =============================================
-const typed    = document.getElementById('typed');
-const cur      = document.getElementById('cur');
-const kicker   = document.getElementById('hero-kicker');
-const headline = document.getElementById('hero-hl');
-const heroRt   = document.getElementById('hero-rt');
-
-const WORD = 'PROMPTUX';
-let idx = 0;
-
-function type() {
-    // In a non-default theme the wordmark is meant to be huge and static,
-    // so short-circuit the typing effect and reveal everything immediately.
-    const activeTheme = document.documentElement.getAttribute('data-theme');
-    if (activeTheme && activeTheme !== 'default') {
-        typed.textContent = WORD;
-        cur.style.opacity = '0';
-        kicker.classList.add('on');
-        headline.classList.add('on');
-        heroRt.classList.add('on');
-        return;
-    }
-    if (idx < WORD.length) {
-        typed.textContent += WORD[idx++];
-        // Slightly organic timing
-        setTimeout(type, 75 + Math.random() * 55);
-    } else {
-        // Blink a moment, then reveal content
-        setTimeout(() => {
-            cur.style.transition = 'opacity 0.4s';
-            cur.style.opacity    = '0';
-            headline.classList.add('on');
-            heroRt.classList.add('on');
-        }, 1200);
-    }
-}
-
-window.addEventListener('load', () => {
-    // Kicker fades in first
-    setTimeout(() => kicker.classList.add('on'), 250);
-    // Typing begins
-    setTimeout(type, 700);
-});
-
-// =============================================
-// SCROLL REVEAL
-// =============================================
-const io = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-        if (e.isIntersecting) {
-            const siblings = [...e.target.parentElement.querySelectorAll('.reveal')];
-            const delay    = siblings.indexOf(e.target) * 80;
-            e.target.style.transitionDelay = delay + 'ms';
-            e.target.classList.add('on');
-            io.unobserve(e.target);
-        }
-    });
-}, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
-
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-
-// =============================================
-// NAV SCROLL STATE
-// Detects when user leaves the hero (dark) and
-// enters light sections — updates nav style
-// =============================================
-const navEl    = document.querySelector('nav');
-const heroEl   = document.querySelector('.hero');
-const darkEls  = document.querySelectorAll('.s-dark, .proof, .fcta, footer');
-
-function updateNav() {
-    const scrollY = window.scrollY;
-    const heroH   = heroEl ? heroEl.offsetHeight : 0;
-
-    if (scrollY < heroH - 80) {
-        // Still in dark hero
-        navEl.classList.remove('scrolled', 'scrolled-light');
-        return;
-    }
-
-    // Determine if current scroll position overlaps a dark section
-    let overDark = false;
-    darkEls.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top <= 72 && rect.bottom >= 72) overDark = true;
-    });
-
-    navEl.classList.remove('scrolled', 'scrolled-light');
-    navEl.classList.add(overDark ? 'scrolled' : 'scrolled-light');
-}
-
-window.addEventListener('scroll', updateNav, { passive: true });
-updateNav();
-
-// =============================================
-// LINK HANDLING
-// Hash anchors smooth-scroll; mailto shows a small note then opens
-// the mail client; everything else (real URLs like /thinking/,
-// /sandbox.html, http*) navigates naturally.
-// =============================================
-document.addEventListener('click', function(e) {
-    const a = e.target.closest('a');
-    if (!a) return;
-    const href = a.getAttribute('href') || '';
-
-    // Smooth scroll to section anchors
-    if (href.startsWith('#') && href.length > 1) {
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-        return;
-    }
-
-    // Logo / empty href: scroll to top
-    if (href === '#' || href === '') {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        return;
-    }
-
-    // mailto: surface a quick note, then let the browser open the mail client
-    if (href.startsWith('mailto:')) {
-        const banner = document.getElementById('proto-banner');
-        if (banner) {
-            banner.textContent = '✉ Opening your mail client: ' + href.replace('mailto:', '');
-            banner.style.opacity = '1';
-            setTimeout(() => { banner.style.opacity = '0'; }, 3000);
-        }
-        return;
-    }
-
-    // Real URLs — fall through, let the browser navigate.
-});
-
 // Nav "more" dropdown — click to toggle, click outside or Escape to close.
-(() => {
+(function () {
     const btns = document.querySelectorAll('.nav-more__btn');
-    if (!btns.length) return;
     btns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
+        btn.addEventListener('click', e => {
             e.stopPropagation();
-            const expanded = btn.getAttribute('aria-expanded') === 'true';
-            btns.forEach(b => b.setAttribute('aria-expanded', 'false'));
-            btn.setAttribute('aria-expanded', String(!expanded));
+            const open = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', open ? 'false' : 'true');
         });
     });
     document.addEventListener('click', () => {
         btns.forEach(b => b.setAttribute('aria-expanded', 'false'));
     });
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') btns.forEach(b => b.setAttribute('aria-expanded', 'false'));
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            btns.forEach(b => b.setAttribute('aria-expanded', 'false'));
+        }
     });
 })();
 
-// Stats count-up — fires once when .ed-stats enters the viewport.
-(() => {
-    const section = document.querySelector('.ed-stats');
-    if (!section) return;
-    const stats = section.querySelectorAll('.ed-stats__num');
-    const ease = (t) => t; // linear
-
-    const fmt = (el, value) => {
-        const decimals = parseInt(el.dataset.decimals, 10) || 0;
-        const suffix = el.dataset.suffix || '';
-        const suffixAfter = el.dataset.suffixAfter === 'true';
-        return value.toFixed(decimals) + (suffixAfter ? '' : suffix);
-    };
-    const settle = (el) => {
-        const target = parseFloat(el.dataset.value);
-        const decimals = parseInt(el.dataset.decimals, 10) || 0;
-        el.textContent = target.toFixed(decimals) + (el.dataset.suffix || '');
-    };
-
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        stats.forEach(settle);
-        return;
-    }
-
-    let started = false;
-    const start = () => {
-        if (started) return;
-        started = true;
-        stats.forEach((el, i) => {
-            const target = parseFloat(el.dataset.value);
-            const duration = 2000;
-            const begin = performance.now() + 80 * i;
-            const tick = (now) => {
-                if (now < begin) { requestAnimationFrame(tick); return; }
-                const t = Math.min((now - begin) / duration, 1);
-                el.textContent = fmt(el, target * ease(t));
-                if (t < 1) requestAnimationFrame(tick); else settle(el);
-            };
-            requestAnimationFrame(tick);
-        });
-    };
-
-    new IntersectionObserver((entries, obs) => {
-        entries.forEach(e => { if (e.isIntersecting) { start(); obs.disconnect(); } });
-    }, { threshold: 0.3 }).observe(section);
-})();
-
-// Contact form — conditional 3-step flow, mailto-based submission.
-(() => {
-    const form = document.getElementById('ed-form');
-    if (!form) return;
-    const intentBtns = form.querySelectorAll('.ed-intent');
-    const steps = {
-        '2a': form.querySelector('[data-step="2a"]'),
-        '2b': form.querySelector('[data-step="2b"]'),
-        '3':  form.querySelector('[data-step="3"]'),
-    };
-    const confirmEl = form.querySelector('.ed-form__confirm');
-    const intentWrap = form.querySelector('.ed-form__intent');
-    let currentIntent = null;
-    let resetTimer = null;
-
-    const reveal = (el, delay = 0) => {
-        if (!el) return;
-        el.hidden = false;
-        // double-rAF so the initial style applies before we transition
-        requestAnimationFrame(() => requestAnimationFrame(() => {
-            setTimeout(() => el.setAttribute('data-visible', 'true'), delay);
-        }));
-    };
-    const hide = (el) => {
-        if (!el) return;
-        el.removeAttribute('data-visible');
-        el.hidden = true;
-    };
-
-    // Intent selection
-    intentBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const next = btn.dataset.intent;
-            intentBtns.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
-            if (currentIntent === next) return;
-            currentIntent = next;
-            if (next === 'sprint') { hide(steps['2b']); reveal(steps['2a']); }
-            else                   { hide(steps['2a']); reveal(steps['2b']); }
-            reveal(steps['3'], 100);
-        });
-    });
-
-    // Chip single-select (delegated)
-    form.addEventListener('click', (e) => {
-        const chip = e.target.closest('.ed-chip');
-        if (!chip) return;
-        const name = chip.dataset.name;
-        form.querySelectorAll(`.ed-chip[data-name="${name}"]`).forEach(c => {
-            c.setAttribute('aria-pressed', String(c === chip));
-        });
-    });
-
-    const selectedChip = (name) => {
-        const el = form.querySelector(`.ed-chip[data-name="${name}"][aria-pressed="true"]`);
-        return el ? el.dataset.value : '';
-    };
-
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        if (!currentIntent) return;
-        const fd = new FormData(form);
-        const isSprint = currentIntent === 'sprint';
-
-        const subject = `New ${isSprint ? 'Sprint' : 'Partnership'} inquiry — ${fd.get('name') || 'no name'}`;
-        const lines = [
-            `Intent: ${isSprint ? 'Sprint engagement' : 'Partnership engagement'}`,
-            isSprint ? `Budget: ${selectedChip('budget')}`     : `Team size: ${selectedChip('team-size')}`,
-            isSprint ? `Timeline: ${selectedChip('timeline')}` : `Design capacity: ${selectedChip('design-capacity')}`,
-            '',
-            isSprint ? 'What are you building:' : "What's not working:",
-            (fd.get('details') || '').toString(),
-            '',
-            `Name: ${fd.get('name') || ''}`,
-            `Email: ${fd.get('email') || ''}`,
-        ];
-        if ((fd.get('source') || '').toString().trim()) lines.push(`Found via: ${fd.get('source')}`);
-
-        window.location.href = `mailto:hello@promptux.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
-
-        // Surface the inline confirmation
-        if (intentWrap) intentWrap.setAttribute('aria-hidden', 'true');
-        reveal(confirmEl);
-
-        clearTimeout(resetTimer);
-        resetTimer = setTimeout(() => {
-            form.reset();
-            currentIntent = null;
-            form.querySelectorAll('[aria-pressed="true"]').forEach(el => el.setAttribute('aria-pressed', 'false'));
-            hide(steps['2a']); hide(steps['2b']); hide(steps['3']); hide(confirmEl);
-            if (intentWrap) intentWrap.removeAttribute('aria-hidden');
-        }, 4000);
-    });
-})();
-</script>
-
-<!-- Prototype toast banner -->
-<div id="proto-banner" style="
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--ink);
-    color: var(--lime);
-    font-family: var(--body);
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    padding: 12px 24px;
-    border: 1px solid rgba(200,241,53,0.3);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-    z-index: 9999;
-    white-space: nowrap;
-"></div>
-
-
-<!-- =============================================
-     CASE STUDY PANEL (slide-in overlay)
-============================================= -->
-<div id="cs-panel" style="
-    position: fixed;
-    inset: 0;
-    z-index: 500;
-    transform: translateX(100%);
-    transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    background: var(--paper);
-">
-    <!-- Panel nav -->
-    <div style="
-        position: sticky; top: 0; z-index: 10;
-        display: flex; align-items: center; justify-content: space-between;
-        padding: 20px var(--gutter);
-        background: var(--paper);
-        border-bottom: 1px solid var(--rule);
-    ">
-        <button id="cs-back" style="
-            display: flex; align-items: center; gap: 10px;
-            font-family: var(--body); font-size: 11px;
-            font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
-            color: var(--ink); background: none; border: none; cursor: pointer;
-            padding: 0;
-        ">← Back to work</button>
-        <span id="cs-title-nav" style="
-            font-family: var(--display); font-weight: 900;
-            font-size: 16px; letter-spacing: 0.06em; color: var(--ink);
-        "></span>
-        <a id="cs-figma-link" href="#" target="_blank" style="
-            font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
-            text-transform: uppercase; color: var(--mid); text-decoration: none;
-        ">View in Figma ↗</a>
-    </div>
-
-    <!-- Panel content (scrollable) -->
-    <div id="cs-content" style="overflow-y: auto; flex: 1;"></div>
-</div>
-
-<!-- Panel backdrop -->
-<div id="cs-backdrop" style="
-    position: fixed; inset: 0; z-index: 499;
-    background: rgba(12,12,10,0.5);
-    opacity: 0; pointer-events: none;
-    transition: opacity 0.4s ease;
-"></div>
-
-<script>
-
-// =============================================
-// CASE STUDY DATA
-// =============================================
-const CASES = {
-    lace: {
-        title: "Lace AI Pro",
-        figma: "https://www.figma.com/design/dF4HzAFH7Z6KIbh0WGkX9W/Agency-case-studies?node-id=350-8202",
-        tags: ["Healthcare", "MedTech", "SaaS"],
-        outcomes: ["Engagement", "Adoption", "Growth", "Consistency"],
-        services: ["Brand Identity", "Product Design", "UI", "Advertising", "Platform Design"],
-        summary: "Our founding partner led brand identity, product design, and marketing systems for Lace AI Pro — a clinically validated auditory training platform built for people with hearing loss.",
-        hero: {
-            src: "assets/lace/WC_Lace AI Pro_Hero.png",
-            alt: "Lace AI Pro across phone, MacBook, and tablet — the Speech in noise training screen"
-        },
-        sections: [
-            {
-                heading: "Brand and product evolution",
-                body: "Work spanned mobile product redesign, web mode extension, a modular email system, and event collateral for trade show activations. We expanded the brand identity for scale — new lesson types, a show-not-tell visual philosophy, and fresh avatar treatments that gave Content and Familiar Voices greater presence.",
-                media: [
-                    { type: "image-first", src: "assets/lace/lace-ai-user.png", alt: "An older couple smiling and using a phone together — show-not-tell brand photography" }
-                ]
-            },
-            {
-                heading: "Expanding the brand identity",
-                body: "We partnered with Lace AI Pro to expand its identity for scale. The refreshed design language showcases new lesson types, dramatizes differentiators, and leans into a “show not tell” philosophy to build trust and excitement. Striking product imagery with dynamic captions told the story simply and memorably. Fresh avatar treatments gave Content and Familiar Voices greater presence, ensuring the product’s most distinctive features stood out with clarity.",
-                media: [
-                    { type: "full-bleed", src: "assets/lace/lace-innovativecare.png", alt: "Lace AI Pro Innovative Care framework — Speech in Noise, Working Memory, Education, Gamification, Personalized Content, Familiar Voices" }
-                ]
-            },
-            {
-                heading: "Mobile design",
-                body: "The training flow redesign streamlined the workflow while increasing discoverability of lesson types and personalization features like My Voices and My Content. The interaction pattern is flexible and scalable — currently being applied to a sister product, Tinnitus Pro.",
-                media: [
-                    { type: "split", src: "assets/lace/lace-inutitiveandscalable.png", alt: "Lace mobile training card — Speech in Noise, Level 2", caption: { heading: "Intuitive & scalable", body: "The new training card unifies setup and action. Adjust lessons, voices, or content in seconds — or start training instantly." } },
-                    {
-                        type: "media-row",
-                        rowKind: "phones",
-                        items: [
-                            { src: "assets/lace/lace-lessontype.png", alt: "Lesson type", caption: { heading: "Lesson type", body: "Dedicated lesson view with large tap targets and space for context — making discovery intuitive and future features easy to extend." } },
-                            { src: "assets/lace/lace-mycontent.png", alt: "My Content", caption: { heading: "My Content", body: "The new My Content screen provides ample space to configure options and grow the feature in the future." } }
-                        ]
-                    },
-                    { type: "full-bleed", src: "assets/lace/lace-email-system.png", alt: "Comprehensive auditory training and Aural rehab education feature cards", flush: true }
-                ]
-            },
-            {
-                heading: "Web mode",
-                body: "Lace AI Pro web mode extends the proven mobile experience to desktop, using Material 3's adaptive layout strategy. We introduced side sheets, onboarding cards to boost adoption, and optimized key flows for a familiar yet desktop-optimized experience.",
-                media: [
-                    { type: "full-bleed", src: "assets/lace/lace-webmode-desktop.png", alt: "Lace AI Pro on a MacBook — Speech in noise training in web mode" }
-                ]
-            },
-            {
-                heading: "Email system",
-                body: "The Lace email system was designed to move fast, stay coherent, and convert. With modular design language and visual storytelling, we accelerated campaign creation, simplified approvals, and gave both patient and provider audiences a consistent, engaging experience.",
-                media: [
-                    {
-                        type: "media-row",
-                        rowKind: "emails",
-                        items: [
-                            { src: "assets/lace/Lace - email - brain and DTTE.png", alt: "Lace email — brain training and DTTE" },
-                            { src: "assets/lace/Lace - email - welcome - download.png", alt: "Lace welcome email with App Store download" },
-                            { src: "assets/lace/Lace - email - followup.png", alt: "Lace follow-up email" }
-                        ]
-                    }
-                ]
-            },
-            {
-                heading: "Event collateral",
-                body: "We brought the Lace identity to life at industry events. Kiosk signage introduced the four-part framework — Health Practice, Happier Patients, Sound Science, and Innovative Care — paired with looping testimonials and interactive product demos.",
-                media: [
-                    {
-                        type: "grid-carousel",
-                        desktop: "assets/lace/lace-eventcollateral.png",
-                        desktopAlt: "Four Lace kiosk panels — Healthy Practice, Happier Patients, Sound Science, Innovative Care",
-                        slides: [
-                            { src: "assets/lace/lace-09a-healthy-practice.png", alt: "Healthy Practice kiosk panel" },
-                            { src: "assets/lace/lace-09b-happier-patients.png", alt: "Happier Patients kiosk panel" },
-                            { src: "assets/lace/lace-09c-sound-science.png", alt: "Sound Science kiosk panel" },
-                            { src: "assets/lace/lace-09d-innovative-care.png", alt: "Innovative Care kiosk panel" }
-                        ]
-                    },
-                    { type: "full-bleed", src: "assets/lace/lace tradeshow boot.png", alt: "Lace AI Pro tradeshow booth" }
-                ]
-            }
-        ]
-    },
-    sharp: {
-        title: "SharpSpring",
-        figma: "https://www.figma.com/design/dF4HzAFH7Z6KIbh0WGkX9W/Agency-case-studies?node-id=354-6892",
-        tags: ["Marketing Automation", "B2B", "SaaS"],
-        outcomes: ["Lead Generation", "Conversion", "Consistency", "Growth"],
-        services: ["Brand Identity", "Product Design", "Platform Design", "UX", "Web Design", "Campaign Creative"],
-        summary: "Our founding partner served as VP of Experience Design at SharpSpring, leading the full design function across product, brand, web, and marketing for a platform used by thousands of agencies and SMBs.",
-        sections: [
-            { heading: "Marketing automation platform design", body: "We redesigned SharpSpring's marketing automation platform to deliver a more intuitive, modern experience. The updated UI simplified navigation, clarified workflows, and positioned the platform for rapid feature growth." },
-            { heading: "Identity and website refresh", body: "SharpSpring's website was reimagined to better reflect its growing position in the market. We modernized the identity system, refreshed the visual language, and ensured clear, consistent, conversion-driven experiences end-to-end." },
-            { heading: "Content marketing", body: "We helped SharpSpring demonstrate thought leadership and drive demand through content marketing. From creative campaigns to conversion-driven landing pages, our work spanned the full funnel — attracting prospects, nurturing them with value, and converting." },
-            { heading: "Lead Zen — advertising campaign", body: "One standout campaign introduced 'Funnel Shui' to capture the idea of a perfectly optimized funnel — balanced, efficient, and flowing. Signature visuals included a bonsai shaped like a funnel, a symbol for growth through design." }
-        ]
-    },
-    pickers: {
-        title: "Pickers",
-        figma: "https://www.figma.com/design/dF4HzAFH7Z6KIbh0WGkX9W/Agency-case-studies?node-id=420-7729",
-        tags: ["Creator Economy", "SaaS", "Publishing"],
-        outcomes: ["Efficiency", "Consistency", "Adoption", "Scalability"],
-        services: ["Design System", "Documentation", "UX", "UI", "Pattern Libraries"],
-        summary: "Our founding partner designed and documented Pickers' first design system — from audit and planning through tokens, components, and adoption strategy.",
-        sections: [
-            { heading: "The challenge", body: "The challenge was to replace fragmented design practices with a cohesive system that improved collaboration between design and engineering. We built the foundations — tokens, components, and documentation — that became the backbone of a consistent, scalable product." },
-            { heading: "Process: Audit → Planning → Tokens → Components", body: "We started by assessing the current state to capture gaps and prioritize opportunities. Then defined the framework — foundations, components, guidelines, patterns, and tools. Design tokens established a scalable foundation for consistency across the entire system." },
-            { heading: "Comprehensive design system", body: "We instituted a comprehensive design system built on foundational elements, reusable components, and interaction patterns. A single source of truth (SSOT) with detailed documentation showing where, when, and why to use components." },
-            { heading: "Results", body: "Within three months of implementation: 74.8% design system adoption across product teams, and a 28% reduction in task completion time, streamlining workflows and accelerating delivery across the organization." }
-        ],
-        stats: [
-            { n: "74.8%", label: "Design system adoption" },
-            { n: "28%", label: "Reduction in task completion time" }
-        ]
-    },
-    plremote: {
-        title: "PL Remote",
-        figma: "https://www.figma.com/design/dF4HzAFH7Z6KIbh0WGkX9W/Agency-case-studies?node-id=371-9416",
-        tags: ["IoT", "Utilities", "Mobile", "SaaS"],
-        outcomes: ["Adoption", "Efficiency", "Growth", "Simplification"],
-        services: ["Product Design", "UX", "UI", "MVP Delivery"],
-        summary: "Our founding partner defined the product vision and designed the mobile experience for PL Remote from the ground up — simplifying complex gate access for social workers supporting elderly residents.",
-        sections: [
-            { heading: "The problem", body: "Social workers supporting elderly residents during COVID lockdowns faced a basic but critical challenge: carrying multiple physical remotes for different gates. PL Remote turned that problem into a streamlined mobile experience." },
-            { heading: "Product design", body: "The new app eliminates the need for hardware, allowing users to connect, manage, and operate multiple gates directly from their phone. We mapped workflows, clarified critical paths, and designed the experience through iterative wireframing — low-fidelity to polished high-fidelity." },
-            { heading: "Brand and experience consistency", body: "We built a clean, scalable UI system that works across iOS and Android, designed to handle future features like subscriptions and access sharing. The visual language emphasized clarity — a minimal look aligned with the product's promise: effortless control." },
-            { heading: "Results", body: "PL Remote launched as an MVP and saw immediate traction. 10K+ users registered in the first month. 48% of users reported significant improvements in managing multiple gates." }
-        ],
-        stats: [
-            { n: "10K+", label: "Users in first month" },
-            { n: "48%", label: "Reported improvement in gate management" }
-        ]
-    }
-};
-
-// =============================================
-// CASE STUDY PANEL LOGIC
-// =============================================
-const panel    = document.getElementById('cs-panel');
-const backdrop = document.getElementById('cs-backdrop');
-const content  = document.getElementById('cs-content');
-const backBtn  = document.getElementById('cs-back');
-const titleNav = document.getElementById('cs-title-nav');
-const figmaLink = document.getElementById('cs-figma-link');
-
-function openCase(key) {
-    const c = CASES[key];
-    if (!c) return;
-
-    titleNav.textContent = c.title;
-    figmaLink.href = c.figma;
-    content.setAttribute('data-case', key);
-
-    // Build content HTML
-    const tagsHtml = c.tags.map(t =>
-        `<span style="font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--mid);border:1px solid var(--rule);padding:4px 10px;">${t}</span>`
-    ).join('');
-
-    const outcomesHtml = c.outcomes.map(t =>
-        `<span style="font-size:10px;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);border:1px solid rgba(12,12,10,0.14);padding:4px 10px;">${t}</span>`
-    ).join('');
-
-    const servicesHtml = c.services.map(t =>
-        `<span style="font-size:10px;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);border:1px solid rgba(12,12,10,0.14);padding:4px 10px;">${t}</span>`
-    ).join('');
-
-    // Render an individual media block based on its layout type
-    const renderMedia = (m) => {
-        if (m.type === 'full-bleed') {
-            const flushCls = m.flush ? ' cs-media--flush' : '';
-            return `
-                <figure class="cs-media cs-media--full${flushCls}">
-                    <img src="${m.src}" alt="${m.alt}" loading="lazy" />
-                </figure>
-            `;
-        }
-        if (m.type === 'image-first') {
-            return `
-                <figure class="cs-media cs-media--image-first">
-                    <img src="${m.src}" alt="${m.alt}" loading="lazy" />
-                </figure>
-            `;
-        }
-        if (m.type === 'split') {
-            const cap = m.caption || {};
-            return `
-                <div class="cs-media cs-media--split">
-                    <figure class="cs-media__panel">
-                        <img src="${m.src}" alt="${m.alt}" loading="lazy" />
-                    </figure>
-                    ${cap.heading ? `
-                        <div class="cs-media__caption">
-                            <h4>${cap.heading}</h4>
-                            ${cap.body ? `<p>${cap.body}</p>` : ''}
-                        </div>
-                    ` : ''}
-                </div>
-            `;
-        }
-        if (m.type === 'media-row') {
-            const itemsHtml = (m.items || []).map((it, i) => `
-                <li class="cs-row__item" data-index="${i}">
-                    <figure>
-                        <img src="${it.src}" alt="${it.alt}" loading="lazy" />
-                        ${it.caption ? `
-                            <figcaption>
-                                <h5>${it.caption.heading || ''}</h5>
-                                ${it.caption.body ? `<p>${it.caption.body}</p>` : ''}
-                            </figcaption>
-                        ` : ''}
-                    </figure>
-                </li>
-            `).join('');
-            const dotsHtml = (m.items || []).map((_, i) => `
-                <button class="cs-carousel__dot${i === 0 ? ' is-active' : ''}" data-index="${i}" aria-label="Slide ${i + 1}"></button>
-            `).join('');
-            return `
-                <div class="cs-media cs-media--row" data-row-kind="${m.rowKind || 'generic'}" data-carousel="row">
-                    <ul class="cs-row__track" style="grid-template-columns: repeat(${m.items.length}, 1fr);">
-                        ${itemsHtml}
-                    </ul>
-                    <div class="cs-carousel__controls">
-                        <button class="cs-carousel__btn cs-carousel__btn--prev" aria-label="Previous">‹</button>
-                        <div class="cs-carousel__dots">${dotsHtml}</div>
-                        <button class="cs-carousel__btn cs-carousel__btn--next" aria-label="Next">›</button>
-                    </div>
-                </div>
-            `;
-        }
-        if (m.type === 'grid-carousel') {
-            const slidesHtml = (m.slides || []).map((s, i) => `
-                <li class="cs-carousel__slide" data-index="${i}">
-                    <img src="${s.src}" alt="${s.alt}" loading="lazy" />
-                </li>
-            `).join('');
-            const dotsHtml = (m.slides || []).map((_, i) => `
-                <button class="cs-carousel__dot${i === 0 ? ' is-active' : ''}" data-index="${i}" aria-label="Slide ${i + 1}"></button>
-            `).join('');
-            return `
-                <div class="cs-media cs-media--grid-carousel" data-carousel="grid">
-                    <figure class="cs-media__grid">
-                        <img src="${m.desktop}" alt="${m.desktopAlt}" loading="lazy" />
-                    </figure>
-                    <div class="cs-carousel" role="region" aria-label="Event collateral carousel">
-                        <ul class="cs-carousel__track">
-                            ${slidesHtml}
-                        </ul>
-                        <div class="cs-carousel__controls">
-                            <button class="cs-carousel__btn cs-carousel__btn--prev" aria-label="Previous slide">‹</button>
-                            <div class="cs-carousel__dots">${dotsHtml}</div>
-                            <button class="cs-carousel__btn cs-carousel__btn--next" aria-label="Next slide">›</button>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-        return '';
-    };
-
-    const sectionsHtml = c.sections.map(s => {
-        const mediaHtml = (s.media || []).map(renderMedia).join('');
-        return `
-            <section class="cs-section">
-                <div class="cs-section__copy">
-                    <h3>${s.heading}</h3>
-                    <p>${s.body}</p>
-                </div>
-                ${mediaHtml}
-            </section>
-        `;
-    }).join('');
-
-    const heroImageHtml = c.hero ? `
-        <figure class="cs-hero-image" style="background:var(--paper-2);">
-            <img src="${c.hero.src}" alt="${c.hero.alt}" />
-        </figure>
-    ` : '';
-
-    const statsHtml = (c.stats || []).map(s => `
-        <div style="flex:1;padding:40px;border-right:1px solid var(--rule);">
-            <div style="font-family:var(--display);font-weight:700;font-size:clamp(40px,6vw,80px);color:var(--ink);line-height:1;letter-spacing:-0.025em;margin-bottom:10px;">${s.n}</div>
-            <div style="font-size:12px;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);">${s.label}</div>
-        </div>
-    `).join('');
-
-    const statsSection = c.stats ? `
-        <div style="background:var(--paper-3);display:flex;gap:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);">
-            ${statsHtml}
-            <div style="flex:1;padding:40px;display:flex;align-items:center;justify-content:flex-end;">
-                <a href="${c.figma}" target="_blank" rel="noopener" style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px;">View full case study in Figma ↗</a>
-            </div>
-        </div>
-    ` : '';
-
-    content.innerHTML = `
-        <!-- Hero band — neutral grey gradient, matches homepage .ed-work-band -->
-        <div style="background:linear-gradient(180deg,var(--paper-2) 0%,var(--paper-3) 50%,var(--paper-2) 100%);padding:clamp(72px,9vw,128px) var(--gutter) clamp(56px,7vw,96px);position:relative;overflow:hidden;text-align:center;">
-            <div style="display:inline-flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:28px;">${tagsHtml}</div>
-            <h2 style="font-family:var(--display);font-weight:700;font-size:clamp(44px,6.2vw,88px);line-height:1.05;letter-spacing:-0.025em;color:var(--ink);margin:0 auto 28px;max-width:18ch;">${c.title}</h2>
-            <p style="font-family:var(--body);font-size:clamp(17px,1.6vw,22px);font-weight:400;line-height:1.45;color:var(--mid);max-width:640px;margin:0 auto;">${c.summary}</p>
-        </div>
-
-        <!-- Hero image (devices on the brand color, continuing the band visually) -->
-        ${heroImageHtml}
-
-        <!-- Meta row -->
-        <div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--rule);">
-            <div style="padding:32px var(--gutter);border-right:1px solid var(--rule);">
-                <div style="font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink);margin-bottom:14px;">Outcomes</div>
-                <div style="display:flex;gap:6px;flex-wrap:wrap;">${outcomesHtml}</div>
-            </div>
-            <div style="padding:32px var(--gutter);">
-                <div style="font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink);margin-bottom:14px;">Services</div>
-                <div style="display:flex;gap:6px;flex-wrap:wrap;">${servicesHtml}</div>
-            </div>
-        </div>
-
-        <!-- Sections -->
-        ${sectionsHtml}
-
-        <!-- Stats (if any) -->
-        ${statsSection}
-
-        <!-- Attribution -->
-        <div style="padding:32px var(--gutter);background:var(--paper);">
-            <p style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);">
-                Work led by PromptUX founding partners in prior roles. Shown with client permission.
-            </p>
-        </div>
-    `;
-
-    // Wire up any carousels in the freshly rendered content
-    initCaseCarousels(content);
-
-    // Scroll content to top
-    content.scrollTop = 0;
-
-    // Show panel
-    panel.style.transform = 'translateX(0)';
-    backdrop.style.opacity = '1';
-    backdrop.style.pointerEvents = 'all';
-    document.body.style.overflow = 'hidden';
-}
-
-function closeCase() {
-    panel.style.transform = 'translateX(100%)';
-    backdrop.style.opacity = '0';
-    backdrop.style.pointerEvents = 'none';
-    document.body.style.overflow = '';
-}
-
-// Wire up carousels (grid-carousel + media-row) inside the freshly rendered content.
-// Both share the same dot/prev/next pattern over a horizontal scroll-snap track.
-function initCaseCarousels(root) {
-    const blocks = root.querySelectorAll('[data-carousel]');
-    blocks.forEach(block => {
-        const track = block.querySelector('.cs-carousel__track, .cs-row__track');
-        const slides = Array.from(track ? track.children : []);
-        const dots = Array.from(block.querySelectorAll('.cs-carousel__dot'));
-        const prev = block.querySelector('.cs-carousel__btn--prev');
-        const next = block.querySelector('.cs-carousel__btn--next');
-        if (!track || slides.length === 0) return;
-
-        const setActive = i => dots.forEach((d, di) => d.classList.toggle('is-active', di === i));
-
-        const goTo = i => {
-            const clamped = Math.max(0, Math.min(slides.length - 1, i));
-            slides[clamped].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-            setActive(clamped);
-        };
-
-        // Sync dot state when user swipes / scrolls the track itself
-        track.addEventListener('scroll', () => {
-            const slideWidth = slides[0].getBoundingClientRect().width;
-            if (slideWidth === 0) return;
-            const idx = Math.round(track.scrollLeft / slideWidth);
-            setActive(idx);
-        }, { passive: true });
-
-        prev && prev.addEventListener('click', () => {
-            const active = dots.findIndex(d => d.classList.contains('is-active'));
-            goTo((active <= 0 ? slides.length : active) - 1);
-        });
-        next && next.addEventListener('click', () => {
-            const active = dots.findIndex(d => d.classList.contains('is-active'));
-            goTo((active + 1) % slides.length);
-        });
-        dots.forEach(dot => {
-            dot.addEventListener('click', () => goTo(parseInt(dot.dataset.index, 10)));
-        });
-    });
-}
-
-backBtn.addEventListener('click', closeCase);
-backdrop.addEventListener('click', closeCase);
-
-// Keyboard close
-document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeCase();
-});
-
-// Override link interception for case study cards
-document.querySelectorAll('.card[data-case]').forEach(card => {
-    card.style.cursor = 'pointer';
-    card.addEventListener('click', function(e) {
-        e.stopPropagation();
-        openCase(this.dataset.case);
-    });
-});
-
-// Editorial theme: wire each work band's CTA into the case study panel
-document.querySelectorAll('.ed-work-band__cta').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        const key = this.dataset.case;
-        if (key && typeof openCase === 'function') openCase(key);
-    });
-});
-
-// Editorial theme: sticky-nav elevation on scroll
+// Smooth-scroll for in-page anchors; let cross-page anchors (/#x) navigate.
 (function () {
-    if (document.documentElement.getAttribute('data-theme') !== 'editorial') return;
+    document.addEventListener('click', e => {
+        const a = e.target.closest('a[href^="#"]');
+        if (!a) return;
+        const href = a.getAttribute('href');
+        if (href === '#' || href.length < 2) return;
+        const target = document.querySelector(href);
+        if (!target) return;
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + window.scrollY - 24;
+        window.scrollTo({ top, behavior: 'smooth' });
+    });
+})();
+
+// Nav elevation on scroll.
+(function () {
     const nav = document.querySelector('nav');
     if (!nav) return;
     const update = () => {
@@ -5011,15 +3591,6 @@ document.querySelectorAll('.ed-work-band__cta').forEach(btn => {
     update();
     window.addEventListener('scroll', update, { passive: true });
 })();
-
-
-// Also handle Figma links inside the panel (open in new tab in real use)
-document.getElementById('cs-panel').addEventListener('click', function(e) {
-    const a = e.target.closest('a');
-    if (!a) return;
-    // Panel internal links — let them work
-    e.stopPropagation();
-});
 </script>
 
 </body>
