@@ -4213,21 +4213,23 @@
        (0% → -20%) so the image pans upward as the panel scrolls past.
     ====================================================================== */
     :root[data-theme="editorial"] .cm-scrollpan-section {
-        background: var(--paper);
+        /* Light-light grey section behind the featured panel. */
+        background: var(--paper-2);
         /* Full-bleed panel: no horizontal gutter on the section itself. */
         padding: clamp(64px, 8vw, 120px) 0 clamp(80px, 10vw, 144px);
     }
     :root[data-theme="editorial"] .cm-scrollpan-section__head {
-        /* Header keeps the normal gutter and max-width. */
+        /* Centered header above the full-width panel. */
         max-width: var(--ed-max);
         margin: 0 auto clamp(28px, 3vw, 44px);
         padding: 0 var(--gutter);
+        text-align: center;
     }
     :root[data-theme="editorial"] .cm-scrollpan {
         position: relative;
         /* Full-width: edge-to-edge, no max-width or side margin. */
         width: 100%;
-        height: 640px;
+        height: 720px;
         overflow: hidden;
         border-radius: 0;
         border-top: 1px solid var(--rule);
@@ -4242,7 +4244,10 @@
     :root[data-theme="editorial"] .cm-scrollpan__img {
         display: block;
         width: 100%;
-        height: auto;
+        /* 125% of panel height so cover always has 20% pan room regardless of viewport. */
+        height: 125%;
+        object-fit: cover;
+        object-position: top center;
         transform: translate3d(0, 0, 0);
         transform-origin: center top;
         will-change: transform;
@@ -4295,10 +4300,10 @@
     }
     :root[data-theme="editorial"] .cm-scrollpan__cta:hover { opacity: 0.7; }
     @media (max-width: 880px) {
-        :root[data-theme="editorial"] .cm-scrollpan { height: 520px; }
+        :root[data-theme="editorial"] .cm-scrollpan { height: 600px; }
     }
     @media (max-width: 560px) {
-        :root[data-theme="editorial"] .cm-scrollpan { height: 420px; }
+        :root[data-theme="editorial"] .cm-scrollpan { height: 480px; }
         :root[data-theme="editorial"] .cm-scrollpan__overlay { padding: 16px 18px; border-radius: 8px; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -4801,12 +4806,12 @@
      user scrolls past. Test placement under Case Studies; not in nav or production. -->
 <section class="cm-scrollpan-section" aria-label="Scroll-pan panel prototype">
     <div class="cm-scrollpan-section__head">
-        <p class="ed-eyebrow">Prototype</p>
-        <h2 class="ed-h2">Scroll-pan panel.</h2>
+        <p class="ed-eyebrow">Featured work</p>
+        <h2 class="ed-h2">SharpSpring</h2>
     </div>
     <div class="cm-scrollpan"
-         data-img-src="assets/sharpspring/sharpspring-portfolio.png"
-         data-img-alt="SharpSpring marketing site — full portfolio composition"
+         data-img-src="assets/sharpspring/sharpspring-contentmarketing.png"
+         data-img-alt="SharpSpring — content marketing system across web and email"
          data-eyebrow="Selected detail"
          data-title="Built to feel intuitive at any scale."
          data-description="A tall composition that reveals as you read, anchored to the panel’s scroll progress."
@@ -4814,8 +4819,8 @@
          data-cta-href="#work">
         <div class="cm-scrollpan__viewport">
             <img class="cm-scrollpan__img"
-                 src="assets/sharpspring/sharpspring-portfolio.png"
-                 alt="SharpSpring marketing site — full portfolio composition"
+                 src="assets/sharpspring/sharpspring-contentmarketing.png"
+                 alt="SharpSpring — content marketing system across web and email"
                  loading="lazy"
                  decoding="async">
         </div>
