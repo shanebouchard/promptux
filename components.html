@@ -3875,6 +3875,245 @@
         :root[data-theme="editorial"] .sb-pillars__panel:not([hidden]) { animation: none; }
     }
 
+    /* === SANDBOX — case studies: featured + thumbnail rail =============
+       Hero panel with large device imagery and a horizontal thumbnail
+       rail beneath. Active thumb fills with ink as auto-advance runs.
+    ====================================================================== */
+    :root[data-theme="editorial"] .sb-cases {
+        position: relative;
+        background: var(--paper);
+        padding: clamp(96px, 12vw, 160px) 0;
+        border-top: 1px solid var(--rule);
+        border-bottom: 1px solid var(--rule);
+        overflow: hidden;
+    }
+    :root[data-theme="editorial"] .sb-cases__stage {
+        max-width: var(--ed-max);
+        margin: 0 auto clamp(64px, 8vw, 112px);
+        padding: 0 var(--gutter);
+        position: relative;
+    }
+    :root[data-theme="editorial"] .sb-cases__featured {
+        position: relative;
+        min-height: clamp(380px, 46vw, 560px);
+    }
+    :root[data-theme="editorial"] .sb-cases__panel {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: clamp(40px, 6vw, 96px);
+        align-items: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    :root[data-theme="editorial"] .sb-cases__panel.is-active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    :root[data-theme="editorial"] .sb-cases__copy {
+        transform: translateY(16px);
+        opacity: 0;
+        transition: transform 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 120ms,
+                    opacity 600ms ease-out 120ms;
+    }
+    :root[data-theme="editorial"] .sb-cases__panel.is-active .sb-cases__copy {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    :root[data-theme="editorial"] .sb-cases__title {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: clamp(44px, 6.5vw, 88px);
+        line-height: 1.02;
+        letter-spacing: -0.028em;
+        color: var(--ink);
+        margin: 0 0 var(--ed-space-3);
+    }
+    :root[data-theme="editorial"] .sb-cases__sub {
+        font-family: var(--body);
+        font-size: clamp(16px, 1.4vw, 19px);
+        line-height: 1.55;
+        color: var(--mid);
+        max-width: 44ch;
+        margin: 0 0 var(--ed-space-3);
+    }
+    :root[data-theme="editorial"] .sb-cases__tag-list {
+        list-style: none;
+        margin: 0 0 var(--ed-space-4);
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    :root[data-theme="editorial"] .sb-cases__tag {
+        font-family: var(--body);
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--mid);
+        background: transparent;
+        border: 1px solid var(--rule);
+        padding: 5px 10px;
+    }
+    :root[data-theme="editorial"] .sb-cases__copy .cta-pill { display: inline-flex; }
+    :root[data-theme="editorial"] .sb-cases__media {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: scale(0.96);
+        transition: transform 1000ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    :root[data-theme="editorial"] .sb-cases__panel.is-active .sb-cases__media {
+        transform: scale(1);
+    }
+    :root[data-theme="editorial"] .sb-cases__media img {
+        display: block;
+        width: 100%;
+        max-width: 720px;
+        height: auto;
+    }
+    :root[data-theme="editorial"] .sb-cases__rail {
+        max-width: var(--ed-max);
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        border-top: 1px solid var(--rule);
+    }
+    :root[data-theme="editorial"] .sb-cases__thumb {
+        appearance: none;
+        background: transparent;
+        border: 0;
+        border-right: 1px solid var(--rule);
+        padding: clamp(20px, 2.2vw, 28px) clamp(16px, 1.6vw, 22px) clamp(22px, 2.4vw, 30px);
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: clamp(12px, 1.4vw, 18px);
+        text-align: left;
+        color: var(--ink);
+        position: relative;
+        transition: background 220ms ease;
+    }
+    :root[data-theme="editorial"] .sb-cases__thumb:last-child { border-right: 0; }
+    :root[data-theme="editorial"] .sb-cases__thumb:hover { background: var(--paper-2); }
+    :root[data-theme="editorial"] .sb-cases__thumb:focus-visible {
+        outline: 2px solid var(--ink);
+        outline-offset: -2px;
+    }
+    :root[data-theme="editorial"] .sb-cases__thumb-img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: clamp(72px, 8vw, 104px);
+        opacity: 0.42;
+        transition: opacity 220ms ease;
+    }
+    :root[data-theme="editorial"] .sb-cases__thumb:hover .sb-cases__thumb-img,
+    :root[data-theme="editorial"] .sb-cases__thumb.is-active .sb-cases__thumb-img {
+        opacity: 1;
+    }
+    :root[data-theme="editorial"] .sb-cases__thumb-img img {
+        display: block;
+        max-height: 100%;
+        max-width: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+    }
+    :root[data-theme="editorial"] .sb-cases__thumb-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        width: 100%;
+    }
+    :root[data-theme="editorial"] .sb-cases__thumb-tags {
+        font-family: var(--body);
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--mid);
+    }
+    :root[data-theme="editorial"] .sb-cases__thumb-name {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: clamp(15px, 1.4vw, 18px);
+        line-height: 1.2;
+        letter-spacing: -0.012em;
+        color: var(--mid);
+        transition: color 220ms ease;
+    }
+    :root[data-theme="editorial"] .sb-cases__thumb:hover .sb-cases__thumb-name,
+    :root[data-theme="editorial"] .sb-cases__thumb.is-active .sb-cases__thumb-name {
+        color: var(--ink);
+    }
+    :root[data-theme="editorial"] .sb-cases__thumb-progress {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        width: 100%;
+        overflow: hidden;
+    }
+    :root[data-theme="editorial"] .sb-cases__thumb-progress::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--ink);
+        transform: scaleX(0);
+        transform-origin: left;
+    }
+    :root[data-theme="editorial"] .sb-cases__thumb.is-active .sb-cases__thumb-progress::after {
+        animation: sbc-fill var(--sbc-dur, 6s) linear forwards;
+    }
+    @keyframes sbc-fill {
+        from { transform: scaleX(0); }
+        to   { transform: scaleX(1); }
+    }
+    :root[data-theme="editorial"] .sb-cases.is-paused .sb-cases__thumb.is-active .sb-cases__thumb-progress::after {
+        animation-play-state: paused;
+    }
+    @media (max-width: 880px) {
+        :root[data-theme="editorial"] .sb-cases__panel {
+            grid-template-columns: 1fr;
+            gap: clamp(20px, 3vw, 32px);
+            text-align: center;
+        }
+        :root[data-theme="editorial"] .sb-cases__media { order: -1; }
+        :root[data-theme="editorial"] .sb-cases__media img { max-width: 420px; }
+        :root[data-theme="editorial"] .sb-cases__sub { margin-left: auto; margin-right: auto; }
+        :root[data-theme="editorial"] .sb-cases__featured { min-height: clamp(540px, 88vw, 680px); }
+    }
+    @media (max-width: 640px) {
+        :root[data-theme="editorial"] .sb-cases__rail {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        :root[data-theme="editorial"] .sb-cases__thumb:nth-child(2n) { border-right: 0; }
+        :root[data-theme="editorial"] .sb-cases__thumb:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        :root[data-theme="editorial"] .sb-cases__panel,
+        :root[data-theme="editorial"] .sb-cases__copy,
+        :root[data-theme="editorial"] .sb-cases__media,
+        :root[data-theme="editorial"] .sb-cases__thumb-img,
+        :root[data-theme="editorial"] .sb-cases__thumb-name { transition: none; }
+        :root[data-theme="editorial"] .sb-cases__panel.is-active { opacity: 1; }
+        :root[data-theme="editorial"] .sb-cases__copy { opacity: 1; transform: none; }
+        :root[data-theme="editorial"] .sb-cases__media { transform: none; }
+        :root[data-theme="editorial"] .sb-cases__thumb.is-active .sb-cases__thumb-progress::after {
+            animation: none;
+            transform: scaleX(1);
+        }
+    }
+
     /* === VARIANT TOGGLE — reveal-on-hover pill strip in section corner.
        Wrap two siblings in [data-variant] and the JS swaps panes. Used
        on Components Library where each section has A/B alternatives.
@@ -4243,7 +4482,13 @@
 <!-- WORK — one product-reveal band per case study -->
 <div id="ed-work"></div>
 
-<!-- FEATURED WORK — horizontal scrolling cards (components) -->
+<!-- CASE STUDIES — variant A: card row (components) / variant B: featured + rail (sandbox) -->
+<div class="variant" data-variant="A" data-variant-name="cases">
+    <div class="variant__toggle" role="tablist" aria-label="Case studies layout">
+        <button type="button" class="variant__btn is-active" data-variant-target="A" aria-pressed="true">Cards</button>
+        <button type="button" class="variant__btn" data-variant-target="B" aria-pressed="false">Featured + rail</button>
+    </div>
+    <div class="variant__pane" data-variant-pane="A">
 <section class="cm-cards" aria-label="Featured work">
     <div class="cm-cards__head">
         <p class="ed-eyebrow">Selected work</p>
@@ -4306,6 +4551,121 @@
         </button>
     </div>
 </section>
+    </div>
+    <div class="variant__pane" data-variant-pane="B" hidden>
+<section class="sb-cases" aria-label="Featured work" aria-roledescription="carousel">
+    <div class="sb-cases__stage">
+        <div class="sb-cases__featured" aria-live="polite">
+            <article class="sb-cases__panel is-active" data-case="lace" aria-label="Lace AI Pro">
+                <div class="sb-cases__copy">
+                    <p class="ed-eyebrow">Featured work</p>
+                    <h3 class="sb-cases__title">Lace AI Pro</h3>
+                    <p class="sb-cases__sub">Brand identity, product design, email system, and trade show collateral for an auditory rehabilitation platform.</p>
+                    <ul class="sb-cases__tag-list" aria-label="Tags">
+                        <li class="sb-cases__tag">Healthcare</li>
+                        <li class="sb-cases__tag">MedTech</li>
+                        <li class="sb-cases__tag">SaaS</li>
+                    </ul>
+                    <button type="button" class="cta-pill ed-work-band__cta" data-case="lace">See the work →</button>
+                </div>
+                <figure class="sb-cases__media">
+                    <img src="assets/devices/iphone-lace.png" alt="Lace AI Pro — mobile product mockup" loading="lazy">
+                </figure>
+            </article>
+            <article class="sb-cases__panel" data-case="sharp" aria-label="SharpSpring">
+                <div class="sb-cases__copy">
+                    <p class="ed-eyebrow">Featured work</p>
+                    <h3 class="sb-cases__title">SharpSpring</h3>
+                    <p class="sb-cases__sub">Platform redesign, identity refresh, and full-funnel marketing for a fast-scaling SaaS company.</p>
+                    <ul class="sb-cases__tag-list" aria-label="Tags">
+                        <li class="sb-cases__tag">B2B SaaS</li>
+                        <li class="sb-cases__tag">Marketing Automation</li>
+                    </ul>
+                    <button type="button" class="cta-pill ed-work-band__cta" data-case="sharp">See the work →</button>
+                </div>
+                <figure class="sb-cases__media">
+                    <img src="assets/devices/laptop-sharpspring.png" alt="SharpSpring — workflow automation builder on a MacBook" loading="lazy">
+                </figure>
+            </article>
+            <article class="sb-cases__panel" data-case="pickers" aria-label="Pickers">
+                <div class="sb-cases__copy">
+                    <p class="ed-eyebrow">Featured work</p>
+                    <h3 class="sb-cases__title">Pickers</h3>
+                    <p class="sb-cases__sub">First design system: tokens, components, documentation. 74.8% adoption · 28% faster delivery.</p>
+                    <ul class="sb-cases__tag-list" aria-label="Tags">
+                        <li class="sb-cases__tag">Creator Economy</li>
+                        <li class="sb-cases__tag">Design System</li>
+                    </ul>
+                    <button type="button" class="cta-pill ed-work-band__cta" data-case="pickers">See the work →</button>
+                </div>
+                <figure class="sb-cases__media">
+                    <img src="assets/devices/desktop-pickers.png" alt="Pickers — design system documentation on a desktop monitor" loading="lazy">
+                </figure>
+            </article>
+            <article class="sb-cases__panel" data-case="plremote" aria-label="PL Remote">
+                <div class="sb-cases__copy">
+                    <p class="ed-eyebrow">Featured work</p>
+                    <h3 class="sb-cases__title">PL Remote</h3>
+                    <p class="sb-cases__sub">Product design for a mobile app replacing physical gate remotes. 10K+ users in month one.</p>
+                    <ul class="sb-cases__tag-list" aria-label="Tags">
+                        <li class="sb-cases__tag">IoT</li>
+                        <li class="sb-cases__tag">Mobile</li>
+                        <li class="sb-cases__tag">MVP Delivery</li>
+                    </ul>
+                    <button type="button" class="cta-pill ed-work-band__cta" data-case="plremote">See the work →</button>
+                </div>
+                <figure class="sb-cases__media">
+                    <img src="assets/devices/iphone-pl.png" alt="PL Remote — isometric mobile mockup showing the device setup screen" loading="lazy">
+                </figure>
+            </article>
+        </div>
+    </div>
+
+    <div class="sb-cases__rail" role="navigation" aria-label="Case study selector">
+        <button type="button" class="sb-cases__thumb is-active" data-target="lace" aria-current="true">
+            <span class="sb-cases__thumb-img" aria-hidden="true">
+                <img src="assets/devices/iphone-lace.png" alt="" loading="lazy">
+            </span>
+            <span class="sb-cases__thumb-meta">
+                <span class="sb-cases__thumb-tags">Healthcare</span>
+                <span class="sb-cases__thumb-name">Lace AI Pro</span>
+            </span>
+            <span class="sb-cases__thumb-progress" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="sb-cases__thumb" data-target="sharp" aria-current="false">
+            <span class="sb-cases__thumb-img" aria-hidden="true">
+                <img src="assets/devices/laptop-sharpspring.png" alt="" loading="lazy">
+            </span>
+            <span class="sb-cases__thumb-meta">
+                <span class="sb-cases__thumb-tags">B2B SaaS</span>
+                <span class="sb-cases__thumb-name">SharpSpring</span>
+            </span>
+            <span class="sb-cases__thumb-progress" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="sb-cases__thumb" data-target="pickers" aria-current="false">
+            <span class="sb-cases__thumb-img" aria-hidden="true">
+                <img src="assets/devices/desktop-pickers.png" alt="" loading="lazy">
+            </span>
+            <span class="sb-cases__thumb-meta">
+                <span class="sb-cases__thumb-tags">Design System</span>
+                <span class="sb-cases__thumb-name">Pickers</span>
+            </span>
+            <span class="sb-cases__thumb-progress" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="sb-cases__thumb" data-target="plremote" aria-current="false">
+            <span class="sb-cases__thumb-img" aria-hidden="true">
+                <img src="assets/devices/iphone-pl.png" alt="" loading="lazy">
+            </span>
+            <span class="sb-cases__thumb-meta">
+                <span class="sb-cases__thumb-tags">IoT · Mobile</span>
+                <span class="sb-cases__thumb-name">PL Remote</span>
+            </span>
+            <span class="sb-cases__thumb-progress" aria-hidden="true"></span>
+        </button>
+    </div>
+</section>
+    </div>
+</div>
 
 <!-- APPROACH — four principles -->
 <section class="ed-approach" aria-label="How we work">
@@ -5206,6 +5566,90 @@ const CAPABILITIES = [
         tabs[next].focus();
         activate(tabs[next].dataset.target);
     });
+})();
+
+// Sandbox case studies — featured panel + thumbnail rail. Auto-advances
+// every 6s with a visible fill bar under the active thumb so the
+// mechanism is discoverable. Click a thumb to jump; hover/focus pauses.
+(() => {
+    const section = document.querySelector('.sb-cases');
+    if (!section) return;
+    const panels = Array.from(section.querySelectorAll('.sb-cases__panel'));
+    const thumbs = Array.from(section.querySelectorAll('.sb-cases__thumb'));
+    if (!panels.length || !thumbs.length) return;
+    const AUTO_MS = 6000;
+    section.style.setProperty('--sbc-dur', `${AUTO_MS}ms`);
+    let current = 0;
+    let timer = null;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const goTo = (i) => {
+        current = (i + panels.length) % panels.length;
+        panels.forEach((p, idx) => p.classList.toggle('is-active', idx === current));
+        thumbs.forEach((t, idx) => {
+            const active = idx === current;
+            t.classList.toggle('is-active', active);
+            t.setAttribute('aria-current', active ? 'true' : 'false');
+        });
+    };
+
+    const start = () => {
+        if (reduceMotion) return;
+        stop();
+        section.classList.remove('is-paused');
+        timer = setInterval(() => goTo(current + 1), AUTO_MS);
+    };
+    const stop = () => {
+        if (timer) clearInterval(timer);
+        timer = null;
+        section.classList.add('is-paused');
+    };
+
+    thumbs.forEach((t, idx) => {
+        t.addEventListener('click', () => {
+            if (idx === current) return;
+            goTo(idx);
+            start();
+        });
+    });
+
+    section.addEventListener('mouseenter', stop);
+    section.addEventListener('mouseleave', start);
+    section.addEventListener('focusin', stop);
+    section.addEventListener('focusout', start);
+
+    document.addEventListener('keydown', (e) => {
+        const rect = section.getBoundingClientRect();
+        const inView = rect.bottom > 60 && rect.top < window.innerHeight - 60;
+        if (!inView) return;
+        const t = e.target;
+        if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+        if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1); start(); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); start(); }
+    });
+
+    const featured = section.querySelector('.sb-cases__featured');
+    let touchStartX = null, touchStartY = null;
+    if (featured) {
+        featured.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            stop();
+        }, { passive: true });
+        featured.addEventListener('touchend', (e) => {
+            if (touchStartX === null) return;
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            const dy = e.changedTouches[0].clientY - touchStartY;
+            if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+                if (dx < 0) goTo(current + 1); else goTo(current - 1);
+            }
+            touchStartX = touchStartY = null;
+            start();
+        });
+    }
+
+    goTo(0);
+    start();
 })();
 </script>
 
