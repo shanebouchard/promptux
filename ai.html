@@ -3703,6 +3703,47 @@
         margin: 0 0 10px;
         max-width: 16ch;
     }
+    :root[data-theme="editorial"] .ai-flow__loop {
+        position: relative;
+        margin: 32px 8.333% 0;
+        height: 56px;
+    }
+    :root[data-theme="editorial"] .ai-flow__loop svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+    }
+    :root[data-theme="editorial"] .ai-flow__loop path {
+        fill: none;
+        stroke: rgba(12, 12, 10, 0.22);
+        stroke-width: 1.25;
+    }
+    :root[data-theme="editorial"] .ai-flow__loop-label {
+        position: absolute;
+        left: 50%;
+        bottom: -12px;
+        transform: translateX(-50%);
+        background: var(--paper);
+        padding: 4px 12px;
+        border: 1px solid var(--rule);
+        border-radius: 999px;
+        font-family: var(--body);
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--mid);
+    }
+    :root[data-theme="editorial"] .ai-flow__note {
+        margin: 36px auto 0;
+        max-width: 56ch;
+        text-align: center;
+        font-family: var(--body);
+        font-size: 13px;
+        line-height: 1.55;
+        color: var(--mid);
+    }
     :root[data-theme="editorial"] .ai-flow__ai {
         display: inline-block;
         font-family: var(--body);
@@ -3718,7 +3759,8 @@
         :root[data-theme="editorial"] .ai-flow { padding: clamp(28px, 4vw, 40px) clamp(20px, 3vw, 32px); }
         :root[data-theme="editorial"] .ai-flow__rail { grid-template-columns: 1fr; gap: 0; }
         :root[data-theme="editorial"] .ai-flow__line,
-        :root[data-theme="editorial"] .ai-flow__line--ai { display: none; }
+        :root[data-theme="editorial"] .ai-flow__line--ai,
+        :root[data-theme="editorial"] .ai-flow__loop { display: none; }
         :root[data-theme="editorial"] .ai-flow__node {
             display: grid;
             grid-template-columns: 16px 1fr;
@@ -4336,7 +4378,7 @@
         <div class="ai-section__head ai-reveal">
             <p class="ai-eyebrow">Workflow</p>
             <h2 class="ai-h2">AI runs through the work, not next to it.</h2>
-            <p class="ai-lede">Six stages, one continuous thread. AI shows up in each — for synthesis, exploration, generation, or validation — never as a separate phase.</p>
+            <p class="ai-lede">Six stages, one continuous cycle. AI shows up in each — for synthesis, exploration, generation, or validation — never as a separate phase.</p>
         </div>
         <div class="ai-flow ai-reveal">
             <div class="ai-flow__rail">
@@ -4379,6 +4421,14 @@
                     <span class="ai-flow__ai">AI experiments</span>
                 </div>
             </div>
+            <div class="ai-flow__loop" aria-hidden="true">
+                <svg viewBox="0 0 1000 56" preserveAspectRatio="none">
+                    <path d="M 1000 0 L 1000 32 Q 1000 52 980 52 L 20 52 Q 0 52 0 32 L 0 10" />
+                    <path d="M -6 16 L 0 4 L 6 16" />
+                </svg>
+                <span class="ai-flow__loop-label">Iterate</span>
+            </div>
+            <p class="ai-flow__note">A cycle can be as short as a week or two, or longer when the work calls for it. The shape stays the same — the cadence flexes to fit the engagement.</p>
         </div>
     </div>
 </section>
