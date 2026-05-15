@@ -2262,6 +2262,103 @@
         max-width: 1020px;
     }
 
+    /* === WORK CAROUSEL — one case study at a time, arrows + dot nav === */
+    :root[data-theme="editorial"] .ed-work-carousel {
+        position: relative;
+        background: linear-gradient(180deg, var(--paper-2) 0%, var(--paper-3) 50%, var(--paper-2) 100%);
+        padding-bottom: clamp(40px, 5vw, 64px);
+        outline: none;
+    }
+    :root[data-theme="editorial"] .ed-work-carousel__viewport {
+        position: relative;
+        overflow: hidden;
+    }
+    :root[data-theme="editorial"] .ed-work-carousel__track {
+        display: flex;
+        align-items: stretch;
+        transition: transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
+        will-change: transform;
+    }
+    :root[data-theme="editorial"] .ed-work-band--slide {
+        flex: 0 0 100%;
+        min-width: 0;
+        background: transparent;
+    }
+    /* Override the alternating gradient — single-slide carousel uses one bg on the section. */
+    :root[data-theme="editorial"] .ed-work-carousel__track .ed-work-band:nth-of-type(even),
+    :root[data-theme="editorial"] .ed-work-carousel__track .ed-work-band:nth-of-type(odd) {
+        background: transparent;
+    }
+
+    /* Controls strip */
+    :root[data-theme="editorial"] .ed-work-carousel__controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(20px, 2.5vw, 32px);
+        padding: 8px var(--gutter) 0;
+    }
+    :root[data-theme="editorial"] .ed-work-carousel__arrow {
+        appearance: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 999px;
+        border: 1px solid var(--rule);
+        background: var(--paper);
+        color: var(--ink);
+        cursor: pointer;
+        transition: background 200ms ease, border-color 200ms ease, color 200ms ease, transform 200ms ease;
+    }
+    :root[data-theme="editorial"] .ed-work-carousel__arrow:hover {
+        background: var(--ink);
+        border-color: var(--ink);
+        color: var(--paper);
+        transform: translateY(-1px);
+    }
+    :root[data-theme="editorial"] .ed-work-carousel__arrow:focus-visible {
+        outline: 2px solid var(--ink);
+        outline-offset: 3px;
+    }
+    :root[data-theme="editorial"] .ed-work-carousel__arrow svg { display: block; }
+
+    :root[data-theme="editorial"] .ed-work-carousel__dots {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+    }
+    :root[data-theme="editorial"] .ed-work-carousel__dot {
+        appearance: none;
+        width: 8px;
+        height: 8px;
+        padding: 0;
+        border-radius: 50%;
+        border: 0;
+        background: rgba(12, 12, 10, 0.18);
+        cursor: pointer;
+        transition: background 200ms ease, transform 200ms ease;
+    }
+    :root[data-theme="editorial"] .ed-work-carousel__dot:hover { background: rgba(12, 12, 10, 0.4); }
+    :root[data-theme="editorial"] .ed-work-carousel__dot:focus-visible {
+        outline: 2px solid var(--ink);
+        outline-offset: 4px;
+    }
+    :root[data-theme="editorial"] .ed-work-carousel__dot.is-active {
+        background: var(--ink);
+        transform: scale(1.25);
+    }
+
+    @media (max-width: 720px) {
+        :root[data-theme="editorial"] .ed-work-carousel__controls { gap: 14px; padding-top: 0; }
+        :root[data-theme="editorial"] .ed-work-carousel__arrow { width: 40px; height: 40px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        :root[data-theme="editorial"] .ed-work-carousel__track { transition: none; }
+        :root[data-theme="editorial"] .ed-work-carousel__dot { transition: none; }
+    }
+
     /* === APPROACH — 2x2 grid on paper-2 === */
     :root[data-theme="editorial"] .ed-approach {
         background: var(--paper);
@@ -3342,7 +3439,7 @@
             <div class="ed-pillar">
                 <div class="ed-pillar__num">02</div>
                 <h3>Make it better</h3>
-                <p>You're live and gaining traction. Now the real work starts — finding what's holding performance back and closing the gap between what you built and what the market will reward.</p>
+                <p>You're live and gaining traction. Now the real work starts: finding what's holding performance back and closing the gap between what you built and what the market will reward.</p>
             </div>
             <div class="ed-pillar">
                 <div class="ed-pillar__num">03</div>
@@ -3353,73 +3450,90 @@
     </div>
 </section>
 
-<!-- WORK — one product-reveal band per case study -->
+<!-- WORK — one case study at a time, carousel with arrows + dot nav -->
 <div id="ed-work"></div>
 
-<section class="ed-work-band" data-case="lace" data-device="phone" aria-label="Lace AI Pro">
-    <div class="ed-work-band__inner">
-        <p class="ed-work-band__eyebrow">Featured work — 01</p>
-        <h2 class="ed-work-band__title">Lace AI Pro</h2>
-        <div class="ed-work-band__tags">
-            <span class="ed-work-band__tag">Healthcare</span>
-            <span class="ed-work-band__tag">MedTech</span>
-            <span class="ed-work-band__tag">SaaS</span>
+<section class="ed-work-carousel" aria-label="Featured work" aria-roledescription="carousel" tabindex="0">
+    <div class="ed-work-carousel__viewport">
+        <div class="ed-work-carousel__track">
+            <article class="ed-work-band ed-work-band--slide is-active" data-case="lace" data-device="phone" aria-label="Lace AI Pro" aria-roledescription="slide" role="group">
+                <div class="ed-work-band__inner">
+                    <p class="ed-work-band__eyebrow">Featured work · 01</p>
+                    <h2 class="ed-work-band__title">Lace AI Pro</h2>
+                    <div class="ed-work-band__tags">
+                        <span class="ed-work-band__tag">Healthcare</span>
+                        <span class="ed-work-band__tag">MedTech</span>
+                        <span class="ed-work-band__tag">SaaS</span>
+                    </div>
+                    <p class="ed-work-band__sub">Brand identity, product design, email system, and trade show collateral for an auditory rehabilitation platform.</p>
+                    <button type="button" class="cta-pill ed-work-band__cta" data-case="lace">See the work →</button>
+                </div>
+                <figure class="ed-work-band__device">
+                    <img src="assets/devices/iphone-lace.png" alt="Lace AI Pro — mobile product mockup">
+                </figure>
+            </article>
+            <article class="ed-work-band ed-work-band--slide" data-case="sharp" data-device="desktop" aria-label="SharpSpring" aria-roledescription="slide" role="group">
+                <div class="ed-work-band__inner">
+                    <p class="ed-work-band__eyebrow">Featured work · 02</p>
+                    <h2 class="ed-work-band__title">SharpSpring</h2>
+                    <div class="ed-work-band__tags">
+                        <span class="ed-work-band__tag">B2B SaaS</span>
+                        <span class="ed-work-band__tag">Marketing Automation</span>
+                    </div>
+                    <p class="ed-work-band__sub">Platform redesign, identity refresh, and full-funnel marketing for a fast-scaling SaaS company.</p>
+                    <button type="button" class="cta-pill ed-work-band__cta" data-case="sharp">See the work →</button>
+                </div>
+                <figure class="ed-work-band__device">
+                    <img src="assets/devices/laptop-sharpspring.png" alt="SharpSpring — workflow automation builder on a MacBook">
+                </figure>
+            </article>
+            <article class="ed-work-band ed-work-band--slide" data-case="pickers" data-device="desktop" aria-label="Pickers" aria-roledescription="slide" role="group">
+                <div class="ed-work-band__inner">
+                    <p class="ed-work-band__eyebrow">Featured work · 03</p>
+                    <h2 class="ed-work-band__title">Pickers</h2>
+                    <div class="ed-work-band__tags">
+                        <span class="ed-work-band__tag">Creator Economy</span>
+                        <span class="ed-work-band__tag">Design System</span>
+                    </div>
+                    <p class="ed-work-band__sub">First design system: tokens, components, documentation. 74.8% adoption · 28% faster delivery.</p>
+                    <button type="button" class="cta-pill ed-work-band__cta" data-case="pickers">See the work →</button>
+                </div>
+                <figure class="ed-work-band__device">
+                    <img src="assets/devices/desktop-pickers.png" alt="Pickers — design system documentation on a desktop monitor">
+                </figure>
+            </article>
+            <article class="ed-work-band ed-work-band--slide" data-case="plremote" data-device="phone" aria-label="PL Remote" aria-roledescription="slide" role="group">
+                <div class="ed-work-band__inner">
+                    <p class="ed-work-band__eyebrow">Featured work · 04</p>
+                    <h2 class="ed-work-band__title">PL Remote</h2>
+                    <div class="ed-work-band__tags">
+                        <span class="ed-work-band__tag">IoT</span>
+                        <span class="ed-work-band__tag">Mobile</span>
+                        <span class="ed-work-band__tag">MVP Delivery</span>
+                    </div>
+                    <p class="ed-work-band__sub">Product design for a mobile app replacing physical gate remotes. 10K+ users in month one.</p>
+                    <button type="button" class="cta-pill ed-work-band__cta" data-case="plremote">See the work →</button>
+                </div>
+                <figure class="ed-work-band__device">
+                    <img src="assets/devices/iphone-pl.png" alt="PL Remote — isometric mobile mockup showing the device setup screen">
+                </figure>
+            </article>
         </div>
-        <p class="ed-work-band__sub">Brand identity, product design, email system, and trade show collateral for an auditory rehabilitation platform.</p>
-        <button type="button" class="cta-pill ed-work-band__cta" data-case="lace">See the work →</button>
     </div>
-    <figure class="ed-work-band__device">
-        <img src="assets/devices/iphone-lace.png" alt="Lace AI Pro — mobile product mockup">
-    </figure>
-</section>
-
-<section class="ed-work-band" data-case="sharp" data-device="desktop" aria-label="SharpSpring">
-    <div class="ed-work-band__inner">
-        <p class="ed-work-band__eyebrow">Featured work — 02</p>
-        <h2 class="ed-work-band__title">SharpSpring</h2>
-        <div class="ed-work-band__tags">
-            <span class="ed-work-band__tag">B2B SaaS</span>
-            <span class="ed-work-band__tag">Marketing Automation</span>
+    <div class="ed-work-carousel__controls">
+        <button type="button" class="ed-work-carousel__arrow ed-work-carousel__arrow--prev" aria-label="Previous case study">
+            <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="ed-work-carousel__dots" role="tablist" aria-label="Choose a case study">
+            <button type="button" class="ed-work-carousel__dot is-active" data-target="0" role="tab" aria-selected="true" aria-label="Lace AI Pro"></button>
+            <button type="button" class="ed-work-carousel__dot" data-target="1" role="tab" aria-selected="false" aria-label="SharpSpring"></button>
+            <button type="button" class="ed-work-carousel__dot" data-target="2" role="tab" aria-selected="false" aria-label="Pickers"></button>
+            <button type="button" class="ed-work-carousel__dot" data-target="3" role="tab" aria-selected="false" aria-label="PL Remote"></button>
         </div>
-        <p class="ed-work-band__sub">Platform redesign, identity refresh, and full-funnel marketing for a fast-scaling SaaS company.</p>
-        <button type="button" class="cta-pill ed-work-band__cta" data-case="sharp">See the work →</button>
+        <button type="button" class="ed-work-carousel__arrow ed-work-carousel__arrow--next" aria-label="Next case study">
+            <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
     </div>
-    <figure class="ed-work-band__device">
-        <img src="assets/devices/laptop-sharpspring.png" alt="SharpSpring — workflow automation builder on a MacBook">
-    </figure>
-</section>
-
-<section class="ed-work-band" data-case="pickers" data-device="desktop" aria-label="Pickers">
-    <div class="ed-work-band__inner">
-        <p class="ed-work-band__eyebrow">Featured work — 03</p>
-        <h2 class="ed-work-band__title">Pickers</h2>
-        <div class="ed-work-band__tags">
-            <span class="ed-work-band__tag">Creator Economy</span>
-            <span class="ed-work-band__tag">Design System</span>
-        </div>
-        <p class="ed-work-band__sub">First design system: tokens, components, documentation. 74.8% adoption · 28% faster delivery.</p>
-        <button type="button" class="cta-pill ed-work-band__cta" data-case="pickers">See the work →</button>
-    </div>
-    <figure class="ed-work-band__device">
-        <img src="assets/devices/desktop-pickers.png" alt="Pickers — design system documentation on a desktop monitor">
-    </figure>
-</section>
-
-<section class="ed-work-band" data-case="plremote" data-device="phone" aria-label="PL Remote">
-    <div class="ed-work-band__inner">
-        <p class="ed-work-band__eyebrow">Featured work — 04</p>
-        <h2 class="ed-work-band__title">PL Remote</h2>
-        <div class="ed-work-band__tags">
-            <span class="ed-work-band__tag">IoT</span>
-            <span class="ed-work-band__tag">Mobile</span>
-            <span class="ed-work-band__tag">MVP Delivery</span>
-        </div>
-        <p class="ed-work-band__sub">Product design for a mobile app replacing physical gate remotes. 10K+ users in month one.</p>
-        <button type="button" class="cta-pill ed-work-band__cta" data-case="plremote">See the work →</button>
-    </div>
-    <figure class="ed-work-band__device">
-        <img src="assets/devices/iphone-pl.png" alt="PL Remote — isometric mobile mockup showing the device setup screen">
-    </figure>
 </section>
 
 <!-- APPROACH — four principles -->
@@ -3675,7 +3789,7 @@
             <img src="assets/team/member-shane.jpg" alt="Shane Bouchard" class="ed-team__avatar">
             <h3>Shane Bouchard</h3>
             <span class="role">Founding Principal · Strategy & Experience Design</span>
-            <p>30 years of honed judgment across Walt Disney World, Charles Schwab, GitLab, and SharpSpring — startups, scale-ups, and enterprises. Strategic lead on every PromptUX engagement. Equally at home defining brand positioning and specifying component libraries in the same week.</p>
+            <p>30 years of honed judgment across Walt Disney World, Charles Schwab, GitLab, and SharpSpring: startups, scale-ups, and enterprises. Strategic lead on every PromptUX engagement. Equally at home defining brand positioning and specifying component libraries in the same week.</p>
         </div>
         <div class="ed-team__card">
             <img src="assets/team/member-brandon.jpg" alt="Brandon Dement" class="ed-team__avatar">
@@ -3687,7 +3801,7 @@
             <img src="assets/team/member-eduard.jpg" alt="Eduard Hambardzumyan" class="ed-team__avatar">
             <h3>Eduard Hambardzumyan</h3>
             <span class="role">Design Lead · AI-Advanced Art Direction</span>
-            <p>Senior art director and product designer at the intersection of craft and AI. Considered and precise — the kind of work that looks inevitable once it's done. Leads all brand and product design execution.</p>
+            <p>Senior art director and product designer at the intersection of craft and AI. Considered and precise. The kind of work that looks inevitable once it's done. Leads all brand and product design execution.</p>
         </div>
     </div>
 </section>
@@ -4498,6 +4612,52 @@ document.addEventListener('click', function(e) {
         }, 4000);
     });
 })();
+
+// Work carousel — one case at a time, arrows + dot nav, keyboard + touch.
+(function () {
+    const carousel = document.querySelector('.ed-work-carousel');
+    if (!carousel) return;
+    const track = carousel.querySelector('.ed-work-carousel__track');
+    const slides = Array.from(carousel.querySelectorAll('.ed-work-band--slide'));
+    const dots = Array.from(carousel.querySelectorAll('.ed-work-carousel__dot'));
+    const prev = carousel.querySelector('.ed-work-carousel__arrow--prev');
+    const next = carousel.querySelector('.ed-work-carousel__arrow--next');
+    if (!track || !slides.length || !dots.length) return;
+
+    let current = 0;
+
+    const update = (i) => {
+        current = (i + slides.length) % slides.length;
+        track.style.transform = 'translate3d(' + (-current * 100) + '%, 0, 0)';
+        slides.forEach((s, idx) => s.classList.toggle('is-active', idx === current));
+        dots.forEach((d, idx) => {
+            d.classList.toggle('is-active', idx === current);
+            d.setAttribute('aria-selected', String(idx === current));
+        });
+    };
+
+    prev && prev.addEventListener('click', () => update(current - 1));
+    next && next.addEventListener('click', () => update(current + 1));
+    dots.forEach((d, i) => d.addEventListener('click', () => update(i)));
+
+    carousel.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') { e.preventDefault(); update(current - 1); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); update(current + 1); }
+    });
+
+    // Touch swipe
+    let touchX = null;
+    track.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', (e) => {
+        if (touchX === null) return;
+        const dx = e.changedTouches[0].clientX - touchX;
+        if (Math.abs(dx) > 40) update(current + (dx < 0 ? 1 : -1));
+        touchX = null;
+    });
+
+    update(0);
+})();
+
 </script>
 
 <!-- Prototype toast banner -->
