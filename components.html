@@ -4379,7 +4379,7 @@
     <div class="ed-hero-new__copy">
         <p class="ed-hero-new__eyebrow">Foundations</p>
         <h1 class="ed-hero-new__title"><span class="line">Components Library</span></h1>
-        <p class="ed-hero-new__sub">An internal library of section variants in exploration. Hover any section with two options to swap between them. Not client-facing — this page is deleted before launch.</p>
+        <p class="ed-hero-new__sub">An internal library of section variants in exploration. Hover any section with two options to swap between them. Not client-facing. This page is deleted before launch.</p>
     </div>
     <figure class="ed-hero-new__device">
         <img src="assets/devices/iphone-lace.png" alt="Mobile product mockup">
@@ -4651,6 +4651,7 @@
         <button type="button" class="variant__btn is-active" data-variant-target="A" aria-pressed="true">Featured + rail</button>
         <button type="button" class="variant__btn" data-variant-target="B" aria-pressed="false">Cards</button>
         <button type="button" class="variant__btn" data-variant-target="C" aria-pressed="false">Parallax</button>
+        <button type="button" class="variant__btn" data-variant-target="D" aria-pressed="false">Work bands</button>
     </div>
     <div class="variant__pane" data-variant-pane="B" hidden>
 <section class="cm-cards" aria-label="Featured work">
@@ -4853,7 +4854,7 @@
         </div>
         <div class="cm-scrollpan__overlay">
             <p class="cm-scrollpan__eyebrow">Selected detail</p>
-            <h3 class="cm-scrollpan__title">SharpSpring — full-funnel marketing.</h3>
+            <h3 class="cm-scrollpan__title">SharpSpring · full-funnel marketing.</h3>
             <p class="cm-scrollpan__desc">Brand, platform pages, and growth surfaces — built and shipped as one motion. Scroll to reveal more.</p>
             <a class="cm-scrollpan__cta" href="#work">See the case study →</a>
         </div>
@@ -4928,6 +4929,76 @@
     </div>
 </section>
     </div>
+    <div class="variant__pane" data-variant-pane="D" hidden>
+<!-- Work bands variant — archived from the homepage product-reveal pattern.
+     Four full-width sections, one per case study; alternating gradient
+     direction per band; centered copy + device mockup beneath. -->
+<section class="ed-work-band" data-case="lace" data-device="phone" aria-label="Lace AI Pro">
+    <div class="ed-work-band__inner">
+        <p class="ed-work-band__eyebrow">Featured work · 01</p>
+        <h2 class="ed-work-band__title">Lace AI Pro</h2>
+        <div class="ed-work-band__tags">
+            <span class="ed-work-band__tag">Healthcare</span>
+            <span class="ed-work-band__tag">MedTech</span>
+            <span class="ed-work-band__tag">SaaS</span>
+        </div>
+        <p class="ed-work-band__sub">Brand identity, product design, email system, and trade show collateral for an auditory rehabilitation platform.</p>
+        <button type="button" class="cta-pill ed-work-band__cta" data-case="lace">See the work →</button>
+    </div>
+    <figure class="ed-work-band__device">
+        <img src="assets/devices/iphone-lace.png" alt="Lace AI Pro — mobile product mockup">
+    </figure>
+</section>
+
+<section class="ed-work-band" data-case="sharp" data-device="desktop" aria-label="SharpSpring">
+    <div class="ed-work-band__inner">
+        <p class="ed-work-band__eyebrow">Featured work · 02</p>
+        <h2 class="ed-work-band__title">SharpSpring</h2>
+        <div class="ed-work-band__tags">
+            <span class="ed-work-band__tag">B2B SaaS</span>
+            <span class="ed-work-band__tag">Marketing Automation</span>
+        </div>
+        <p class="ed-work-band__sub">Platform redesign, identity refresh, and full-funnel marketing for a fast-scaling SaaS company.</p>
+        <button type="button" class="cta-pill ed-work-band__cta" data-case="sharp">See the work →</button>
+    </div>
+    <figure class="ed-work-band__device">
+        <img src="assets/devices/laptop-sharpspring.png" alt="SharpSpring — workflow automation builder on a MacBook">
+    </figure>
+</section>
+
+<section class="ed-work-band" data-case="pickers" data-device="desktop" aria-label="Pickers">
+    <div class="ed-work-band__inner">
+        <p class="ed-work-band__eyebrow">Featured work · 03</p>
+        <h2 class="ed-work-band__title">Pickers</h2>
+        <div class="ed-work-band__tags">
+            <span class="ed-work-band__tag">Creator Economy</span>
+            <span class="ed-work-band__tag">Design System</span>
+        </div>
+        <p class="ed-work-band__sub">First design system: tokens, components, documentation. 74.8% adoption · 28% faster delivery.</p>
+        <button type="button" class="cta-pill ed-work-band__cta" data-case="pickers">See the work →</button>
+    </div>
+    <figure class="ed-work-band__device">
+        <img src="assets/devices/desktop-pickers.png" alt="Pickers — design system documentation on a desktop monitor">
+    </figure>
+</section>
+
+<section class="ed-work-band" data-case="plremote" data-device="phone" aria-label="PL Remote">
+    <div class="ed-work-band__inner">
+        <p class="ed-work-band__eyebrow">Featured work · 04</p>
+        <h2 class="ed-work-band__title">PL Remote</h2>
+        <div class="ed-work-band__tags">
+            <span class="ed-work-band__tag">IoT</span>
+            <span class="ed-work-band__tag">Mobile</span>
+            <span class="ed-work-band__tag">MVP Delivery</span>
+        </div>
+        <p class="ed-work-band__sub">Product design for a mobile app replacing physical gate remotes. 10K+ users in month one.</p>
+        <button type="button" class="cta-pill ed-work-band__cta" data-case="plremote">See the work →</button>
+    </div>
+    <figure class="ed-work-band__device">
+        <img src="assets/devices/iphone-pl.png" alt="PL Remote — isometric mobile mockup showing the device setup screen">
+    </figure>
+</section>
+    </div>
 </div>
 
 <!-- STATS -->
@@ -4939,7 +5010,7 @@
         </div>
         <div class="ed-stats__cell">
             <div class="ed-stats__num" data-value="74.8" data-suffix="%" data-decimals="1">0.0%</div>
-            <div class="ed-stats__label">Design system adoption — single engagement</div>
+            <div class="ed-stats__label">Design system adoption · single engagement</div>
         </div>
         <div class="ed-stats__cell">
             <div class="ed-stats__num" data-value="28" data-suffix="%" data-decimals="0">0%</div>
@@ -5310,7 +5381,7 @@
             <span class="ed-engage__type">Ongoing engagement</span>
             <h3>The Partnership</h3>
             <span class="ed-engage__time">Monthly · Direct access · No lock-in</span>
-            <p>Ongoing embedded work. We become part of your team — present when it matters, accountable for outcomes that compound over time.</p>
+            <p>Ongoing embedded work. We become part of your team, present when it matters, accountable for outcomes that compound over time.</p>
             <ul>
                 <li>Product and UX strategy</li>
                 <li>Design execution across product, brand, and marketing</li>
@@ -5345,7 +5416,7 @@
             <img src="assets/team/member-brandon.jpg" alt="Brandon Dement" class="ed-team__avatar">
             <h3>Brandon Dement, CSP</h3>
             <span class="role">AI Strategy & Operations</span>
-            <p>Currently leading AI transformation at an enterprise organization. When clients ask how to apply AI to their product workflows, design operations, or team structure — Brandon answers from what's working right now, not from a framework built on last year's tools.</p>
+            <p>Currently leading AI transformation at an enterprise organization. When clients ask how to apply AI to their product workflows, design operations, or team structure. Brandon answers from what's working right now, not from a framework built on last year's tools.</p>
         </div>
         <div class="ed-team__card">
             <img src="assets/team/member-eduard.jpg" alt="Eduard Hambardzumyan" class="ed-team__avatar">
@@ -5485,7 +5556,7 @@
         </fieldset>
 
         <div class="ed-form__confirm" hidden role="status" aria-live="polite">
-            <p>Thanks. Your email client should be opening now — if it doesn't, write to <a href="mailto:hello@promptux.com">hello@promptux.com</a> and we'll take it from there.</p>
+            <p>Thanks. Your email client should be opening now. If it doesn't, write to <a href="mailto:hello@promptux.com">hello@promptux.com</a> and we'll take it from there.</p>
         </div>
     </form>
 </section>
