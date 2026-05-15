@@ -1841,16 +1841,18 @@
 
     /* NAV — sticky with elevation on scroll */
     :root[data-theme="editorial"] nav {
-        background: rgba(251, 251, 253, 0.85);
-        backdrop-filter: saturate(180%) blur(20px);
-        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
         border-bottom: 1px solid transparent;
         padding: 18px var(--gutter);
-        transition: border-color 0.3s ease, background 0.3s ease;
+        transition: border-color 0.3s ease, background 0.3s ease, backdrop-filter 0.3s ease;
     }
     :root[data-theme="editorial"] nav.is-scrolled {
         border-bottom-color: var(--rule);
-        background: rgba(251, 251, 253, 0.92);
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: saturate(180%) blur(20px);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
     }
     :root[data-theme="editorial"] .nav-logo {
         font-family: var(--display);
@@ -5158,17 +5160,23 @@ document.querySelectorAll('.ed-work-band__cta').forEach(btn => {
     });
 });
 
-// Editorial theme: sticky-nav elevation on scroll
+// Editorial theme: nav transparent over hero, white once scrolled past it.
 (function () {
     if (document.documentElement.getAttribute('data-theme') !== 'editorial') return;
     const nav = document.querySelector('nav');
+    const hero = document.querySelector('.ed-hero-new');
     if (!nav) return;
+    const threshold = () => {
+        const h = hero ? hero.getBoundingClientRect().height : 0;
+        return Math.max(8, h - 80);
+    };
     const update = () => {
         const y = window.scrollY || document.documentElement.scrollTop || 0;
-        nav.classList.toggle('is-scrolled', y > 8);
+        nav.classList.toggle('is-scrolled', y > threshold());
     };
     update();
     window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
 })();
 
 

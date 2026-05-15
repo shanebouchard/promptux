@@ -139,6 +139,25 @@
         setTimeout(() => btn.textContent = original, 2000);
     });
 })();
+
+// Nav: transparent at top, white once scrolled past the article header.
+(() => {
+    const nav = document.querySelector('.nav');
+    const head = document.querySelector('.post__head');
+    if (!nav) return;
+    const threshold = () => {
+        if (!head) return 8;
+        const r = head.getBoundingClientRect();
+        return Math.max(8, r.top + window.scrollY + r.height - 80);
+    };
+    const update = () => {
+        const y = window.scrollY || document.documentElement.scrollTop || 0;
+        nav.classList.toggle('is-scrolled', y > threshold());
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+})();
 </script>
 
 </body>

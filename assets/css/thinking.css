@@ -43,10 +43,17 @@ img { display: block; max-width: 100%; height: auto; }
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(251, 251, 253, 0.85);
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 1px solid transparent;
+    transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+.nav.is-scrolled {
+    background: rgba(255, 255, 255, 0.92);
     backdrop-filter: saturate(180%) blur(20px);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
-    border-bottom: 1px solid var(--rule);
+    border-bottom-color: var(--rule);
 }
 .nav__inner {
     max-width: var(--ed-max);

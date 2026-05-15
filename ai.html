@@ -1841,16 +1841,18 @@
 
     /* NAV — sticky with elevation on scroll */
     :root[data-theme="editorial"] nav {
-        background: rgba(251, 251, 253, 0.85);
-        backdrop-filter: saturate(180%) blur(20px);
-        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
         border-bottom: 1px solid transparent;
         padding: 18px var(--gutter);
-        transition: border-color 0.3s ease, background 0.3s ease;
+        transition: border-color 0.3s ease, background 0.3s ease, backdrop-filter 0.3s ease;
     }
     :root[data-theme="editorial"] nav.is-scrolled {
         border-bottom-color: var(--rule);
-        background: rgba(251, 251, 253, 0.92);
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: saturate(180%) blur(20px);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
     }
     :root[data-theme="editorial"] .nav-logo {
         font-family: var(--display);
@@ -4231,6 +4233,256 @@
             grid-column: span 1;
         }
     }
+
+    /* =============================================
+       AI AT EVERY STAGE — tabbed stages section
+    ============================================= */
+    :root[data-theme="editorial"] .ai-tabs {
+        max-width: var(--ed-max);
+        margin: 0 auto;
+    }
+    :root[data-theme="editorial"] .ai-tabs-nav {
+        display: flex;
+        gap: 0;
+        border-bottom: 1px solid var(--rule);
+        margin-bottom: clamp(32px, 4vw, 56px);
+        flex-wrap: wrap;
+    }
+    :root[data-theme="editorial"] .ai-tab-btn {
+        font-family: var(--body);
+        padding: 14px 28px 16px;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: -0.005em;
+        color: var(--mid);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 180ms ease, border-color 180ms ease;
+        margin-bottom: -1px;
+    }
+    :root[data-theme="editorial"] .ai-tab-btn:hover { color: var(--ink); }
+    :root[data-theme="editorial"] .ai-tab-btn.is-active {
+        color: var(--lime);
+        border-bottom-color: var(--lime);
+    }
+    :root[data-theme="editorial"] .ai-tab-panel { display: none; }
+    :root[data-theme="editorial"] .ai-tab-panel.is-active {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(40px, 5vw, 88px);
+        align-items: start;
+    }
+    :root[data-theme="editorial"] .ai-tab-eyebrow {
+        font-family: var(--body);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--lime);
+        margin: 0 0 22px;
+    }
+    :root[data-theme="editorial"] .ai-cap-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+    }
+    :root[data-theme="editorial"] .ai-cap-list li {
+        display: block;
+        padding-bottom: 22px;
+        border-bottom: 1px solid var(--rule);
+    }
+    :root[data-theme="editorial"] .ai-cap-list li:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+    }
+    :root[data-theme="editorial"] .ai-cap-list li strong {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: clamp(16px, 1.4vw, 18px);
+        letter-spacing: -0.01em;
+        color: var(--ink);
+        display: block;
+        margin-bottom: 6px;
+    }
+    :root[data-theme="editorial"] .ai-cap-list li span {
+        font-family: var(--body);
+        font-size: 14px;
+        line-height: 1.55;
+        color: var(--mid);
+    }
+    :root[data-theme="editorial"] .ai-time-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: var(--body);
+        font-size: 14px;
+    }
+    :root[data-theme="editorial"] .ai-time-table th {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--mid);
+        text-align: left;
+        padding: 0 0 12px;
+        border-bottom: 1px solid var(--rule);
+    }
+    :root[data-theme="editorial"] .ai-time-table th:not(:first-child),
+    :root[data-theme="editorial"] .ai-time-table td:not(:first-child) {
+        padding-left: 16px;
+    }
+    :root[data-theme="editorial"] .ai-time-table td {
+        padding: 14px 0;
+        border-bottom: 1px solid var(--rule);
+        color: var(--ink);
+        vertical-align: middle;
+    }
+    :root[data-theme="editorial"] .ai-time-table td:first-child {
+        color: var(--mid);
+        font-weight: 400;
+    }
+    :root[data-theme="editorial"] .ai-time-table td:last-child {
+        font-weight: 600;
+        color: var(--lime);
+    }
+    :root[data-theme="editorial"] .ai-time-table tr:last-child td {
+        border-bottom: 0;
+    }
+    :root[data-theme="editorial"] .ai-table-source {
+        font-family: var(--body);
+        font-size: 11px;
+        line-height: 1.5;
+        color: var(--mid);
+        opacity: 0.7;
+        margin: 14px 0 0;
+    }
+    @media (max-width: 880px) {
+        :root[data-theme="editorial"] .ai-tab-panel.is-active {
+            grid-template-columns: 1fr;
+            gap: 36px;
+        }
+        :root[data-theme="editorial"] .ai-tabs-nav { overflow-x: auto; flex-wrap: nowrap; }
+        :root[data-theme="editorial"] .ai-tab-btn {
+            padding: 12px 18px 14px;
+            font-size: 13px;
+            white-space: nowrap;
+            flex: 0 0 auto;
+        }
+    }
+
+    /* =============================================
+       WORKFLOW LOOP — emphasize the cycle return
+    ============================================= */
+    :root[data-theme="editorial"] .ai-flow__line {
+        opacity: 0.35;
+    }
+    :root[data-theme="editorial"] .ai-flow__line--ai {
+        opacity: 0.45;
+    }
+    :root[data-theme="editorial"] .ai-flow__loop {
+        position: relative;
+        height: 64px;
+        margin: 44px 8.333% 0;
+    }
+    :root[data-theme="editorial"] .ai-flow__loop-curve {
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+    }
+    :root[data-theme="editorial"] .ai-flow__loop-curve path {
+        fill: none;
+        stroke: var(--lime);
+        stroke-width: 2.25;
+        stroke-linecap: round;
+        opacity: 0.9;
+    }
+    :root[data-theme="editorial"] .ai-flow__loop-arrow {
+        position: absolute;
+        top: -8px;
+        left: -11px;
+        pointer-events: none;
+    }
+    :root[data-theme="editorial"] .ai-flow__loop-arrow .ai-flow__loop-head {
+        stroke: var(--lime);
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+    :root[data-theme="editorial"] .ai-flow__loop-label {
+        background: var(--paper);
+        color: var(--lime);
+        border-color: var(--lime);
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        bottom: -14px;
+    }
+
+    /* =============================================
+       RESULTS STATS STRIP — dark
+    ============================================= */
+    :root[data-theme="editorial"] .ai-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: clamp(32px, 4vw, 56px);
+        max-width: var(--ed-max);
+    }
+    :root[data-theme="editorial"] .ai-stat-item {
+        padding: 28px 0;
+        border-top: 1px solid rgba(251,251,253,0.12);
+        display: flex;
+        align-items: baseline;
+        gap: clamp(20px, 2.4vw, 36px);
+    }
+    :root[data-theme="editorial"] .ai-stat-item:nth-child(odd) {
+        padding-right: clamp(20px, 3vw, 48px);
+        border-right: 1px solid rgba(251,251,253,0.08);
+    }
+    :root[data-theme="editorial"] .ai-stat-item:nth-child(even) {
+        padding-left: clamp(20px, 3vw, 48px);
+    }
+    :root[data-theme="editorial"] .ai-stat-num {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: clamp(36px, 4.4vw, 56px);
+        letter-spacing: -0.025em;
+        line-height: 1;
+        color: var(--paper);
+        margin: 0;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    :root[data-theme="editorial"] .ai-stat-text {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    :root[data-theme="editorial"] .ai-stat-desc {
+        font-family: var(--body);
+        font-size: 14px;
+        line-height: 1.5;
+        color: rgba(251,251,253,0.7);
+        margin: 0;
+    }
+    :root[data-theme="editorial"] .ai-stat-src {
+        font-family: var(--body);
+        font-size: 11px;
+        letter-spacing: 0.04em;
+        color: rgba(251,251,253,0.4);
+        margin: 0;
+    }
+    @media (max-width: 880px) {
+        :root[data-theme="editorial"] .ai-stats-grid { grid-template-columns: 1fr; }
+        :root[data-theme="editorial"] .ai-stat-item:nth-child(odd) {
+            padding-right: 0;
+            border-right: 0;
+        }
+        :root[data-theme="editorial"] .ai-stat-item:nth-child(even) { padding-left: 0; }
+    }
 </style>
 
 </head>
@@ -4276,10 +4528,10 @@
     <div class="ai-hero__inner">
         <p class="ai-eyebrow">What becomes possible</p>
         <h1 class="ai-hero__title">
-            <span class="ai-hero__line">AI is how we work.</span>
-            <span class="ai-hero__line ai-hero__line--accent">Not a layer we added.</span>
+            <span class="ai-hero__line">The full power of AI.</span>
+            <span class="ai-hero__line ai-hero__line--accent">Applied to your business.</span>
         </h1>
-        <p class="ai-hero__sub">Built for teams that want to find the right direction faster and ship with confidence. AI isn't something we added. It's how we work.</p>
+        <p class="ai-hero__sub">We bring decades of senior experience to AI-native work — across every stage from discovery to delivery. Unlocking all new possibilities for your product and marketing.</p>
         <div class="ai-hero__ctas">
             <a href="/#ed-contact" class="ai-btn ai-btn--primary">Book a call →</a>
             <a href="#ai-os" class="ai-btn ai-btn--ghost">See how it works</a>
@@ -4288,48 +4540,10 @@
 </section>
 
 <!-- =============================================
-     2. WHY IT MATTERS — feature card + supporting cards
+     2. AI-POWERED CREATIVE PRODUCTION — 7-card showcase grid
+     (Tool name references below — TODO: Confirm tool names against SSOT before live push)
 ============================================= -->
-<section class="ai-section ai-section--paper-2" aria-label="Why it matters">
-    <div class="ai-section__inner">
-        <div class="ai-section__head ai-reveal">
-            <p class="ai-eyebrow">Why it matters</p>
-            <h2 class="ai-h2">AI raised the floor. Senior judgment raises the ceiling.</h2>
-            <p class="ai-lede">Speed alone doesn’t move the business. The teams pulling ahead aren’t just faster — they’re making sharper decisions earlier in the work.</p>
-        </div>
-        <div class="ai-why__grid">
-            <article class="ai-why__card ai-why__card--feature ai-reveal" tabindex="0">
-                <div>
-                    <p class="ai-why__kicker">The gap</p>
-                    <h3 class="ai-why__title">Output is up. Outcomes haven't kept up.</h3>
-                    <p class="ai-why__body">AI is everywhere. Better launches aren't. Teams have embraced AI acceleration. But without judgment, more output is just expensive noise. We ground AI in 30 years of senior experience so it accelerates outcomes, not just output.</p>
-                </div>
-                <div class="ai-why__bars" aria-hidden="true">
-                    <span class="ai-why__bar"></span>
-                    <span class="ai-why__bar"></span>
-                    <span class="ai-why__bar"></span>
-                    <span class="ai-why__bar"></span>
-                    <span class="ai-why__bar"></span>
-                </div>
-            </article>
-            <article class="ai-why__card ai-reveal" tabindex="0">
-                <p class="ai-why__kicker">01 · Velocity</p>
-                <h3 class="ai-why__title">Faster turns. Tighter loops.</h3>
-                <p class="ai-why__body">Speed matters when it's pointed at the right problem. AI compresses the cycle: research, explore, test, learn. The work improves with every pass.</p>
-            </article>
-            <article class="ai-why__card ai-reveal" tabindex="0">
-                <p class="ai-why__kicker">02 · Equation</p>
-                <h3 class="ai-why__title">Built in, not bolted on.</h3>
-                <p class="ai-why__body">When AI runs through the thinking, not just the production, and the quality of decisions improves alongside the speed. That's where the real leverage is.</p>
-            </article>
-        </div>
-    </div>
-</section>
-
-<!-- =============================================
-     2.5 AI-POWERED CREATIVE PRODUCTION — 7-card showcase grid
-============================================= -->
-<section class="ai-section ai-section--ink" aria-label="AI-powered creative production">
+<section class="ai-section" aria-label="AI-powered creative production">
     <div class="ai-section__inner">
         <div class="ai-section__head ai-reveal">
             <p class="ai-eyebrow">AI-powered creative production</p>
@@ -4398,126 +4612,122 @@
 </section>
 
 <!-- =============================================
-     3. AI-NATIVE OPERATING MODEL — 4 expanding cards
+     3. AI AT EVERY STAGE — tabbed capability + time-compression
 ============================================= -->
-<section class="ai-section" id="ai-os" aria-label="AI-native operating model">
+<section class="ai-section" id="ai-stages" aria-label="AI at every stage">
     <div class="ai-section__inner">
         <div class="ai-section__head ai-reveal">
-            <p class="ai-eyebrow">Operating model</p>
-            <h2 class="ai-h2">AI-native, end to end.</h2>
-            <p class="ai-lede">Four modes of work, one operating model. AI accelerates each, but the senior judgment that shapes the brief is the same judgment that ships the artifact.</p>
+            <p class="ai-eyebrow">How we work</p>
+            <h2 class="ai-h2">AI at every stage.</h2>
+            <p class="ai-lede">Four disciplines. One AI-native team. Here's what that looks like in practice — and how fast it moves.</p>
         </div>
-        <div class="ai-os__grid">
-            <article class="ai-os__card ai-reveal" tabindex="0" role="button" aria-expanded="false">
-                <svg class="ai-os__icon" viewBox="0 0 36 36" aria-hidden="true">
-                    <circle cx="18" cy="18" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                    <circle cx="18" cy="18" r="3" fill="currentColor"/>
-                    <path d="M18 4v6M18 26v6M4 18h6M26 18h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                </svg>
-                <p class="ai-os__num">01 · Strategy</p>
-                <h3 class="ai-os__title">Strategy</h3>
-                <p class="ai-os__body">Frame the opportunity and find the real problem worth solving.</p>
-                <div class="ai-os__examples">
-                    <ul>
-                        <li>Opportunity framing with AI synthesis</li>
-                        <li>Positioning and messaging exploration</li>
-                        <li>Customer signal analysis at scale</li>
-                    </ul>
-                </div>
-            </article>
-            <article class="ai-os__card ai-reveal" tabindex="0" role="button" aria-expanded="false">
-                <svg class="ai-os__icon" viewBox="0 0 36 36" aria-hidden="true">
-                    <rect x="6" y="6" width="14" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                    <rect x="16" y="16" width="14" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                </svg>
-                <p class="ai-os__num">02 · Design</p>
-                <h3 class="ai-os__title">Design</h3>
-                <p class="ai-os__body">Test more directions, faster, before committing to one.</p>
-                <div class="ai-os__examples">
-                    <ul>
-                        <li>Concept generation across multiple routes</li>
-                        <li>UX and UI exploration in parallel</li>
-                        <li>Rapid prototyping for real-feedback loops</li>
-                    </ul>
-                </div>
-            </article>
-            <article class="ai-os__card ai-reveal" tabindex="0" role="button" aria-expanded="false">
-                <svg class="ai-os__icon" viewBox="0 0 36 36" aria-hidden="true">
-                    <path d="M6 26L14 18L20 22L30 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M22 10H30V18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <p class="ai-os__num">03 · Growth</p>
-                <h3 class="ai-os__title">Growth</h3>
-                <p class="ai-os__body">Move the moments that influence trust, conversion, and adoption.</p>
-                <div class="ai-os__examples">
-                    <ul>
-                        <li>Landing pages and acquisition flows</li>
-                        <li>Messaging variants at experiment scale</li>
-                        <li>Funnel and onboarding optimization</li>
-                    </ul>
-                </div>
-            </article>
-            <article class="ai-os__card ai-reveal" tabindex="0" role="button" aria-expanded="false">
-                <svg class="ai-os__icon" viewBox="0 0 36 36" aria-hidden="true">
-                    <path d="M18 4L4 12V24L18 32L32 24V12L18 4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-                    <path d="M4 12L18 20L32 12M18 20V32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-                </svg>
-                <p class="ai-os__num">04 · Delivery</p>
-                <h3 class="ai-os__title">Delivery</h3>
-                <p class="ai-os__body">Compress iteration cycles without compressing thinking.</p>
-                <div class="ai-os__examples">
-                    <ul>
-                        <li>Asset generation across surfaces</li>
-                        <li>Faster review and revision loops</li>
-                        <li>Workflow acceleration end to end</li>
-                    </ul>
-                </div>
-            </article>
-        </div>
-    </div>
-</section>
+        <div class="ai-tabs ai-reveal">
+            <div class="ai-tabs-nav" role="tablist">
+                <button type="button" class="ai-tab-btn is-active" data-tab="strategy" role="tab" aria-selected="true">Strategy</button>
+                <button type="button" class="ai-tab-btn" data-tab="design" role="tab" aria-selected="false">Design</button>
+                <button type="button" class="ai-tab-btn" data-tab="growth" role="tab" aria-selected="false">Growth</button>
+                <button type="button" class="ai-tab-btn" data-tab="delivery" role="tab" aria-selected="false">Delivery</button>
+            </div>
 
-<!-- =============================================
-     3.5 WHAT AI MAKES POSSIBLE — 3x2 outcome cards
-============================================= -->
-<section class="ai-section" aria-label="What AI makes possible">
-    <div class="ai-section__inner">
-        <div class="ai-section__head ai-reveal">
-            <p class="ai-eyebrow">The work</p>
-            <h2 class="ai-h2">What AI makes possible.</h2>
-            <p class="ai-lede">Not faster versions of the same work. Different work entirely.</p>
-        </div>
-        <div class="ai-unlocks__grid">
-            <article class="ai-unlocks__card ai-reveal">
-                <p class="ai-unlocks__kicker">Strategy</p>
-                <h3 class="ai-unlocks__title">Synthesize research in hours, not days.</h3>
-                <p class="ai-unlocks__body">AI synthesis compresses weeks of stakeholder input and competitive signal into a set of options worth reacting to, before the first client review.</p>
-            </article>
-            <article class="ai-unlocks__card ai-reveal">
-                <p class="ai-unlocks__kicker">Strategy</p>
-                <h3 class="ai-unlocks__title">Explore more directions before you commit.</h3>
-                <p class="ai-unlocks__body">Signal from dozens of sources structured into a clear picture of where the category is and where the gaps are.</p>
-            </article>
-            <article class="ai-unlocks__card ai-reveal">
-                <p class="ai-unlocks__kicker">Design</p>
-                <h3 class="ai-unlocks__title">Prototype faster, test sooner.</h3>
-                <p class="ai-unlocks__body">Real directions, not wireframe sketches. The team reacts to actual creative rather than abstract descriptions.</p>
-            </article>
-            <article class="ai-unlocks__card ai-reveal">
-                <p class="ai-unlocks__kicker">Design</p>
-                <h3 class="ai-unlocks__title">Generate assets across every surface.</h3>
-                <p class="ai-unlocks__body">AI removes the bottleneck of one direction at a time, whether that's a product flow, a landing page, or a campaign moment. More paths explored means the right one surfaces faster.</p>
-            </article>
-            <article class="ai-unlocks__card ai-reveal">
-                <p class="ai-unlocks__kicker">Growth</p>
-                <h3 class="ai-unlocks__title">Iterate without slowing down.</h3>
-                <p class="ai-unlocks__body">Copy for every funnel stage, every audience segment, tested before production spend, not after.</p>
-            </article>
-            <article class="ai-unlocks__card ai-reveal">
-                <p class="ai-unlocks__kicker">Growth</p>
-                <h3 class="ai-unlocks__title">Launch sooner. Keep improving.</h3>
-                <p class="ai-unlocks__body">Full-funnel thinking compressed into a working prototype before engineering is involved.</p>
-            </article>
+            <div class="ai-tab-panel is-active" data-tab="strategy" role="tabpanel">
+                <div>
+                    <p class="ai-tab-eyebrow">Strategy</p>
+                    <ul class="ai-cap-list">
+                        <li><strong>Opportunity framing</strong><span>AI synthesizes competitive signals, customer data, and market context before the first client review.</span></li>
+                        <li><strong>Positioning exploration</strong><span>Multiple positioning routes generated and stress-tested in parallel, not one at a time.</span></li>
+                        <li><strong>Research synthesis</strong><span>Weeks of stakeholder interviews and desk research distilled in hours, not days.</span></li>
+                        <li><strong>Competitive mapping</strong><span>The full competitive landscape mapped overnight. You walk in knowing the market.</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="ai-tab-eyebrow">Time compression</p>
+                    <table class="ai-time-table">
+                        <thead><tr><th scope="col">Task</th><th scope="col">Traditional</th><th scope="col">With AI</th></tr></thead>
+                        <tbody>
+                            <tr><td>Research synthesis</td><td>2–3 weeks</td><td>2–3 days</td></tr>
+                            <tr><td>Competitive mapping</td><td>1–2 weeks</td><td>Overnight</td></tr>
+                            <tr><td>Positioning concepts</td><td>1–2 directions</td><td>6+ directions</td></tr>
+                            <tr><td>Strategic brief</td><td>1 week</td><td>2–3 days</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="ai-table-source">Sources: McKinsey 2024, IDEO 2024, Nielsen &amp; Brynjolfsson (Science) 2023</p>
+                </div>
+            </div>
+
+            <div class="ai-tab-panel" data-tab="design" role="tabpanel">
+                <div>
+                    <p class="ai-tab-eyebrow">Design</p>
+                    <ul class="ai-cap-list">
+                        <li><strong>Concept generation</strong><span>Multiple design directions explored before committing to one. AI generates the fan-out; senior judgment picks the signal.</span></li>
+                        <li><strong>UX and UI exploration</strong><span>Parallel routes tested and narrowed before a single pixel is finalized.</span></li>
+                        <li><strong>Rapid prototyping</strong><span>A testable prototype in users' hands before the sprint closes.</span></li>
+                        <li><strong>AI image generation</strong><span>Campaign visuals, mockups, and lifestyle imagery generated on brief — no shoot required.</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="ai-tab-eyebrow">Time compression</p>
+                    <table class="ai-time-table">
+                        <thead><tr><th scope="col">Task</th><th scope="col">Traditional</th><th scope="col">With AI</th></tr></thead>
+                        <tbody>
+                            <tr><td>Wireframe preparation</td><td>2–4 days</td><td>1–2 days</td></tr>
+                            <tr><td>Concept directions</td><td>1–2 routes</td><td>6+ routes</td></tr>
+                            <tr><td>Prototype to testing</td><td>2 weeks</td><td>48 hours</td></tr>
+                            <tr><td>UX/UI testing cycles</td><td>2 weeks</td><td>1 week</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="ai-table-source">Sources: Figma 2024, Product School, McKinsey 2024</p>
+                </div>
+            </div>
+
+            <div class="ai-tab-panel" data-tab="growth" role="tabpanel">
+                <div>
+                    <p class="ai-tab-eyebrow">Growth</p>
+                    <ul class="ai-cap-list">
+                        <li><strong>Messaging at scale</strong><span>20+ message variants generated, tested, and narrowed in a single sprint.</span></li>
+                        <li><strong>Landing pages and acquisition flows</strong><span>Designed, written, and iterated faster than a traditional production cycle.</span></li>
+                        <li><strong>Funnel optimization</strong><span>AI identifies friction and generates copy and layout variants to address it.</span></li>
+                        <li><strong>Campaign imagery</strong><span>On-brand visuals generated for every campaign moment — no stock, no shoot, no delay.</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="ai-tab-eyebrow">Time compression</p>
+                    <table class="ai-time-table">
+                        <thead><tr><th scope="col">Task</th><th scope="col">Traditional</th><th scope="col">With AI</th></tr></thead>
+                        <tbody>
+                            <tr><td>Messaging variants</td><td>3–5 per sprint</td><td>20+ per sprint</td></tr>
+                            <tr><td>Campaign imagery</td><td>1–2 week shoot</td><td>Hours</td></tr>
+                            <tr><td>Funnel copy testing</td><td>2–3 weeks</td><td>Days</td></tr>
+                            <tr><td>Ideation volume</td><td>Baseline</td><td>+56% more ideas</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="ai-table-source">Sources: IDEO 2024, McKinsey 2024</p>
+                </div>
+            </div>
+
+            <div class="ai-tab-panel" data-tab="delivery" role="tabpanel">
+                <div>
+                    <p class="ai-tab-eyebrow">Delivery</p>
+                    <ul class="ai-cap-list">
+                        <li><strong>Asset generation</strong><span>Visuals, copy, and components produced across every surface simultaneously.</span></li>
+                        <li><strong>Design system acceleration</strong><span>Tokens, patterns, and documentation built faster without cutting corners.</span></li>
+                        <li><strong>Motion and animation</strong><span>Micro-interactions and animated sequences without a dedicated motion team.</span></li>
+                        <li><strong>Revision loops</strong><span>AI compresses review cycles so iteration happens daily, not weekly.</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="ai-tab-eyebrow">Time compression</p>
+                    <table class="ai-time-table">
+                        <thead><tr><th scope="col">Task</th><th scope="col">Traditional</th><th scope="col">With AI</th></tr></thead>
+                        <tbody>
+                            <tr><td>Asset production cost</td><td>Baseline</td><td>−25%</td></tr>
+                            <tr><td>Iteration cycle speed</td><td>Weekly</td><td>Daily</td></tr>
+                            <tr><td>Task completion time</td><td>Baseline</td><td>−40%</td></tr>
+                            <tr><td>Output quality</td><td>Baseline</td><td>+18%</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="ai-table-source">Sources: McKinsey 2024, Nielsen &amp; Brynjolfsson (Science) 2023</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -4574,11 +4784,13 @@
                 </div>
             </div>
             <div class="ai-flow__loop" aria-hidden="true">
-                <svg viewBox="0 0 1000 56" preserveAspectRatio="none">
-                    <path d="M 1000 0 L 1000 32 Q 1000 52 980 52 L 20 52 Q 0 52 0 32 L 0 10" />
-                    <path d="M -6 16 L 0 4 L 6 16" />
+                <svg class="ai-flow__loop-curve" viewBox="0 0 1000 64" preserveAspectRatio="none">
+                    <path d="M 1000 0 L 1000 40 Q 1000 60 980 60 L 20 60 Q 0 60 0 40 L 0 0" />
                 </svg>
-                <span class="ai-flow__loop-label">Iterate</span>
+                <svg class="ai-flow__loop-arrow" viewBox="0 0 22 18" width="22" height="18" aria-hidden="true">
+                    <path class="ai-flow__loop-head" d="M 2 16 L 11 2 L 20 16" fill="none" />
+                </svg>
+                <span class="ai-flow__loop-label">Each cycle feeds the next</span>
             </div>
             <p class="ai-flow__note">A cycle can be as short as a week or two, or longer when the work calls for it. The shape stays the same; the cadence flexes to fit the engagement.</p>
         </div>
@@ -4669,6 +4881,48 @@
 </section>
 
 <!-- =============================================
+     7.5 RESULTS — stats strip on ink
+============================================= -->
+<section class="ai-section ai-section--ink" aria-label="What AI-native work produces">
+    <div class="ai-section__inner">
+        <div class="ai-section__head ai-reveal">
+            <p class="ai-eyebrow">Results, not hype</p>
+            <h2 class="ai-h2">What AI-native work actually produces.</h2>
+        </div>
+        <div class="ai-stats-grid ai-reveal">
+            <div class="ai-stat-item">
+                <p class="ai-stat-num">40–70%</p>
+                <div class="ai-stat-text">
+                    <p class="ai-stat-desc">Design productivity lift from generative AI</p>
+                    <p class="ai-stat-src">McKinsey, 2024</p>
+                </div>
+            </div>
+            <div class="ai-stat-item">
+                <p class="ai-stat-num">+18%</p>
+                <div class="ai-stat-text">
+                    <p class="ai-stat-desc">Quality improvement alongside the speed gain — not instead of it</p>
+                    <p class="ai-stat-src">Nielsen &amp; Brynjolfsson, Science 2023</p>
+                </div>
+            </div>
+            <div class="ai-stat-item">
+                <p class="ai-stat-num">56%</p>
+                <div class="ai-stat-text">
+                    <p class="ai-stat-desc">More ideas generated in AI-assisted ideation</p>
+                    <p class="ai-stat-src">IDEO, 2024</p>
+                </div>
+            </div>
+            <div class="ai-stat-item">
+                <p class="ai-stat-num">50%</p>
+                <div class="ai-stat-text">
+                    <p class="ai-stat-desc">Faster UX/UI testing cycles</p>
+                    <p class="ai-stat-src">Product School</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =============================================
      8. FINAL CTA — large dark curved panel
 ============================================= -->
 <section class="ai-cta-section" aria-label="Get in touch">
@@ -4742,16 +4996,22 @@
     });
 })();
 
-// Nav elevation on scroll.
+// Nav: transparent over hero, white once scrolled past it.
 (function () {
     const nav = document.querySelector('nav');
+    const hero = document.querySelector('.ai-hero');
     if (!nav) return;
+    const threshold = () => {
+        const h = hero ? hero.getBoundingClientRect().height : 0;
+        return Math.max(8, h - 80);
+    };
     const update = () => {
         const y = window.scrollY || document.documentElement.scrollTop || 0;
-        nav.classList.toggle('is-scrolled', y > 8);
+        nav.classList.toggle('is-scrolled', y > threshold());
     };
     update();
     window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
 })();
 
 // Scroll reveal — IntersectionObserver, fires once. Respects reduced-motion.
@@ -4774,29 +5034,30 @@
     els.forEach(el => io.observe(el));
 })();
 
-// Operating model — tap-to-expand on touch where hover doesn't apply.
+// AI at every stage — tab switcher.
 (function () {
-    const cards = document.querySelectorAll('.ai-os__card');
-    if (!cards.length) return;
-    const supportsHover = window.matchMedia('(hover: hover)').matches;
-    cards.forEach(card => {
-        card.addEventListener('click', () => {
-            // On hover-capable devices, hover already opens it — click toggles for keyboard users.
-            const expanded = card.getAttribute('aria-expanded') === 'true';
-            card.setAttribute('aria-expanded', String(!expanded));
-            card.classList.toggle('is-active', !expanded);
+    const btns = document.querySelectorAll('.ai-tab-btn');
+    const panels = document.querySelectorAll('.ai-tab-panel');
+    if (!btns.length || !panels.length) return;
+    btns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const target = btn.getAttribute('data-tab');
+            btns.forEach((b) => {
+                const isActive = b === btn;
+                b.classList.toggle('is-active', isActive);
+                b.setAttribute('aria-selected', String(isActive));
+            });
+            panels.forEach((p) => {
+                p.classList.toggle('is-active', p.getAttribute('data-tab') === target);
+            });
         });
-        card.addEventListener('keydown', (e) => {
+        btn.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                card.click();
+                btn.click();
             }
         });
     });
-    // Touch (no hover): silence default hover-only behavior by marking active on first interaction.
-    if (!supportsHover) {
-        cards.forEach(c => c.classList.add('is-active'));
-    }
 })();
 
 </script>

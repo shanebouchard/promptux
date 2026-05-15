@@ -1841,16 +1841,18 @@
 
     /* NAV — sticky with elevation on scroll */
     :root[data-theme="editorial"] nav {
-        background: rgba(251, 251, 253, 0.85);
-        backdrop-filter: saturate(180%) blur(20px);
-        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
         border-bottom: 1px solid transparent;
         padding: 18px var(--gutter);
-        transition: border-color 0.3s ease, background 0.3s ease;
+        transition: border-color 0.3s ease, background 0.3s ease, backdrop-filter 0.3s ease;
     }
     :root[data-theme="editorial"] nav.is-scrolled {
         border-bottom-color: var(--rule);
-        background: rgba(251, 251, 253, 0.92);
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: saturate(180%) blur(20px);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
     }
     :root[data-theme="editorial"] .nav-logo {
         font-family: var(--display);
@@ -3840,7 +3842,7 @@
 <!-- =============================================
      SECTION 2 — COMPARISON MATRIX
 ============================================= -->
-<section class="cp-section cp-section--grey cp-matrix" id="cp-matrix" aria-labelledby="cp-matrix-title">
+<section class="cp-section cp-section--paper cp-matrix" id="cp-matrix" aria-labelledby="cp-matrix-title">
     <header class="cp-section__head">
         <p class="cp-eyebrow">The comparison</p>
         <h2 id="cp-matrix-title" class="cp-h2">Side by side.</h2>
@@ -3911,7 +3913,7 @@
                     <td><span class="cp-mark cp-mark--partial"><span class="cp-mark__sr">Partial</span></span></td>
                 </tr>
                 <tr class="cp-matrix__detail" id="cp-row-ai" aria-hidden="true">
-                    <td colspan="7"><div class="cp-matrix__detail-inner">How deeply AI is woven into delivery, not bolted on after the fact. We design with AI in the room — for research, exploration, drafting, and shipping. Most traditional models still treat it as an accessory.</div></td>
+                    <td colspan="7"><div class="cp-matrix__detail-inner">How deeply AI is woven into delivery, not bolted on after the fact. We design with AI in the room: for research, exploration, drafting, and shipping. Most traditional models still treat it as an accessory.</div></td>
                 </tr>
 
                 <tr class="cp-matrix__row">
@@ -3929,7 +3931,7 @@
                     <td><span class="cp-mark cp-mark--strong"><span class="cp-mark__sr">Strong</span></span></td>
                 </tr>
                 <tr class="cp-matrix__detail" id="cp-row-product" aria-hidden="true">
-                    <td colspan="7"><div class="cp-matrix__detail-inner">Whether the model thinks about outcomes — not just deliverables. Design, product, and growth treated as one motion. In-house teams have this by structure; we have it by design.</div></td>
+                    <td colspan="7"><div class="cp-matrix__detail-inner">Whether the model thinks about outcomes, not just deliverables. Design, product, and growth treated as one motion. In-house teams have this by structure; we have it by design.</div></td>
                 </tr>
 
                 <tr class="cp-matrix__row">
@@ -3947,7 +3949,7 @@
                     <td><span class="cp-mark cp-mark--partial"><span class="cp-mark__sr">Partial</span></span></td>
                 </tr>
                 <tr class="cp-matrix__detail" id="cp-row-cost" aria-hidden="true">
-                    <td colspan="7"><div class="cp-matrix__detail-inner">Total cost relative to outcome — not headline rate. Fewer layers, faster cycles, and AI leverage compound. Single freelancers and AI tools are cheap per unit; the cost shows up in coordination and quality.</div></td>
+                    <td colspan="7"><div class="cp-matrix__detail-inner">Total cost relative to outcome, not headline rate. Fewer layers, faster cycles, and AI leverage compound. Single freelancers and AI tools are cheap per unit; the cost shows up in coordination and quality.</div></td>
                 </tr>
 
                 <tr class="cp-matrix__row">
@@ -3965,7 +3967,7 @@
                     <td><span class="cp-mark cp-mark--strong"><span class="cp-mark__sr">Strong</span></span></td>
                 </tr>
                 <tr class="cp-matrix__detail" id="cp-row-collab" aria-hidden="true">
-                    <td colspan="7"><div class="cp-matrix__detail-inner">Whether senior practitioners sit at the table with you. Subscriptions and agencies often route through account layers. We work directly — the person designing is the person deciding.</div></td>
+                    <td colspan="7"><div class="cp-matrix__detail-inner">Whether senior practitioners sit at the table with you. Subscriptions and agencies often route through account layers. We work directly. The person designing is the person deciding.</div></td>
                 </tr>
 
                 <tr class="cp-matrix__row">
@@ -3983,7 +3985,7 @@
                     <td><span class="cp-mark cp-mark--strong"><span class="cp-mark__sr">Strong</span></span></td>
                 </tr>
                 <tr class="cp-matrix__detail" id="cp-row-systems" aria-hidden="true">
-                    <td colspan="7"><div class="cp-matrix__detail-inner">Volume capacity and structural redundancy. Large agencies and mature in-house teams are built for breadth. Our model is intentionally focused — depth before scale, by design.</div></td>
+                    <td colspan="7"><div class="cp-matrix__detail-inner">Volume capacity and structural redundancy. Large agencies and mature in-house teams are built for breadth. Our model is intentionally focused: depth before scale, by design.</div></td>
                 </tr>
 
                 <tr class="cp-matrix__row">
@@ -4019,7 +4021,7 @@
                     <td><span class="cp-mark cp-mark--partial"><span class="cp-mark__sr">Partial</span></span></td>
                 </tr>
                 <tr class="cp-matrix__detail" id="cp-row-adapt" aria-hidden="true">
-                    <td colspan="7"><div class="cp-matrix__detail-inner">How quickly the model can change shape — scope, direction, cadence. Smaller, senior, AI-leveraged teams turn faster. Larger structures carry process inertia.</div></td>
+                    <td colspan="7"><div class="cp-matrix__detail-inner">How quickly the model can change shape: scope, direction, cadence. Smaller, senior, AI-leveraged teams turn faster. Larger structures carry process inertia.</div></td>
                 </tr>
 
                 <tr class="cp-matrix__row">
@@ -4054,19 +4056,19 @@
     </header>
     <div class="cp-cards__grid">
         <article class="cp-card">
-            <span class="cp-card__num">01 — Seniority</span>
+            <span class="cp-card__num">01 · Seniority</span>
             <h3 class="cp-card__title">Senior operators</h3>
             <p class="cp-card__body">Every engagement is led by people who have shipped at scale. No junior pass-through, no creative-direction-by-committee.</p>
         </article>
         <article class="cp-card">
-            <span class="cp-card__num">02 — Leverage</span>
+            <span class="cp-card__num">02 · Leverage</span>
             <h3 class="cp-card__title">AI-native workflows</h3>
-            <p class="cp-card__body">AI is woven into research, exploration, and delivery — not bolted on. The leverage compounds across the engagement.</p>
+            <p class="cp-card__body">AI is woven into research, exploration, and delivery, not bolted on. The leverage compounds across the engagement.</p>
         </article>
         <article class="cp-card">
-            <span class="cp-card__num">03 — Cadence</span>
+            <span class="cp-card__num">03 · Cadence</span>
             <h3 class="cp-card__title">Faster decision cycles</h3>
-            <p class="cp-card__body">Small senior pods, fewer handoffs, direct access. Decisions in days, not weeks — without sacrificing depth.</p>
+            <p class="cp-card__body">Small senior pods, fewer handoffs, direct access. Decisions in days, not weeks, without sacrificing depth.</p>
         </article>
     </div>
 </section>
@@ -4093,7 +4095,7 @@
                 <span class="cp-tradeoff__for">Best for steady creative volume at a fixed cost.</span>
                 <span class="cp-tradeoff__icon" aria-hidden="true"></span>
             </summary>
-            <div class="cp-tradeoff__body">Strong when you need volume on predictable work — less suited when the decisions themselves are what matter.</div>
+            <div class="cp-tradeoff__body">Strong when you need volume on predictable work; less suited when the decisions themselves are what matter.</div>
         </details>
         <details class="cp-tradeoff">
             <summary>
@@ -4117,7 +4119,7 @@
                 <span class="cp-tradeoff__for">Best for raw speed on isolated tasks.</span>
                 <span class="cp-tradeoff__icon" aria-hidden="true"></span>
             </summary>
-            <div class="cp-tradeoff__body">Powerful in the right hands, but the output reflects the prompt — not the problem behind it.</div>
+            <div class="cp-tradeoff__body">Powerful in the right hands, but the output reflects the prompt, not the problem behind it.</div>
         </details>
     </div>
 </section>
@@ -4170,7 +4172,7 @@
             <h2 class="cp-panel__h">AI accelerates execution. Experience improves decisions.</h2>
             <div class="cp-panel__body">
                 <p>Tools have gotten remarkable. They still don't know which problem to solve, which detail matters, or when the brief is wrong.</p>
-                <p>Senior thinking is what makes the leverage worth using — product judgment, UX leadership, and the kind of taste that only shows up after enough shipped work.</p>
+                <p>Senior thinking is what makes the leverage worth using: product judgment, UX leadership, and the kind of taste that only shows up after enough shipped work.</p>
             </div>
         </div>
         <div class="cp-panel__visual" aria-hidden="true">
@@ -4183,7 +4185,7 @@
             <p class="cp-eyebrow">AI-native execution</p>
             <h2 class="cp-panel__h">Built to move faster.</h2>
             <div class="cp-panel__body">
-                <p>AI sits inside the workflow — research, exploration, drafting, iteration, delivery. Not as a novelty layer, but as the way the work actually happens.</p>
+                <p>AI sits inside the workflow: research, exploration, drafting, iteration, delivery. Not as a novelty layer, but as the way the work actually happens.</p>
                 <p>That changes what fits inside a week, what fits inside a sprint, and how often we can put real artifacts in front of a decision.</p>
             </div>
         </div>
@@ -4198,7 +4200,7 @@
             <h2 class="cp-panel__h">Less process. More progress.</h2>
             <div class="cp-panel__body">
                 <p>Fewer translations. Fewer status updates. Fewer review cycles between the person asking the question and the person answering it.</p>
-                <p>What's left is the work — and the working sessions that move it forward.</p>
+                <p>What's left is the work, and the working sessions that move it forward.</p>
             </div>
         </div>
         <div class="cp-panel__visual" aria-hidden="true">
@@ -4277,16 +4279,22 @@
     });
 })();
 
-// Nav elevation on scroll — matches sandbox/components behavior.
+// Nav: transparent over hero, white once scrolled past it.
 (function () {
     const nav = document.querySelector('nav');
+    const hero = document.querySelector('.cp-hero');
     if (!nav) return;
+    const threshold = () => {
+        const h = hero ? hero.getBoundingClientRect().height : 0;
+        return Math.max(8, h - 80);
+    };
     const update = () => {
         const y = window.scrollY || document.documentElement.scrollTop || 0;
-        nav.classList.toggle('is-scrolled', y > 8);
+        nav.classList.toggle('is-scrolled', y > threshold());
     };
     update();
     window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
 })();
 </script>
 

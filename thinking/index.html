@@ -106,6 +106,24 @@
         });
     });
 })();
+
+// Nav: transparent over the page header, white once scrolled past it.
+(() => {
+    const nav = document.querySelector('.nav');
+    const head = document.querySelector('.page-head');
+    if (!nav) return;
+    const threshold = () => {
+        const h = head ? head.getBoundingClientRect().height : 0;
+        return Math.max(8, h - 80);
+    };
+    const update = () => {
+        const y = window.scrollY || document.documentElement.scrollTop || 0;
+        nav.classList.toggle('is-scrolled', y > threshold());
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+})();
 </script>
 
 </body>
