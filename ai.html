@@ -4150,6 +4150,87 @@
 
     /* Section spacing fine-tune */
     :root[data-theme="editorial"] .ai-section + .ai-section { padding-top: clamp(64px, 8vw, 112px); }
+
+    /* =============================================
+       AI-POWERED CREATIVE PRODUCTION — capability showcase
+    ============================================= */
+    :root[data-theme="editorial"] .ai-section--ink .ai-section__head { color: var(--paper); }
+    :root[data-theme="editorial"] .ai-cap-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-auto-rows: 220px;
+        gap: 8px;
+        margin-top: clamp(32px, 4vw, 56px);
+        max-width: var(--ed-max);
+        margin-left: auto;
+        margin-right: auto;
+    }
+    :root[data-theme="editorial"] .ai-cap-card {
+        border-radius: var(--ai-radius);
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        min-height: 0;
+    }
+    :root[data-theme="editorial"] .ai-cap-card.tall  { grid-row: span 2; }
+    :root[data-theme="editorial"] .ai-cap-card.wide  { grid-column: span 2; }
+    :root[data-theme="editorial"] .ai-cap-card-img {
+        position: absolute;
+        inset: 0;
+        background: #111111;
+    }
+    :root[data-theme="editorial"] .ai-cap-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0,0,0,.88) 0%, rgba(0,0,0,.18) 58%, transparent 100%);
+        pointer-events: none;
+    }
+    :root[data-theme="editorial"] .ai-cap-card--light::after {
+        background: linear-gradient(to top, rgba(15,15,15,.82) 0%, rgba(15,15,15,.15) 55%, transparent 100%);
+    }
+    :root[data-theme="editorial"] .ai-cap-card-content {
+        position: relative;
+        z-index: 1;
+        padding: 0.85rem 1rem 1rem;
+    }
+    :root[data-theme="editorial"] .ai-cap-card-tag {
+        font-family: var(--body);
+        font-size: 9px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.45);
+        margin: 0 0 0.3rem;
+    }
+    :root[data-theme="editorial"] .ai-cap-card-title {
+        font-family: var(--display);
+        font-size: 14px;
+        font-weight: 500;
+        color: #FFFFFF;
+        line-height: 1.3;
+        margin: 0 0 0.25rem;
+    }
+    :root[data-theme="editorial"] .ai-cap-card-body {
+        font-family: var(--body);
+        font-size: 11px;
+        color: rgba(255,255,255,0.62);
+        line-height: 1.5;
+        margin: 0;
+    }
+    @media (max-width: 768px) {
+        :root[data-theme="editorial"] .ai-cap-grid {
+            grid-template-columns: 1fr;
+            grid-auto-rows: 200px;
+        }
+        :root[data-theme="editorial"] .ai-cap-card.tall,
+        :root[data-theme="editorial"] .ai-cap-card.wide {
+            grid-row: span 1;
+            grid-column: span 1;
+        }
+    }
 </style>
 
 </head>
@@ -4221,7 +4302,7 @@
                 <div>
                     <p class="ai-why__kicker">The gap</p>
                     <h3 class="ai-why__title">Output is up. Outcomes haven't kept up.</h3>
-                    <p class="ai-why__body">AI is everywhere. Better launches aren't. Teams have embraced AI acceleration — but without judgment, more output is just expensive noise. We ground AI in 30 years of senior experience so it accelerates outcomes, not just output.</p>
+                    <p class="ai-why__body">AI is everywhere. Better launches aren't. Teams have embraced AI acceleration. But without judgment, more output is just expensive noise. We ground AI in 30 years of senior experience so it accelerates outcomes, not just output.</p>
                 </div>
                 <div class="ai-why__bars" aria-hidden="true">
                     <span class="ai-why__bar"></span>
@@ -4234,12 +4315,83 @@
             <article class="ai-why__card ai-reveal" tabindex="0">
                 <p class="ai-why__kicker">01 · Velocity</p>
                 <h3 class="ai-why__title">Faster turns. Tighter loops.</h3>
-                <p class="ai-why__body">Speed matters when it's pointed at the right problem. AI compresses the cycle — research, explore, test, learn — so the work improves with every pass.</p>
+                <p class="ai-why__body">Speed matters when it's pointed at the right problem. AI compresses the cycle: research, explore, test, learn. The work improves with every pass.</p>
             </article>
             <article class="ai-why__card ai-reveal" tabindex="0">
                 <p class="ai-why__kicker">02 · Equation</p>
                 <h3 class="ai-why__title">Built in, not bolted on.</h3>
-                <p class="ai-why__body">When AI runs through the thinking — not just the production — the quality of decisions improves alongside the speed. That's where the real leverage is.</p>
+                <p class="ai-why__body">When AI runs through the thinking, not just the production, and the quality of decisions improves alongside the speed. That's where the real leverage is.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- =============================================
+     2.5 AI-POWERED CREATIVE PRODUCTION — 7-card showcase grid
+============================================= -->
+<section class="ai-section ai-section--ink" aria-label="AI-powered creative production">
+    <div class="ai-section__inner">
+        <div class="ai-section__head ai-reveal">
+            <p class="ai-eyebrow">AI-powered creative production</p>
+            <h2 class="ai-h2">AI creates possibilities that didn't exist before.</h2>
+            <p class="ai-lede">The specific types of AI-powered creative we bring to every engagement.</p>
+        </div>
+        <div class="ai-cap-grid">
+            <article class="ai-cap-card tall ai-reveal">
+                <div class="ai-cap-card-img" style="background:#0d0d0d"></div>
+                <div class="ai-cap-card-content">
+                    <p class="ai-cap-card-tag">No stock. No shoot. No delay.</p>
+                    <h3 class="ai-cap-card-title">AI image generation</h3>
+                    <p class="ai-cap-card-body">Campaign visuals, lifestyle imagery, product mockups — generated on brief, on brand, ready to ship.</p>
+                </div>
+            </article>
+            <article class="ai-cap-card ai-reveal">
+                <div class="ai-cap-card-img" style="background:#111111"></div>
+                <div class="ai-cap-card-content">
+                    <p class="ai-cap-card-tag">Runway · Sora</p>
+                    <h3 class="ai-cap-card-title">Image to video</h3>
+                    <p class="ai-cap-card-body">Static assets brought to life. No crew, no studio.</p>
+                </div>
+            </article>
+            <article class="ai-cap-card ai-reveal">
+                <div class="ai-cap-card-img" style="background:#161616"></div>
+                <div class="ai-cap-card-content">
+                    <p class="ai-cap-card-tag">Web &amp; product</p>
+                    <h3 class="ai-cap-card-title">Motion &amp; animation</h3>
+                    <p class="ai-cap-card-body">Micro-interactions and animated sequences — without a motion team.</p>
+                </div>
+            </article>
+            <article class="ai-cap-card wide ai-reveal">
+                <div class="ai-cap-card-img" style="background:#1e1e1e"></div>
+                <div class="ai-cap-card-content">
+                    <p class="ai-cap-card-tag">ElevenLabs · HeyGen</p>
+                    <h3 class="ai-cap-card-title">Avatars &amp; voice cloning</h3>
+                    <p class="ai-cap-card-body">Digital personas and AI-generated narration — for demos, video, onboarding, and localized content at scale.</p>
+                </div>
+            </article>
+            <article class="ai-cap-card ai-reveal">
+                <div class="ai-cap-card-img" style="background:#0f0f0f"></div>
+                <div class="ai-cap-card-content">
+                    <p class="ai-cap-card-tag">On brand. Always.</p>
+                    <h3 class="ai-cap-card-title">Brand imagery</h3>
+                    <p class="ai-cap-card-body">A library of visuals trained to your aesthetic. No usage fees, no style drift.</p>
+                </div>
+            </article>
+            <article class="ai-cap-card wide ai-cap-card--light ai-reveal">
+                <div class="ai-cap-card-img" style="background:#f2f0ec"></div>
+                <div class="ai-cap-card-content">
+                    <p class="ai-cap-card-tag">Figma AI · v0</p>
+                    <h3 class="ai-cap-card-title">UX &amp; prototype generation</h3>
+                    <p class="ai-cap-card-body">Screens and flows from a prompt. Testable before anything gets built.</p>
+                </div>
+            </article>
+            <article class="ai-cap-card ai-reveal">
+                <div class="ai-cap-card-img" style="background:#111111"></div>
+                <div class="ai-cap-card-content">
+                    <p class="ai-cap-card-tag">Scale without drift</p>
+                    <h3 class="ai-cap-card-title">Copy &amp; content at scale</h3>
+                    <p class="ai-cap-card-body">Messaging variants, UX copy, scripts — generated in volume, edited to standard.</p>
+                </div>
             </article>
         </div>
     </div>
@@ -4262,7 +4414,7 @@
                     <circle cx="18" cy="18" r="3" fill="currentColor"/>
                     <path d="M18 4v6M18 26v6M4 18h6M26 18h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
                 </svg>
-                <p class="ai-os__num">01 — Strategy</p>
+                <p class="ai-os__num">01 · Strategy</p>
                 <h3 class="ai-os__title">Strategy</h3>
                 <p class="ai-os__body">Frame the opportunity and find the real problem worth solving.</p>
                 <div class="ai-os__examples">
@@ -4278,7 +4430,7 @@
                     <rect x="6" y="6" width="14" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
                     <rect x="16" y="16" width="14" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
                 </svg>
-                <p class="ai-os__num">02 — Design</p>
+                <p class="ai-os__num">02 · Design</p>
                 <h3 class="ai-os__title">Design</h3>
                 <p class="ai-os__body">Test more directions, faster, before committing to one.</p>
                 <div class="ai-os__examples">
@@ -4294,7 +4446,7 @@
                     <path d="M6 26L14 18L20 22L30 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M22 10H30V18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                <p class="ai-os__num">03 — Growth</p>
+                <p class="ai-os__num">03 · Growth</p>
                 <h3 class="ai-os__title">Growth</h3>
                 <p class="ai-os__body">Move the moments that influence trust, conversion, and adoption.</p>
                 <div class="ai-os__examples">
@@ -4310,7 +4462,7 @@
                     <path d="M18 4L4 12V24L18 32L32 24V12L18 4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
                     <path d="M4 12L18 20L32 12M18 20V32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
                 </svg>
-                <p class="ai-os__num">04 — Delivery</p>
+                <p class="ai-os__num">04 · Delivery</p>
                 <h3 class="ai-os__title">Delivery</h3>
                 <p class="ai-os__body">Compress iteration cycles without compressing thinking.</p>
                 <div class="ai-os__examples">
@@ -4339,7 +4491,7 @@
             <article class="ai-unlocks__card ai-reveal">
                 <p class="ai-unlocks__kicker">Strategy</p>
                 <h3 class="ai-unlocks__title">Synthesize research in hours, not days.</h3>
-                <p class="ai-unlocks__body">AI synthesis compresses weeks of stakeholder input and competitive signal into a set of options worth reacting to — before the first client review.</p>
+                <p class="ai-unlocks__body">AI synthesis compresses weeks of stakeholder input and competitive signal into a set of options worth reacting to, before the first client review.</p>
             </article>
             <article class="ai-unlocks__card ai-reveal">
                 <p class="ai-unlocks__kicker">Strategy</p>
@@ -4349,17 +4501,17 @@
             <article class="ai-unlocks__card ai-reveal">
                 <p class="ai-unlocks__kicker">Design</p>
                 <h3 class="ai-unlocks__title">Prototype faster, test sooner.</h3>
-                <p class="ai-unlocks__body">Real directions, not wireframe sketches — so the team reacts to actual creative rather than abstract descriptions.</p>
+                <p class="ai-unlocks__body">Real directions, not wireframe sketches. The team reacts to actual creative rather than abstract descriptions.</p>
             </article>
             <article class="ai-unlocks__card ai-reveal">
                 <p class="ai-unlocks__kicker">Design</p>
                 <h3 class="ai-unlocks__title">Generate assets across every surface.</h3>
-                <p class="ai-unlocks__body">AI removes the bottleneck of one direction at a time — whether that's a product flow, a landing page, or a campaign moment. More paths explored means the right one surfaces faster.</p>
+                <p class="ai-unlocks__body">AI removes the bottleneck of one direction at a time, whether that's a product flow, a landing page, or a campaign moment. More paths explored means the right one surfaces faster.</p>
             </article>
             <article class="ai-unlocks__card ai-reveal">
                 <p class="ai-unlocks__kicker">Growth</p>
                 <h3 class="ai-unlocks__title">Iterate without slowing down.</h3>
-                <p class="ai-unlocks__body">Copy for every funnel stage, every audience segment, tested before production spend — not after.</p>
+                <p class="ai-unlocks__body">Copy for every funnel stage, every audience segment, tested before production spend, not after.</p>
             </article>
             <article class="ai-unlocks__card ai-reveal">
                 <p class="ai-unlocks__kicker">Growth</p>
@@ -4378,7 +4530,7 @@
         <div class="ai-section__head ai-reveal">
             <p class="ai-eyebrow">AI-native workflows</p>
             <h2 class="ai-h2">AI runs through the work, not next to it.</h2>
-            <p class="ai-lede">Six stages, one continuous cycle. AI shows up in each — for synthesis, exploration, generation, or validation — never as a separate phase.</p>
+            <p class="ai-lede">Six stages, one continuous cycle. AI shows up in each, for synthesis, exploration, generation, or validation. Never as a separate phase.</p>
         </div>
         <div class="ai-flow ai-reveal">
             <div class="ai-flow__rail">
@@ -4428,7 +4580,7 @@
                 </svg>
                 <span class="ai-flow__loop-label">Iterate</span>
             </div>
-            <p class="ai-flow__note">A cycle can be as short as a week or two, or longer when the work calls for it. The shape stays the same — the cadence flexes to fit the engagement.</p>
+            <p class="ai-flow__note">A cycle can be as short as a week or two, or longer when the work calls for it. The shape stays the same; the cadence flexes to fit the engagement.</p>
         </div>
     </div>
 </section>
@@ -4441,7 +4593,7 @@
         <div class="ai-section__head ai-reveal">
             <p class="ai-eyebrow">End to end</p>
             <h2 class="ai-h2">From discovery to delivery.</h2>
-            <p class="ai-lede">AI elevates the work and compresses timelines — from discovery to delivery. Faster synthesis, smarter iteration, faster execution. Expect better work, sooner.</p>
+            <p class="ai-lede">AI elevates the work and compresses timelines, from discovery to delivery. Faster synthesis, smarter iteration, faster execution. Expect better work, sooner.</p>
         </div>
     </div>
 </section>
