@@ -163,8 +163,9 @@ img { display: block; max-width: 100%; height: auto; }
     color: var(--ink);
 }
 
-/* CTA pill */
+/* CTA pill — pushed right with the overflow icon as one cluster */
 .nav-cta {
+    margin-left: auto;
     background: var(--ink);
     color: var(--paper);
     border-radius: 980px;
