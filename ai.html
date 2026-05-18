@@ -1850,9 +1850,9 @@
     }
     :root[data-theme="editorial"] nav.is-scrolled {
         border-bottom-color: var(--rule);
-        background: rgba(255, 255, 255, 0.92);
-        backdrop-filter: saturate(180%) blur(20px);
-        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        background: #ffffff;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
     }
     :root[data-theme="editorial"] .nav-logo {
         font-family: var(--display);
@@ -4990,7 +4990,7 @@
     if (!nav) return;
     const threshold = () => {
         const h = hero ? hero.getBoundingClientRect().height : 0;
-        return Math.max(8, h - 80);
+        return Math.max(8, h - 8);
     };
     const update = () => {
         const y = window.scrollY || document.documentElement.scrollTop || 0;
