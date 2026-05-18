@@ -284,6 +284,8 @@ img { display: block; max-width: 100%; height: auto; }
         -webkit-backdrop-filter: saturate(180%) blur(20px);
         border-bottom-color: var(--rule);
     }
+    /* "Work" is redundant on mobile — logo also routes home. Hide it in the mobile panel. */
+    .nav-desktop-only { display: none; }
 }
 
 /* === PAGE HEADER === */
