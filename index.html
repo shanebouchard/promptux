@@ -1886,72 +1886,78 @@
     }
     :root[data-theme="editorial"] .nav-links a:hover { opacity: 1; }
 
-    /* "More" — text label + chevron, opens a dropdown */
-    :root[data-theme="editorial"] .nav-more {
+    /* Overflow "···" — internal page access, visually quieter than main nav */
+    :root[data-theme="editorial"] .nav-overflow {
         position: relative;
+        display: inline-flex;
+        align-items: center;
     }
-    :root[data-theme="editorial"] .nav-more__btn {
+    :root[data-theme="editorial"] .nav-overflow__btn {
         appearance: none;
         background: transparent;
         border: 0;
-        padding: 0;
+        padding: 4px 6px;
         cursor: pointer;
         color: var(--ink);
-        font-family: var(--body);
-        font-size: 13px;
-        letter-spacing: -0.005em;
-        opacity: 0.78;
         display: inline-flex;
         align-items: center;
-        gap: 5px;
+        justify-content: center;
+        opacity: 0.55;
         transition: opacity 150ms ease;
     }
-    :root[data-theme="editorial"] .nav-more__btn:hover { opacity: 1; }
-    :root[data-theme="editorial"] .nav-more__chev {
-        width: 10px;
-        height: auto;
+    :root[data-theme="editorial"] .nav-overflow__btn:hover,
+    :root[data-theme="editorial"] .nav-overflow__btn[aria-expanded="true"] { opacity: 0.9; }
+    :root[data-theme="editorial"] .nav-overflow__btn svg {
+        width: 18px;
+        height: 18px;
+        fill: currentColor;
         display: block;
-        transition: transform 180ms ease;
     }
-    :root[data-theme="editorial"] .nav-more__btn[aria-expanded="true"] .nav-more__chev {
-        transform: rotate(180deg);
-    }
-    :root[data-theme="editorial"] .nav-more__menu {
+    :root[data-theme="editorial"] .nav-overflow__menu {
         position: absolute;
-        top: calc(100% + 14px);
-        left: 50%;
-        transform: translate(-50%, -4px);
-        background: rgba(255, 255, 255, 0.96);
+        top: calc(100% + 12px);
+        right: 0;
+        background: rgba(250, 250, 248, 0.96);
         backdrop-filter: saturate(180%) blur(20px);
         -webkit-backdrop-filter: saturate(180%) blur(20px);
-        border: 1px solid var(--rule);
-        border-radius: 10px;
-        padding: 6px 0;
-        min-width: 180px;
-        box-shadow: 0 12px 32px rgba(12, 12, 10, 0.08);
+        border: 1px dashed var(--rule);
+        border-radius: 8px;
+        padding: 8px 0 6px;
+        min-width: 160px;
+        box-shadow: 0 8px 20px rgba(12, 12, 10, 0.06);
         opacity: 0;
         pointer-events: none;
+        transform: translateY(-4px);
         transition: opacity 180ms ease, transform 180ms ease;
         z-index: 100;
     }
-    :root[data-theme="editorial"] .nav-more__btn[aria-expanded="true"] + .nav-more__menu {
+    :root[data-theme="editorial"] .nav-overflow__btn[aria-expanded="true"] + .nav-overflow__menu {
         opacity: 1;
         pointer-events: auto;
-        transform: translate(-50%, 0);
+        transform: translateY(0);
     }
-    :root[data-theme="editorial"] .nav-more__menu a {
-        display: block;
-        padding: 9px 18px;
+    :root[data-theme="editorial"] .nav-overflow__eyebrow {
+        margin: 0 16px 4px;
         font-family: var(--body);
-        font-size: 13px;
-        color: var(--ink);
-        text-decoration: none;
-        opacity: 0.82;
-        transition: background 150ms ease, opacity 150ms ease;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--mid);
+        opacity: 0.7;
     }
-    :root[data-theme="editorial"] .nav-more__menu a:hover {
+    :root[data-theme="editorial"] .nav-overflow__menu a {
+        display: block;
+        padding: 6px 16px;
+        font-family: var(--body);
+        font-size: 12px;
+        color: var(--mid);
+        text-decoration: none;
+        transition: background 150ms ease, color 150ms ease;
+    }
+    :root[data-theme="editorial"] .nav-overflow__menu a:hover {
         background: var(--paper-2);
-        opacity: 1;
+        color: var(--ink);
     }
 
     /* CTA pill */
@@ -2065,11 +2071,25 @@
             opacity: 1;
             display: block;
         }
-        /* "More" becomes an inline section header on mobile (no toggle) */
-        :root[data-theme="editorial"] .nav-more__btn {
-            display: none;
+        /* Overflow "···" — inline "Internal" section at the bottom of the panel */
+        :root[data-theme="editorial"] .nav-overflow {
+            order: 5;
+            flex-basis: 100%;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 240ms ease, opacity 200ms ease, margin 200ms ease;
+            margin: 0;
         }
-        :root[data-theme="editorial"] .nav-more__menu {
+        :root[data-theme="editorial"] nav[data-open="true"] .nav-overflow {
+            max-height: 200px;
+            opacity: 1;
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px dashed var(--rule);
+        }
+        :root[data-theme="editorial"] .nav-overflow__btn { display: none; }
+        :root[data-theme="editorial"] .nav-overflow__menu {
             position: static;
             background: none;
             border: 0;
@@ -2082,26 +2102,17 @@
             pointer-events: auto;
             transform: none;
         }
-        :root[data-theme="editorial"] .nav-more__menu a {
-            padding: 10px 0;
-            font-size: 16px;
-            opacity: 0.85;
+        :root[data-theme="editorial"] .nav-overflow__eyebrow {
+            margin: 0 0 6px;
+            opacity: 0.6;
         }
-        :root[data-theme="editorial"] .nav-more__menu a + a {
-            border-top: 1px solid var(--rule);
-        }
-        :root[data-theme="editorial"] .nav-more {
-            padding-top: 4px;
-        }
-        :root[data-theme="editorial"] .nav-more::before {
-            content: 'More';
-            display: block;
-            font-family: var(--body);
-            font-size: 11px;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
+        :root[data-theme="editorial"] .nav-overflow__menu a {
+            padding: 8px 0;
+            font-size: 14px;
             color: var(--mid);
-            margin-bottom: 4px;
+        }
+        :root[data-theme="editorial"] .nav-overflow__menu a + a {
+            border-top: 1px dashed var(--rule);
         }
         /* Nav background goes solid when open so the panel is readable */
         :root[data-theme="editorial"] nav[data-open="true"] {
@@ -3475,20 +3486,24 @@
     </button>
     <ul class="nav-links" id="primary-nav">
         <li><a href="/#approach">How We Work</a></li>
+        <li><a href="/ai.html">AI Excellence</a></li>
         <li><a href="/thinking/">Thinking</a></li>
-        <li class="nav-more">
-            <button type="button" class="nav-more__btn" aria-haspopup="true" aria-expanded="false">
-                More
-                <svg class="nav-more__chev" viewBox="0 0 12 8" aria-hidden="true">
-                    <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
-            <div class="nav-more__menu" role="menu">
-                <a href="/ai.html" role="menuitem">AI Excellence</a>
-            </div>
-        </li>
     </ul>
     <a href="/#contact" class="nav-cta">Let's talk →</a>
+    <div class="nav-overflow">
+        <button type="button" class="nav-overflow__btn" aria-haspopup="true" aria-expanded="false" aria-label="Internal pages">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="5" cy="12" r="2" />
+                <circle cx="12" cy="12" r="2" />
+                <circle cx="19" cy="12" r="2" />
+            </svg>
+        </button>
+        <div class="nav-overflow__menu" role="menu">
+            <p class="nav-overflow__eyebrow">Internal</p>
+            <a href="/components.html" role="menuitem">Components</a>
+            <a href="/competitive.html" role="menuitem">Competitive</a>
+        </div>
+    </div>
 </nav>
 <!-- nav copy edit: no changes -->
 <!-- hero copy edit: no changes (kicker, wordmark, headline, pills, scroll link all already strong) -->
@@ -3733,7 +3748,7 @@
 <section class="ed-stats" aria-label="Numbers from PromptUX engagements">
     <div class="ed-stats__row">
         <div class="ed-stats__cell">
-            <div class="ed-stats__num" data-value="30" data-suffix="+" data-suffix-after="true" data-decimals="0">30+</div>
+            <div class="ed-stats__num" data-value="30" data-suffix="+" data-decimals="0">30+</div>
             <div class="ed-stats__label">Years of design leadership</div>
         </div>
         <div class="ed-stats__cell">
@@ -4615,24 +4630,24 @@ document.addEventListener('click', function(e) {
     // Real URLs — fall through, let the browser navigate.
 });
 
-// Nav "more" dropdown + mobile hamburger — both click-to-toggle, outside/Escape closes.
+// Nav overflow "···" dropdown + mobile hamburger — both click-to-toggle, outside/Escape closes.
 (() => {
     const nav = document.querySelector('nav');
-    const moreBtns = document.querySelectorAll('.nav-more__btn');
+    const overflowBtns = document.querySelectorAll('.nav-overflow__btn');
     const toggle = document.querySelector('.nav-toggle');
 
-    const closeMore = () => moreBtns.forEach(b => b.setAttribute('aria-expanded', 'false'));
+    const closeOverflow = () => overflowBtns.forEach(b => b.setAttribute('aria-expanded', 'false'));
     const closeMobile = () => {
         if (!nav || !toggle) return;
         nav.removeAttribute('data-open');
         toggle.setAttribute('aria-expanded', 'false');
     };
 
-    moreBtns.forEach(btn => {
+    overflowBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
             const expanded = btn.getAttribute('aria-expanded') === 'true';
-            closeMore();
+            closeOverflow();
             btn.setAttribute('aria-expanded', String(!expanded));
         });
     });
@@ -4651,34 +4666,37 @@ document.addEventListener('click', function(e) {
     }
 
     document.addEventListener('click', (e) => {
-        closeMore();
+        closeOverflow();
         if (nav && toggle && !nav.contains(e.target)) closeMobile();
     });
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            closeMore();
+            closeOverflow();
             closeMobile();
         }
     });
 })();
 
 // Stats count-up — fires once when .ed-stats enters the viewport.
+// Defensive: always renders final value on settle, and falls back to the
+// final value if anything throws mid-animation. Suffix is always visible
+// throughout the animation (no hidden-suffix mode) so the user never sees
+// a stuck "0" without context.
 (() => {
     const section = document.querySelector('.ed-stats');
     if (!section) return;
     const stats = section.querySelectorAll('.ed-stats__num');
-    const ease = (t) => t; // linear
+    if (!stats.length) return;
 
-    const fmt = (el, value) => {
+    const ease = (t) => 1 - Math.pow(1 - t, 3); // ease-out cubic
+
+    const render = (el, value) => {
         const decimals = parseInt(el.dataset.decimals, 10) || 0;
         const suffix = el.dataset.suffix || '';
-        const suffixAfter = el.dataset.suffixAfter === 'true';
-        return value.toFixed(decimals) + (suffixAfter ? '' : suffix);
+        el.textContent = value.toFixed(decimals) + suffix;
     };
     const settle = (el) => {
-        const target = parseFloat(el.dataset.value);
-        const decimals = parseInt(el.dataset.decimals, 10) || 0;
-        el.textContent = target.toFixed(decimals) + (el.dataset.suffix || '');
+        render(el, parseFloat(el.dataset.value));
     };
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -4692,21 +4710,36 @@ document.addEventListener('click', function(e) {
         started = true;
         stats.forEach((el, i) => {
             const target = parseFloat(el.dataset.value);
-            const duration = 2000;
-            const begin = performance.now() + 80 * i;
+            if (!isFinite(target)) { settle(el); return; }
+            const duration = 1400;
+            const begin = performance.now() + 120 * i;
             const tick = (now) => {
-                if (now < begin) { requestAnimationFrame(tick); return; }
-                const t = Math.min((now - begin) / duration, 1);
-                el.textContent = fmt(el, target * ease(t));
-                if (t < 1) requestAnimationFrame(tick); else settle(el);
+                try {
+                    if (now < begin) { requestAnimationFrame(tick); return; }
+                    const t = Math.min((now - begin) / duration, 1);
+                    render(el, target * ease(t));
+                    if (t < 1) requestAnimationFrame(tick); else settle(el);
+                } catch (_) {
+                    settle(el);
+                }
             };
             requestAnimationFrame(tick);
         });
     };
 
+    // Safety net: if the observer never fires (display state, bfcache,
+    // unusual viewport), the animation still kicks off within 2s.
+    const fallback = setTimeout(start, 2000);
+
     new IntersectionObserver((entries, obs) => {
-        entries.forEach(e => { if (e.isIntersecting) { start(); obs.disconnect(); } });
-    }, { threshold: 0.3 }).observe(section);
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                clearTimeout(fallback);
+                start();
+                obs.disconnect();
+            }
+        });
+    }, { threshold: 0.25 }).observe(section);
 })();
 
 // Contact form — conditional 3-step flow, mailto-based submission.
