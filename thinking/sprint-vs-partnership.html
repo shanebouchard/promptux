@@ -31,16 +31,31 @@
 <body>
 
 <nav class="nav">
-    <div class="nav__inner">
-        <a href="/" class="nav__logo">PROMPTUX</a>
-        <ul class="nav__links">
-            <li><a href="/#work">Work</a></li>
-            <li><a href="/#approach">How We Work</a></li>
-            <li><a href="/#team">Team</a></li>
-            <li><a href="/thinking/">Thinking</a></li>
-        </ul>
-        <a href="/#contact" class="nav__cta">Get in touch</a>
-    </div>
+    <a href="/" class="nav-logo">PROMPTUX</a>
+    <button type="button" class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+    </button>
+    <ul class="nav-links" id="primary-nav">
+        <li><a href="/#work">Work</a></li>
+        <li><a href="/#approach">How We Work</a></li>
+        <li><a href="/thinking/">Thinking</a></li>
+        <li class="nav-more">
+            <button type="button" class="nav-more__btn" aria-haspopup="true" aria-expanded="false">
+                More
+                <svg class="nav-more__chev" viewBox="0 0 12 8" aria-hidden="true">
+                    <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div class="nav-more__menu" role="menu">
+                <a href="/components.html" role="menuitem">Components</a>
+                <a href="/ai.html" role="menuitem">AI Excellence</a>
+                <a href="/competitive.html" role="menuitem">Competitive</a>
+            </div>
+        </li>
+    </ul>
+    <a href="/#contact" class="nav-cta">Book a Call →</a>
 </nav>
 
 <article class="post">
@@ -146,6 +161,53 @@
     update();
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
+})();
+
+// Nav "more" dropdown + mobile hamburger — both click-to-toggle, outside/Escape closes.
+(() => {
+    const nav = document.querySelector('.nav');
+    const moreBtns = document.querySelectorAll('.nav-more__btn');
+    const toggle = document.querySelector('.nav-toggle');
+
+    const closeMore = () => moreBtns.forEach(b => b.setAttribute('aria-expanded', 'false'));
+    const closeMobile = () => {
+        if (!nav || !toggle) return;
+        nav.removeAttribute('data-open');
+        toggle.setAttribute('aria-expanded', 'false');
+    };
+
+    moreBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const expanded = btn.getAttribute('aria-expanded') === 'true';
+            closeMore();
+            btn.setAttribute('aria-expanded', String(!expanded));
+        });
+    });
+
+    if (toggle && nav) {
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const open = nav.getAttribute('data-open') === 'true';
+            if (open) {
+                closeMobile();
+            } else {
+                nav.setAttribute('data-open', 'true');
+                toggle.setAttribute('aria-expanded', 'true');
+            }
+        });
+    }
+
+    document.addEventListener('click', (e) => {
+        closeMore();
+        if (nav && toggle && !nav.contains(e.target)) closeMobile();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeMore();
+            closeMobile();
+        }
+    });
 })();
 </script>
 
