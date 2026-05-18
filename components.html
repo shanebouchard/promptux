@@ -1856,7 +1856,7 @@
         align-items: center;
         gap: clamp(18px, 2.4vw, 32px);
         list-style: none;
-        margin: 0;
+        margin: 0 auto;
         padding: 0;
     }
     :root[data-theme="editorial"] .nav-links > li {
@@ -1949,9 +1949,10 @@
         color: var(--ink);
     }
 
-    /* CTA pill — pushed right with the overflow icon as one cluster */
+    /* CTA pill — sits right next to the overflow icon at the right edge
+       (right-alignment comes from `.nav-links { margin: 0 auto }` consuming
+       the free space between the logo and this cluster). */
     :root[data-theme="editorial"] .nav-cta {
-        margin-left: auto;
         background: var(--ink);
         color: var(--paper);
         border-radius: 980px;
