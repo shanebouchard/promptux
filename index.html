@@ -1862,54 +1862,86 @@
         color: var(--ink);
         text-shadow: none;
     }
+    :root[data-theme="editorial"] .nav-links {
+        display: flex;
+        align-items: center;
+        gap: clamp(18px, 2.4vw, 32px);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    :root[data-theme="editorial"] .nav-links > li {
+        list-style: none;
+    }
+    :root[data-theme="editorial"] .nav-links a {
+        font-family: var(--body);
+        font-weight: 400;
+        text-transform: none;
+        letter-spacing: -0.005em;
+        color: var(--ink);
+        font-size: 13px;
+        opacity: 0.78;
+        text-decoration: none;
+        transition: opacity 150ms ease;
+    }
+    :root[data-theme="editorial"] .nav-links a:hover { opacity: 1; }
+
+    /* "More" — text label + chevron, opens a dropdown */
     :root[data-theme="editorial"] .nav-more {
         position: relative;
-        display: inline-flex;
-        align-items: center;
     }
     :root[data-theme="editorial"] .nav-more__btn {
+        appearance: none;
         background: transparent;
         border: 0;
-        padding: 4px 6px;
+        padding: 0;
         cursor: pointer;
         color: var(--ink);
+        font-family: var(--body);
+        font-size: 13px;
+        letter-spacing: -0.005em;
+        opacity: 0.78;
         display: inline-flex;
         align-items: center;
-        justify-content: center;
-        opacity: 0.82;
+        gap: 5px;
         transition: opacity 150ms ease;
     }
     :root[data-theme="editorial"] .nav-more__btn:hover { opacity: 1; }
-    :root[data-theme="editorial"] .nav-more__btn svg {
-        width: 18px;
-        height: 18px;
-        fill: currentColor;
+    :root[data-theme="editorial"] .nav-more__chev {
+        width: 10px;
+        height: auto;
         display: block;
+        transition: transform 180ms ease;
+    }
+    :root[data-theme="editorial"] .nav-more__btn[aria-expanded="true"] .nav-more__chev {
+        transform: rotate(180deg);
     }
     :root[data-theme="editorial"] .nav-more__menu {
         position: absolute;
-        top: calc(100% + 12px);
-        right: 0;
-        background: var(--paper);
+        top: calc(100% + 14px);
+        left: 50%;
+        transform: translate(-50%, -4px);
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: saturate(180%) blur(20px);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
         border: 1px solid var(--rule);
-        border-radius: 8px;
+        border-radius: 10px;
         padding: 6px 0;
-        min-width: 160px;
-        box-shadow: 0 8px 24px rgba(12, 12, 10, 0.08);
+        min-width: 180px;
+        box-shadow: 0 12px 32px rgba(12, 12, 10, 0.08);
         opacity: 0;
         pointer-events: none;
-        transform: translateY(-4px);
-        transition: opacity 150ms ease, transform 150ms ease;
+        transition: opacity 180ms ease, transform 180ms ease;
         z-index: 100;
     }
     :root[data-theme="editorial"] .nav-more__btn[aria-expanded="true"] + .nav-more__menu {
         opacity: 1;
         pointer-events: auto;
-        transform: translateY(0);
+        transform: translate(-50%, 0);
     }
     :root[data-theme="editorial"] .nav-more__menu a {
         display: block;
-        padding: 8px 16px;
+        padding: 9px 18px;
         font-family: var(--body);
         font-size: 13px;
         color: var(--ink);
@@ -1921,16 +1953,8 @@
         background: var(--paper-2);
         opacity: 1;
     }
-    :root[data-theme="editorial"] .nav-links a {
-        font-family: var(--body);
-        font-weight: 400;
-        text-transform: none;
-        letter-spacing: -0.005em;
-        color: var(--ink);
-        font-size: 13px;
-        opacity: 0.82;
-    }
-    :root[data-theme="editorial"] .nav-links a:hover { opacity: 1; }
+
+    /* CTA pill */
     :root[data-theme="editorial"] .nav-cta {
         background: var(--ink);
         color: var(--paper);
@@ -1941,11 +1965,151 @@
         text-transform: none;
         letter-spacing: -0.005em;
         font-size: 13px;
-        padding: 9px 20px;
+        padding: 9px 18px;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: background 150ms ease;
     }
     :root[data-theme="editorial"] .nav-cta:hover {
         background: oklch(0.30 0.005 240);
         color: var(--paper);
+    }
+
+    /* Hamburger — hidden on desktop, visible on mobile */
+    :root[data-theme="editorial"] .nav-toggle {
+        display: none;
+        appearance: none;
+        background: none;
+        border: 0;
+        cursor: pointer;
+        padding: 8px;
+        width: 40px;
+        height: 40px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        margin-left: auto;
+    }
+    :root[data-theme="editorial"] .nav-toggle__bar {
+        display: block;
+        width: 20px;
+        height: 1.5px;
+        background: var(--ink);
+        border-radius: 2px;
+        transition: transform 200ms ease, opacity 200ms ease;
+    }
+    :root[data-theme="editorial"] .nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(1) {
+        transform: translateY(5.5px) rotate(45deg);
+    }
+    :root[data-theme="editorial"] .nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(2) {
+        opacity: 0;
+    }
+    :root[data-theme="editorial"] .nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(3) {
+        transform: translateY(-5.5px) rotate(-45deg);
+    }
+
+    /* Mobile: collapse nav-links + cta behind hamburger */
+    @media (max-width: 860px) {
+        :root[data-theme="editorial"] .nav-toggle {
+            display: inline-flex;
+        }
+        :root[data-theme="editorial"] nav {
+            flex-wrap: wrap;
+        }
+        :root[data-theme="editorial"] .nav-links {
+            order: 3;
+            flex-basis: 100%;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 240ms ease, opacity 200ms ease, margin 200ms ease;
+            margin: 0;
+        }
+        :root[data-theme="editorial"] .nav-cta {
+            order: 4;
+            flex-basis: 100%;
+            text-align: center;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            transition: max-height 240ms ease, opacity 200ms ease, padding 200ms ease, margin 200ms ease;
+            margin: 0;
+        }
+        :root[data-theme="editorial"] nav[data-open="true"] .nav-links {
+            max-height: 480px;
+            opacity: 1;
+            margin-top: 14px;
+        }
+        :root[data-theme="editorial"] nav[data-open="true"] .nav-cta {
+            max-height: 60px;
+            opacity: 1;
+            padding: 11px 18px;
+            margin-top: 10px;
+        }
+        :root[data-theme="editorial"] .nav-links > li {
+            width: 100%;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--rule);
+        }
+        :root[data-theme="editorial"] .nav-links > li:last-child {
+            border-bottom: 0;
+        }
+        :root[data-theme="editorial"] .nav-links a {
+            font-size: 16px;
+            opacity: 1;
+            display: block;
+        }
+        /* "More" becomes an inline section header on mobile (no toggle) */
+        :root[data-theme="editorial"] .nav-more__btn {
+            display: none;
+        }
+        :root[data-theme="editorial"] .nav-more__menu {
+            position: static;
+            background: none;
+            border: 0;
+            box-shadow: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            padding: 0;
+            min-width: 0;
+            opacity: 1;
+            pointer-events: auto;
+            transform: none;
+        }
+        :root[data-theme="editorial"] .nav-more__menu a {
+            padding: 10px 0;
+            font-size: 16px;
+            opacity: 0.85;
+        }
+        :root[data-theme="editorial"] .nav-more__menu a + a {
+            border-top: 1px solid var(--rule);
+        }
+        :root[data-theme="editorial"] .nav-more {
+            padding-top: 4px;
+        }
+        :root[data-theme="editorial"] .nav-more::before {
+            content: 'More';
+            display: block;
+            font-family: var(--body);
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--mid);
+            margin-bottom: 4px;
+        }
+        /* Nav background goes solid when open so the panel is readable */
+        :root[data-theme="editorial"] nav[data-open="true"] {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom-color: var(--rule);
+        }
     }
 
     /* === SECTION SCAFFOLD === */
@@ -3304,21 +3468,20 @@
 ============================================= -->
 <nav>
     <a href="/" class="nav-logo">PROMPTUX</a>
-    <ul class="nav-links">
-        <li><a href="#work">Work</a></li>
-        <li><a href="#approach">How We Work</a></li>
-        <li><a href="#team">Team</a></li>
+    <button type="button" class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+    </button>
+    <ul class="nav-links" id="primary-nav">
+        <li><a href="/#work">Work</a></li>
+        <li><a href="/#approach">How We Work</a></li>
         <li><a href="/thinking/">Thinking</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="nav-right">
-        <a href="#contact" class="nav-cta">Get in touch</a>
-        <div class="nav-more">
-            <button type="button" class="nav-more__btn" aria-haspopup="true" aria-expanded="false" aria-label="More">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <circle cx="5" cy="12" r="2" />
-                    <circle cx="12" cy="12" r="2" />
-                    <circle cx="19" cy="12" r="2" />
+        <li class="nav-more">
+            <button type="button" class="nav-more__btn" aria-haspopup="true" aria-expanded="false">
+                More
+                <svg class="nav-more__chev" viewBox="0 0 12 8" aria-hidden="true">
+                    <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </button>
             <div class="nav-more__menu" role="menu">
@@ -3326,8 +3489,9 @@
                 <a href="/ai.html" role="menuitem">AI Excellence</a>
                 <a href="/competitive.html" role="menuitem">Competitive</a>
             </div>
-        </div>
-    </div>
+        </li>
+    </ul>
+    <a href="/#contact" class="nav-cta">Book a Call →</a>
 </nav>
 <!-- nav copy edit: no changes -->
 <!-- hero copy edit: no changes (kicker, wordmark, headline, pills, scroll link all already strong) -->
@@ -4454,23 +4618,50 @@ document.addEventListener('click', function(e) {
     // Real URLs — fall through, let the browser navigate.
 });
 
-// Nav "more" dropdown — click to toggle, click outside or Escape to close.
+// Nav "more" dropdown + mobile hamburger — both click-to-toggle, outside/Escape closes.
 (() => {
-    const btns = document.querySelectorAll('.nav-more__btn');
-    if (!btns.length) return;
-    btns.forEach(btn => {
+    const nav = document.querySelector('nav');
+    const moreBtns = document.querySelectorAll('.nav-more__btn');
+    const toggle = document.querySelector('.nav-toggle');
+
+    const closeMore = () => moreBtns.forEach(b => b.setAttribute('aria-expanded', 'false'));
+    const closeMobile = () => {
+        if (!nav || !toggle) return;
+        nav.removeAttribute('data-open');
+        toggle.setAttribute('aria-expanded', 'false');
+    };
+
+    moreBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
             const expanded = btn.getAttribute('aria-expanded') === 'true';
-            btns.forEach(b => b.setAttribute('aria-expanded', 'false'));
+            closeMore();
             btn.setAttribute('aria-expanded', String(!expanded));
         });
     });
-    document.addEventListener('click', () => {
-        btns.forEach(b => b.setAttribute('aria-expanded', 'false'));
+
+    if (toggle && nav) {
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const open = nav.getAttribute('data-open') === 'true';
+            if (open) {
+                closeMobile();
+            } else {
+                nav.setAttribute('data-open', 'true');
+                toggle.setAttribute('aria-expanded', 'true');
+            }
+        });
+    }
+
+    document.addEventListener('click', (e) => {
+        closeMore();
+        if (nav && toggle && !nav.contains(e.target)) closeMobile();
     });
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') btns.forEach(b => b.setAttribute('aria-expanded', 'false'));
+        if (e.key === 'Escape') {
+            closeMore();
+            closeMobile();
+        }
     });
 })();
 
