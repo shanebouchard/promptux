@@ -24,20 +24,24 @@
     </button>
     <ul class="nav-links" id="primary-nav">
         <li><a href="/#approach">How We Work</a></li>
+        <li><a href="/ai.html">AI Excellence</a></li>
         <li><a href="/thinking/">Thinking</a></li>
-        <li class="nav-more">
-            <button type="button" class="nav-more__btn" aria-haspopup="true" aria-expanded="false">
-                More
-                <svg class="nav-more__chev" viewBox="0 0 12 8" aria-hidden="true">
-                    <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
-            <div class="nav-more__menu" role="menu">
-                <a href="/ai.html" role="menuitem">AI Excellence</a>
-            </div>
-        </li>
     </ul>
     <a href="/#contact" class="nav-cta">Let's talk →</a>
+    <div class="nav-overflow">
+        <button type="button" class="nav-overflow__btn" aria-haspopup="true" aria-expanded="false" aria-label="Internal pages">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="5" cy="12" r="2" />
+                <circle cx="12" cy="12" r="2" />
+                <circle cx="19" cy="12" r="2" />
+            </svg>
+        </button>
+        <div class="nav-overflow__menu" role="menu">
+            <p class="nav-overflow__eyebrow">Internal</p>
+            <a href="/components.html" role="menuitem">Components</a>
+            <a href="/competitive.html" role="menuitem">Competitive</a>
+        </div>
+    </div>
 </nav>
 
 <!-- HEADER -->
@@ -137,24 +141,24 @@
     window.addEventListener('resize', update);
 })();
 
-// Nav "more" dropdown + mobile hamburger — both click-to-toggle, outside/Escape closes.
+// Nav overflow "···" dropdown + mobile hamburger — both click-to-toggle, outside/Escape closes.
 (() => {
     const nav = document.querySelector('.nav');
-    const moreBtns = document.querySelectorAll('.nav-more__btn');
+    const overflowBtns = document.querySelectorAll('.nav-overflow__btn');
     const toggle = document.querySelector('.nav-toggle');
 
-    const closeMore = () => moreBtns.forEach(b => b.setAttribute('aria-expanded', 'false'));
+    const closeOverflow = () => overflowBtns.forEach(b => b.setAttribute('aria-expanded', 'false'));
     const closeMobile = () => {
         if (!nav || !toggle) return;
         nav.removeAttribute('data-open');
         toggle.setAttribute('aria-expanded', 'false');
     };
 
-    moreBtns.forEach(btn => {
+    overflowBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
             const expanded = btn.getAttribute('aria-expanded') === 'true';
-            closeMore();
+            closeOverflow();
             btn.setAttribute('aria-expanded', String(!expanded));
         });
     });
@@ -173,12 +177,12 @@
     }
 
     document.addEventListener('click', (e) => {
-        closeMore();
+        closeOverflow();
         if (nav && toggle && !nav.contains(e.target)) closeMobile();
     });
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            closeMore();
+            closeOverflow();
             closeMobile();
         }
     });
