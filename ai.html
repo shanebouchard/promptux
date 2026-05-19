@@ -4544,6 +4544,56 @@
     }
 
     /* =============================================
+       WHY IT MATTERS — two-column editorial pair: "Smaller teams." +
+       "Bigger output." with a thin connective line between, then a
+       shared lede beneath. Quiet rhythm, no card chrome.
+    ============================================= */
+    :root[data-theme="editorial"] .ai-why-pair {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: clamp(24px, 4vw, 64px);
+        max-width: 960px;
+        margin: 0 auto;
+    }
+    :root[data-theme="editorial"] .ai-why-pair__col {
+        text-align: center;
+    }
+    :root[data-theme="editorial"] .ai-why-pair__h {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: clamp(40px, 6vw, 72px);
+        line-height: 1.05;
+        letter-spacing: -0.025em;
+        color: var(--ink);
+        margin: 0;
+    }
+    :root[data-theme="editorial"] .ai-why-pair__connector {
+        width: 1px;
+        height: clamp(40px, 6vw, 64px);
+        background: var(--rule);
+    }
+    :root[data-theme="editorial"] .ai-why-pair__lede {
+        max-width: 60ch;
+        margin: clamp(40px, 6vw, 64px) auto 0;
+        text-align: center;
+        font-family: var(--body);
+        font-size: clamp(17px, 1.4vw, 20px);
+        line-height: 1.5;
+        color: var(--mid);
+    }
+    @media (max-width: 720px) {
+        :root[data-theme="editorial"] .ai-why-pair {
+            grid-template-columns: 1fr;
+        }
+        :root[data-theme="editorial"] .ai-why-pair__connector {
+            width: clamp(32px, 8vw, 56px);
+            height: 1px;
+            justify-self: center;
+        }
+    }
+
+    /* =============================================
        LIFECYCLE DIAGRAM — circular SVG, AI at center.
        Six nodes spaced 60° around a ring; labels outside; "AI / accelerated"
        as the center anchor. Pure SVG with CSS-driven fills so the palette
@@ -4816,9 +4866,17 @@
     <div class="ai-section__inner">
         <div class="ai-section__head ai-reveal">
             <p class="ai-eyebrow">Why it matters</p>
-            <h2 class="ai-h2"><span>Smaller teams.</span><span>Bigger output.</span></h2>
-            <p class="ai-lede">AI helps compress the work that usually slows teams down: research, strategy, concepting, production, testing, and refinement. The result is faster movement, more iteration, and better work without adding layers.</p>
         </div>
+        <div class="ai-why-pair ai-reveal">
+            <div class="ai-why-pair__col">
+                <p class="ai-why-pair__h">Smaller teams.</p>
+            </div>
+            <div class="ai-why-pair__connector" aria-hidden="true"></div>
+            <div class="ai-why-pair__col">
+                <p class="ai-why-pair__h">Bigger output.</p>
+            </div>
+        </div>
+        <p class="ai-why-pair__lede ai-reveal">AI compresses the work that slows teams down, so smaller expert teams can move faster, test more directions, and produce higher-quality work without adding operational layers.</p>
     </div>
 </section>
 
