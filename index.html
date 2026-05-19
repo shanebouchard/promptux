@@ -2510,6 +2510,20 @@
         object-fit: cover;
         object-position: center left;
     }
+    /* Landscape devices (laptop, monitor) — `cover` would scale them tight
+       against the card edges, so switch to `contain` and pad the cell on
+       three sides so the device has breathing room on top/bottom/left and
+       still bleeds toward the card's right edge. Pads only on landscape
+       devices; phones keep their existing fill behavior. */
+    :root[data-theme="editorial"] .ed-work__card[data-device="laptop"] .ed-work__media,
+    :root[data-theme="editorial"] .ed-work__card[data-device="desktop"] .ed-work__media {
+        padding: clamp(24px, 3.2vw, 44px) 0 clamp(24px, 3.2vw, 44px) clamp(24px, 3.2vw, 44px);
+    }
+    :root[data-theme="editorial"] .ed-work__card[data-device="laptop"] .ed-work__media img,
+    :root[data-theme="editorial"] .ed-work__card[data-device="desktop"] .ed-work__media img {
+        object-fit: contain;
+        object-position: left center;
+    }
 
     @media (max-width: 720px) {
         :root[data-theme="editorial"] .ed-work__card {
@@ -3868,7 +3882,7 @@
         <h2 class="ed-work__title">Featured work</h2>
     </header>
     <div class="ed-work__scroller" role="region" aria-label="Featured projects" tabindex="0">
-        <article class="ed-work__card" aria-label="Lace AI Pro">
+        <article class="ed-work__card" data-device="phone" aria-label="Lace AI Pro">
             <div class="ed-work__info">
                 <p class="ed-work__eyebrow">Lace AI Pro · Healthcare</p>
                 <h3 class="ed-work__case-title">Turning hearing care into an ongoing digital experience.</h3>
@@ -3879,7 +3893,7 @@
                 <img src="assets/devices/iphone-lace.png" alt="Lace AI Pro mobile app">
             </figure>
         </article>
-        <article class="ed-work__card" aria-label="SharpSpring">
+        <article class="ed-work__card" data-device="laptop" aria-label="SharpSpring">
             <div class="ed-work__info">
                 <p class="ed-work__eyebrow">SharpSpring · B2B SaaS</p>
                 <h3 class="ed-work__case-title">Scaling marketing operations without scaling complexity.</h3>
@@ -3890,7 +3904,7 @@
                 <img src="assets/devices/laptop-sharpspring.png" alt="SharpSpring workflow automation builder">
             </figure>
         </article>
-        <article class="ed-work__card" aria-label="Pickers">
+        <article class="ed-work__card" data-device="desktop" aria-label="Pickers">
             <div class="ed-work__info">
                 <p class="ed-work__eyebrow">Pickers · Creator Economy</p>
                 <h3 class="ed-work__case-title">Turning creator influence into recommendation commerce.</h3>
@@ -3901,7 +3915,7 @@
                 <img src="assets/devices/desktop-pickers.png" alt="Pickers design system documentation">
             </figure>
         </article>
-        <article class="ed-work__card" aria-label="PL Remote">
+        <article class="ed-work__card" data-device="phone" aria-label="PL Remote">
             <div class="ed-work__info">
                 <p class="ed-work__eyebrow">PL Remote · IoT</p>
                 <h3 class="ed-work__case-title">Replacing physical gate hardware with a frictionless mobile experience.</h3>
