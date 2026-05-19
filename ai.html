@@ -4441,10 +4441,7 @@
     }
     :root[data-theme="editorial"] .ai-tab-panel { display: none; }
     :root[data-theme="editorial"] .ai-tab-panel.is-active {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: clamp(40px, 5vw, 88px);
-        align-items: start;
+        display: block;
     }
     :root[data-theme="editorial"] .ai-tab-eyebrow {
         font-family: var(--body);
@@ -4544,6 +4541,106 @@
             white-space: nowrap;
             flex: 0 0 auto;
         }
+    }
+
+    /* =============================================
+       LIFECYCLE DIAGRAM — circular SVG, AI at center.
+       Six nodes spaced 60° around a ring; labels outside; "AI / accelerated"
+       as the center anchor. Pure SVG with CSS-driven fills so the palette
+       stays consistent with the rest of the editorial theme.
+    ============================================= */
+    :root[data-theme="editorial"] .ai-lifecycle-wrap {
+        max-width: 480px;
+        margin: 0 auto;
+        aspect-ratio: 1;
+    }
+    :root[data-theme="editorial"] .ai-lifecycle {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+    :root[data-theme="editorial"] .ai-lifecycle__ring {
+        fill: none;
+        stroke: var(--rule);
+        stroke-width: 1;
+    }
+    :root[data-theme="editorial"] .ai-lifecycle__node {
+        fill: var(--ink);
+    }
+    :root[data-theme="editorial"] .ai-lifecycle__label {
+        fill: var(--ink);
+        font-family: var(--body);
+        font-size: 14px;
+        font-weight: 600;
+    }
+    :root[data-theme="editorial"] .ai-lifecycle__center-h {
+        fill: var(--ink);
+        font-family: var(--display);
+        font-size: 56px;
+        font-weight: 700;
+        letter-spacing: -0.025em;
+    }
+    :root[data-theme="editorial"] .ai-lifecycle__center-sub {
+        fill: var(--mid);
+        font-family: var(--body);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+    }
+
+    /* === TAB CARDS — 3 cards per tab with integrated stat. Replaces the
+       old left-list/right-table pattern. Stat is anchored to bottom of
+       each card behind a thin rule. */
+    :root[data-theme="editorial"] .ai-tab-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+    :root[data-theme="editorial"] .ai-tab-card {
+        padding: 28px;
+        background: var(--paper-2);
+        border-radius: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    :root[data-theme="editorial"] .ai-tab-card__title {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 1.18;
+        letter-spacing: -0.012em;
+        color: var(--ink);
+        margin: 0;
+    }
+    :root[data-theme="editorial"] .ai-tab-card__body {
+        font-family: var(--body);
+        font-size: 14px;
+        line-height: 1.55;
+        color: var(--mid);
+        margin: 0;
+        flex: 1;
+    }
+    :root[data-theme="editorial"] .ai-tab-card__stat {
+        font-family: var(--body);
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--ink);
+        margin: 0;
+        padding-top: 14px;
+        border-top: 1px solid var(--rule);
+        letter-spacing: -0.005em;
+    }
+    @media (max-width: 720px) {
+        :root[data-theme="editorial"] .ai-tab-cards {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* ai-h2 multiline support — stacked lines via direct <span> children. */
+    :root[data-theme="editorial"] .ai-h2 > span {
+        display: block;
     }
 
     /* =============================================
@@ -4702,9 +4799,10 @@
     <div class="ai-hero__inner">
         <h1 class="ai-hero__title">
             <span class="ai-hero__line">AI Speed.</span>
-            <span class="ai-hero__line">Faster iteration. Better execution.</span>
+            <span class="ai-hero__line">Faster iteration.</span>
+            <span class="ai-hero__line">Better execution.</span>
         </h1>
-        <p class="ai-hero__sub">Expert-driven design and AI-assisted execution for lean teams that need to move faster, reduce drag, and deliver better outcomes.</p>
+        <p class="ai-hero__sub">Expert-driven design and AI-assisted execution for teams that need to move faster, reduce drag, and deliver better outcomes.</p>
         <div class="ai-hero__ctas">
             <a href="/#ed-contact" class="ai-btn ai-btn--primary">Book a call →</a>
             <a href="#ai-os" class="ai-btn ai-btn--ghost">See how it works</a>
@@ -4713,15 +4811,201 @@
 </section>
 
 <!-- =============================================
-     2. AI-POWERED CREATIVE PRODUCTION — 7-card showcase grid
-     (Tool name references below — TODO: Confirm tool names against SSOT before live push)
+     2. WHY IT MATTERS — smaller teams, bigger output
 ============================================= -->
-<section class="ai-section" aria-label="AI-powered creative production">
+<section class="ai-section" aria-label="Why it matters">
     <div class="ai-section__inner">
         <div class="ai-section__head ai-reveal">
-            <p class="ai-eyebrow">Creative production</p>
-            <h2 class="ai-h2">Better output.</h2>
-            <p class="ai-lede">Examples of what AI-assisted production actually delivers.</p>
+            <p class="ai-eyebrow">Why it matters</p>
+            <h2 class="ai-h2"><span>Smaller teams.</span><span>Bigger output.</span></h2>
+            <p class="ai-lede">AI helps compress the work that usually slows teams down: research, strategy, concepting, production, testing, and refinement. The result is faster movement, more iteration, and better work without adding layers.</p>
+        </div>
+    </div>
+</section>
+
+<!-- =============================================
+     3. LIFECYCLE DIAGRAM — circular, AI at center, the page's conceptual anchor
+============================================= -->
+<section class="ai-section ai-section--paper-2" aria-label="The lifecycle">
+    <div class="ai-section__inner">
+        <div class="ai-section__head ai-reveal">
+            <p class="ai-eyebrow">Lifecycle</p>
+            <h2 class="ai-h2">Through the whole cycle.</h2>
+        </div>
+        <div class="ai-lifecycle-wrap ai-reveal">
+            <svg class="ai-lifecycle" viewBox="0 0 600 600" role="img" aria-label="AI accelerates the product and growth lifecycle: research, strategy, design, content, development, optimization">
+                <circle class="ai-lifecycle__ring" cx="300" cy="300" r="180"/>
+                <circle class="ai-lifecycle__node" cx="300" cy="120" r="7"/>
+                <circle class="ai-lifecycle__node" cx="455.9" cy="210" r="7"/>
+                <circle class="ai-lifecycle__node" cx="455.9" cy="390" r="7"/>
+                <circle class="ai-lifecycle__node" cx="300" cy="480" r="7"/>
+                <circle class="ai-lifecycle__node" cx="144.1" cy="390" r="7"/>
+                <circle class="ai-lifecycle__node" cx="144.1" cy="210" r="7"/>
+                <text class="ai-lifecycle__label" x="300" y="80" text-anchor="middle">Research</text>
+                <text class="ai-lifecycle__label" x="485" y="205" text-anchor="start">Strategy</text>
+                <text class="ai-lifecycle__label" x="485" y="400" text-anchor="start">Design</text>
+                <text class="ai-lifecycle__label" x="300" y="525" text-anchor="middle">Content</text>
+                <text class="ai-lifecycle__label" x="115" y="400" text-anchor="end">Development</text>
+                <text class="ai-lifecycle__label" x="115" y="205" text-anchor="end">Optimization</text>
+                <text class="ai-lifecycle__center-h" x="300" y="295" text-anchor="middle">AI</text>
+                <text class="ai-lifecycle__center-sub" x="300" y="325" text-anchor="middle">accelerated</text>
+            </svg>
+        </div>
+    </div>
+</section>
+
+<!-- =============================================
+     4. AI ACCELERATED — six tabs, three stat-integrated cards per tab
+============================================= -->
+<section class="ai-section" id="ai-stages" aria-label="AI accelerated">
+    <div class="ai-section__inner">
+        <div class="ai-section__head ai-reveal">
+            <p class="ai-eyebrow">The acceleration</p>
+            <h2 class="ai-h2">AI accelerated.</h2>
+            <p class="ai-lede">AI-assisted workflows compress the time between idea, execution, and iteration across the entire product and growth cycle.</p>
+        </div>
+        <div class="ai-tabs ai-reveal">
+            <div class="ai-tabs-nav" role="tablist">
+                <button type="button" class="ai-tab-btn is-active" data-tab="research" role="tab" aria-selected="true">Research</button>
+                <button type="button" class="ai-tab-btn" data-tab="strategy" role="tab" aria-selected="false">Strategy</button>
+                <button type="button" class="ai-tab-btn" data-tab="design" role="tab" aria-selected="false">Design</button>
+                <button type="button" class="ai-tab-btn" data-tab="content" role="tab" aria-selected="false">Content</button>
+                <button type="button" class="ai-tab-btn" data-tab="growth" role="tab" aria-selected="false">Growth</button>
+                <button type="button" class="ai-tab-btn" data-tab="delivery" role="tab" aria-selected="false">Delivery</button>
+            </div>
+
+            <div class="ai-tab-panel is-active" data-tab="research" role="tabpanel">
+                <div class="ai-tab-cards">
+                    <article class="ai-tab-card">
+                        <h3 class="ai-tab-card__title">Synthesis</h3>
+                        <p class="ai-tab-card__body">AI-assisted clustering and summarization reduce the time spent organizing interviews and themes.</p>
+                        <p class="ai-tab-card__stat">2–3 weeks → 2–3 days</p>
+                    </article>
+                    <article class="ai-tab-card">
+                        <h3 class="ai-tab-card__title">Coverage</h3>
+                        <p class="ai-tab-card__body">More interviews synthesized in less time, so broader signal lands in every sprint.</p>
+                        <p class="ai-tab-card__stat">8–10 conversations → 20+</p>
+                    </article>
+                    <article class="ai-tab-card">
+                        <h3 class="ai-tab-card__title">Iteration cycles</h3>
+                        <p class="ai-tab-card__body">Research findings shape prototypes and testing the same week, not the next quarter.</p>
+                        <p class="ai-tab-card__stat">Days between cycles → same-day refinement</p>
+                    </article>
+                </div>
+            </div>
+
+            <div class="ai-tab-panel" data-tab="strategy" role="tabpanel">
+                <div class="ai-tab-cards">
+                    <article class="ai-tab-card">
+                        <h3 class="ai-tab-card__title">Positioning exploration</h3>
+                        <p class="ai-tab-card__body">Multiple positioning routes generated and stress-tested in parallel, not one at a time.</p>
+                        <p class="ai-tab-card__stat">1–2 directions → 6+ directions</p>
+                    </article>
+                    <article class="ai-tab-card">
+                        <h3 class="ai-tab-card__title">Competitive mapping</h3>
+                        <p class="ai-tab-card__body">The full landscape mapped overnight. You walk in knowing the market.</p>
+                        <p class="ai-tab-card__stat">1–2 weeks → Overnight</p>
+                    </article>
+                    <article class="ai-tab-card">
+                        <h3 class="ai-tab-card__title">Strategic brief</h3>
+                        <p class="ai-tab-card__body">Direction synthesized and stress-tested before the first client review.</p>
+                        <p class="ai-tab-card__stat">1 week → 2–3 days</p>
+                    </article>
+                </div>
+            </div>
+
+            <div class="ai-tab-panel" data-tab="design" role="tabpanel">
+                <div class="ai-tab-cards">
+                    <article class="ai-tab-card">
+                        <h3 class="ai-tab-card__title">Concept generation</h3>
+                        <p class="ai-tab-card__body">More design directions explored before committing to one.</p>
+                        <p class="ai-tab-card__stat">1–2 routes → 6+ routes</p>
+                    </article>
+                    <article class="ai-tab-card">
+                        <h3 class="ai-tab-card__title">Rapid prototyping</h3>
+                        <p class="ai-tab-card__body">A testable prototype in users' hands before the sprint closes.</p>
+                        <p class="ai-tab-card__stat">2 weeks → 48 hours</p>
+                    </article>
+                    <article class="ai-tab-card">
+                        <h3 class="ai-tab-card__title">UX cycles</h3>
+                        <p class="ai-tab-card__body">Test, refine, retest in a fraction of the time.</p>
+                        <p class="ai-tab-card__stat">2 weeks → 1 week</p>
+                    </article>
+                </div>
+            </div>
+
+            <div class="ai-tab-panel" data-tab="content" role="tabpanel">
+                <div class="ai-tab-cards">
+                    <article class="ai-tab-card">
+                        <h3 class="ai-tab-card__title">Variants at speed</h3>
+                        <p class="ai-tab-card__body">Headlines, body copy, social, and email tested in parallel, not sequentially.</p>
+                        <p class="ai-tab-card__stat">3–5 variants → 20+</p>
+                    </article>
+                    <article class="ai-tab-card">
+                        <h3 class="ai-tab-card__title">Localization</h3>
+                        <p class="ai-tab-card__body">Translation and adaptation across markets without a separate production cycle.</p>
+                        <p class="ai-tab-card__stat">Weeks → Days</p>
+                    </article>
+                    <article class="ai-tab-card">
+                        <h3 class="ai-tab-card__title">On-brand at scale</h3>
+                        <p class="ai-tab-card__body">Voice-trained generation produces volume without drift.</p>
+                        <p class="ai-tab-card__stat">Manual edit per asset → Edited to standard at speed</p>
+                    </article>
+                </div>
+            </div>
+
+            <div class="ai-tab-panel" data-tab="growth" role="tabpanel">
+                <div class="ai-tab-cards">
+                    <article class="ai-tab-card">
+                        <h3 class="ai-tab-card__title">Messaging variants</h3>
+                        <p class="ai-tab-card__body">More variants generated, tested, and narrowed in a single sprint.</p>
+                        <p class="ai-tab-card__stat">3–5 per sprint → 20+</p>
+                    </article>
+                    <article class="ai-tab-card">
+                        <h3 class="ai-tab-card__title">Campaign imagery</h3>
+                        <p class="ai-tab-card__body">On-brand visuals for every campaign moment, without a shoot day.</p>
+                        <p class="ai-tab-card__stat">1–2 week shoot → Hours</p>
+                    </article>
+                    <article class="ai-tab-card">
+                        <h3 class="ai-tab-card__title">Funnel optimization</h3>
+                        <p class="ai-tab-card__body">AI surfaces friction; copy and layout variants address it fast.</p>
+                        <p class="ai-tab-card__stat">2–3 weeks → Days</p>
+                    </article>
+                </div>
+            </div>
+
+            <div class="ai-tab-panel" data-tab="delivery" role="tabpanel">
+                <div class="ai-tab-cards">
+                    <article class="ai-tab-card">
+                        <h3 class="ai-tab-card__title">Asset production</h3>
+                        <p class="ai-tab-card__body">Visuals, copy, and components produced across every surface in parallel.</p>
+                        <p class="ai-tab-card__stat">Baseline → −25% cost</p>
+                    </article>
+                    <article class="ai-tab-card">
+                        <h3 class="ai-tab-card__title">Iteration cycle</h3>
+                        <p class="ai-tab-card__body">Daily refinement instead of weekly review checkpoints.</p>
+                        <p class="ai-tab-card__stat">Weekly → Daily</p>
+                    </article>
+                    <article class="ai-tab-card">
+                        <h3 class="ai-tab-card__title">Output quality</h3>
+                        <p class="ai-tab-card__body">Compressed cycles, higher signal, fewer compromises.</p>
+                        <p class="ai-tab-card__stat">Baseline → +18% quality</p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =============================================
+     5. MORE SHOTS ON GOAL — visual capability grid as inspiration / proof
+============================================= -->
+<section class="ai-section ai-section--paper-2" aria-label="Visual capability examples">
+    <div class="ai-section__inner">
+        <div class="ai-section__head ai-reveal">
+            <p class="ai-eyebrow">In action</p>
+            <h2 class="ai-h2">More shots on goal.</h2>
+            <p class="ai-lede">AI-assisted exploration makes it possible to iterate, prototype, visualize, and refine ideas faster, before committing to execution.</p>
         </div>
         <div class="ai-cap-grid">
             <article class="ai-cap-card ai-reveal">
@@ -4729,7 +5013,7 @@
                 <div class="ai-cap-card-content">
                     <p class="ai-cap-card-tag">No stock. No shoot. No delay.</p>
                     <h3 class="ai-cap-card-title">Campaign concepts in hours, not weeks</h3>
-                    <p class="ai-cap-card-body">Campaign visuals, lifestyle imagery, product mockups — generated on brief, on brand, ready to ship.</p>
+                    <p class="ai-cap-card-body">Campaign visuals, lifestyle imagery, product mockups, generated on brief, on brand, ready to ship.</p>
                 </div>
             </article>
             <article class="ai-cap-card ai-reveal">
@@ -4745,7 +5029,7 @@
                 <div class="ai-cap-card-content">
                     <p class="ai-cap-card-tag">Web &amp; product</p>
                     <h3 class="ai-cap-card-title">Product storytelling with motion built in</h3>
-                    <p class="ai-cap-card-body">Micro-interactions and animated sequences — without a motion team.</p>
+                    <p class="ai-cap-card-body">Micro-interactions and animated sequences, without a motion team.</p>
                 </div>
             </article>
             <article class="ai-cap-card ai-reveal">
@@ -4753,7 +5037,7 @@
                 <div class="ai-cap-card-content">
                     <p class="ai-cap-card-tag">ElevenLabs · HeyGen</p>
                     <h3 class="ai-cap-card-title">Content that scales across markets</h3>
-                    <p class="ai-cap-card-body">Digital personas and AI-generated narration — for demos, video, onboarding, and localized content at scale.</p>
+                    <p class="ai-cap-card-body">Digital personas and AI-generated narration for demos, video, onboarding, and localized content at scale.</p>
                 </div>
             </article>
             <article class="ai-cap-card ai-reveal">
@@ -4777,7 +5061,7 @@
                 <div class="ai-cap-card-content">
                     <p class="ai-cap-card-tag">Scale without drift</p>
                     <h3 class="ai-cap-card-title">High-volume content exploration</h3>
-                    <p class="ai-cap-card-body">Messaging variants, UX copy, scripts — generated in volume, edited to standard.</p>
+                    <p class="ai-cap-card-body">Messaging variants, UX copy, scripts, generated in volume, edited to standard.</p>
                 </div>
             </article>
         </div>
@@ -4785,190 +5069,13 @@
 </section>
 
 <!-- =============================================
-     3. AI AT EVERY STAGE — tabbed capability + time-compression
+     6. CUT THE DRAG — three operational shifts
 ============================================= -->
-<section class="ai-section" id="ai-stages" aria-label="AI at every stage">
+<section class="ai-section" aria-label="The operational shift">
     <div class="ai-section__inner">
         <div class="ai-section__head ai-reveal">
-            <p class="ai-eyebrow">Across the work</p>
-            <h2 class="ai-h2">Faster at every stage.</h2>
-            <p class="ai-lede">Strategy, Design, Growth, Delivery. Where AI compresses task-by-task timelines, with the numbers.</p>
-        </div>
-        <div class="ai-tabs ai-reveal">
-            <div class="ai-tabs-nav" role="tablist">
-                <button type="button" class="ai-tab-btn is-active" data-tab="strategy" role="tab" aria-selected="true">Strategy</button>
-                <button type="button" class="ai-tab-btn" data-tab="design" role="tab" aria-selected="false">Design</button>
-                <button type="button" class="ai-tab-btn" data-tab="growth" role="tab" aria-selected="false">Growth</button>
-                <button type="button" class="ai-tab-btn" data-tab="delivery" role="tab" aria-selected="false">Delivery</button>
-            </div>
-
-            <div class="ai-tab-panel is-active" data-tab="strategy" role="tabpanel">
-                <div>
-                    <p class="ai-tab-eyebrow">Strategy</p>
-                    <ul class="ai-cap-list">
-                        <li><strong>Opportunity framing</strong><span>AI synthesizes competitive signals, customer data, and market context before the first client review.</span></li>
-                        <li><strong>Positioning exploration</strong><span>Multiple positioning routes generated and stress-tested in parallel, not one at a time.</span></li>
-                        <li><strong>Research synthesis</strong><span>Weeks of stakeholder interviews and desk research distilled in hours, not days.</span></li>
-                        <li><strong>Competitive mapping</strong><span>The full competitive landscape mapped overnight. You walk in knowing the market.</span></li>
-                    </ul>
-                </div>
-                <div>
-                    <p class="ai-tab-eyebrow">Time compression</p>
-                    <table class="ai-time-table">
-                        <thead><tr><th scope="col">Task</th><th scope="col">Traditional</th><th scope="col">With AI</th></tr></thead>
-                        <tbody>
-                            <tr><td>Research synthesis</td><td>2–3 weeks</td><td>2–3 days</td></tr>
-                            <tr><td>Competitive mapping</td><td>1–2 weeks</td><td>Overnight</td></tr>
-                            <tr><td>Positioning concepts</td><td>1–2 directions</td><td>6+ directions</td></tr>
-                            <tr><td>Strategic brief</td><td>1 week</td><td>2–3 days</td></tr>
-                        </tbody>
-                    </table>
-                    <p class="ai-table-source">Sources: McKinsey 2024, IDEO 2024, Nielsen &amp; Brynjolfsson (Science) 2023</p>
-                </div>
-            </div>
-
-            <div class="ai-tab-panel" data-tab="design" role="tabpanel">
-                <div>
-                    <p class="ai-tab-eyebrow">Design</p>
-                    <ul class="ai-cap-list">
-                        <li><strong>Concept generation</strong><span>Multiple design directions explored before committing to one. AI generates the fan-out; senior judgment picks the signal.</span></li>
-                        <li><strong>UX and UI exploration</strong><span>Parallel routes tested and narrowed before a single pixel is finalized.</span></li>
-                        <li><strong>Rapid prototyping</strong><span>A testable prototype in users' hands before the sprint closes.</span></li>
-                        <li><strong>AI image generation</strong><span>Campaign visuals, mockups, and lifestyle imagery generated on brief — no shoot required.</span></li>
-                    </ul>
-                </div>
-                <div>
-                    <p class="ai-tab-eyebrow">Time compression</p>
-                    <table class="ai-time-table">
-                        <thead><tr><th scope="col">Task</th><th scope="col">Traditional</th><th scope="col">With AI</th></tr></thead>
-                        <tbody>
-                            <tr><td>Wireframe preparation</td><td>2–4 days</td><td>1–2 days</td></tr>
-                            <tr><td>Concept directions</td><td>1–2 routes</td><td>6+ routes</td></tr>
-                            <tr><td>Prototype to testing</td><td>2 weeks</td><td>48 hours</td></tr>
-                            <tr><td>UX/UI testing cycles</td><td>2 weeks</td><td>1 week</td></tr>
-                        </tbody>
-                    </table>
-                    <p class="ai-table-source">Sources: Figma 2024, Product School, McKinsey 2024</p>
-                </div>
-            </div>
-
-            <div class="ai-tab-panel" data-tab="growth" role="tabpanel">
-                <div>
-                    <p class="ai-tab-eyebrow">Growth</p>
-                    <ul class="ai-cap-list">
-                        <li><strong>Messaging at scale</strong><span>20+ message variants generated, tested, and narrowed in a single sprint.</span></li>
-                        <li><strong>Landing pages and acquisition flows</strong><span>Designed, written, and iterated faster than a traditional production cycle.</span></li>
-                        <li><strong>Funnel optimization</strong><span>AI identifies friction and generates copy and layout variants to address it.</span></li>
-                        <li><strong>Campaign imagery</strong><span>On-brand visuals generated for every campaign moment — no stock, no shoot, no delay.</span></li>
-                    </ul>
-                </div>
-                <div>
-                    <p class="ai-tab-eyebrow">Time compression</p>
-                    <table class="ai-time-table">
-                        <thead><tr><th scope="col">Task</th><th scope="col">Traditional</th><th scope="col">With AI</th></tr></thead>
-                        <tbody>
-                            <tr><td>Messaging variants</td><td>3–5 per sprint</td><td>20+ per sprint</td></tr>
-                            <tr><td>Campaign imagery</td><td>1–2 week shoot</td><td>Hours</td></tr>
-                            <tr><td>Funnel copy testing</td><td>2–3 weeks</td><td>Days</td></tr>
-                            <tr><td>Ideation volume</td><td>Baseline</td><td>+56% more ideas</td></tr>
-                        </tbody>
-                    </table>
-                    <p class="ai-table-source">Sources: IDEO 2024, McKinsey 2024</p>
-                </div>
-            </div>
-
-            <div class="ai-tab-panel" data-tab="delivery" role="tabpanel">
-                <div>
-                    <p class="ai-tab-eyebrow">Delivery</p>
-                    <ul class="ai-cap-list">
-                        <li><strong>Asset generation</strong><span>Visuals, copy, and components produced across every surface simultaneously.</span></li>
-                        <li><strong>Design system acceleration</strong><span>Tokens, patterns, and documentation built faster without cutting corners.</span></li>
-                        <li><strong>Motion and animation</strong><span>Micro-interactions and animated sequences without a dedicated motion team.</span></li>
-                        <li><strong>Revision loops</strong><span>AI compresses review cycles so iteration happens daily, not weekly.</span></li>
-                    </ul>
-                </div>
-                <div>
-                    <p class="ai-tab-eyebrow">Time compression</p>
-                    <table class="ai-time-table">
-                        <thead><tr><th scope="col">Task</th><th scope="col">Traditional</th><th scope="col">With AI</th></tr></thead>
-                        <tbody>
-                            <tr><td>Asset production cost</td><td>Baseline</td><td>−25%</td></tr>
-                            <tr><td>Iteration cycle speed</td><td>Weekly</td><td>Daily</td></tr>
-                            <tr><td>Task completion time</td><td>Baseline</td><td>−40%</td></tr>
-                            <tr><td>Output quality</td><td>Baseline</td><td>+18%</td></tr>
-                        </tbody>
-                    </table>
-                    <p class="ai-table-source">Sources: McKinsey 2024, Nielsen &amp; Brynjolfsson (Science) 2023</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- =============================================
-     4. WORKFLOW OS — six-stage diagram with AI thread
-============================================= -->
-<section class="ai-section ai-section--paper-2" aria-label="Workflow">
-    <div class="ai-section__inner">
-        <div class="ai-section__head ai-reveal">
-            <p class="ai-eyebrow">Across the engagement</p>
-            <h2 class="ai-h2">Faster by design.</h2>
-            <p class="ai-lede">AI shows up at every phase of an engagement, never as a separate step.</p>
-        </div>
-        <div class="ai-flow ai-reveal">
-            <div class="ai-flow__rail">
-                <div class="ai-flow__line" aria-hidden="true"></div>
-                <div class="ai-flow__line ai-flow__line--ai" aria-hidden="true"></div>
-                <div class="ai-flow__node">
-                    <span class="ai-flow__dot" aria-hidden="true"></span>
-                    <p class="ai-flow__step">01</p>
-                    <h3 class="ai-flow__label">Research signals</h3>
-                    <span class="ai-flow__ai">AI synthesis</span>
-                </div>
-                <div class="ai-flow__node">
-                    <span class="ai-flow__dot" aria-hidden="true"></span>
-                    <p class="ai-flow__step">02</p>
-                    <h3 class="ai-flow__label">Opportunity framing</h3>
-                    <span class="ai-flow__ai">AI sense-making</span>
-                </div>
-                <div class="ai-flow__node">
-                    <span class="ai-flow__dot" aria-hidden="true"></span>
-                    <p class="ai-flow__step">03</p>
-                    <h3 class="ai-flow__label">Concept exploration</h3>
-                    <span class="ai-flow__ai">AI generation</span>
-                </div>
-                <div class="ai-flow__node">
-                    <span class="ai-flow__dot" aria-hidden="true"></span>
-                    <p class="ai-flow__step">04</p>
-                    <h3 class="ai-flow__label">Prototype + design</h3>
-                    <span class="ai-flow__ai">AI iteration</span>
-                </div>
-                <div class="ai-flow__node">
-                    <span class="ai-flow__dot" aria-hidden="true"></span>
-                    <p class="ai-flow__step">05</p>
-                    <h3 class="ai-flow__label">Validation</h3>
-                    <span class="ai-flow__ai">AI analysis</span>
-                </div>
-                <div class="ai-flow__node">
-                    <span class="ai-flow__dot" aria-hidden="true"></span>
-                    <p class="ai-flow__step">06</p>
-                    <h3 class="ai-flow__label">Launch + optimize</h3>
-                    <span class="ai-flow__ai">AI experiments</span>
-                </div>
-            </div>
-            <p class="ai-flow__note">Each cycle feeds the next. A cycle can run a week or two, or longer when the work calls for it. The shape stays the same; the cadence flexes to fit the engagement.</p>
-        </div>
-    </div>
-</section>
-
-<!-- =============================================
-     7. WHAT CHANGES — From → To shifts
-============================================= -->
-<section class="ai-section" aria-label="What changes">
-    <div class="ai-section__inner">
-        <div class="ai-section__head ai-reveal">
-            <p class="ai-eyebrow">What changes</p>
-            <h2 class="ai-h2">The operational shift.</h2>
+            <p class="ai-eyebrow">The shift</p>
+            <h2 class="ai-h2">Cut the drag.</h2>
         </div>
         <div class="ai-shifts__grid">
             <article class="ai-shift ai-reveal" tabindex="0">
@@ -4999,13 +5106,13 @@
                         <line x1="150" y1="90" x2="170" y2="90" stroke="rgba(12,12,10,0.25)" stroke-width="1"/>
                         <line x1="220" y1="90" x2="240" y2="90" stroke="rgba(12,12,10,0.25)" stroke-width="1"/>
                         <rect x="125" y="40" width="70" height="100" rx="6" fill="#0071E3" fill-opacity="0.92"/>
-                        <text x="160" y="95" text-anchor="middle" fill="#fff" font-family="-apple-system, system-ui" font-size="11" font-weight="600">Senior pod</text>
+                        <text x="160" y="95" text-anchor="middle" fill="#fff" font-family="-apple-system, system-ui" font-size="11" font-weight="600">Focused pod</text>
                     </svg>
                 </div>
                 <p class="ai-shift__from-to"><span>Handoff-heavy</span> → <span>Expert-led</span></p>
-                <h3 class="ai-shift__title">From a relay race to a small senior pod.</h3>
+                <h3 class="ai-shift__title">From relay races to focused pods.</h3>
                 <p class="ai-shift__body">The people defining the work are the people doing it. Fewer translations, less drift, faster decisions.</p>
-                <p class="ai-shift__reveal">What gets decided is what gets shipped — without the layers in between.</p>
+                <p class="ai-shift__reveal">What gets decided is what gets shipped, without the layers in between.</p>
             </article>
             <article class="ai-shift ai-reveal" tabindex="0">
                 <div class="ai-shift__visual" aria-hidden="true">
@@ -5023,48 +5130,6 @@
                 <p class="ai-shift__body">Production loops compress as AI absorbs the drag that used to sit between research, decisions, and ship. The work moves at the pace the business actually needs.</p>
                 <p class="ai-shift__reveal">Operating speed is the difference between shipping and discussing.</p>
             </article>
-        </div>
-    </div>
-</section>
-
-<!-- =============================================
-     7.5 RESULTS — stats strip on ink
-============================================= -->
-<section class="ai-section ai-section--ink" aria-label="What AI-assisted work produces">
-    <div class="ai-section__inner">
-        <div class="ai-section__head ai-reveal">
-            <p class="ai-eyebrow">Results, not hype</p>
-            <h2 class="ai-h2">What AI-assisted work actually produces.</h2>
-        </div>
-        <div class="ai-stats-grid ai-reveal">
-            <div class="ai-stat-item">
-                <p class="ai-stat-num">40–70%</p>
-                <div class="ai-stat-text">
-                    <p class="ai-stat-desc">Design productivity lift from generative AI</p>
-                    <p class="ai-stat-src">McKinsey, 2024</p>
-                </div>
-            </div>
-            <div class="ai-stat-item">
-                <p class="ai-stat-num">+18%</p>
-                <div class="ai-stat-text">
-                    <p class="ai-stat-desc">Quality improvement alongside the speed gain — not instead of it</p>
-                    <p class="ai-stat-src">Nielsen &amp; Brynjolfsson, Science 2023</p>
-                </div>
-            </div>
-            <div class="ai-stat-item">
-                <p class="ai-stat-num">56%</p>
-                <div class="ai-stat-text">
-                    <p class="ai-stat-desc">More ideas generated in AI-assisted ideation</p>
-                    <p class="ai-stat-src">IDEO, 2024</p>
-                </div>
-            </div>
-            <div class="ai-stat-item">
-                <p class="ai-stat-num">50%</p>
-                <div class="ai-stat-text">
-                    <p class="ai-stat-desc">Faster UX/UI testing cycles</p>
-                    <p class="ai-stat-src">Product School</p>
-                </div>
-            </div>
         </div>
     </div>
 </section>
