@@ -2510,18 +2510,14 @@
         object-fit: cover;
         object-position: center left;
     }
-    /* Landscape devices (laptop, monitor) — `cover` would scale them tight
-       against the card edges, so switch to `contain` and pad the cell on
-       three sides so the device has breathing room on top/bottom/left and
-       still bleeds toward the card's right edge. Pads only on landscape
-       devices; phones keep their existing fill behavior. */
-    :root[data-theme="editorial"] .ed-work__card[data-device="laptop"] .ed-work__media,
-    :root[data-theme="editorial"] .ed-work__card[data-device="desktop"] .ed-work__media {
-        padding: clamp(24px, 3.2vw, 44px) 0 clamp(24px, 3.2vw, 44px) clamp(24px, 3.2vw, 44px);
-    }
+    /* Landscape devices (laptop, monitor) — fill the cell vertically so
+       both devices share the same visible height (using the laptop's
+       natural scale as the reference). `cover` + `object-position: left`
+       keeps the device left-anchored so the right side bleeds off the
+       card edge, matching the phone variant's right-crop treatment. */
     :root[data-theme="editorial"] .ed-work__card[data-device="laptop"] .ed-work__media img,
     :root[data-theme="editorial"] .ed-work__card[data-device="desktop"] .ed-work__media img {
-        object-fit: contain;
+        object-fit: cover;
         object-position: left center;
     }
 
