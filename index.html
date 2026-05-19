@@ -2357,6 +2357,129 @@
         letter-spacing: -0.005em;
     }
 
+    /* === WORK — horizontal scroll of project cards (info left, device cropped right) === */
+    :root[data-theme="editorial"] .ed-work {
+        background: var(--paper);
+        padding: var(--ed-space-6) 0;
+    }
+    :root[data-theme="editorial"] .ed-work__head {
+        max-width: var(--ed-max);
+        margin: 0 auto var(--ed-space-5);
+        padding: 0 var(--gutter);
+    }
+    :root[data-theme="editorial"] .ed-work__title {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: clamp(36px, 5vw, 64px);
+        line-height: 1.05;
+        letter-spacing: -0.025em;
+        color: var(--ink);
+        margin: 0;
+    }
+    :root[data-theme="editorial"] .ed-work__scroller {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        scroll-padding-left: var(--gutter);
+        padding: 0 var(--gutter) var(--ed-space-4);
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: var(--rule) transparent;
+    }
+    :root[data-theme="editorial"] .ed-work__scroller:focus-visible {
+        outline: 2px solid var(--ink);
+        outline-offset: -4px;
+    }
+    :root[data-theme="editorial"] .ed-work__card {
+        flex: 0 0 clamp(540px, 76vw, 820px);
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+        background: var(--paper-2);
+        border-radius: 16px;
+        overflow: hidden;
+        scroll-snap-align: start;
+        min-height: 360px;
+    }
+    :root[data-theme="editorial"] .ed-work__info {
+        padding: clamp(28px, 3.6vw, 44px);
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+    :root[data-theme="editorial"] .ed-work__eyebrow {
+        font-family: var(--body);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--mid);
+        margin: 0;
+    }
+    :root[data-theme="editorial"] .ed-work__case-title {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: clamp(22px, 2.4vw, 30px);
+        line-height: 1.18;
+        letter-spacing: -0.018em;
+        color: var(--ink);
+        margin: 0;
+    }
+    :root[data-theme="editorial"] .ed-work__blurb {
+        font-family: var(--body);
+        font-size: 15px;
+        line-height: 1.5;
+        color: var(--mid);
+        margin: 0;
+        flex: 1;
+    }
+    :root[data-theme="editorial"] .ed-work__cta {
+        appearance: none;
+        background: transparent;
+        border: 0;
+        padding: 0 0 1px;
+        cursor: pointer;
+        align-self: flex-start;
+        font-family: var(--body);
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--ink);
+        border-bottom: 1px solid currentColor;
+        transition: opacity 150ms ease;
+    }
+    :root[data-theme="editorial"] .ed-work__cta:hover { opacity: 0.6; }
+    :root[data-theme="editorial"] .ed-work__media {
+        position: relative;
+        margin: 0;
+        overflow: hidden;
+        background: var(--paper-3);
+    }
+    :root[data-theme="editorial"] .ed-work__media img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center left;
+    }
+
+    @media (max-width: 720px) {
+        :root[data-theme="editorial"] .ed-work__card {
+            flex-basis: 86vw;
+            grid-template-columns: 1fr;
+            min-height: 0;
+        }
+        :root[data-theme="editorial"] .ed-work__media {
+            position: relative;
+            aspect-ratio: 16 / 10;
+            order: 2;
+        }
+        :root[data-theme="editorial"] .ed-work__media img {
+            object-position: center;
+        }
+    }
+
     /* === WORK — Apple product-reveal pattern, one per case study === */
     :root[data-theme="editorial"] .ed-work-band {
         padding: var(--ed-space-6) 0;
@@ -3562,89 +3685,56 @@
 </section>
 
 
-<!-- WORK — one case study at a time, carousel with arrows + dot nav -->
-<div id="ed-work"></div>
-
-<section class="ed-work-carousel" aria-label="Featured work" aria-roledescription="carousel" tabindex="0">
-    <div class="ed-work-carousel__viewport">
-        <div class="ed-work-carousel__track">
-            <article class="ed-work-band ed-work-band--slide is-active" data-case="lace" data-device="phone" aria-label="Lace AI Pro" aria-roledescription="slide" role="group">
-                <div class="ed-work-band__inner">
-                    <p class="ed-work-band__eyebrow">Featured work · 01</p>
-                    <h2 class="ed-work-band__title">Lace AI Pro</h2>
-                    <div class="ed-work-band__tags">
-                        <span class="ed-work-band__tag">Healthcare</span>
-                        <span class="ed-work-band__tag">MedTech</span>
-                        <span class="ed-work-band__tag">SaaS</span>
-                    </div>
-                    <p class="ed-work-band__sub">Brand identity, product design, email system, and trade show collateral for an auditory rehabilitation platform.</p>
-                    <button type="button" class="cta-pill ed-work-band__cta" data-case="lace">See the work →</button>
-                </div>
-                <figure class="ed-work-band__device">
-                    <img src="assets/devices/iphone-lace.png" alt="Lace AI Pro — mobile product mockup">
-                </figure>
-            </article>
-            <article class="ed-work-band ed-work-band--slide" data-case="sharp" data-device="desktop" aria-label="SharpSpring" aria-roledescription="slide" role="group">
-                <div class="ed-work-band__inner">
-                    <p class="ed-work-band__eyebrow">Featured work · 02</p>
-                    <h2 class="ed-work-band__title">SharpSpring</h2>
-                    <div class="ed-work-band__tags">
-                        <span class="ed-work-band__tag">B2B SaaS</span>
-                        <span class="ed-work-band__tag">Marketing Automation</span>
-                    </div>
-                    <p class="ed-work-band__sub">Platform redesign, identity refresh, and full-funnel marketing for a fast-scaling SaaS company.</p>
-                    <button type="button" class="cta-pill ed-work-band__cta" data-case="sharp">See the work →</button>
-                </div>
-                <figure class="ed-work-band__device">
-                    <img src="assets/devices/laptop-sharpspring.png" alt="SharpSpring — workflow automation builder on a MacBook">
-                </figure>
-            </article>
-            <article class="ed-work-band ed-work-band--slide" data-case="pickers" data-device="desktop" aria-label="Pickers" aria-roledescription="slide" role="group">
-                <div class="ed-work-band__inner">
-                    <p class="ed-work-band__eyebrow">Featured work · 03</p>
-                    <h2 class="ed-work-band__title">Pickers</h2>
-                    <div class="ed-work-band__tags">
-                        <span class="ed-work-band__tag">Creator Economy</span>
-                        <span class="ed-work-band__tag">Design System</span>
-                    </div>
-                    <p class="ed-work-band__sub">First design system: tokens, components, documentation. 74.8% adoption · 28% faster delivery.</p>
-                    <button type="button" class="cta-pill ed-work-band__cta" data-case="pickers">See the work →</button>
-                </div>
-                <figure class="ed-work-band__device">
-                    <img src="assets/devices/desktop-pickers.png" alt="Pickers — design system documentation on a desktop monitor">
-                </figure>
-            </article>
-            <article class="ed-work-band ed-work-band--slide" data-case="plremote" data-device="phone" aria-label="PL Remote" aria-roledescription="slide" role="group">
-                <div class="ed-work-band__inner">
-                    <p class="ed-work-band__eyebrow">Featured work · 04</p>
-                    <h2 class="ed-work-band__title">PL Remote</h2>
-                    <div class="ed-work-band__tags">
-                        <span class="ed-work-band__tag">IoT</span>
-                        <span class="ed-work-band__tag">Mobile</span>
-                        <span class="ed-work-band__tag">MVP Delivery</span>
-                    </div>
-                    <p class="ed-work-band__sub">Product design for a mobile app replacing physical gate remotes. 10K+ users in month one.</p>
-                    <button type="button" class="cta-pill ed-work-band__cta" data-case="plremote">See the work →</button>
-                </div>
-                <figure class="ed-work-band__device">
-                    <img src="assets/devices/iphone-pl.png" alt="PL Remote — isometric mobile mockup showing the device setup screen">
-                </figure>
-            </article>
-        </div>
-    </div>
-    <div class="ed-work-carousel__controls">
-        <button type="button" class="ed-work-carousel__arrow ed-work-carousel__arrow--prev" aria-label="Previous case study">
-            <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="ed-work-carousel__dots" role="tablist" aria-label="Choose a case study">
-            <button type="button" class="ed-work-carousel__dot is-active" data-target="0" role="tab" aria-selected="true" aria-label="Lace AI Pro"></button>
-            <button type="button" class="ed-work-carousel__dot" data-target="1" role="tab" aria-selected="false" aria-label="SharpSpring"></button>
-            <button type="button" class="ed-work-carousel__dot" data-target="2" role="tab" aria-selected="false" aria-label="Pickers"></button>
-            <button type="button" class="ed-work-carousel__dot" data-target="3" role="tab" aria-selected="false" aria-label="PL Remote"></button>
-        </div>
-        <button type="button" class="ed-work-carousel__arrow ed-work-carousel__arrow--next" aria-label="Next case study">
-            <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
+<!-- WORK — horizontal scroll of project cards, info left + device cropped right -->
+<section class="ed-work" id="ed-work" aria-label="Work">
+    <header class="ed-work__head">
+        <h2 class="ed-work__title">Work</h2>
+    </header>
+    <div class="ed-work__scroller" role="region" aria-label="Featured projects" tabindex="0">
+        <article class="ed-work__card" aria-label="Lace AI Pro">
+            <div class="ed-work__info">
+                <p class="ed-work__eyebrow">Lace AI Pro · Healthcare</p>
+                <h3 class="ed-work__case-title">Continuous post-fitting care for hearing aid patients.</h3>
+                <p class="ed-work__blurb">An AI-powered rehabilitation platform that lets audiologists coach patients between visits — turning a one-time hearing aid fitting into ongoing care.</p>
+                <button type="button" class="ed-work__cta" data-case="lace">View case study →</button>
+            </div>
+            <figure class="ed-work__media">
+                <img src="assets/devices/iphone-lace.png" alt="Lace AI Pro mobile app">
+            </figure>
+        </article>
+        <article class="ed-work__card" aria-label="SharpSpring">
+            <div class="ed-work__info">
+                <p class="ed-work__eyebrow">SharpSpring · B2B SaaS</p>
+                <h3 class="ed-work__case-title">All-in-one marketing automation, built for agencies.</h3>
+                <p class="ed-work__blurb">A full-funnel platform giving agencies and mid-market teams a real alternative to HubSpot — email, CRM, landing pages, and workflow automation in one stack.</p>
+                <button type="button" class="ed-work__cta" data-case="sharp">View case study →</button>
+            </div>
+            <figure class="ed-work__media">
+                <img src="assets/devices/laptop-sharpspring.png" alt="SharpSpring workflow automation builder">
+            </figure>
+        </article>
+        <article class="ed-work__card" aria-label="Pickers">
+            <div class="ed-work__info">
+                <p class="ed-work__eyebrow">Pickers · Creator Economy</p>
+                <h3 class="ed-work__case-title">Recommendation commerce for content creators.</h3>
+                <p class="ed-work__blurb">A platform that lets creators turn their taste into a storefront — picks, lists, and shoppable content, all governed by a design system built from scratch.</p>
+                <button type="button" class="ed-work__cta" data-case="pickers">View case study →</button>
+            </div>
+            <figure class="ed-work__media">
+                <img src="assets/devices/desktop-pickers.png" alt="Pickers design system documentation">
+            </figure>
+        </article>
+        <article class="ed-work__card" aria-label="PL Remote">
+            <div class="ed-work__info">
+                <p class="ed-work__eyebrow">PL Remote · IoT</p>
+                <h3 class="ed-work__case-title">The phone replaces the gate clicker.</h3>
+                <p class="ed-work__blurb">A mobile app that pairs with existing gate hardware so property managers and residents open the gate from their phone — no new remotes, no rip-and-replace.</p>
+                <button type="button" class="ed-work__cta" data-case="plremote">View case study →</button>
+            </div>
+            <figure class="ed-work__media">
+                <img src="assets/devices/iphone-pl.png" alt="PL Remote mobile app">
+            </figure>
+        </article>
     </div>
 </section>
 
@@ -5062,8 +5152,10 @@ document.querySelectorAll('.card[data-case]').forEach(card => {
     });
 });
 
-// Editorial theme: wire each work band's CTA into the case study panel
-document.querySelectorAll('.ed-work-band__cta').forEach(btn => {
+// Editorial theme: wire each work card's CTA into the case study panel
+// (covers both the new horizontal-scroll `.ed-work__cta` and the legacy
+// `.ed-work-band__cta` still used by components.html's archive variants).
+document.querySelectorAll('.ed-work__cta, .ed-work-band__cta').forEach(btn => {
     btn.addEventListener('click', function(e) {
         e.stopPropagation();
         const key = this.dataset.case;
