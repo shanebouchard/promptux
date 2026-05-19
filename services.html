@@ -3376,28 +3376,27 @@
     }
 
 
-    /* === SERVICES page-local (sv-*) — 4 service categories, each: left head, right caps list === */
+    /* === SERVICES page-local (sv-*) — 4 service categories as alternating full-width bands.
+       Each .sv-cat is its own full-width band carrying its own background (paper-2 / paper /
+       paper-2 / paper). Inside, .sv-cat__inner is the max-width 2-col grid: strategy claim
+       on the left, capability ledger on the right. Same paper/paper-2 alternation rhythm the
+       home page uses to give each section its own moment. === */
     :root[data-theme="editorial"] .sv-services {
-        background: var(--paper);
-        padding: clamp(96px, 11vw, 144px) var(--gutter);
-    }
-    :root[data-theme="editorial"] .sv-services__inner {
-        max-width: var(--ed-max);
-        margin: 0 auto;
+        background: transparent;
+        padding: 0;
     }
     :root[data-theme="editorial"] .sv-cat {
+        padding: clamp(96px, 11vw, 144px) var(--gutter);
+    }
+    :root[data-theme="editorial"] .sv-cat:nth-child(odd)  { background: var(--paper-2); }
+    :root[data-theme="editorial"] .sv-cat:nth-child(even) { background: var(--paper); }
+    :root[data-theme="editorial"] .sv-cat__inner {
+        max-width: var(--ed-max);
+        margin: 0 auto;
         display: grid;
-        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
         gap: var(--ed-space-5);
-        padding: var(--ed-space-5) 0;
-        border-top: 1px solid var(--rule);
-    }
-    :root[data-theme="editorial"] .sv-cat:first-child {
-        border-top: 0;
-        padding-top: 0;
-    }
-    :root[data-theme="editorial"] .sv-cat:last-child {
-        padding-bottom: 0;
+        align-items: start;
     }
     :root[data-theme="editorial"] .sv-cat__eyebrow {
         font-family: var(--body);
@@ -3410,9 +3409,9 @@
     :root[data-theme="editorial"] .sv-cat__title {
         font-family: var(--display);
         font-weight: 700;
-        font-size: clamp(32px, 3.4vw, 48px);
-        line-height: 1.08;
-        letter-spacing: -0.018em;
+        font-size: clamp(36px, 4.2vw, 56px);
+        line-height: 1.06;
+        letter-spacing: -0.02em;
         color: var(--ink);
         margin: 0 0 var(--ed-space-3);
     }
@@ -3424,29 +3423,32 @@
         margin: 0;
         max-width: 52ch;
     }
+    /* Ledger capability list — adapted from components.html .cm-capabilities__caps:
+       top-rule on the group, bottom-rule on each item, dash-bullet glyph. */
     :root[data-theme="editorial"] .sv-cat__caps {
         list-style: none;
         padding: 0;
         margin: 0;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 12px 24px;
-        align-content: start;
+        column-gap: 32px;
+        border-top: 1px solid var(--rule);
     }
     :root[data-theme="editorial"] .sv-cat__caps li {
         font-family: var(--body);
         font-size: 15px;
-        line-height: 1.45;
+        line-height: 1.55;
         color: var(--ink);
-        padding-left: 18px;
+        padding: 14px 0 14px 22px;
+        border-bottom: 1px solid var(--rule);
         position: relative;
     }
     :root[data-theme="editorial"] .sv-cat__caps li::before {
         content: "";
         position: absolute;
         left: 0;
-        top: 0.6em;
-        width: 8px;
+        top: 22px;
+        width: 10px;
         height: 1px;
         background: var(--ink);
     }
@@ -3455,9 +3457,9 @@
         margin-top: var(--ed-space-4);
     }
     @media (max-width: 720px) {
-        :root[data-theme="editorial"] .sv-cat {
+        :root[data-theme="editorial"] .sv-cat__inner {
             grid-template-columns: 1fr;
-            gap: var(--ed-space-3);
+            gap: var(--ed-space-4);
         }
         :root[data-theme="editorial"] .sv-cat__caps {
             grid-template-columns: 1fr;
@@ -3521,8 +3523,8 @@
      SERVICES — four categories, each left head + right capabilities list
 ============================================= -->
 <section class="sv-services" id="sv-categories" aria-label="Service categories">
-    <div class="sv-services__inner">
-        <div class="sv-cat">
+    <div class="sv-cat">
+        <div class="sv-cat__inner">
             <div class="sv-cat__head">
                 <p class="sv-cat__eyebrow">01</p>
                 <h2 class="sv-cat__title">Product &amp; UX</h2>
@@ -3537,7 +3539,9 @@
                 <li>Journey optimization</li>
             </ul>
         </div>
-        <div class="sv-cat">
+    </div>
+    <div class="sv-cat">
+        <div class="sv-cat__inner">
             <div class="sv-cat__head">
                 <p class="sv-cat__eyebrow">02</p>
                 <h2 class="sv-cat__title">AI-native execution</h2>
@@ -3552,7 +3556,9 @@
                 <li>Workflow modernization</li>
             </ul>
         </div>
-        <div class="sv-cat">
+    </div>
+    <div class="sv-cat">
+        <div class="sv-cat__inner">
             <div class="sv-cat__head">
                 <p class="sv-cat__eyebrow">03</p>
                 <h2 class="sv-cat__title">Growth &amp; optimization</h2>
@@ -3567,7 +3573,9 @@
                 <li>Experimentation support</li>
             </ul>
         </div>
-        <div class="sv-cat">
+    </div>
+    <div class="sv-cat">
+        <div class="sv-cat__inner">
             <div class="sv-cat__head">
                 <p class="sv-cat__eyebrow">04</p>
                 <h2 class="sv-cat__title">Embedded support</h2>
