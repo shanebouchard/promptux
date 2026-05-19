@@ -3401,6 +3401,19 @@
         gap: var(--ed-space-5);
         align-items: start;
     }
+    /* Even rows: flip composition — caps on the left, head on the right.
+       Creates a left/right rhythm down the page without changing markup. */
+    :root[data-theme="editorial"] .sv-cat:nth-child(even) .sv-cat__inner {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    }
+    :root[data-theme="editorial"] .sv-cat:nth-child(even) .sv-cat__head {
+        grid-column: 2;
+        grid-row: 1;
+    }
+    :root[data-theme="editorial"] .sv-cat:nth-child(even) .sv-cat__caps {
+        grid-column: 1;
+        grid-row: 1;
+    }
     :root[data-theme="editorial"] .sv-cat__eyebrow {
         font-family: var(--body);
         font-weight: 600;
@@ -3485,9 +3498,16 @@
         margin: 0 0 var(--ed-space-3);
     }
     @media (max-width: 720px) {
-        :root[data-theme="editorial"] .sv-cat__inner {
+        :root[data-theme="editorial"] .sv-cat__inner,
+        :root[data-theme="editorial"] .sv-cat:nth-child(even) .sv-cat__inner {
             grid-template-columns: 1fr;
             gap: var(--ed-space-4);
+        }
+        /* Reset even-row column assignments so head reads first on mobile. */
+        :root[data-theme="editorial"] .sv-cat:nth-child(even) .sv-cat__head,
+        :root[data-theme="editorial"] .sv-cat:nth-child(even) .sv-cat__caps {
+            grid-column: 1;
+            grid-row: auto;
         }
         :root[data-theme="editorial"] .sv-cat__caps {
             grid-template-columns: 1fr;
