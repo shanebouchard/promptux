@@ -2304,6 +2304,50 @@
         margin: 0 auto;
     }
 
+    /* === KEYSTATS — hero-adjacent positioning: huge numerals + scan-fast supporting copy.
+       Replaces the old .ed-pillars headline trio and the small .ed-stats row by combining
+       both jobs (the three brand attributes and a quantified proof beat) into one
+       memorable Apple-style section. === */
+    :root[data-theme="editorial"] .ed-keystats {
+        background: var(--paper);
+        padding: clamp(112px, 14vw, 176px) var(--gutter);
+    }
+    :root[data-theme="editorial"] .ed-keystats__row {
+        max-width: var(--ed-max);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--ed-space-5);
+    }
+    :root[data-theme="editorial"] .ed-keystats__cell {
+        text-align: center;
+    }
+    :root[data-theme="editorial"] .ed-keystats__num {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: clamp(80px, 11vw, 168px);
+        line-height: 0.95;
+        letter-spacing: -0.04em;
+        color: var(--ink);
+        margin: 0 0 var(--ed-space-3);
+        font-variant-numeric: tabular-nums;
+    }
+    :root[data-theme="editorial"] .ed-keystats__label {
+        font-family: var(--body);
+        font-weight: 400;
+        font-size: clamp(15px, 1.05vw, 17px);
+        line-height: 1.5;
+        color: var(--mid);
+        max-width: 32ch;
+        margin: 0 auto;
+    }
+    @media (max-width: 768px) {
+        :root[data-theme="editorial"] .ed-keystats__row {
+            grid-template-columns: 1fr;
+            gap: var(--ed-space-5);
+        }
+    }
+
     /* === PILLARS (3 reasons) === */
     :root[data-theme="editorial"] .ed-pillars {
         background: var(--paper);
@@ -3762,7 +3806,27 @@
     </div>
 </section>
 
-<!-- LOGO BANNER — brands the founders have shaped; sits under the hero as social proof. -->
+
+<!-- KEYSTATS — 30+ / 2x / 0 positioning beat, immediately under the hero. -->
+<section class="ed-keystats" aria-label="By the numbers">
+    <div class="ed-keystats__row">
+        <div class="ed-keystats__cell">
+            <div class="ed-keystats__num">30+</div>
+            <p class="ed-keystats__label">Years leading product and UX systems across enterprise, SaaS, healthcare, and growth-stage companies.</p>
+        </div>
+        <div class="ed-keystats__cell">
+            <div class="ed-keystats__num">2x</div>
+            <p class="ed-keystats__label">Execution velocity through AI-native workflows and lean senior teams.</p>
+        </div>
+        <div class="ed-keystats__cell">
+            <div class="ed-keystats__num">0</div>
+            <p class="ed-keystats__label">Layers between strategy and execution. No account managers. No operational drag.</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- LOGO BANNER — supporting credibility under the keystats. -->
 <section class="ed-logos" aria-label="Leadership experience">
     <p class="ed-eyebrow ed-logos__label">Leadership experience across product, UX, and digital systems</p>
     <div class="ed-logos__viewport">
@@ -3783,58 +3847,6 @@
             <img src="assets/logos/lace.png" alt="" class="ed-logos__mark" aria-hidden="true">
             <img src="assets/logos/symantec.svg" alt="" class="ed-logos__mark" aria-hidden="true">
             <img src="assets/logos/veritas.png" alt="" class="ed-logos__mark" aria-hidden="true">
-        </div>
-    </div>
-</section>
-
-
-<!-- WHY PROMPTUX — three pillars, the explanation beat. -->
-<section class="ed-pillars ed-pillars--featured ed-block" aria-label="Why PromptUX">
-    <div class="ed-block__inner">
-        <div class="ed-pillars__grid">
-            <div class="ed-pillar">
-                <h3>Expert Design</h3>
-                <p>30+ years leading product, UX, and digital systems across enterprise, SaaS, healthcare, and growth-stage companies.</p>
-            </div>
-            <div class="ed-pillar">
-                <h3>AI Speed</h3>
-                <p>AI is integrated into how we work, allowing senior teams to explore, refine, and execute faster without sacrificing quality.</p>
-            </div>
-            <div class="ed-pillar">
-                <h3>No Layers</h3>
-                <p>You work directly with the people doing the work. Fewer handoffs, faster decisions, and less operational drag.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<!-- WHY COMPANIES CHOOSE US — operating principles, four cards on paper -->
-<section class="ed-approach" aria-label="Why companies choose us">
-    <div class="ed-approach__head">
-        <p class="ed-eyebrow">How we work</p>
-        <h2 class="ed-h2">Why companies choose us.</h2>
-    </div>
-    <div class="ed-approach__grid">
-        <div class="ed-approach__item">
-            <span>01</span>
-            <h3>Sharp from the start</h3>
-            <p>We align quickly and focus on what matters most. Clear direction early prevents wasted cycles later.</p>
-        </div>
-        <div class="ed-approach__item">
-            <span>02</span>
-            <h3>Faster by design</h3>
-            <p>AI is integrated into our workflows, compressing exploration, iteration, and execution timelines without sacrificing quality.</p>
-        </div>
-        <div class="ed-approach__item">
-            <span>03</span>
-            <h3>Impact over output</h3>
-            <p>Every decision ties back to business movement: adoption, conversion, clarity, retention, or growth.</p>
-        </div>
-        <div class="ed-approach__item">
-            <span>04</span>
-            <h3>No layers. No drag.</h3>
-            <p>You work directly with senior practitioners. No handoffs, no translation loss, no operational bloat.</p>
         </div>
     </div>
 </section>
@@ -3916,25 +3928,6 @@
                 <img src="assets/devices/iphone-pl.png" alt="PL Remote mobile app">
             </figure>
         </article>
-    </div>
-</section>
-
-
-<!-- STATS -->
-<section class="ed-stats" aria-label="Selected outcomes">
-    <div class="ed-stats__row">
-        <div class="ed-stats__cell">
-            <div class="ed-stats__num" data-value="30" data-suffix="+" data-decimals="0">30+</div>
-            <div class="ed-stats__label"><span class="ed-stats__attr">Across the partners</span>Years of design leadership</div>
-        </div>
-        <div class="ed-stats__cell">
-            <div class="ed-stats__num" data-value="74.8" data-suffix="%" data-decimals="1">74.8%</div>
-            <div class="ed-stats__label"><span class="ed-stats__attr">Pickers</span>Design system adoption</div>
-        </div>
-        <div class="ed-stats__cell">
-            <div class="ed-stats__num" data-value="28" data-suffix="%" data-decimals="0">28%</div>
-            <div class="ed-stats__label"><span class="ed-stats__attr">Pickers</span>Faster delivery</div>
-        </div>
     </div>
 </section>
 
