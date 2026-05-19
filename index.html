@@ -2243,7 +2243,7 @@
     /* === HERO === */
     :root[data-theme="editorial"] .ed-hero-new {
         padding-top: clamp(120px, 16vh, 200px);
-        padding-bottom: clamp(96px, 14vh, 176px);
+        padding-bottom: clamp(40px, 5.5vh, 72px);
         background: linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
         text-align: center;
     }
@@ -2310,7 +2310,7 @@
        memorable Apple-style section. === */
     :root[data-theme="editorial"] .ed-keystats {
         background: var(--paper-2);
-        padding: clamp(112px, 14vw, 176px) var(--gutter);
+        padding: clamp(45px, 5.5vw, 72px) var(--gutter) clamp(112px, 14vw, 176px);
     }
     :root[data-theme="editorial"] .ed-keystats__row {
         max-width: var(--ed-max);
@@ -2411,9 +2411,6 @@
         margin: 0 auto var(--ed-space-5);
         padding: 0 var(--gutter);
         text-align: center;
-    }
-    :root[data-theme="editorial"] .ed-work__head-eyebrow {
-        margin: 0 0 var(--ed-space-2);
     }
     :root[data-theme="editorial"] .ed-work__title {
         font-family: var(--display);
@@ -2591,14 +2588,6 @@
     }
     :root[data-theme="editorial"] .ed-moment {
         text-align: center;
-    }
-    :root[data-theme="editorial"] .ed-moment__num {
-        font-family: var(--display);
-        font-weight: 600;
-        font-size: 14px;
-        letter-spacing: 0.06em;
-        color: var(--mid);
-        margin: 0 0 var(--ed-space-2);
     }
     :root[data-theme="editorial"] .ed-moment h3 {
         font-family: var(--display);
@@ -3854,17 +3843,14 @@
     </div>
     <div class="ed-moments__grid">
         <div class="ed-moment">
-            <p class="ed-moment__num">01</p>
             <h3>Make it real</h3>
             <p>When an idea, launch, or critical initiative needs to move from concept to execution quickly and credibly.</p>
         </div>
         <div class="ed-moment">
-            <p class="ed-moment__num">02</p>
             <h3>Make it better</h3>
             <p>When the product works, but growth, clarity, conversion, or experience quality are starting to stall.</p>
         </div>
         <div class="ed-moment">
-            <p class="ed-moment__num">03</p>
             <h3>Make it scale</h3>
             <p>When speed, consistency, and quality begin breaking under organizational or product complexity.</p>
         </div>
@@ -3875,7 +3861,7 @@
 <!-- WORK — horizontal scroll of project cards, info left + device cropped right -->
 <section class="ed-work" id="ed-work" aria-label="Work">
     <header class="ed-work__head">
-        <p class="ed-work__eyebrow ed-work__head-eyebrow">Client work</p>
+        <p class="ed-eyebrow">Client work</p>
         <h2 class="ed-work__title">Featured</h2>
     </header>
     <div class="ed-work__scroller" role="region" aria-label="Featured projects" tabindex="0">
