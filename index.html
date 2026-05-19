@@ -2309,7 +2309,7 @@
        both jobs (the three brand attributes and a quantified proof beat) into one
        memorable Apple-style section. === */
     :root[data-theme="editorial"] .ed-keystats {
-        background: var(--paper);
+        background: var(--paper-2);
         padding: clamp(112px, 14vw, 176px) var(--gutter);
     }
     :root[data-theme="editorial"] .ed-keystats__row {
@@ -2325,7 +2325,7 @@
     :root[data-theme="editorial"] .ed-keystats__num {
         font-family: var(--display);
         font-weight: 700;
-        font-size: clamp(80px, 11vw, 168px);
+        font-size: clamp(40px, 5.5vw, 84px);
         line-height: 0.95;
         letter-spacing: -0.04em;
         color: var(--ink);
@@ -3368,10 +3368,8 @@
        steady during animation.
     ====================================================================== */
     :root[data-theme="editorial"] .ed-stats {
-        background: var(--paper);
+        background: var(--paper-2);
         padding: var(--ed-space-5) var(--gutter);
-        border-top: 1px solid var(--rule);
-        border-bottom: 1px solid var(--rule);
     }
     :root[data-theme="editorial"] .ed-stats__row {
         max-width: var(--ed-max);
@@ -3381,14 +3379,12 @@
     }
     :root[data-theme="editorial"] .ed-stats__cell {
         padding: var(--ed-space-4) var(--ed-space-3);
-        border-right: 1px solid var(--rule);
         text-align: center;
     }
-    :root[data-theme="editorial"] .ed-stats__cell:last-child { border-right: 0; }
     :root[data-theme="editorial"] .ed-stats__num {
         font-family: var(--display);
         font-weight: 700;
-        font-size: clamp(40px, 6vw, 80px);
+        font-size: clamp(20px, 3vw, 40px);
         line-height: 1;
         letter-spacing: -0.025em;
         color: var(--ink);
@@ -3413,16 +3409,9 @@
     }
     @media (max-width: 768px) {
         :root[data-theme="editorial"] .ed-stats__row { grid-template-columns: repeat(2, 1fr); }
-        :root[data-theme="editorial"] .ed-stats__cell:nth-child(2) { border-right: 0; }
-        :root[data-theme="editorial"] .ed-stats__cell:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
     }
     @media (max-width: 480px) {
         :root[data-theme="editorial"] .ed-stats__row { grid-template-columns: 1fr; }
-        :root[data-theme="editorial"] .ed-stats__cell {
-            border-right: 0 !important;
-            border-bottom: 1px solid var(--rule);
-        }
-        :root[data-theme="editorial"] .ed-stats__cell:last-child { border-bottom: 0; }
     }
 
     /* === TESTIMONIALS — two opposing auto-scroll rows =================
