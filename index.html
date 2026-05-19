@@ -2410,6 +2410,10 @@
         max-width: var(--ed-max);
         margin: 0 auto var(--ed-space-5);
         padding: 0 var(--gutter);
+        text-align: center;
+    }
+    :root[data-theme="editorial"] .ed-work__head-eyebrow {
+        margin: 0 0 var(--ed-space-2);
     }
     :root[data-theme="editorial"] .ed-work__title {
         font-family: var(--display);
@@ -3749,7 +3753,8 @@
         <span class="nav-toggle__bar"></span>
     </button>
     <ul class="nav-links" id="primary-nav">
-        <li><a href="/how-we-work.html">How We Work</a></li>
+        <li><a href="/#ed-work">Work</a></li>
+        <li><a href="/services.html">Services</a></li>
         <li><a href="/ai.html">AI Excellence</a></li>
         <li><a href="/thinking/">Thinking</a></li>
     </ul>
@@ -3870,7 +3875,8 @@
 <!-- WORK — horizontal scroll of project cards, info left + device cropped right -->
 <section class="ed-work" id="ed-work" aria-label="Work">
     <header class="ed-work__head">
-        <h2 class="ed-work__title">Work</h2>
+        <p class="ed-work__eyebrow ed-work__head-eyebrow">Client work</p>
+        <h2 class="ed-work__title">Featured</h2>
     </header>
     <div class="ed-work__scroller" role="region" aria-label="Featured projects" tabindex="0">
         <article class="ed-work__card" aria-label="Lace AI Pro">
