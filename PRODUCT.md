@@ -36,6 +36,64 @@ Words to avoid: synergy, partner-up, leverage as a verb, ecosystem, unlock, jour
 - **Big agency websites**: Sapient/Huge-style — generic case study grids, dark hero video, "we do everything" services pages. Reads as corporate.
 - **Cliché trust signals**: "Trusted by 1000+ companies" with logo wall. Replace with one sharp sentence and let the work do the work.
 
+## Content & messaging system
+
+These are the brand's content rules. They override any guidance above when there's a conflict.
+
+### Hierarchy of comprehension
+
+The reader should understand the takeaway before they read the paragraph. Every section follows this order:
+
+1. **Header** communicates the takeaway, in 1–5 words.
+2. **Subtext** makes the takeaway unambiguous and ties it to business or user value.
+3. **Visuals** emotionally reinforce and prove the takeaway.
+4. **Supporting copy** completes the thought.
+
+If the header needs the paragraph to make sense, the header is wrong.
+
+### Headlines
+
+1–5 words. Sharp. Editorial. Match the cadence of Apple, Linear, Vercel — not consulting framework labels.
+
+Good shape: `AI Speed.` / `Move faster.` / `Less waiting.` / `Smaller teams. Bigger output.` / `Cut the drag.` / `More shots on goal.` / `Faster by design.`
+
+Bad shape (avoid): `AI-enabled capabilities`, `AI-native workflows`, `Operational acceleration systems`, `Integrated delivery frameworks`, `Workflow orchestration`, `End-to-end execution models`. These read internally-focused, process-heavy, emotionally flat, and harder to scan.
+
+### Subtext
+
+Subtext clarifies the headline. It does NOT introduce a new concept. If a paragraph asks the reader to learn something new before they can react to the headline, the headline failed.
+
+### Visuals and diagrams
+
+Visuals reinforce and prove the takeaway. They do not introduce competing conceptual systems.
+
+Diagrams: simple lifecycle, clean loops, clear relationships, minimal labels, high emotional clarity. Not workflow maps, not framework charts, not consulting process wheels. The brand's diagrams compress understanding; they don't require it.
+
+### Sections
+
+Each section has ONE strategic purpose. The reader should immediately know why the section exists. Don't blend capability + philosophy + proof in one block; if you find yourself doing that, split or cut.
+
+### What this site is
+
+A persuasion and positioning tool. It is NOT:
+
+- a methodology deck
+- an operational playbook
+- an AI education course
+- a consulting framework presentation
+
+Goal: perceived capability, clarity, confidence, excitement. Not complete operational transparency.
+
+### AI storytelling
+
+AI positioning focuses on: leverage, acceleration, momentum, iteration, operational compression, output quality, reduced drag.
+
+NOT: workflow ideology, AI philosophy, process theory, technical decomposition. The AI story is simple, powerful, clear, exciting — never a seminar.
+
+### Final feel
+
+The user should leave the site thinking: *"These people move fast, think clearly, and produce high-quality work."* Without needing it explained.
+
 ## Constraints
 
 - Single-file HTML (`promptux-homepage.html`). No build step. One stylesheet, one script — both inline.
