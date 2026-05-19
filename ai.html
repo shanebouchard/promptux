@@ -4600,8 +4600,8 @@
        stays consistent with the rest of the editorial theme.
     ============================================= */
     :root[data-theme="editorial"] .ai-lifecycle-wrap {
-        max-width: 480px;
-        margin: 0 auto;
+        max-width: 520px;
+        margin: 0 auto clamp(64px, 8vw, 96px);
         aspect-ratio: 1;
     }
     :root[data-theme="editorial"] .ai-lifecycle {
@@ -4610,6 +4610,11 @@
         display: block;
     }
     :root[data-theme="editorial"] .ai-lifecycle__ring {
+        fill: none;
+        stroke: var(--rule);
+        stroke-width: 1;
+    }
+    :root[data-theme="editorial"] .ai-lifecycle__node-halo {
         fill: none;
         stroke: var(--rule);
         stroke-width: 1;
@@ -4623,20 +4628,44 @@
         font-size: 14px;
         font-weight: 600;
     }
-    :root[data-theme="editorial"] .ai-lifecycle__center-h {
+    /* Center anchor — filled dark disc with light text, the page's strongest
+       single visual mark. */
+    :root[data-theme="editorial"] .ai-lifecycle__center-bg {
         fill: var(--ink);
+    }
+    :root[data-theme="editorial"] .ai-lifecycle__center-h {
+        fill: var(--paper);
         font-family: var(--display);
-        font-size: 56px;
+        font-size: 36px;
         font-weight: 700;
         letter-spacing: -0.025em;
     }
     :root[data-theme="editorial"] .ai-lifecycle__center-sub {
-        fill: var(--mid);
+        fill: var(--paper);
         font-family: var(--body);
-        font-size: 12px;
+        font-size: 11px;
         font-weight: 600;
-        letter-spacing: 0.16em;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
+        opacity: 0.7;
+    }
+    /* Active path indicator — small blue marker rotating slowly around the
+       ring. Subtle motion that signals "the cycle is alive". Pauses for
+       users with reduced-motion preference. */
+    :root[data-theme="editorial"] .ai-lifecycle__marker {
+        fill: var(--lime);
+        transform-origin: 300px 300px;
+        transform-box: view-box;
+        animation: ai-lifecycle-spin 18s linear infinite;
+    }
+    @keyframes ai-lifecycle-spin {
+        from { transform: rotate(0deg); }
+        to   { transform: rotate(360deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        :root[data-theme="editorial"] .ai-lifecycle__marker {
+            animation: none;
+        }
     }
 
     /* === TAB CARDS — 3 cards per tab with integrated stat. Replaces the
@@ -4881,45 +4910,44 @@
 </section>
 
 <!-- =============================================
-     3. LIFECYCLE DIAGRAM — circular, AI at center, the page's conceptual anchor
+     3. AI ACCELERATED — merged conceptual anchor: lifecycle diagram +
+     six-tab acceleration cards in one cohesive beat.
 ============================================= -->
-<section class="ai-section ai-section--paper-2" aria-label="The lifecycle">
+<section class="ai-section ai-section--paper-2" id="ai-stages" aria-label="AI accelerated">
     <div class="ai-section__inner">
         <div class="ai-section__head ai-reveal">
-            <p class="ai-eyebrow">Lifecycle</p>
-            <h2 class="ai-h2">Through the whole cycle.</h2>
+            <p class="ai-eyebrow">Across the cycle</p>
+            <h2 class="ai-h2">AI accelerated.</h2>
+            <p class="ai-lede">AI can compress the cycle across research, strategy, design, content, delivery, and optimization without turning the work into a process maze.</p>
         </div>
         <div class="ai-lifecycle-wrap ai-reveal">
-            <svg class="ai-lifecycle" viewBox="0 0 600 600" role="img" aria-label="AI accelerates the product and growth lifecycle: research, strategy, design, content, development, optimization">
+            <svg class="ai-lifecycle" viewBox="0 0 600 600" role="img" aria-label="AI accelerates the product and growth lifecycle: research, strategy, design, content, delivery, optimization">
                 <circle class="ai-lifecycle__ring" cx="300" cy="300" r="180"/>
-                <circle class="ai-lifecycle__node" cx="300" cy="120" r="7"/>
-                <circle class="ai-lifecycle__node" cx="455.9" cy="210" r="7"/>
-                <circle class="ai-lifecycle__node" cx="455.9" cy="390" r="7"/>
-                <circle class="ai-lifecycle__node" cx="300" cy="480" r="7"/>
-                <circle class="ai-lifecycle__node" cx="144.1" cy="390" r="7"/>
-                <circle class="ai-lifecycle__node" cx="144.1" cy="210" r="7"/>
+                <g class="ai-lifecycle__nodes">
+                    <circle class="ai-lifecycle__node-halo" cx="300" cy="120" r="14"/>
+                    <circle class="ai-lifecycle__node" cx="300" cy="120" r="6"/>
+                    <circle class="ai-lifecycle__node-halo" cx="455.9" cy="210" r="14"/>
+                    <circle class="ai-lifecycle__node" cx="455.9" cy="210" r="6"/>
+                    <circle class="ai-lifecycle__node-halo" cx="455.9" cy="390" r="14"/>
+                    <circle class="ai-lifecycle__node" cx="455.9" cy="390" r="6"/>
+                    <circle class="ai-lifecycle__node-halo" cx="300" cy="480" r="14"/>
+                    <circle class="ai-lifecycle__node" cx="300" cy="480" r="6"/>
+                    <circle class="ai-lifecycle__node-halo" cx="144.1" cy="390" r="14"/>
+                    <circle class="ai-lifecycle__node" cx="144.1" cy="390" r="6"/>
+                    <circle class="ai-lifecycle__node-halo" cx="144.1" cy="210" r="14"/>
+                    <circle class="ai-lifecycle__node" cx="144.1" cy="210" r="6"/>
+                </g>
+                <circle class="ai-lifecycle__marker" cx="300" cy="120" r="4"/>
                 <text class="ai-lifecycle__label" x="300" y="80" text-anchor="middle">Research</text>
                 <text class="ai-lifecycle__label" x="485" y="205" text-anchor="start">Strategy</text>
                 <text class="ai-lifecycle__label" x="485" y="400" text-anchor="start">Design</text>
                 <text class="ai-lifecycle__label" x="300" y="525" text-anchor="middle">Content</text>
-                <text class="ai-lifecycle__label" x="115" y="400" text-anchor="end">Development</text>
+                <text class="ai-lifecycle__label" x="115" y="400" text-anchor="end">Delivery</text>
                 <text class="ai-lifecycle__label" x="115" y="205" text-anchor="end">Optimization</text>
-                <text class="ai-lifecycle__center-h" x="300" y="295" text-anchor="middle">AI</text>
-                <text class="ai-lifecycle__center-sub" x="300" y="325" text-anchor="middle">accelerated</text>
+                <circle class="ai-lifecycle__center-bg" cx="300" cy="300" r="64"/>
+                <text class="ai-lifecycle__center-h" x="300" y="298" text-anchor="middle">AI</text>
+                <text class="ai-lifecycle__center-sub" x="300" y="322" text-anchor="middle">Speed</text>
             </svg>
-        </div>
-    </div>
-</section>
-
-<!-- =============================================
-     4. AI ACCELERATED — six tabs, three stat-integrated cards per tab
-============================================= -->
-<section class="ai-section" id="ai-stages" aria-label="AI accelerated">
-    <div class="ai-section__inner">
-        <div class="ai-section__head ai-reveal">
-            <p class="ai-eyebrow">The acceleration</p>
-            <h2 class="ai-h2">AI accelerated.</h2>
-            <p class="ai-lede">AI-assisted workflows compress the time between idea, execution, and iteration across the entire product and growth cycle.</p>
         </div>
         <div class="ai-tabs ai-reveal">
             <div class="ai-tabs-nav" role="tablist">
@@ -5057,7 +5085,7 @@
 <!-- =============================================
      5. MORE SHOTS ON GOAL — visual capability grid as inspiration / proof
 ============================================= -->
-<section class="ai-section ai-section--paper-2" aria-label="Visual capability examples">
+<section class="ai-section" aria-label="Visual capability examples">
     <div class="ai-section__inner">
         <div class="ai-section__head ai-reveal">
             <p class="ai-eyebrow">In action</p>
