@@ -308,35 +308,41 @@ img { display: block; max-width: 100%; height: auto; }
     }
 }
 
-/* === PAGE HEADER === */
+/* === PAGE HEADER — Thinking index page hero ===
+   Mirrors the `.ai-hero` pattern in ai.html and `.ed-hero-new` in
+   services.html so the Services / AI Excellence / Thinking nav doesn't
+   visually jump between pages. */
 .page-head {
-    padding: clamp(96px, 14vh, 160px) var(--gutter) clamp(48px, 7vh, 80px);
+    position: relative;
+    padding: clamp(140px, 16vw, 220px) var(--gutter) clamp(96px, 12vw, 144px);
+    background: linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
     text-align: center;
+    overflow: hidden;
 }
 .page-head__eyebrow {
     font-family: var(--body);
     font-weight: 600;
-    font-size: 14px;
-    color: var(--mid);
-    margin: 0 0 var(--ed-space-3);
-    letter-spacing: 0.04em;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--lime);
+    margin: 0 0 18px;
 }
 .page-head__title {
     font-family: var(--display);
     font-weight: 700;
-    font-size: clamp(48px, 7vw, 96px);
-    line-height: 1.04;
-    letter-spacing: -0.028em;
+    font-size: clamp(44px, 6vw, 88px);
+    line-height: 1.0;
+    letter-spacing: -0.025em;
     color: var(--ink);
-    margin: 0 auto var(--ed-space-3);
-    max-width: 14ch;
+    margin: 0 auto 32px;
+    max-width: 16ch;
 }
 .page-head__sub {
     font-family: var(--body);
     font-size: clamp(17px, 1.6vw, 21px);
     line-height: 1.5;
     color: var(--mid);
-    max-width: 52ch;
+    max-width: 56ch;
     margin: 0 auto;
 }
 

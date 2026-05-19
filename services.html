@@ -2241,32 +2241,37 @@
     }
 
     /* === HERO === */
+    /* Services hero — matches the ai.html `.ai-hero` pattern so subpage
+       navigation (Services / AI Excellence / Thinking) doesn't visually
+       jump when switching between them. Values mirror `.ai-hero*`. */
     :root[data-theme="editorial"] .ed-hero-new {
-        padding-top: clamp(120px, 16vh, 200px);
-        padding-bottom: 0;
+        position: relative;
+        padding: clamp(140px, 16vw, 220px) var(--gutter) clamp(96px, 12vw, 144px);
         background: linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
         text-align: center;
+        overflow: hidden;
     }
     :root[data-theme="editorial"] .ed-hero-new__copy {
-        max-width: 880px;
-        margin: 0 auto var(--ed-space-5);
-        padding: 0 var(--gutter);
+        max-width: 960px;
+        margin: 0 auto;
     }
     :root[data-theme="editorial"] .ed-hero-new__eyebrow {
         font-family: var(--body);
         font-weight: 600;
-        font-size: 17px;
+        font-size: 12px;
+        letter-spacing: 0.06em;
         color: var(--lime);
-        margin: 0 0 var(--ed-space-3);
+        margin: 0 0 18px;
     }
     :root[data-theme="editorial"] .ed-hero-new__title {
         font-family: var(--display);
         font-weight: 700;
-        font-size: clamp(48px, 6.6vw, 96px);
-        line-height: 1.04;
-        letter-spacing: -0.03em;
+        font-size: clamp(44px, 6vw, 88px);
+        line-height: 1.0;
+        letter-spacing: -0.025em;
         color: var(--ink);
-        margin: 0 0 var(--ed-space-3);
+        margin: 0 auto 32px;
+        max-width: 16ch;
         text-wrap: balance;
         hyphens: manual;
     }
@@ -2277,17 +2282,15 @@
     :root[data-theme="editorial"] .ed-hero-new__sub {
         font-family: var(--body);
         font-weight: 400;
-        font-size: clamp(20px, 1.7vw, 28px);
-        line-height: 1.32;
+        font-size: clamp(17px, 1.6vw, 21px);
+        line-height: 1.5;
         color: var(--mid);
-        max-width: 720px;
-        margin: 0 auto var(--ed-space-4);
-        letter-spacing: -0.01em;
+        max-width: 56ch;
+        margin: 0 auto 40px;
     }
     :root[data-theme="editorial"] .ed-hero-new__ctas {
-        display: inline-flex;
-        gap: var(--ed-space-3);
-        align-items: center;
+        display: flex;
+        gap: 12px;
         flex-wrap: wrap;
         justify-content: center;
     }
