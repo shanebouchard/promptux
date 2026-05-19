@@ -4336,9 +4336,9 @@
     :root[data-theme="editorial"] .ai-section--ink .ai-section__head { color: var(--paper); }
     :root[data-theme="editorial"] .ai-cap-grid {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        grid-auto-rows: 220px;
-        gap: 8px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-rows: 320px;
+        gap: 14px;
         margin-top: clamp(32px, 4vw, 56px);
         max-width: var(--ed-max);
         margin-left: auto;
@@ -4353,61 +4353,56 @@
         justify-content: flex-end;
         min-height: 0;
     }
-    :root[data-theme="editorial"] .ai-cap-card.tall  { grid-row: span 2; }
-    :root[data-theme="editorial"] .ai-cap-card.wide  { grid-column: span 2; }
     :root[data-theme="editorial"] .ai-cap-card-img {
         position: absolute;
         inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
         background: #111111;
     }
     :root[data-theme="editorial"] .ai-cap-card::after {
         content: '';
         position: absolute;
         inset: 0;
-        background: linear-gradient(to top, rgba(0,0,0,.88) 0%, rgba(0,0,0,.18) 58%, transparent 100%);
+        background: linear-gradient(to top, rgba(0,0,0,.88) 0%, rgba(0,0,0,.22) 58%, transparent 100%);
         pointer-events: none;
-    }
-    :root[data-theme="editorial"] .ai-cap-card--light::after {
-        background: linear-gradient(to top, rgba(15,15,15,.82) 0%, rgba(15,15,15,.15) 55%, transparent 100%);
     }
     :root[data-theme="editorial"] .ai-cap-card-content {
         position: relative;
         z-index: 1;
-        padding: 0.85rem 1rem 1rem;
+        padding: 1.4rem 1.6rem 1.5rem;
     }
     :root[data-theme="editorial"] .ai-cap-card-tag {
         font-family: var(--body);
-        font-size: 9px;
+        font-size: 11px;
         font-weight: 600;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: rgba(255,255,255,0.45);
-        margin: 0 0 0.3rem;
+        color: rgba(255,255,255,0.55);
+        margin: 0 0 0.5rem;
     }
     :root[data-theme="editorial"] .ai-cap-card-title {
         font-family: var(--display);
-        font-size: 14px;
-        font-weight: 500;
+        font-size: 20px;
+        font-weight: 600;
         color: #FFFFFF;
-        line-height: 1.3;
-        margin: 0 0 0.25rem;
+        line-height: 1.25;
+        letter-spacing: -0.012em;
+        margin: 0 0 0.45rem;
     }
     :root[data-theme="editorial"] .ai-cap-card-body {
         font-family: var(--body);
-        font-size: 11px;
-        color: rgba(255,255,255,0.62);
+        font-size: 14px;
+        color: rgba(255,255,255,0.72);
         line-height: 1.5;
         margin: 0;
+        max-width: 42ch;
     }
     @media (max-width: 768px) {
         :root[data-theme="editorial"] .ai-cap-grid {
             grid-template-columns: 1fr;
-            grid-auto-rows: 200px;
-        }
-        :root[data-theme="editorial"] .ai-cap-card.tall,
-        :root[data-theme="editorial"] .ai-cap-card.wide {
-            grid-row: span 1;
-            grid-column: span 1;
+            grid-auto-rows: 280px;
         }
     }
 
@@ -4730,8 +4725,8 @@
             <p class="ai-lede">The specific types of AI-native creative work we bring to every engagement.</p>
         </div>
         <div class="ai-cap-grid">
-            <article class="ai-cap-card tall ai-reveal">
-                <div class="ai-cap-card-img" style="background:#0d0d0d"></div>
+            <article class="ai-cap-card ai-reveal">
+                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-campaign/800/600?grayscale" alt="" loading="lazy">
                 <div class="ai-cap-card-content">
                     <p class="ai-cap-card-tag">No stock. No shoot. No delay.</p>
                     <h3 class="ai-cap-card-title">Campaign concepts in hours, not weeks</h3>
@@ -4739,7 +4734,7 @@
                 </div>
             </article>
             <article class="ai-cap-card ai-reveal">
-                <div class="ai-cap-card-img" style="background:#111111"></div>
+                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-video/800/600?grayscale" alt="" loading="lazy">
                 <div class="ai-cap-card-content">
                     <p class="ai-cap-card-tag">Runway · Sora</p>
                     <h3 class="ai-cap-card-title">Image-to-video storytelling</h3>
@@ -4747,15 +4742,15 @@
                 </div>
             </article>
             <article class="ai-cap-card ai-reveal">
-                <div class="ai-cap-card-img" style="background:#161616"></div>
+                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-motion/800/600?grayscale" alt="" loading="lazy">
                 <div class="ai-cap-card-content">
                     <p class="ai-cap-card-tag">Web &amp; product</p>
                     <h3 class="ai-cap-card-title">Product storytelling with motion built in</h3>
                     <p class="ai-cap-card-body">Micro-interactions and animated sequences — without a motion team.</p>
                 </div>
             </article>
-            <article class="ai-cap-card wide ai-reveal">
-                <div class="ai-cap-card-img" style="background:#1e1e1e"></div>
+            <article class="ai-cap-card ai-reveal">
+                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-avatars/800/600?grayscale" alt="" loading="lazy">
                 <div class="ai-cap-card-content">
                     <p class="ai-cap-card-tag">ElevenLabs · HeyGen</p>
                     <h3 class="ai-cap-card-title">Content that scales across markets</h3>
@@ -4763,15 +4758,15 @@
                 </div>
             </article>
             <article class="ai-cap-card ai-reveal">
-                <div class="ai-cap-card-img" style="background:#0f0f0f"></div>
+                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-brand/800/600?grayscale" alt="" loading="lazy">
                 <div class="ai-cap-card-content">
                     <p class="ai-cap-card-tag">On brand. Always.</p>
                     <h3 class="ai-cap-card-title">Brand imagery at speed</h3>
                     <p class="ai-cap-card-body">A library of visuals trained to your aesthetic. No usage fees, no style drift.</p>
                 </div>
             </article>
-            <article class="ai-cap-card wide ai-cap-card--light ai-reveal">
-                <div class="ai-cap-card-img" style="background:#f2f0ec"></div>
+            <article class="ai-cap-card ai-reveal">
+                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-ux/800/600?grayscale" alt="" loading="lazy">
                 <div class="ai-cap-card-content">
                     <p class="ai-cap-card-tag">Figma AI · v0</p>
                     <h3 class="ai-cap-card-title">UX and prototype generation</h3>
@@ -4779,7 +4774,7 @@
                 </div>
             </article>
             <article class="ai-cap-card ai-reveal">
-                <div class="ai-cap-card-img" style="background:#111111"></div>
+                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-copy/800/600?grayscale" alt="" loading="lazy">
                 <div class="ai-cap-card-content">
                     <p class="ai-cap-card-tag">Scale without drift</p>
                     <h3 class="ai-cap-card-title">High-volume content exploration</h3>
