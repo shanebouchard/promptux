@@ -3501,15 +3501,19 @@
         position: relative;
     }
     :root[data-theme="editorial"] .sv-cat__caps li::before {
-        content: "✓";
+        /* Geometric checkmark drawn with two borders + a 45° rotation.
+           Sharper right angle at the vertex than the Unicode "✓" glyph,
+           and the color tracks --lime cleanly without font rendering quirks. */
+        content: "";
         position: absolute;
-        left: 0;
-        top: 14px;
-        font-family: var(--display);
-        font-size: 14px;
-        font-weight: 600;
-        color: var(--lime);
-        line-height: 1.55;
+        left: 2px;
+        top: 17px;
+        width: 5px;
+        height: 10px;
+        border-right: 1.75px solid var(--lime);
+        border-bottom: 1.75px solid var(--lime);
+        transform: rotate(45deg);
+        transform-origin: center;
     }
     :root[data-theme="editorial"] .sv-cta-wrap {
         text-align: center;
@@ -3599,7 +3603,7 @@
 ============================================= -->
 <section class="ed-hero-new" aria-label="Services">
     <div class="ed-hero-new__copy">
-        <p class="ed-hero-new__eyebrow">Service</p>
+        <p class="ed-hero-new__eyebrow">Services</p>
         <h1 class="ed-hero-new__title"><span class="line">Build the right thing,</span> <span class="line">faster.</span></h1>
         <p class="ed-hero-new__sub">Expert product, design, and growth support for teams that need clearer direction, faster execution, and better outcomes.</p>
         <div class="ed-hero-new__ctas">
@@ -3611,7 +3615,10 @@
 
 
 <!-- =============================================
-     SERVICES — four categories, each left head + right capabilities list
+     SERVICES — four process categories (Strategize / Visualize / Systemize /
+     Maximize), each as a full-width band with title, description, and the
+     service items underneath. Drops the previous micro-headline + body-paragraph
+     pattern in favor of one description per category, matching the new structure.
 ============================================= -->
 <section class="sv-services" id="sv-categories" aria-label="Service categories">
     <div class="sv-cat">
@@ -3619,22 +3626,21 @@
             <div class="sv-cat__head">
                 <span class="sv-cat__glyph" aria-hidden="true">
                     <svg viewBox="0 0 28 28">
-                        <rect x="3" y="5" width="22" height="18" rx="1" fill="none" stroke="currentColor" stroke-width="1.25"/>
-                        <line x1="3" y1="10" x2="25" y2="10" stroke="currentColor" stroke-width="1.25"/>
-                        <line x1="7" y1="14" x2="13" y2="14" stroke="currentColor" stroke-width="1.25"/>
-                        <line x1="7" y1="18" x2="11" y2="18" stroke="currentColor" stroke-width="1.25"/>
+                        <circle cx="14" cy="14" r="10" fill="none" stroke="currentColor" stroke-width="1.25"/>
+                        <circle cx="14" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="1.25"/>
+                        <circle cx="14" cy="14" r="2" fill="currentColor"/>
                     </svg>
                 </span>
-                <h2 class="sv-cat__title">Product &amp; UX</h2>
-                <p class="sv-cat__micro">Clarity that ships.</p>
-                <p class="sv-cat__body">We help teams clarify opportunities, improve digital experiences, and move from strategy to execution faster through expert-driven product thinking, UX design, and rapid iteration.</p>
+                <h2 class="sv-cat__title">Strategize</h2>
+                <p class="sv-cat__body">Align teams around the right problems, sharper opportunities, and faster paths to market.</p>
             </div>
             <ul class="sv-cat__caps">
-                <li>UX strategy</li>
-                <li>Product design</li>
-                <li>Research &amp; validation</li>
-                <li>Rapid prototyping</li>
-                <li>Design systems</li>
+                <li>Design Workshops</li>
+                <li>User Studies &amp; Research</li>
+                <li>User Journeys &amp; Personas</li>
+                <li>Competitor Analysis</li>
+                <li>UX Audits</li>
+                <li>Roadmapping</li>
             </ul>
         </div>
     </div>
@@ -3643,21 +3649,42 @@
             <div class="sv-cat__head">
                 <span class="sv-cat__glyph" aria-hidden="true">
                     <svg viewBox="0 0 28 28">
-                        <path d="M 5 9 L 11 14 L 5 19" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M 13 9 L 19 14 L 13 19" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M 2 14 Q 14 5 26 14 Q 14 23 2 14 Z" fill="none" stroke="currentColor" stroke-width="1.25"/>
+                        <circle cx="14" cy="14" r="3" fill="currentColor"/>
                     </svg>
                 </span>
-                <h2 class="sv-cat__title">AI Speed</h2>
-                <p class="sv-cat__micro">Smaller teams. Bigger output.</p>
-                <p class="sv-cat__body">AI-assisted workflows help lean senior teams move faster, reduce production drag, and deliver higher-quality work without adding operational layers.</p>
+                <h2 class="sv-cat__title">Visualize</h2>
+                <p class="sv-cat__body">Turn complex product, brand, and growth challenges into clear, usable, high-performing digital experiences.</p>
             </div>
             <ul class="sv-cat__caps">
-                <li>AI-assisted content</li>
-                <li>Motion &amp; storytelling</li>
-                <li>Rapid visual exploration</li>
-                <li>AI-enabled prototyping</li>
-                <li>Creative production acceleration</li>
-                <li>Workflow acceleration</li>
+                <li>UX/UI Design</li>
+                <li>Website Design</li>
+                <li>Illustration &amp; Icons</li>
+                <li>Animation &amp; Video</li>
+                <li>Branding &amp; Logos</li>
+                <li>Marketing Collateral</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sv-cat">
+        <div class="sv-cat__inner">
+            <div class="sv-cat__head">
+                <span class="sv-cat__glyph" aria-hidden="true">
+                    <svg viewBox="0 0 28 28">
+                        <rect x="4" y="4" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.25"/>
+                        <rect x="16" y="4" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.25"/>
+                        <rect x="4" y="16" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.25"/>
+                        <rect x="16" y="16" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.25"/>
+                    </svg>
+                </span>
+                <h2 class="sv-cat__title">Systemize</h2>
+                <p class="sv-cat__body">Create the standards, components, and documentation teams need to move faster without losing quality or consistency.</p>
+            </div>
+            <ul class="sv-cat__caps">
+                <li>Design Systems</li>
+                <li>UI Kit Development</li>
+                <li>Tailwind CSS</li>
+                <li>Dev Documentation</li>
             </ul>
         </div>
     </div>
@@ -3670,40 +3697,14 @@
                         <path d="M 19 7 L 24 7 L 24 12" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </span>
-                <h2 class="sv-cat__title">Growth &amp; optimization</h2>
-                <p class="sv-cat__micro">Growth without the drag.</p>
-                <p class="sv-cat__body">We help companies improve acquisition, onboarding, engagement, and conversion through iterative experimentation, clearer messaging, and experience optimization.</p>
+                <h2 class="sv-cat__title">Maximize</h2>
+                <p class="sv-cat__body">Use data, experimentation, and iteration to improve performance after launch and keep momentum moving.</p>
             </div>
             <ul class="sv-cat__caps">
-                <li>Funnel optimization</li>
-                <li>Messaging systems</li>
-                <li>Landing pages</li>
-                <li>Conversion UX</li>
-                <li>Retention improvements</li>
-                <li>Experimentation support</li>
-            </ul>
-        </div>
-    </div>
-    <div class="sv-cat">
-        <div class="sv-cat__inner">
-            <div class="sv-cat__head">
-                <span class="sv-cat__glyph" aria-hidden="true">
-                    <svg viewBox="0 0 28 28">
-                        <rect x="3" y="5" width="22" height="18" rx="1" fill="none" stroke="currentColor" stroke-width="1.25"/>
-                        <rect x="9" y="10" width="10" height="8" rx="0.5" fill="none" stroke="currentColor" stroke-width="1.25"/>
-                    </svg>
-                </span>
-                <h2 class="sv-cat__title">Embedded support</h2>
-                <p class="sv-cat__micro">Expert execution without layers.</p>
-                <p class="sv-cat__body">We work as lean senior partners inside teams through focused sprints or ongoing execution partnerships.</p>
-            </div>
-            <ul class="sv-cat__caps">
-                <li>Strategic sprints</li>
-                <li>Embedded partnerships</li>
-                <li>Leadership support</li>
-                <li>Workflow acceleration</li>
-                <li>Team enablement</li>
-                <li>Operational systems</li>
+                <li>Conversion Rate Optimization</li>
+                <li>Growth Strategy</li>
+                <li>Search Engine Optimization</li>
+                <li>Data &amp; Analytics</li>
             </ul>
         </div>
     </div>
