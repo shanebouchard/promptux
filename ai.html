@@ -4592,15 +4592,41 @@
         fill: none;
         stroke: var(--rule);
         stroke-width: 1;
+        transition: stroke 280ms ease-out, stroke-width 280ms ease-out;
     }
     :root[data-theme="editorial"] .ai-lifecycle__node {
         fill: var(--ink);
+        transition: fill 280ms ease-out;
     }
     :root[data-theme="editorial"] .ai-lifecycle__label {
         fill: var(--ink);
         font-family: var(--body);
         font-size: 14px;
         font-weight: 600;
+        transition: fill 280ms ease-out;
+    }
+    /* Active state — driven by the tabs below. When a tab is active or hovered,
+       the matching node halo + dot pick up the blue accent, and a radial
+       connector from the center to that node fades in. */
+    :root[data-theme="editorial"] .ai-lifecycle__connector {
+        fill: none;
+        stroke: var(--lime);
+        stroke-width: 1.25;
+        opacity: 0;
+        transition: opacity 320ms ease-out;
+    }
+    :root[data-theme="editorial"] .ai-lifecycle__connector.is-active {
+        opacity: 0.55;
+    }
+    :root[data-theme="editorial"] .ai-lifecycle__node.is-active {
+        fill: var(--lime);
+    }
+    :root[data-theme="editorial"] .ai-lifecycle__node-halo.is-active {
+        stroke: var(--lime);
+        stroke-width: 1.5;
+    }
+    :root[data-theme="editorial"] .ai-lifecycle__label.is-active {
+        fill: var(--lime);
     }
     /* Center anchor — filled dark disc with light text, the page's strongest
        single visual mark. */
@@ -4622,24 +4648,6 @@
         letter-spacing: 0.18em;
         text-transform: uppercase;
         opacity: 0.7;
-    }
-    /* Active path indicator — small blue marker rotating slowly around the
-       ring. Subtle motion that signals "the cycle is alive". Pauses for
-       users with reduced-motion preference. */
-    :root[data-theme="editorial"] .ai-lifecycle__marker {
-        fill: var(--lime);
-        transform-origin: 300px 300px;
-        transform-box: view-box;
-        animation: ai-lifecycle-spin 18s linear infinite;
-    }
-    @keyframes ai-lifecycle-spin {
-        from { transform: rotate(0deg); }
-        to   { transform: rotate(360deg); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-        :root[data-theme="editorial"] .ai-lifecycle__marker {
-            animation: none;
-        }
     }
 
     /* === TAB CARDS — 3 cards per tab with integrated stat. Replaces the
@@ -4985,29 +4993,36 @@
             <p class="ai-lede">AI can compress the cycle across research, strategy, design, content, delivery, and optimization without turning the work into a process maze.</p>
         </div>
         <div class="ai-lifecycle-wrap ai-reveal">
-            <svg class="ai-lifecycle" viewBox="0 0 600 600" role="img" aria-label="AI accelerates the product and growth lifecycle: research, strategy, design, content, delivery, optimization">
+            <svg class="ai-lifecycle" viewBox="0 0 600 600" role="img" aria-label="AI accelerates the product and growth lifecycle: research, strategy, design, content, growth, delivery">
                 <circle class="ai-lifecycle__ring" cx="300" cy="300" r="180"/>
+                <!-- Radial connectors (center → node) — hidden by default, fade in when the
+                     matching tab is active. -->
+                <line class="ai-lifecycle__connector" data-node="research" x1="300" y1="300" x2="300" y2="120"/>
+                <line class="ai-lifecycle__connector" data-node="strategy" x1="300" y1="300" x2="455.9" y2="210"/>
+                <line class="ai-lifecycle__connector" data-node="design"   x1="300" y1="300" x2="455.9" y2="390"/>
+                <line class="ai-lifecycle__connector" data-node="content"  x1="300" y1="300" x2="300"   y2="480"/>
+                <line class="ai-lifecycle__connector" data-node="growth"   x1="300" y1="300" x2="144.1" y2="390"/>
+                <line class="ai-lifecycle__connector" data-node="delivery" x1="300" y1="300" x2="144.1" y2="210"/>
                 <g class="ai-lifecycle__nodes">
-                    <circle class="ai-lifecycle__node-halo" cx="300" cy="120" r="14"/>
-                    <circle class="ai-lifecycle__node" cx="300" cy="120" r="6"/>
-                    <circle class="ai-lifecycle__node-halo" cx="455.9" cy="210" r="14"/>
-                    <circle class="ai-lifecycle__node" cx="455.9" cy="210" r="6"/>
-                    <circle class="ai-lifecycle__node-halo" cx="455.9" cy="390" r="14"/>
-                    <circle class="ai-lifecycle__node" cx="455.9" cy="390" r="6"/>
-                    <circle class="ai-lifecycle__node-halo" cx="300" cy="480" r="14"/>
-                    <circle class="ai-lifecycle__node" cx="300" cy="480" r="6"/>
-                    <circle class="ai-lifecycle__node-halo" cx="144.1" cy="390" r="14"/>
-                    <circle class="ai-lifecycle__node" cx="144.1" cy="390" r="6"/>
-                    <circle class="ai-lifecycle__node-halo" cx="144.1" cy="210" r="14"/>
-                    <circle class="ai-lifecycle__node" cx="144.1" cy="210" r="6"/>
+                    <circle class="ai-lifecycle__node-halo" data-node="research" cx="300" cy="120" r="14"/>
+                    <circle class="ai-lifecycle__node"      data-node="research" cx="300" cy="120" r="6"/>
+                    <circle class="ai-lifecycle__node-halo" data-node="strategy" cx="455.9" cy="210" r="14"/>
+                    <circle class="ai-lifecycle__node"      data-node="strategy" cx="455.9" cy="210" r="6"/>
+                    <circle class="ai-lifecycle__node-halo" data-node="design"   cx="455.9" cy="390" r="14"/>
+                    <circle class="ai-lifecycle__node"      data-node="design"   cx="455.9" cy="390" r="6"/>
+                    <circle class="ai-lifecycle__node-halo" data-node="content"  cx="300" cy="480" r="14"/>
+                    <circle class="ai-lifecycle__node"      data-node="content"  cx="300" cy="480" r="6"/>
+                    <circle class="ai-lifecycle__node-halo" data-node="growth"   cx="144.1" cy="390" r="14"/>
+                    <circle class="ai-lifecycle__node"      data-node="growth"   cx="144.1" cy="390" r="6"/>
+                    <circle class="ai-lifecycle__node-halo" data-node="delivery" cx="144.1" cy="210" r="14"/>
+                    <circle class="ai-lifecycle__node"      data-node="delivery" cx="144.1" cy="210" r="6"/>
                 </g>
-                <circle class="ai-lifecycle__marker" cx="300" cy="120" r="4"/>
-                <text class="ai-lifecycle__label" x="300" y="80" text-anchor="middle">Research</text>
-                <text class="ai-lifecycle__label" x="485" y="205" text-anchor="start">Strategy</text>
-                <text class="ai-lifecycle__label" x="485" y="400" text-anchor="start">Design</text>
-                <text class="ai-lifecycle__label" x="300" y="525" text-anchor="middle">Content</text>
-                <text class="ai-lifecycle__label" x="115" y="400" text-anchor="end">Delivery</text>
-                <text class="ai-lifecycle__label" x="115" y="205" text-anchor="end">Optimization</text>
+                <text class="ai-lifecycle__label" data-node="research" x="300" y="80"  text-anchor="middle">Research</text>
+                <text class="ai-lifecycle__label" data-node="strategy" x="485" y="205" text-anchor="start">Strategy</text>
+                <text class="ai-lifecycle__label" data-node="design"   x="485" y="400" text-anchor="start">Design</text>
+                <text class="ai-lifecycle__label" data-node="content"  x="300" y="525" text-anchor="middle">Content</text>
+                <text class="ai-lifecycle__label" data-node="growth"   x="115" y="400" text-anchor="end">Growth</text>
+                <text class="ai-lifecycle__label" data-node="delivery" x="115" y="205" text-anchor="end">Delivery</text>
                 <circle class="ai-lifecycle__center-bg" cx="300" cy="300" r="64"/>
                 <text class="ai-lifecycle__center-h" x="300" y="298" text-anchor="middle">AI</text>
                 <text class="ai-lifecycle__center-sub" x="300" y="322" text-anchor="middle">Speed</text>
@@ -5309,11 +5324,23 @@
     els.forEach(el => io.observe(el));
 })();
 
-// AI at every stage — tab switcher.
+// AI accelerated — tab switcher + lifecycle node sync. Clicking a tab also
+// highlights the matching lifecycle node (node fill, halo stroke, label,
+// and radial connector all flip to the blue accent). Default-active tab
+// matches the default-active node via the initial `.is-active` markup.
 (function () {
     const btns = document.querySelectorAll('.ai-tab-btn');
     const panels = document.querySelectorAll('.ai-tab-panel');
     if (!btns.length || !panels.length) return;
+    const lifecycleEls = document.querySelectorAll('.ai-lifecycle [data-node]');
+    const syncLifecycle = (target) => {
+        lifecycleEls.forEach((el) => {
+            el.classList.toggle('is-active', el.getAttribute('data-node') === target);
+        });
+    };
+    // Initial sync — pick up whichever tab is `.is-active` in the markup.
+    const initial = document.querySelector('.ai-tab-btn.is-active');
+    if (initial) syncLifecycle(initial.getAttribute('data-tab'));
     btns.forEach((btn) => {
         btn.addEventListener('click', () => {
             const target = btn.getAttribute('data-tab');
@@ -5325,6 +5352,7 @@
             panels.forEach((p) => {
                 p.classList.toggle('is-active', p.getAttribute('data-tab') === target);
             });
+            syncLifecycle(target);
         });
         btn.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
