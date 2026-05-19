@@ -3459,6 +3459,31 @@
         text-align: center;
         margin-top: var(--ed-space-4);
     }
+    /* Small monochrome glyph sitting above the eyebrow — line-only, currentColor.
+       Used to give each category a quiet identity mark without dropping into icon-tray
+       territory. 28px square; SVGs are drawn at viewBox 0 0 28 28. */
+    :root[data-theme="editorial"] .sv-cat__glyph {
+        display: block;
+        width: 28px;
+        height: 28px;
+        margin: 0 0 var(--ed-space-3);
+        color: var(--ink);
+    }
+    :root[data-theme="editorial"] .sv-cat__glyph svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    /* Micro headline — the value statement between the section title and body paragraph. */
+    :root[data-theme="editorial"] .sv-cat__micro {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: clamp(18px, 1.4vw, 22px);
+        line-height: 1.25;
+        letter-spacing: -0.012em;
+        color: var(--ink);
+        margin: 0 0 var(--ed-space-3);
+    }
     @media (max-width: 720px) {
         :root[data-theme="editorial"] .sv-cat__inner {
             grid-template-columns: 1fr;
@@ -3513,7 +3538,7 @@
     <div class="ed-hero-new__copy">
         <p class="ed-hero-new__eyebrow">Services</p>
         <h1 class="ed-hero-new__title">Services.</h1>
-        <p class="ed-hero-new__sub">Senior-led product, UX, growth, and AI-native execution support for teams that need to move faster without adding layers.</p>
+        <p class="ed-hero-new__sub">Senior-led product, UX, growth, and AI-assisted execution support for teams that need to move faster without adding layers.</p>
         <div class="ed-hero-new__ctas">
             <a href="#sv-categories" class="ed-btn">See capabilities →</a>
             <a href="/index.html#ed-contact" class="cta-pill">Let's talk →</a>
@@ -3529,9 +3554,18 @@
     <div class="sv-cat">
         <div class="sv-cat__inner">
             <div class="sv-cat__head">
+                <span class="sv-cat__glyph" aria-hidden="true">
+                    <svg viewBox="0 0 28 28">
+                        <rect x="3" y="5" width="22" height="18" rx="1" fill="none" stroke="currentColor" stroke-width="1.25"/>
+                        <line x1="3" y1="10" x2="25" y2="10" stroke="currentColor" stroke-width="1.25"/>
+                        <line x1="7" y1="14" x2="13" y2="14" stroke="currentColor" stroke-width="1.25"/>
+                        <line x1="7" y1="18" x2="11" y2="18" stroke="currentColor" stroke-width="1.25"/>
+                    </svg>
+                </span>
                 <p class="sv-cat__eyebrow">01</p>
                 <h2 class="sv-cat__title">Product &amp; UX</h2>
-                <p class="sv-cat__body">We help teams clarify opportunities, improve digital experiences, and move from strategy to execution faster. Led by senior practitioners, not assigned juniors.</p>
+                <p class="sv-cat__micro">Turn ambiguity into execution.</p>
+                <p class="sv-cat__body">We help teams clarify opportunities, improve digital experiences, and move from strategy to execution faster through senior-led product thinking, UX design, and rapid iteration.</p>
             </div>
             <ul class="sv-cat__caps">
                 <li>UX strategy</li>
@@ -3539,32 +3573,45 @@
                 <li>Research &amp; validation</li>
                 <li>Rapid prototyping</li>
                 <li>Design systems</li>
-                <li>Journey optimization</li>
             </ul>
         </div>
     </div>
     <div class="sv-cat">
         <div class="sv-cat__inner">
             <div class="sv-cat__head">
+                <span class="sv-cat__glyph" aria-hidden="true">
+                    <svg viewBox="0 0 28 28">
+                        <path d="M 5 9 L 11 14 L 5 19" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M 13 9 L 19 14 L 13 19" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
                 <p class="sv-cat__eyebrow">02</p>
-                <h2 class="sv-cat__title">AI-native execution</h2>
-                <p class="sv-cat__body">AI is integrated directly into our workflows to accelerate concepting, production, iteration, and operational efficiency across product, marketing, and content systems.</p>
+                <h2 class="sv-cat__title">AI Speed</h2>
+                <p class="sv-cat__micro">Smaller teams. Bigger output.</p>
+                <p class="sv-cat__body">AI-assisted workflows help lean senior teams move faster, reduce production drag, and deliver higher-quality work without adding operational layers.</p>
             </div>
             <ul class="sv-cat__caps">
-                <li>AI-assisted workflows</li>
-                <li>Content generation</li>
+                <li>AI-assisted content</li>
                 <li>Motion &amp; storytelling</li>
                 <li>Rapid visual exploration</li>
                 <li>AI-enabled prototyping</li>
-                <li>Workflow modernization</li>
+                <li>Creative production acceleration</li>
+                <li>Workflow acceleration</li>
             </ul>
         </div>
     </div>
     <div class="sv-cat">
         <div class="sv-cat__inner">
             <div class="sv-cat__head">
+                <span class="sv-cat__glyph" aria-hidden="true">
+                    <svg viewBox="0 0 28 28">
+                        <path d="M 4 20 L 11 13 L 16 17 L 24 7" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M 19 7 L 24 7 L 24 12" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
                 <p class="sv-cat__eyebrow">03</p>
                 <h2 class="sv-cat__title">Growth &amp; optimization</h2>
+                <p class="sv-cat__micro">Growth that compounds.</p>
                 <p class="sv-cat__body">We help companies improve acquisition, onboarding, engagement, and conversion through iterative experimentation, clearer messaging, and experience optimization.</p>
             </div>
             <ul class="sv-cat__caps">
@@ -3580,8 +3627,15 @@
     <div class="sv-cat">
         <div class="sv-cat__inner">
             <div class="sv-cat__head">
+                <span class="sv-cat__glyph" aria-hidden="true">
+                    <svg viewBox="0 0 28 28">
+                        <rect x="3" y="5" width="22" height="18" rx="1" fill="none" stroke="currentColor" stroke-width="1.25"/>
+                        <rect x="9" y="10" width="10" height="8" rx="0.5" fill="none" stroke="currentColor" stroke-width="1.25"/>
+                    </svg>
+                </span>
                 <p class="sv-cat__eyebrow">04</p>
                 <h2 class="sv-cat__title">Embedded support</h2>
+                <p class="sv-cat__micro">Embedded senior leverage.</p>
                 <p class="sv-cat__body">We work as lean senior partners inside teams through focused sprints or ongoing execution partnerships.</p>
             </div>
             <ul class="sv-cat__caps">
