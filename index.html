@@ -2576,6 +2576,46 @@
         margin-right: auto;
     }
 
+    /* === CREDIBILITY STRIP — lightweight inline pills bridging the logo row
+       and the moments section. Two centered rows: industries (row 1, primary)
+       and company-scale (row 2, secondary). No headers, no eyebrow, no
+       descriptions — just pills. Restraint is the point. === */
+    :root[data-theme="editorial"] .ed-credibility {
+        background: var(--paper-2);
+        padding: clamp(64px, 8vw, 96px) var(--gutter);
+    }
+    :root[data-theme="editorial"] .ed-credibility__inner {
+        max-width: var(--ed-max);
+        margin: 0 auto;
+        text-align: center;
+    }
+    :root[data-theme="editorial"] .ed-credibility__row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px 10px;
+    }
+    :root[data-theme="editorial"] .ed-credibility__row + .ed-credibility__row {
+        margin-top: var(--ed-space-3);
+    }
+    :root[data-theme="editorial"] .ed-credibility__pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 14px;
+        border: 1px solid var(--rule);
+        border-radius: 999px;
+        font-family: var(--body);
+        font-size: 14px;
+        line-height: 1;
+        color: var(--ink);
+        letter-spacing: -0.005em;
+    }
+    :root[data-theme="editorial"] .ed-credibility__row--secondary .ed-credibility__pill {
+        padding: 6px 12px;
+        font-size: 12px;
+        color: var(--mid);
+    }
+
     /* === MOMENTS — three moments companies call us === */
     :root[data-theme="editorial"] .ed-moments {
         background: var(--paper-2);
@@ -3847,6 +3887,30 @@
             <img src="assets/logos/lace.png" alt="" class="ed-logos__mark" aria-hidden="true">
             <img src="assets/logos/symantec.svg" alt="" class="ed-logos__mark" aria-hidden="true">
             <img src="assets/logos/veritas.png" alt="" class="ed-logos__mark" aria-hidden="true">
+        </div>
+    </div>
+</section>
+
+
+<!-- CREDIBILITY STRIP — industries + company-scale tags -->
+<section class="ed-credibility" aria-label="Industry and company-scale experience">
+    <div class="ed-credibility__inner">
+        <div class="ed-credibility__row">
+            <span class="ed-credibility__pill">Healthcare</span>
+            <span class="ed-credibility__pill">Financial Services</span>
+            <span class="ed-credibility__pill">Cybersecurity</span>
+            <span class="ed-credibility__pill">Entertainment</span>
+            <span class="ed-credibility__pill">Retail &amp; E-commerce</span>
+            <span class="ed-credibility__pill">SaaS</span>
+            <span class="ed-credibility__pill">Developer Tools</span>
+            <span class="ed-credibility__pill">Marketing Technology</span>
+            <span class="ed-credibility__pill">Artificial Intelligence</span>
+            <span class="ed-credibility__pill">Enterprise Software</span>
+        </div>
+        <div class="ed-credibility__row ed-credibility__row--secondary">
+            <span class="ed-credibility__pill">Startups</span>
+            <span class="ed-credibility__pill">Scale-ups</span>
+            <span class="ed-credibility__pill">Enterprise</span>
         </div>
     </div>
 </section>
