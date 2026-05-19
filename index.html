@@ -2243,13 +2243,13 @@
     /* === HERO === */
     :root[data-theme="editorial"] .ed-hero-new {
         padding-top: clamp(120px, 16vh, 200px);
-        padding-bottom: 0;
+        padding-bottom: clamp(96px, 14vh, 176px);
         background: linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
         text-align: center;
     }
     :root[data-theme="editorial"] .ed-hero-new__copy {
         max-width: 880px;
-        margin: 0 auto var(--ed-space-5);
+        margin: 0 auto;
         padding: 0 var(--gutter);
     }
     :root[data-theme="editorial"] .ed-hero-new__eyebrow {
@@ -2306,7 +2306,7 @@
 
     /* === PILLARS (3 reasons) === */
     :root[data-theme="editorial"] .ed-pillars {
-        background: var(--paper-2);
+        background: var(--paper);
     }
     :root[data-theme="editorial"] .ed-pillars__head {
         max-width: 760px;
@@ -2477,6 +2477,103 @@
         }
         :root[data-theme="editorial"] .ed-work__media img {
             object-position: center;
+        }
+    }
+
+    /* Featured variant — larger heading + more breathing room.
+       Used for the "Why PromptUX" pillars on the home page so the
+       three principles read as a major beat, not a footnote. */
+    :root[data-theme="editorial"] .ed-pillars--featured {
+        padding-top: clamp(112px, 14vw, 176px);
+        padding-bottom: clamp(112px, 14vw, 176px);
+    }
+    :root[data-theme="editorial"] .ed-pillars--featured .ed-pillars__grid {
+        gap: var(--ed-space-5);
+    }
+    :root[data-theme="editorial"] .ed-pillars--featured .ed-pillar {
+        border-top: 0;
+        padding-top: 0;
+        text-align: center;
+    }
+    :root[data-theme="editorial"] .ed-pillars--featured .ed-pillar h3 {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: clamp(24px, 2vw, 32px);
+        line-height: 1.15;
+        letter-spacing: -0.012em;
+        color: var(--ink);
+        margin-bottom: var(--ed-space-3);
+    }
+    :root[data-theme="editorial"] .ed-pillars--featured .ed-pillar p {
+        font-family: var(--body);
+        font-weight: 400;
+        font-size: clamp(16px, 1.2vw, 18px);
+        line-height: 1.55;
+        color: var(--mid);
+        max-width: 32ch;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* === MOMENTS — three moments companies call us === */
+    :root[data-theme="editorial"] .ed-moments {
+        background: var(--paper-2);
+        padding: clamp(112px, 14vw, 176px) var(--gutter);
+    }
+    :root[data-theme="editorial"] .ed-moments__head {
+        max-width: 760px;
+        margin: 0 auto var(--ed-space-5);
+        text-align: center;
+    }
+    :root[data-theme="editorial"] .ed-moments__title {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: clamp(40px, 5.5vw, 72px);
+        line-height: 1.07;
+        letter-spacing: -0.022em;
+        color: var(--ink);
+        margin: 0;
+    }
+    :root[data-theme="editorial"] .ed-moments__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--ed-space-5);
+        max-width: var(--ed-max);
+        margin: 0 auto;
+    }
+    :root[data-theme="editorial"] .ed-moment {
+        text-align: center;
+    }
+    :root[data-theme="editorial"] .ed-moment__num {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 0.06em;
+        color: var(--mid);
+        margin: 0 0 var(--ed-space-2);
+    }
+    :root[data-theme="editorial"] .ed-moment h3 {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: clamp(24px, 2vw, 32px);
+        line-height: 1.15;
+        letter-spacing: -0.012em;
+        color: var(--ink);
+        margin: 0 0 var(--ed-space-3);
+    }
+    :root[data-theme="editorial"] .ed-moment p {
+        font-family: var(--body);
+        font-weight: 400;
+        font-size: clamp(16px, 1.2vw, 18px);
+        line-height: 1.55;
+        color: var(--mid);
+        margin: 0 auto;
+        max-width: 36ch;
+    }
+    @media (max-width: 720px) {
+        :root[data-theme="editorial"] .ed-moments__grid {
+            grid-template-columns: 1fr;
+            gap: var(--ed-space-4);
         }
     }
 
@@ -3138,7 +3235,7 @@
        on hover. Static flex row at mobile widths and on reduced-motion.
     ====================================================================== */
     :root[data-theme="editorial"] .ed-logos {
-        background: var(--paper);
+        background: var(--paper-2);
         padding: var(--ed-space-5) 0;
         border-bottom: 1px solid var(--rule);
     }
@@ -3227,8 +3324,9 @@
        steady during animation.
     ====================================================================== */
     :root[data-theme="editorial"] .ed-stats {
-        background: var(--paper-2);
+        background: var(--paper);
         padding: var(--ed-space-5) var(--gutter);
+        border-top: 1px solid var(--rule);
         border-bottom: 1px solid var(--rule);
     }
     :root[data-theme="editorial"] .ed-stats__row {
@@ -3260,6 +3358,14 @@
         color: var(--mid);
         max-width: 22ch;
         margin: 0 auto;
+    }
+    :root[data-theme="editorial"] .ed-stats__attr {
+        font-weight: 600;
+        color: var(--ink);
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        font-size: 11px;
+        margin-right: 6px;
     }
     @media (max-width: 768px) {
         :root[data-theme="editorial"] .ed-stats__row { grid-template-columns: repeat(2, 1fr); }
@@ -3647,19 +3753,16 @@
 <section class="ed-hero-new" aria-label="PromptUX">
     <div class="ed-hero-new__copy">
         <p class="ed-hero-new__eyebrow">Strategic Design Consultancy</p>
-        <h1 class="ed-hero-new__title"><span class="line">Senior thinking.</span> <span class="line">AI speed.</span> <span class="line">No layers.</span></h1>
+        <h1 class="ed-hero-new__title"><span class="line">Expert design.</span> <span class="line">AI speed.</span> <span class="line">No layers.</span></h1>
         <p class="ed-hero-new__sub">Strategic design that moves at the speed of your market.</p>
         <div class="ed-hero-new__ctas">
-            <a href="#ed-contact" class="ed-btn">Get in touch</a>
+            <a href="#ed-contact" class="ed-btn">Let's talk →</a>
             <a href="#ed-work" class="cta-pill">See the work →</a>
         </div>
     </div>
-    <figure class="ed-hero-new__device">
-        <img src="assets/devices/iphone-lace.png" alt="Mobile product mockup">
-    </figure>
 </section>
 
-<!-- LOGO BANNER — brands the founders have shaped -->
+<!-- LOGO BANNER — brands the founders have shaped; sits under the hero as social proof. -->
 <section class="ed-logos" aria-label="Brands we've shaped">
     <p class="ed-eyebrow ed-logos__label">Brands we've shaped</p>
     <div class="ed-logos__viewport">
@@ -3680,6 +3783,53 @@
             <img src="assets/logos/lace.png" alt="" class="ed-logos__mark" aria-hidden="true">
             <img src="assets/logos/symantec.svg" alt="" class="ed-logos__mark" aria-hidden="true">
             <img src="assets/logos/veritas.png" alt="" class="ed-logos__mark" aria-hidden="true">
+        </div>
+    </div>
+</section>
+
+
+<!-- WHY PROMPTUX — three pillars, the explanation beat. -->
+<section class="ed-pillars ed-pillars--featured ed-block" aria-label="Why PromptUX">
+    <div class="ed-block__inner">
+        <div class="ed-pillars__grid">
+            <div class="ed-pillar">
+                <h3>Expert Design</h3>
+                <p>30 years of judgment across Disney, Schwab, GitLab, and SharpSpring. You're not our learning curve.</p>
+            </div>
+            <div class="ed-pillar">
+                <h3>AI Speed</h3>
+                <p>AI is built into how we work. More directions explored, better decisions made, faster.</p>
+            </div>
+            <div class="ed-pillar">
+                <h3>No Layers</h3>
+                <p>You work directly with the three of us. No account managers, no translation loss, no drag.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- THREE MOMENTS — when companies call us -->
+<section class="ed-moments" aria-label="When companies call us">
+    <div class="ed-moments__head">
+        <p class="ed-eyebrow">When companies call us</p>
+        <h2 class="ed-moments__title">Three moments companies call us.</h2>
+    </div>
+    <div class="ed-moments__grid">
+        <div class="ed-moment">
+            <p class="ed-moment__num">01</p>
+            <h3>Make it real</h3>
+            <p>You have something important and it needs to work. Whether it is a new product, a major launch, or a critical deal, the work has to hold up in front of customers, investors, and the market, and we make sure it does.</p>
+        </div>
+        <div class="ed-moment">
+            <p class="ed-moment__num">02</p>
+            <h3>Make it better</h3>
+            <p>The product is live and gaining traction, but there is more to unlock. We identify and improve what matters so performance catches up with the opportunity.</p>
+        </div>
+        <div class="ed-moment">
+            <p class="ed-moment__num">03</p>
+            <h3>Make it scale</h3>
+            <p>What worked early on is starting to break down. The product is growing but the team is stretched, quality drops, speed slows, and execution starts to drift, so we bring structure, clarity, and execution so the experience scales cleanly.</p>
         </div>
     </div>
 </section>
@@ -3740,19 +3890,19 @@
 
 
 <!-- STATS -->
-<section class="ed-stats" aria-label="Numbers from PromptUX engagements">
+<section class="ed-stats" aria-label="Selected outcomes">
     <div class="ed-stats__row">
         <div class="ed-stats__cell">
             <div class="ed-stats__num" data-value="30" data-suffix="+" data-decimals="0">30+</div>
-            <div class="ed-stats__label">Years of design leadership</div>
+            <div class="ed-stats__label"><span class="ed-stats__attr">Across the partners</span>Years of design leadership</div>
         </div>
         <div class="ed-stats__cell">
             <div class="ed-stats__num" data-value="74.8" data-suffix="%" data-decimals="1">74.8%</div>
-            <div class="ed-stats__label">Design system adoption — single engagement</div>
+            <div class="ed-stats__label"><span class="ed-stats__attr">Pickers</span>Design system adoption</div>
         </div>
         <div class="ed-stats__cell">
             <div class="ed-stats__num" data-value="28" data-suffix="%" data-decimals="0">28%</div>
-            <div class="ed-stats__label">Reduction in task completion time</div>
+            <div class="ed-stats__label"><span class="ed-stats__attr">Pickers</span>Faster delivery</div>
         </div>
     </div>
 </section>
@@ -5163,23 +5313,17 @@ document.querySelectorAll('.ed-work__cta, .ed-work-band__cta').forEach(btn => {
     });
 });
 
-// Editorial theme: nav transparent over hero, white once scrolled past it.
+// Editorial theme: nav transparent at the very top, white as soon as scrolling starts.
 (function () {
     if (document.documentElement.getAttribute('data-theme') !== 'editorial') return;
     const nav = document.querySelector('nav');
-    const hero = document.querySelector('.ed-hero-new');
     if (!nav) return;
-    const threshold = () => {
-        const h = hero ? hero.getBoundingClientRect().height : 0;
-        return Math.max(8, h - 80);
-    };
     const update = () => {
         const y = window.scrollY || document.documentElement.scrollTop || 0;
-        nav.classList.toggle('is-scrolled', y > threshold());
+        nav.classList.toggle('is-scrolled', y > 4);
     };
     update();
     window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
 })();
 
 
