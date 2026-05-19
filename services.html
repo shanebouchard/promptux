@@ -1856,7 +1856,7 @@
     }
     :root[data-theme="editorial"] .nav-logo {
         font-family: var(--display);
-        font-weight: 600;
+        font-weight: 700;
         font-size: 19px;
         letter-spacing: -0.005em;
         color: var(--ink);
@@ -3501,13 +3501,15 @@
         position: relative;
     }
     :root[data-theme="editorial"] .sv-cat__caps li::before {
-        content: "";
+        content: "✓";
         position: absolute;
         left: 0;
-        top: 22px;
-        width: 10px;
-        height: 1px;
-        background: var(--ink);
+        top: 14px;
+        font-family: var(--display);
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--lime);
+        line-height: 1.55;
     }
     :root[data-theme="editorial"] .sv-cta-wrap {
         text-align: center;
@@ -3597,7 +3599,7 @@
 ============================================= -->
 <section class="ed-hero-new" aria-label="Services">
     <div class="ed-hero-new__copy">
-        <p class="ed-hero-new__eyebrow">Capabilities</p>
+        <p class="ed-hero-new__eyebrow">Service</p>
         <h1 class="ed-hero-new__title"><span class="line">Build the right thing,</span> <span class="line">faster.</span></h1>
         <p class="ed-hero-new__sub">Expert product, design, and growth support for teams that need clearer direction, faster execution, and better outcomes.</p>
         <div class="ed-hero-new__ctas">
@@ -3888,8 +3890,5 @@
 })();
 </script>
 
-<!-- impeccable-live-start -->
-<script src="http://localhost:8400/live.js"></script>
-<!-- impeccable-live-end -->
 </body>
 </html>
