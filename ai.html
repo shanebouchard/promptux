@@ -4192,83 +4192,54 @@
     }
 
     /* =============================================
-       7. WHAT CHANGES — From → To cards
+       7. CUT THE DRAG — two typography-led shift cards (from → to).
+       No SVG visuals; type and spacing carry the section. Cards are large
+       editorial blocks with a quiet eyebrow ("From X") and a bold display
+       statement ("To Y") plus one tight supporting line.
     ============================================= */
     :root[data-theme="editorial"] .ai-shifts__grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 18px;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(20px, 2.4vw, 32px);
         max-width: var(--ed-max);
         margin: 0 auto;
     }
     :root[data-theme="editorial"] .ai-shift {
-        position: relative;
         background: var(--paper);
-        border: 1px solid var(--rule);
         border-radius: var(--ai-radius);
-        padding: clamp(28px, 3vw, 40px);
+        padding: clamp(40px, 5vw, 72px) clamp(32px, 4vw, 56px);
         display: flex;
         flex-direction: column;
-        gap: 24px;
-        overflow: hidden;
-        transition: transform 250ms ease, border-color 250ms ease, box-shadow 250ms ease;
     }
-    :root[data-theme="editorial"] .ai-shift:hover,
-    :root[data-theme="editorial"] .ai-shift:focus-within {
-        transform: translateY(-3px);
-        border-color: rgba(12,12,10,0.18);
-        box-shadow: var(--ai-shadow);
-    }
-    :root[data-theme="editorial"] .ai-shift__visual {
-        position: relative;
-        aspect-ratio: 16 / 9;
-        border-radius: var(--ai-radius-sm);
-        background: linear-gradient(135deg, var(--paper-2) 0%, var(--paper-3) 100%);
-        overflow: hidden;
-    }
-    :root[data-theme="editorial"] .ai-shift__visual svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-    :root[data-theme="editorial"] .ai-shift__from-to {
+    :root[data-theme="editorial"] .ai-shift__from {
         font-family: var(--body);
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 600;
-        letter-spacing: 0.14em;
+        letter-spacing: 0.16em;
         text-transform: uppercase;
         color: var(--mid);
-        margin: 0;
-        display: flex;
-        align-items: center;
-        gap: 10px;
+        margin: 0 0 var(--ed-space-2);
     }
-    :root[data-theme="editorial"] .ai-shift__from-to span { color: var(--ink); }
-    :root[data-theme="editorial"] .ai-shift__title {
+    :root[data-theme="editorial"] .ai-shift__to {
         font-family: var(--display);
         font-weight: 700;
-        font-size: clamp(22px, 2vw, 28px);
-        line-height: 1.15;
-        letter-spacing: -0.015em;
+        font-size: clamp(32px, 3.8vw, 48px);
+        line-height: 1.06;
+        letter-spacing: -0.022em;
         color: var(--ink);
-        margin: 0;
+        margin: 0 0 var(--ed-space-3);
     }
     :root[data-theme="editorial"] .ai-shift__body {
         font-family: var(--body);
-        font-size: 14px;
-        line-height: 1.55;
+        font-size: 15px;
+        line-height: 1.5;
         color: var(--mid);
         margin: 0;
+        max-width: 38ch;
     }
-    :root[data-theme="editorial"] .ai-shift__reveal {
-        font-family: var(--body);
-        font-size: 13px;
-        font-weight: 500;
-        color: var(--lime);
-        margin: 0;
-        opacity: 0;
-        transform: translateY(4px);
-        transition: opacity 250ms ease, transform 250ms ease;
+    @media (max-width: 720px) {
+        :root[data-theme="editorial"] .ai-shifts__grid { grid-template-columns: 1fr; }
     }
-    :root[data-theme="editorial"] .ai-shift:hover .ai-shift__reveal,
-    :root[data-theme="editorial"] .ai-shift:focus-within .ai-shift__reveal { opacity: 1; transform: none; }
-    @media (max-width: 980px) { :root[data-theme="editorial"] .ai-shifts__grid { grid-template-columns: 1fr; } }
 
     /* =============================================
        8. FINAL CTA — large curved dark panel
@@ -4544,53 +4515,56 @@
     }
 
     /* =============================================
-       WHY IT MATTERS — two-column editorial pair: "Smaller teams." +
-       "Bigger output." with a thin connective line between, then a
-       shared lede beneath. Quiet rhythm, no card chrome.
+       AI APPLIED — six-pillar value grid (3 cols desktop, 2 cols tablet,
+       1 col mobile). No card chrome, thin top-rule per pillar to anchor
+       the column. Replaces the previous "Smaller teams. / Bigger output."
+       pair section with a denser strategic-value beat.
     ============================================= */
-    :root[data-theme="editorial"] .ai-why-pair {
-        display: grid;
-        grid-template-columns: 1fr auto 1fr;
-        align-items: center;
-        gap: clamp(24px, 4vw, 64px);
-        max-width: 960px;
-        margin: 0 auto;
-    }
-    :root[data-theme="editorial"] .ai-why-pair__col {
+    :root[data-theme="editorial"] .ai-applied__head {
+        max-width: 760px;
+        margin: 0 auto clamp(56px, 7vw, 88px);
         text-align: center;
     }
-    :root[data-theme="editorial"] .ai-why-pair__h {
+    :root[data-theme="editorial"] .ai-applied__intro {
+        font-family: var(--body);
+        font-size: clamp(16px, 1.3vw, 19px);
+        line-height: 1.55;
+        color: var(--mid);
+        margin: 0 auto;
+        max-width: 64ch;
+    }
+    :root[data-theme="editorial"] .ai-applied__grid {
+        max-width: var(--ed-max);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: clamp(40px, 5vw, 64px) clamp(32px, 4vw, 56px);
+    }
+    :root[data-theme="editorial"] .ai-applied__card {
+        padding-top: 20px;
+        border-top: 1px solid var(--rule);
+    }
+    :root[data-theme="editorial"] .ai-applied__name {
         font-family: var(--display);
         font-weight: 700;
-        font-size: clamp(40px, 6vw, 72px);
-        line-height: 1.05;
-        letter-spacing: -0.025em;
+        font-size: clamp(20px, 1.7vw, 24px);
+        line-height: 1.18;
+        letter-spacing: -0.014em;
         color: var(--ink);
+        margin: 0 0 var(--ed-space-2);
+    }
+    :root[data-theme="editorial"] .ai-applied__desc {
+        font-family: var(--body);
+        font-size: 15px;
+        line-height: 1.55;
+        color: var(--mid);
         margin: 0;
     }
-    :root[data-theme="editorial"] .ai-why-pair__connector {
-        width: 1px;
-        height: clamp(40px, 6vw, 64px);
-        background: var(--rule);
+    @media (max-width: 920px) {
+        :root[data-theme="editorial"] .ai-applied__grid { grid-template-columns: repeat(2, 1fr); }
     }
-    :root[data-theme="editorial"] .ai-why-pair__lede {
-        max-width: 60ch;
-        margin: clamp(40px, 6vw, 64px) auto 0;
-        text-align: center;
-        font-family: var(--body);
-        font-size: clamp(17px, 1.4vw, 20px);
-        line-height: 1.5;
-        color: var(--mid);
-    }
-    @media (max-width: 720px) {
-        :root[data-theme="editorial"] .ai-why-pair {
-            grid-template-columns: 1fr;
-        }
-        :root[data-theme="editorial"] .ai-why-pair__connector {
-            width: clamp(32px, 8vw, 56px);
-            height: 1px;
-            justify-self: center;
-        }
+    @media (max-width: 600px) {
+        :root[data-theme="editorial"] .ai-applied__grid { grid-template-columns: 1fr; }
     }
 
     /* =============================================
@@ -4877,10 +4851,10 @@
 <section class="ai-hero" aria-label="AI Speed">
     <div class="ai-hero__inner">
         <h1 class="ai-hero__title">
-            <span class="ai-hero__line">AI Speed.</span>
-            <span class="ai-hero__line">Get to the right thing faster.</span>
+            <span class="ai-hero__line">Experts lead.</span>
+            <span class="ai-hero__line">AI accelerates.</span>
         </h1>
-        <p class="ai-hero__sub">AI-assisted execution helps expert teams reduce drag, iterate faster, and deliver stronger work without adding layers.</p>
+        <p class="ai-hero__sub">Better concepts. Faster iteration. Stronger execution. Less drag between idea and outcome.</p>
         <div class="ai-hero__ctas">
             <a href="/#ed-contact" class="ai-btn ai-btn--primary">Book a call →</a>
             <a href="#ai-os" class="ai-btn ai-btn--ghost">See how it works</a>
@@ -4891,29 +4865,119 @@
 <!-- =============================================
      2. WHY IT MATTERS — smaller teams, bigger output
 ============================================= -->
-<section class="ai-section" aria-label="Why it matters">
+<section class="ai-section" aria-label="AI, applied with intent">
     <div class="ai-section__inner">
-        <div class="ai-section__head ai-reveal">
-            <p class="ai-eyebrow">Why it matters</p>
+        <div class="ai-applied__head ai-reveal">
+            <p class="ai-eyebrow">AI, applied with intent</p>
+            <p class="ai-applied__intro">AI is changing how products, brands, and experiences are created. PromptUX combines senior product, UX, and growth expertise with AI-assisted execution to help teams move faster, explore more directions, and reduce production drag without losing quality or control.</p>
         </div>
-        <div class="ai-why-pair ai-reveal">
-            <div class="ai-why-pair__col">
-                <p class="ai-why-pair__h">Smaller teams.</p>
+        <div class="ai-applied__grid ai-reveal">
+            <div class="ai-applied__card">
+                <h3 class="ai-applied__name">Expert-led. AI-accelerated.</h3>
+                <p class="ai-applied__desc">Senior experts guide the work. AI helps compress production, iteration, and execution cycles.</p>
             </div>
-            <div class="ai-why-pair__connector" aria-hidden="true"></div>
-            <div class="ai-why-pair__col">
-                <p class="ai-why-pair__h">Bigger output.</p>
+            <div class="ai-applied__card">
+                <h3 class="ai-applied__name">Faster outcomes</h3>
+                <p class="ai-applied__desc">Research, concepts, prototypes, content, and production move at the pace modern teams need.</p>
+            </div>
+            <div class="ai-applied__card">
+                <h3 class="ai-applied__name">More shots on goal</h3>
+                <p class="ai-applied__desc">Explore more directions, test ideas earlier, and generate stronger creative and product outcomes.</p>
+            </div>
+            <div class="ai-applied__card">
+                <h3 class="ai-applied__name">Human oversight</h3>
+                <p class="ai-applied__desc">You choose where AI accelerates the work and where human craft, review, and judgment stay hands-on.</p>
+            </div>
+            <div class="ai-applied__card">
+                <h3 class="ai-applied__name">New creative capabilities</h3>
+                <p class="ai-applied__desc">AI unlocks new ways to prototype, animate, visualize, localize, and scale ideas.</p>
+            </div>
+            <div class="ai-applied__card">
+                <h3 class="ai-applied__name">Better efficiency</h3>
+                <p class="ai-applied__desc">Reduce operational drag, repetitive production work, and unnecessary overhead.</p>
             </div>
         </div>
-        <p class="ai-why-pair__lede ai-reveal">AI compresses the work that slows teams down, so smaller expert teams can move faster, test more directions, and produce higher-quality work without adding operational layers.</p>
     </div>
 </section>
 
 <!-- =============================================
-     3. AI ACCELERATED — merged conceptual anchor: lifecycle diagram +
+     3. MORE SHOTS ON GOAL — visual capability grid as inspiration / proof.
+     Sits above the AI Accelerated lifecycle so prospects see tangible
+     creative outputs before the process deep-dive.
+============================================= -->
+<section class="ai-section ai-section--paper-2" aria-label="Visual capability examples">
+    <div class="ai-section__inner">
+        <div class="ai-section__head ai-reveal">
+            <p class="ai-eyebrow">In action</p>
+            <h2 class="ai-h2">More shots on goal.</h2>
+            <p class="ai-lede">AI expands what teams can produce, test, visualize, prototype, animate, and refine in the same amount of time.</p>
+        </div>
+        <div class="ai-cap-grid">
+            <article class="ai-cap-card ai-reveal">
+                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-campaign/800/600?grayscale&amp;blur=2" alt="" loading="lazy">
+                <div class="ai-cap-card-content">
+                    <p class="ai-cap-card-tag">No stock. No shoot. No delay.</p>
+                    <h3 class="ai-cap-card-title">Campaign concepts in hours, not weeks</h3>
+                    <p class="ai-cap-card-body">Campaign visuals, lifestyle imagery, product mockups, generated on brief, on brand, ready to ship.</p>
+                </div>
+            </article>
+            <article class="ai-cap-card ai-reveal">
+                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-video/800/600?grayscale&amp;blur=2" alt="" loading="lazy">
+                <div class="ai-cap-card-content">
+                    <p class="ai-cap-card-tag">Runway · Sora</p>
+                    <h3 class="ai-cap-card-title">Image-to-video storytelling</h3>
+                    <p class="ai-cap-card-body">Static assets brought to life. No crew, no studio.</p>
+                </div>
+            </article>
+            <article class="ai-cap-card ai-reveal">
+                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-motion/800/600?grayscale&amp;blur=2" alt="" loading="lazy">
+                <div class="ai-cap-card-content">
+                    <p class="ai-cap-card-tag">Web &amp; product</p>
+                    <h3 class="ai-cap-card-title">Product storytelling with motion built in</h3>
+                    <p class="ai-cap-card-body">Micro-interactions and animated sequences, without a motion team.</p>
+                </div>
+            </article>
+            <article class="ai-cap-card ai-reveal">
+                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-avatars/800/600?grayscale&amp;blur=2" alt="" loading="lazy">
+                <div class="ai-cap-card-content">
+                    <p class="ai-cap-card-tag">ElevenLabs · HeyGen</p>
+                    <h3 class="ai-cap-card-title">Content that scales across markets</h3>
+                    <p class="ai-cap-card-body">Digital personas and AI-generated narration for demos, video, onboarding, and localized content at scale.</p>
+                </div>
+            </article>
+            <article class="ai-cap-card ai-reveal">
+                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-brand/800/600?grayscale&amp;blur=2" alt="" loading="lazy">
+                <div class="ai-cap-card-content">
+                    <p class="ai-cap-card-tag">On brand. Always.</p>
+                    <h3 class="ai-cap-card-title">Brand imagery at speed</h3>
+                    <p class="ai-cap-card-body">A library of visuals trained to your aesthetic. No usage fees, no style drift.</p>
+                </div>
+            </article>
+            <article class="ai-cap-card ai-reveal">
+                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-ux/800/600?grayscale&amp;blur=2" alt="" loading="lazy">
+                <div class="ai-cap-card-content">
+                    <p class="ai-cap-card-tag">Figma AI · v0</p>
+                    <h3 class="ai-cap-card-title">UX and prototype generation</h3>
+                    <p class="ai-cap-card-body">Screens and flows from a prompt. Testable before anything gets built.</p>
+                </div>
+            </article>
+            <article class="ai-cap-card ai-reveal">
+                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-copy/800/600?grayscale&amp;blur=2" alt="" loading="lazy">
+                <div class="ai-cap-card-content">
+                    <p class="ai-cap-card-tag">Scale without drift</p>
+                    <h3 class="ai-cap-card-title">High-volume content exploration</h3>
+                    <p class="ai-cap-card-body">Messaging variants, UX copy, scripts, generated in volume, edited to standard.</p>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- =============================================
+     4. AI ACCELERATED — merged conceptual anchor: lifecycle diagram +
      six-tab acceleration cards in one cohesive beat.
 ============================================= -->
-<section class="ai-section ai-section--paper-2" id="ai-stages" aria-label="AI accelerated">
+<section class="ai-section" id="ai-stages" aria-label="AI accelerated">
     <div class="ai-section__inner">
         <div class="ai-section__head ai-reveal">
             <p class="ai-eyebrow">Across the cycle</p>
@@ -5083,137 +5147,24 @@
 </section>
 
 <!-- =============================================
-     5. MORE SHOTS ON GOAL — visual capability grid as inspiration / proof
+     6. CUT THE DRAG — two typography-led shifts
 ============================================= -->
-<section class="ai-section" aria-label="Visual capability examples">
-    <div class="ai-section__inner">
-        <div class="ai-section__head ai-reveal">
-            <p class="ai-eyebrow">In action</p>
-            <h2 class="ai-h2">More shots on goal.</h2>
-            <p class="ai-lede">AI opens new ways to accelerate and elevate research, design, content, and delivery. Here are a few examples of what that can look like in practice.</p>
-        </div>
-        <div class="ai-cap-grid">
-            <article class="ai-cap-card ai-reveal">
-                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-campaign/800/600?grayscale" alt="" loading="lazy">
-                <div class="ai-cap-card-content">
-                    <p class="ai-cap-card-tag">No stock. No shoot. No delay.</p>
-                    <h3 class="ai-cap-card-title">Campaign concepts in hours, not weeks</h3>
-                    <p class="ai-cap-card-body">Campaign visuals, lifestyle imagery, product mockups, generated on brief, on brand, ready to ship.</p>
-                </div>
-            </article>
-            <article class="ai-cap-card ai-reveal">
-                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-video/800/600?grayscale" alt="" loading="lazy">
-                <div class="ai-cap-card-content">
-                    <p class="ai-cap-card-tag">Runway · Sora</p>
-                    <h3 class="ai-cap-card-title">Image-to-video storytelling</h3>
-                    <p class="ai-cap-card-body">Static assets brought to life. No crew, no studio.</p>
-                </div>
-            </article>
-            <article class="ai-cap-card ai-reveal">
-                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-motion/800/600?grayscale" alt="" loading="lazy">
-                <div class="ai-cap-card-content">
-                    <p class="ai-cap-card-tag">Web &amp; product</p>
-                    <h3 class="ai-cap-card-title">Product storytelling with motion built in</h3>
-                    <p class="ai-cap-card-body">Micro-interactions and animated sequences, without a motion team.</p>
-                </div>
-            </article>
-            <article class="ai-cap-card ai-reveal">
-                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-avatars/800/600?grayscale" alt="" loading="lazy">
-                <div class="ai-cap-card-content">
-                    <p class="ai-cap-card-tag">ElevenLabs · HeyGen</p>
-                    <h3 class="ai-cap-card-title">Content that scales across markets</h3>
-                    <p class="ai-cap-card-body">Digital personas and AI-generated narration for demos, video, onboarding, and localized content at scale.</p>
-                </div>
-            </article>
-            <article class="ai-cap-card ai-reveal">
-                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-brand/800/600?grayscale" alt="" loading="lazy">
-                <div class="ai-cap-card-content">
-                    <p class="ai-cap-card-tag">On brand. Always.</p>
-                    <h3 class="ai-cap-card-title">Brand imagery at speed</h3>
-                    <p class="ai-cap-card-body">A library of visuals trained to your aesthetic. No usage fees, no style drift.</p>
-                </div>
-            </article>
-            <article class="ai-cap-card ai-reveal">
-                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-ux/800/600?grayscale" alt="" loading="lazy">
-                <div class="ai-cap-card-content">
-                    <p class="ai-cap-card-tag">Figma AI · v0</p>
-                    <h3 class="ai-cap-card-title">UX and prototype generation</h3>
-                    <p class="ai-cap-card-body">Screens and flows from a prompt. Testable before anything gets built.</p>
-                </div>
-            </article>
-            <article class="ai-cap-card ai-reveal">
-                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-copy/800/600?grayscale" alt="" loading="lazy">
-                <div class="ai-cap-card-content">
-                    <p class="ai-cap-card-tag">Scale without drift</p>
-                    <h3 class="ai-cap-card-title">High-volume content exploration</h3>
-                    <p class="ai-cap-card-body">Messaging variants, UX copy, scripts, generated in volume, edited to standard.</p>
-                </div>
-            </article>
-        </div>
-    </div>
-</section>
-
-<!-- =============================================
-     6. CUT THE DRAG — three operational shifts
-============================================= -->
-<section class="ai-section" aria-label="The operational shift">
+<section class="ai-section ai-section--paper-2" aria-label="The operational shift">
     <div class="ai-section__inner">
         <div class="ai-section__head ai-reveal">
             <p class="ai-eyebrow">The shift</p>
             <h2 class="ai-h2">Cut the drag.</h2>
         </div>
         <div class="ai-shifts__grid">
-            <article class="ai-shift ai-reveal" tabindex="0">
-                <div class="ai-shift__visual" aria-hidden="true">
-                    <svg viewBox="0 0 320 180" preserveAspectRatio="none">
-                        <rect x="30" y="78" width="46" height="44" rx="4" fill="rgba(12,12,10,0.12)"/>
-                        <rect x="100" y="72" width="46" height="50" rx="4" fill="rgba(12,12,10,0.22)"/>
-                        <rect x="170" y="66" width="46" height="56" rx="4" fill="rgba(0,113,227,0.55)"/>
-                        <rect x="240" y="58" width="46" height="64" rx="4" fill="#0071E3"/>
-                        <path d="M 79 100 L 96 100" stroke="rgba(12,12,10,0.35)" stroke-width="1.25" stroke-linecap="round"/>
-                        <path d="M 149 97 L 166 97" stroke="rgba(12,12,10,0.35)" stroke-width="1.25" stroke-linecap="round"/>
-                        <path d="M 219 94 L 236 94" stroke="rgba(12,12,10,0.35)" stroke-width="1.25" stroke-linecap="round"/>
-                    </svg>
-                </div>
-                <p class="ai-shift__from-to"><span>Quarterly cycles</span> → <span>Weekly outcomes</span></p>
-                <h3 class="ai-shift__title">From quarterly cycles to weekly outcomes.</h3>
-                <p class="ai-shift__body">AI compresses what used to take weeks into days. Decisions get tested faster, on real interaction, not opinion.</p>
-                <p class="ai-shift__reveal">The cycle that ends in a deck ends in a guess.</p>
+            <article class="ai-shift ai-reveal">
+                <p class="ai-shift__from">From relay races</p>
+                <p class="ai-shift__to">To focused pods.</p>
+                <p class="ai-shift__body">Fewer handoffs, less translation loss. The people defining the work are the people doing it.</p>
             </article>
-            <article class="ai-shift ai-reveal" tabindex="0">
-                <div class="ai-shift__visual" aria-hidden="true">
-                    <svg viewBox="0 0 320 180" preserveAspectRatio="none">
-                        <rect x="30" y="60" width="50" height="60" rx="4" fill="rgba(12,12,10,0.12)"/>
-                        <rect x="100" y="60" width="50" height="60" rx="4" fill="rgba(12,12,10,0.12)"/>
-                        <rect x="170" y="60" width="50" height="60" rx="4" fill="rgba(12,12,10,0.12)"/>
-                        <rect x="240" y="60" width="50" height="60" rx="4" fill="rgba(12,12,10,0.12)"/>
-                        <line x1="80" y1="90" x2="100" y2="90" stroke="rgba(12,12,10,0.25)" stroke-width="1"/>
-                        <line x1="150" y1="90" x2="170" y2="90" stroke="rgba(12,12,10,0.25)" stroke-width="1"/>
-                        <line x1="220" y1="90" x2="240" y2="90" stroke="rgba(12,12,10,0.25)" stroke-width="1"/>
-                        <rect x="125" y="40" width="70" height="100" rx="6" fill="#0071E3" fill-opacity="0.92"/>
-                        <text x="160" y="95" text-anchor="middle" fill="#fff" font-family="-apple-system, system-ui" font-size="11" font-weight="600">Focused pod</text>
-                    </svg>
-                </div>
-                <p class="ai-shift__from-to"><span>Handoff-heavy</span> → <span>Expert-led</span></p>
-                <h3 class="ai-shift__title">From relay races to focused pods.</h3>
-                <p class="ai-shift__body">The people defining the work are the people doing it. Fewer translations, less drift, faster decisions.</p>
-                <p class="ai-shift__reveal">What gets decided is what gets shipped, without the layers in between.</p>
-            </article>
-            <article class="ai-shift ai-reveal" tabindex="0">
-                <div class="ai-shift__visual" aria-hidden="true">
-                    <svg viewBox="0 0 320 180" preserveAspectRatio="none">
-                        <line x1="30" y1="65" x2="70" y2="65" stroke="rgba(12,12,10,0.35)" stroke-width="2" stroke-linecap="round"/>
-                        <line x1="85" y1="65" x2="120" y2="65" stroke="rgba(12,12,10,0.35)" stroke-width="2" stroke-linecap="round"/>
-                        <line x1="135" y1="65" x2="170" y2="65" stroke="rgba(12,12,10,0.35)" stroke-width="2" stroke-linecap="round"/>
-                        <line x1="185" y1="65" x2="225" y2="65" stroke="rgba(12,12,10,0.35)" stroke-width="2" stroke-linecap="round"/>
-                        <line x1="240" y1="65" x2="290" y2="65" stroke="rgba(12,12,10,0.35)" stroke-width="2" stroke-linecap="round"/>
-                        <line x1="30" y1="115" x2="290" y2="115" stroke="#0071E3" stroke-width="2.5" stroke-linecap="round"/>
-                    </svg>
-                </div>
-                <p class="ai-shift__from-to"><span>Production drag</span> → <span>Operating speed</span></p>
-                <h3 class="ai-shift__title">From production drag to operating speed.</h3>
-                <p class="ai-shift__body">Production loops compress as AI absorbs the drag that used to sit between research, decisions, and ship. The work moves at the pace the business actually needs.</p>
-                <p class="ai-shift__reveal">Operating speed is the difference between shipping and discussing.</p>
+            <article class="ai-shift ai-reveal">
+                <p class="ai-shift__from">From quarterly cycles</p>
+                <p class="ai-shift__to">To weekly outcomes.</p>
+                <p class="ai-shift__body">Decisions get tested faster, on real interaction, not opinion. Days replace weeks.</p>
             </article>
         </div>
     </div>
