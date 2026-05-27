@@ -4485,18 +4485,13 @@
     });
 })();
 
-// Nav: transparent over hero, white once scrolled past it.
+// Nav: transparent at the very top, white as soon as scrolling starts (matches home).
 (function () {
     const nav = document.querySelector('nav');
-    const hero = document.querySelector('.cp-hero');
     if (!nav) return;
-    const threshold = () => {
-        const h = hero ? hero.getBoundingClientRect().height : 0;
-        return Math.max(8, h - 80);
-    };
     const update = () => {
         const y = window.scrollY || document.documentElement.scrollTop || 0;
-        nav.classList.toggle('is-scrolled', y > threshold());
+        nav.classList.toggle('is-scrolled', y > 4);
     };
     update();
     window.addEventListener('scroll', update, { passive: true });
