@@ -5681,6 +5681,125 @@
     </div>
 </section>
 
+<!-- =============================================
+     ARCHIVED — AI page workflow comparison rows. Lived on /ai.html
+     between the "New creative tools" and "Cut the drag" sections before
+     being dropped in favor of a tighter page flow. Kept here as a design
+     reference; scoped styles inlined so it renders standalone. The label-
+     left / before→after-right ledger remains a useful pattern.
+============================================= -->
+<style>
+    :root[data-theme="editorial"] .cm-archived-flow {
+        background: var(--paper);
+        padding: clamp(72px, 9vw, 120px) var(--gutter);
+        border-top: 1px solid var(--rule);
+    }
+    :root[data-theme="editorial"] .cm-archived-flow__inner {
+        max-width: var(--ed-max);
+        margin: 0 auto;
+    }
+    :root[data-theme="editorial"] .cm-archived-flow__head {
+        margin: 0 0 clamp(32px, 4vw, 56px);
+    }
+    :root[data-theme="editorial"] .cm-archived-flow__archived {
+        font-family: var(--body);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--mid);
+        margin: 0 0 var(--ed-space-2);
+        opacity: 0.7;
+    }
+    :root[data-theme="editorial"] .cm-archived-flow__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border-top: 1px solid var(--rule);
+    }
+    :root[data-theme="editorial"] .cm-archived-flow__row {
+        display: grid;
+        grid-template-columns: minmax(0, 0.7fr) minmax(0, 1fr);
+        align-items: baseline;
+        column-gap: clamp(24px, 4vw, 80px);
+        padding: clamp(22px, 2.6vw, 32px) 0;
+        border-bottom: 1px solid var(--rule);
+    }
+    :root[data-theme="editorial"] .cm-archived-flow__label {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: clamp(18px, 1.5vw, 22px);
+        line-height: 1.2;
+        letter-spacing: -0.014em;
+        color: var(--ink);
+    }
+    :root[data-theme="editorial"] .cm-archived-flow__compare {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: clamp(10px, 1.2vw, 18px);
+        font-family: var(--body);
+        font-size: clamp(15px, 1.1vw, 17px);
+        line-height: 1.45;
+    }
+    :root[data-theme="editorial"] .cm-archived-flow__before { color: var(--mid); }
+    :root[data-theme="editorial"] .cm-archived-flow__arrow { color: var(--mid); opacity: 0.55; font-weight: 300; }
+    :root[data-theme="editorial"] .cm-archived-flow__after { color: var(--ink); font-weight: 500; }
+    @media (max-width: 720px) {
+        :root[data-theme="editorial"] .cm-archived-flow__row { grid-template-columns: 1fr; row-gap: 8px; }
+    }
+</style>
+<section class="cm-archived-flow" aria-label="Archived — AI workflow comparison rows">
+    <div class="cm-archived-flow__inner">
+        <div class="cm-archived-flow__head">
+            <p class="cm-archived-flow__archived">Archived · AI page</p>
+            <h2 class="ed-h2">AI acceleration across the workflow.</h2>
+        </div>
+        <ul class="cm-archived-flow__list">
+            <li class="cm-archived-flow__row">
+                <span class="cm-archived-flow__label">Messaging variants</span>
+                <span class="cm-archived-flow__compare">
+                    <span class="cm-archived-flow__before">3&ndash;5 per sprint</span>
+                    <span class="cm-archived-flow__arrow" aria-hidden="true">&rarr;</span>
+                    <span class="cm-archived-flow__after">20+</span>
+                </span>
+            </li>
+            <li class="cm-archived-flow__row">
+                <span class="cm-archived-flow__label">Campaign imagery</span>
+                <span class="cm-archived-flow__compare">
+                    <span class="cm-archived-flow__before">1&ndash;2 week shoot</span>
+                    <span class="cm-archived-flow__arrow" aria-hidden="true">&rarr;</span>
+                    <span class="cm-archived-flow__after">Hours</span>
+                </span>
+            </li>
+            <li class="cm-archived-flow__row">
+                <span class="cm-archived-flow__label">Prototype generation</span>
+                <span class="cm-archived-flow__compare">
+                    <span class="cm-archived-flow__before">Days</span>
+                    <span class="cm-archived-flow__arrow" aria-hidden="true">&rarr;</span>
+                    <span class="cm-archived-flow__after">Same-day refinement</span>
+                </span>
+            </li>
+            <li class="cm-archived-flow__row">
+                <span class="cm-archived-flow__label">Content localization</span>
+                <span class="cm-archived-flow__compare">
+                    <span class="cm-archived-flow__before">Weeks</span>
+                    <span class="cm-archived-flow__arrow" aria-hidden="true">&rarr;</span>
+                    <span class="cm-archived-flow__after">Automated scaling</span>
+                </span>
+            </li>
+            <li class="cm-archived-flow__row">
+                <span class="cm-archived-flow__label">Funnel optimization</span>
+                <span class="cm-archived-flow__compare">
+                    <span class="cm-archived-flow__before">Weeks of iteration</span>
+                    <span class="cm-archived-flow__arrow" aria-hidden="true">&rarr;</span>
+                    <span class="cm-archived-flow__after">Same-day testing</span>
+                </span>
+            </li>
+        </ul>
+    </div>
+</section>
+
 <!-- CONTACT -->
 <section class="ed-contact" id="ed-contact" aria-label="Contact">
     <p class="ed-contact__eyebrow">Ready to start</p>
@@ -7023,19 +7142,13 @@ document.querySelectorAll('.ed-work-band__cta').forEach(btn => {
     });
 });
 
-// Editorial theme: nav transparent over hero, white once scrolled past it.
+// Nav: transparent at the very top, white as soon as scrolling starts (matches home).
 (function () {
-    if (document.documentElement.getAttribute('data-theme') !== 'editorial') return;
     const nav = document.querySelector('nav');
-    const hero = document.querySelector('.ed-hero-new');
     if (!nav) return;
-    const threshold = () => {
-        const h = hero ? hero.getBoundingClientRect().height : 0;
-        return Math.max(8, h - 80);
-    };
     const update = () => {
         const y = window.scrollY || document.documentElement.scrollTop || 0;
-        nav.classList.toggle('is-scrolled', y > threshold());
+        nav.classList.toggle('is-scrolled', y > 4);
     };
     update();
     window.addEventListener('scroll', update, { passive: true });

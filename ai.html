@@ -2664,7 +2664,12 @@
         max-width: 52ch;
         margin: 0 auto var(--ed-space-4);
     }
-
+    /* CTA wrap — centered button beneath the contact heading. Matches the
+       same pattern used in services.html so the close is design-consistent. */
+    :root[data-theme="editorial"] .sv-cta-wrap {
+        text-align: center;
+        margin-top: var(--ed-space-4);
+    }
     /* === FORM — conditional 3-step contact ===========================
        Step 1 intent cards always visible. Picking an intent reveals
        Step 2 (path-specific) and Step 3 (contact details) via the
@@ -3536,7 +3541,9 @@
     :root[data-theme="editorial"] .ai-section--paper-2 { background: var(--paper-2); }
     :root[data-theme="editorial"] .ai-section--ink { background: var(--ink); color: var(--paper); }
     :root[data-theme="editorial"] .ai-section__inner { max-width: var(--ed-max); margin: 0 auto; }
-    :root[data-theme="editorial"] .ai-section__head { max-width: 760px; margin: 0 0 clamp(40px, 5vw, 72px); }
+    :root[data-theme="editorial"] .ai-section__head { max-width: 760px; margin: 0 auto clamp(40px, 5vw, 72px); text-align: center; }
+    :root[data-theme="editorial"] .ai-section__head .ai-h2 { margin: 0 auto; }
+    :root[data-theme="editorial"] .ai-section__head .ai-lede { margin: 18px auto 0; }
     :root[data-theme="editorial"] .ai-section--ink .ai-section__head { color: var(--paper); }
     :root[data-theme="editorial"] .ai-section--ink .ai-h2 { color: var(--paper); }
     :root[data-theme="editorial"] .ai-section--ink .ai-lede { color: rgba(251,251,253,0.7); }
@@ -3798,165 +3805,6 @@
     }
 
     /* =============================================
-       4. WORKFLOW OS DIAGRAM
-    ============================================= */
-    :root[data-theme="editorial"] .ai-flow {
-        position: relative;
-        max-width: var(--ed-max);
-        margin: 0 auto;
-        background: var(--paper);
-        border: 1px solid var(--rule);
-        border-radius: var(--ai-radius);
-        padding: clamp(48px, 6vw, 88px) clamp(24px, 3vw, 56px);
-    }
-    :root[data-theme="editorial"] .ai-flow__rail {
-        position: relative;
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 0;
-        align-items: start;
-    }
-    /* Single ink rule, passes through the dot centers.
-       Line edges stop at the center of the first/last column:
-       column width = 100%/6, so half = 1/12 ≈ 8.333%. */
-    :root[data-theme="editorial"] .ai-flow__line {
-        position: absolute;
-        top: 6px;
-        left: 8.333%;
-        right: 8.333%;
-        height: 2px;
-        background: var(--rule);
-        z-index: 0;
-        pointer-events: none;
-    }
-    /* AI accent rule, sits flush under the main rule. Mirrors the same bounds. */
-    :root[data-theme="editorial"] .ai-flow__line--ai {
-        top: 9px;
-        height: 1.5px;
-        background: var(--lime);
-        opacity: 0.65;
-    }
-    :root[data-theme="editorial"] .ai-flow__node {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 0 clamp(8px, 1vw, 16px);
-    }
-    :root[data-theme="editorial"] .ai-flow__dot {
-        display: block;
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        background: var(--paper);
-        border: 2px solid var(--ink);
-        box-sizing: border-box;
-        margin: 0;
-        position: relative;
-        z-index: 2;
-        transition: transform 200ms ease, background 200ms ease, border-color 200ms ease;
-    }
-    :root[data-theme="editorial"] .ai-flow__node:hover .ai-flow__dot {
-        background: var(--lime);
-        border-color: var(--lime);
-        transform: scale(1.2);
-    }
-    :root[data-theme="editorial"] .ai-flow__step {
-        font-family: var(--body);
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--mid);
-        margin: 22px 0 10px;
-    }
-    :root[data-theme="editorial"] .ai-flow__label {
-        font-family: var(--display);
-        font-weight: 700;
-        font-size: clamp(15px, 1.2vw, 17px);
-        letter-spacing: -0.008em;
-        line-height: 1.25;
-        color: var(--ink);
-        margin: 0 0 10px;
-        max-width: 16ch;
-    }
-    :root[data-theme="editorial"] .ai-flow__loop {
-        position: relative;
-        margin: 32px 8.333% 0;
-        height: 56px;
-    }
-    :root[data-theme="editorial"] .ai-flow__loop svg {
-        display: block;
-        width: 100%;
-        height: 100%;
-        overflow: visible;
-    }
-    :root[data-theme="editorial"] .ai-flow__loop path {
-        fill: none;
-        stroke: rgba(12, 12, 10, 0.22);
-        stroke-width: 1.25;
-    }
-    :root[data-theme="editorial"] .ai-flow__loop-label {
-        position: absolute;
-        left: 50%;
-        bottom: -12px;
-        transform: translateX(-50%);
-        background: var(--paper);
-        padding: 4px 12px;
-        border: 1px solid var(--rule);
-        border-radius: 999px;
-        font-family: var(--body);
-        font-size: 10px;
-        font-weight: 600;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--mid);
-    }
-    :root[data-theme="editorial"] .ai-flow__note {
-        margin: 36px auto 0;
-        max-width: 56ch;
-        text-align: center;
-        font-family: var(--body);
-        font-size: 13px;
-        line-height: 1.55;
-        color: var(--mid);
-    }
-    :root[data-theme="editorial"] .ai-flow__ai {
-        display: inline-block;
-        font-family: var(--body);
-        font-size: 11px;
-        font-weight: 500;
-        color: var(--lime);
-        background: rgba(0, 113, 227, 0.08);
-        padding: 4px 10px;
-        border-radius: 999px;
-    }
-    /* Mobile: collapse to a clean vertical stack, drop the rules entirely. */
-    @media (max-width: 880px) {
-        :root[data-theme="editorial"] .ai-flow { padding: clamp(28px, 4vw, 40px) clamp(20px, 3vw, 32px); }
-        :root[data-theme="editorial"] .ai-flow__rail { grid-template-columns: 1fr; gap: 0; }
-        :root[data-theme="editorial"] .ai-flow__line,
-        :root[data-theme="editorial"] .ai-flow__line--ai,
-        :root[data-theme="editorial"] .ai-flow__loop { display: none; }
-        :root[data-theme="editorial"] .ai-flow__node {
-            display: grid;
-            grid-template-columns: 16px 1fr;
-            column-gap: 20px;
-            align-items: start;
-            text-align: left;
-            padding: 18px 0;
-            border-bottom: 1px solid var(--rule);
-        }
-        :root[data-theme="editorial"] .ai-flow__node:last-child { border-bottom: 0; }
-        :root[data-theme="editorial"] .ai-flow__dot { margin-top: 6px; }
-        :root[data-theme="editorial"] .ai-flow__step { grid-column: 2; margin: 0 0 6px; }
-        :root[data-theme="editorial"] .ai-flow__label { grid-column: 2; margin: 0 0 8px; max-width: none; }
-        :root[data-theme="editorial"] .ai-flow__ai { grid-column: 2; }
-    }
-
-    /* =============================================
        5. COMPARISON — Traditional vs AI-assisted
     ============================================= */
     :root[data-theme="editorial"] .ai-vs__grid {
@@ -4197,515 +4045,283 @@
        editorial blocks with a quiet eyebrow ("From X") and a bold display
        statement ("To Y") plus one tight supporting line.
     ============================================= */
-    :root[data-theme="editorial"] .ai-shifts__grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: clamp(20px, 2.4vw, 32px);
-        max-width: var(--ed-max);
-        margin: 0 auto;
-    }
-    :root[data-theme="editorial"] .ai-shift {
-        background: var(--paper);
-        border-radius: var(--ai-radius);
-        padding: clamp(40px, 5vw, 72px) clamp(32px, 4vw, 56px);
-        display: flex;
-        flex-direction: column;
-    }
-    :root[data-theme="editorial"] .ai-shift__from {
-        font-family: var(--body);
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--mid);
-        margin: 0 0 var(--ed-space-2);
-    }
-    :root[data-theme="editorial"] .ai-shift__to {
-        font-family: var(--display);
-        font-weight: 700;
-        font-size: clamp(32px, 3.8vw, 48px);
-        line-height: 1.06;
-        letter-spacing: -0.022em;
-        color: var(--ink);
-        margin: 0 0 var(--ed-space-3);
-    }
-    :root[data-theme="editorial"] .ai-shift__body {
-        font-family: var(--body);
-        font-size: 15px;
-        line-height: 1.5;
-        color: var(--mid);
-        margin: 0;
-        max-width: 38ch;
-    }
-    @media (max-width: 720px) {
-        :root[data-theme="editorial"] .ai-shifts__grid { grid-template-columns: 1fr; }
-    }
-
-    /* =============================================
-       8. FINAL CTA — large curved dark panel
-    ============================================= */
-    :root[data-theme="editorial"] .ai-cta-section { padding: clamp(64px, 8vw, 112px) var(--gutter); background: var(--paper); }
-    :root[data-theme="editorial"] .ai-cta {
-        position: relative;
-        max-width: var(--ed-max);
-        margin: 0 auto;
-        background: var(--ink);
-        color: var(--paper);
-        border-radius: clamp(20px, 2.4vw, 32px);
-        padding: clamp(56px, 7vw, 112px) clamp(40px, 6vw, 96px);
-        overflow: hidden;
-    }
-    :root[data-theme="editorial"] .ai-cta::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-            radial-gradient(ellipse 60% 50% at 100% 100%, rgba(0,113,227,0.18), transparent 60%),
-            radial-gradient(ellipse 50% 40% at 10% 20%, rgba(255,255,255,0.04), transparent 60%);
-        pointer-events: none;
-    }
-    :root[data-theme="editorial"] .ai-cta__grain {
-        position: absolute;
-        inset: 0;
-        opacity: 0.4;
-        pointer-events: none;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
-    }
-    :root[data-theme="editorial"] .ai-cta__inner { position: relative; z-index: 1; max-width: 720px; }
-    :root[data-theme="editorial"] .ai-cta__eyebrow {
-        font-family: var(--body);
-        font-weight: 600;
-        font-size: 12px;
-        letter-spacing: 0.06em;
-        color: var(--lime);
-        margin: 0 0 18px;
-    }
-    :root[data-theme="editorial"] .ai-cta__title {
-        font-family: var(--display);
-        font-weight: 700;
-        font-size: clamp(32px, 4vw, 56px);
-        line-height: 1.05;
-        letter-spacing: -0.02em;
-        margin: 0 0 18px;
-        max-width: 20ch;
-    }
-    :root[data-theme="editorial"] .ai-cta__sub {
-        font-family: var(--body);
-        font-size: clamp(16px, 1.3vw, 18px);
-        line-height: 1.55;
-        color: rgba(251,251,253,0.72);
-        margin: 0 0 36px;
-        max-width: 56ch;
-    }
-
-    /* Section spacing fine-tune */
-    :root[data-theme="editorial"] .ai-section + .ai-section { padding-top: clamp(64px, 8vw, 112px); }
-
     /* =============================================
        AI-POWERED CREATIVE PRODUCTION — capability showcase
     ============================================= */
     :root[data-theme="editorial"] .ai-section--ink .ai-section__head { color: var(--paper); }
+    /* "New creative tools" — 2-col grid of horizontal cards. Thumbnail on
+       the left, eyebrow + title + body stacked on the right. Less visually
+       heavy than image-dominant tiles; text leads, image supports. */
     :root[data-theme="editorial"] .ai-cap-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        grid-auto-rows: 320px;
-        gap: 14px;
+        gap: clamp(32px, 4vw, 56px) clamp(28px, 3vw, 48px);
         margin-top: clamp(32px, 4vw, 56px);
         max-width: var(--ed-max);
         margin-left: auto;
         margin-right: auto;
     }
     :root[data-theme="editorial"] .ai-cap-card {
-        border-radius: var(--ai-radius);
+        display: grid;
+        grid-template-columns: minmax(120px, 36%) 1fr;
+        align-items: start;
+        column-gap: clamp(20px, 2vw, 32px);
+        text-align: left;
+    }
+    :root[data-theme="editorial"] .ai-cap-card-thumb {
+        aspect-ratio: 4 / 3;
         overflow: hidden;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        min-height: 0;
+        border-radius: 6px;
+        background: #1a1a1a;
     }
     :root[data-theme="editorial"] .ai-cap-card-img {
-        position: absolute;
-        inset: 0;
+        display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
-        background: #111111;
+        filter: grayscale(1) contrast(1.05) brightness(0.94);
+        transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
     }
-    :root[data-theme="editorial"] .ai-cap-card::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to top, rgba(0,0,0,.92) 0%, rgba(0,0,0,.78) 100%);
-        pointer-events: none;
+    :root[data-theme="editorial"] .ai-cap-card:hover .ai-cap-card-img {
+        transform: scale(1.04);
     }
     :root[data-theme="editorial"] .ai-cap-card-content {
-        position: relative;
-        z-index: 1;
-        padding: 1.4rem 1.6rem 1.5rem;
+        padding: 0;
     }
     :root[data-theme="editorial"] .ai-cap-card-tag {
         font-family: var(--body);
         font-size: 11px;
         font-weight: 600;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.16em;
         text-transform: uppercase;
-        color: rgba(255,255,255,0.55);
-        margin: 0 0 0.5rem;
+        color: var(--mid);
+        margin: 0 0 10px;
     }
     :root[data-theme="editorial"] .ai-cap-card-title {
         font-family: var(--display);
-        font-size: 20px;
+        font-size: clamp(18px, 1.5vw, 22px);
         font-weight: 600;
-        color: #FFFFFF;
-        line-height: 1.25;
-        letter-spacing: -0.012em;
-        margin: 0 0 0.45rem;
+        color: var(--ink);
+        line-height: 1.18;
+        letter-spacing: -0.014em;
+        margin: 0 0 8px;
+        max-width: 22ch;
     }
     :root[data-theme="editorial"] .ai-cap-card-body {
         font-family: var(--body);
         font-size: 14px;
-        color: rgba(255,255,255,0.72);
-        line-height: 1.5;
-        margin: 0;
-        max-width: 42ch;
-    }
-    @media (max-width: 768px) {
-        :root[data-theme="editorial"] .ai-cap-grid {
-            grid-template-columns: 1fr;
-            grid-auto-rows: 280px;
-        }
-    }
-
-    /* =============================================
-       AI AT EVERY STAGE — tabbed stages section
-    ============================================= */
-    :root[data-theme="editorial"] .ai-tabs {
-        max-width: var(--ed-max);
-        margin: 0 auto;
-    }
-    :root[data-theme="editorial"] .ai-tabs-nav {
-        display: flex;
-        gap: 0;
-        border-bottom: 1px solid var(--rule);
-        margin-bottom: clamp(32px, 4vw, 56px);
-        flex-wrap: wrap;
-    }
-    :root[data-theme="editorial"] .ai-tab-btn {
-        font-family: var(--body);
-        padding: 14px 28px 16px;
-        font-size: 14px;
-        font-weight: 500;
-        letter-spacing: -0.005em;
-        color: var(--mid);
-        background: none;
-        border: none;
-        border-bottom: 2px solid transparent;
-        cursor: pointer;
-        transition: color 180ms ease, border-color 180ms ease;
-        margin-bottom: -1px;
-    }
-    :root[data-theme="editorial"] .ai-tab-btn:hover { color: var(--ink); }
-    :root[data-theme="editorial"] .ai-tab-btn.is-active {
-        color: var(--lime);
-        border-bottom-color: var(--lime);
-    }
-    :root[data-theme="editorial"] .ai-tab-panel { display: none; }
-    :root[data-theme="editorial"] .ai-tab-panel.is-active {
-        display: block;
-    }
-    :root[data-theme="editorial"] .ai-tab-eyebrow {
-        font-family: var(--body);
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--lime);
-        margin: 0 0 22px;
-    }
-    :root[data-theme="editorial"] .ai-cap-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 22px;
-    }
-    :root[data-theme="editorial"] .ai-cap-list li {
-        display: block;
-        padding-bottom: 22px;
-        border-bottom: 1px solid var(--rule);
-    }
-    :root[data-theme="editorial"] .ai-cap-list li:last-child {
-        border-bottom: 0;
-        padding-bottom: 0;
-    }
-    :root[data-theme="editorial"] .ai-cap-list li strong {
-        font-family: var(--display);
-        font-weight: 700;
-        font-size: clamp(16px, 1.4vw, 18px);
-        letter-spacing: -0.01em;
-        color: var(--ink);
-        display: block;
-        margin-bottom: 6px;
-    }
-    :root[data-theme="editorial"] .ai-cap-list li span {
-        font-family: var(--body);
-        font-size: 14px;
-        line-height: 1.55;
-        color: var(--mid);
-    }
-    :root[data-theme="editorial"] .ai-time-table {
-        width: 100%;
-        border-collapse: collapse;
-        font-family: var(--body);
-        font-size: 14px;
-    }
-    :root[data-theme="editorial"] .ai-time-table th {
-        font-size: 10px;
-        font-weight: 600;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--mid);
-        text-align: left;
-        padding: 0 0 12px;
-        border-bottom: 1px solid var(--rule);
-    }
-    :root[data-theme="editorial"] .ai-time-table th:not(:first-child),
-    :root[data-theme="editorial"] .ai-time-table td:not(:first-child) {
-        padding-left: 16px;
-    }
-    :root[data-theme="editorial"] .ai-time-table td {
-        padding: 14px 0;
-        border-bottom: 1px solid var(--rule);
-        color: var(--ink);
-        vertical-align: middle;
-    }
-    :root[data-theme="editorial"] .ai-time-table td:first-child {
-        color: var(--mid);
-        font-weight: 400;
-    }
-    :root[data-theme="editorial"] .ai-time-table td:last-child {
-        font-weight: 600;
-        color: var(--lime);
-    }
-    :root[data-theme="editorial"] .ai-time-table tr:last-child td {
-        border-bottom: 0;
-    }
-    :root[data-theme="editorial"] .ai-table-source {
-        font-family: var(--body);
-        font-size: 11px;
         line-height: 1.5;
         color: var(--mid);
-        opacity: 0.7;
-        margin: 14px 0 0;
+        margin: 0;
+        max-width: 36ch;
     }
     @media (max-width: 880px) {
-        :root[data-theme="editorial"] .ai-tab-panel.is-active {
+        :root[data-theme="editorial"] .ai-cap-grid {
             grid-template-columns: 1fr;
-            gap: 36px;
+            gap: clamp(28px, 4vw, 40px);
         }
-        :root[data-theme="editorial"] .ai-tabs-nav { overflow-x: auto; flex-wrap: nowrap; }
-        :root[data-theme="editorial"] .ai-tab-btn {
-            padding: 12px 18px 14px;
-            font-size: 13px;
-            white-space: nowrap;
-            flex: 0 0 auto;
+    }
+    @media (max-width: 480px) {
+        :root[data-theme="editorial"] .ai-cap-card {
+            grid-template-columns: 96px 1fr;
+            column-gap: 16px;
         }
     }
 
     /* =============================================
-       AI APPLIED — six-pillar value grid (3 cols desktop, 2 cols tablet,
-       1 col mobile). No card chrome, thin top-rule per pillar to anchor
-       the column. Replaces the previous "Smaller teams. / Bigger output."
-       pair section with a denser strategic-value beat.
+       AI FORMULA — editorial centerpiece. Three terms in a 3-col grid;
+       operators (× and =) hung on a second row between term columns. Each
+       term stacks its two words. Sized to fit comfortably inside its column
+       so "ACCELERATION" never bleeds into the next column.
     ============================================= */
-    :root[data-theme="editorial"] .ai-applied__head {
-        max-width: 760px;
-        margin: 0 auto clamp(56px, 7vw, 88px);
-        text-align: center;
+    :root[data-theme="editorial"] .ai-formula {
+        padding: clamp(96px, 12vw, 160px) var(--gutter);
     }
-    :root[data-theme="editorial"] .ai-applied__tagline {
-        font-family: var(--display);
-        font-weight: 500;
-        font-size: clamp(20px, 1.6vw, 26px);
-        line-height: 1.3;
-        letter-spacing: -0.012em;
-        color: var(--ink);
-        margin: 0 0 var(--ed-space-3);
-    }
-    :root[data-theme="editorial"] .ai-applied__intro {
-        font-family: var(--body);
-        font-size: clamp(16px, 1.3vw, 19px);
-        line-height: 1.55;
-        color: var(--mid);
-        margin: var(--ed-space-3) auto 0;
-        max-width: 64ch;
-    }
-    :root[data-theme="editorial"] .ai-applied__grid {
-        max-width: var(--ed-max);
-        margin: 0 auto;
+    /* Equation: 3-col grid. Terms on row 1, ops on row 2 positioned at the
+       gap between columns (× between term 1+2, = between term 2+3). */
+    :root[data-theme="editorial"] .ai-formula__equation {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: clamp(40px, 5vw, 64px) clamp(32px, 4vw, 56px);
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: clamp(24px, 3vw, 56px);
+        row-gap: clamp(8px, 1vw, 14px);
+        max-width: var(--ed-max);
+        margin: 0 auto clamp(64px, 8vw, 96px);
     }
-    :root[data-theme="editorial"] .ai-applied__card {
-        padding-top: 20px;
-        border-top: 1px solid var(--rule);
-    }
-    :root[data-theme="editorial"] .ai-applied__name {
+    :root[data-theme="editorial"] .ai-formula__term {
+        grid-row: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
         font-family: var(--display);
         font-weight: 700;
-        font-size: clamp(20px, 1.7vw, 24px);
-        line-height: 1.18;
+        font-size: clamp(28px, 3.6vw, 56px);
+        line-height: 0.95;
+        letter-spacing: -0.034em;
+        color: var(--ink);
+        margin: 0;
+        font-feature-settings: "kern", "ss01", "liga", "calt";
+        min-width: 0;
+    }
+    :root[data-theme="editorial"] .ai-formula__term--1 { grid-column: 1; }
+    :root[data-theme="editorial"] .ai-formula__term--2 { grid-column: 2; }
+    :root[data-theme="editorial"] .ai-formula__term--3 { grid-column: 3; }
+    :root[data-theme="editorial"] .ai-formula__word { display: block; }
+    :root[data-theme="editorial"] .ai-formula__op {
+        grid-row: 1;
+        align-self: end;
+        justify-self: center;
+        font-family: var(--display);
+        font-weight: 400;
+        font-size: clamp(22px, 2.4vw, 36px);
+        color: var(--lime);
+        line-height: 1;
+        padding-bottom: 0.22em;
+        font-feature-settings: "kern";
+    }
+    /* Ops sit on the term row, aligned to the bottom of the term's second
+       word so the section reads as TERM × TERM = TERM across the top. ×
+       spans cols 1+2 (centered = at the boundary between them); = spans
+       cols 2+3 likewise. */
+    :root[data-theme="editorial"] .ai-formula__op--1 { grid-column: 1 / 3; }
+    :root[data-theme="editorial"] .ai-formula__op--2 { grid-column: 2 / 4; }
+    @media (max-width: 720px) {
+        :root[data-theme="editorial"] .ai-formula__equation {
+            grid-template-columns: 1fr;
+            row-gap: clamp(8px, 1.5vw, 16px);
+        }
+        :root[data-theme="editorial"] .ai-formula__term--1  { grid-column: 1; grid-row: 1; }
+        :root[data-theme="editorial"] .ai-formula__blurb--1 { grid-column: 1; grid-row: 2; max-width: 44ch; }
+        :root[data-theme="editorial"] .ai-formula__op--1    { grid-column: 1; grid-row: 3; justify-self: start; margin-top: clamp(8px, 1.5vw, 16px); }
+        :root[data-theme="editorial"] .ai-formula__term--2  { grid-column: 1; grid-row: 4; }
+        :root[data-theme="editorial"] .ai-formula__blurb--2 { grid-column: 1; grid-row: 5; max-width: 44ch; }
+        :root[data-theme="editorial"] .ai-formula__op--2    { grid-column: 1; grid-row: 6; justify-self: start; margin-top: clamp(8px, 1.5vw, 16px); }
+        :root[data-theme="editorial"] .ai-formula__term--3  { grid-column: 1; grid-row: 7; }
+        :root[data-theme="editorial"] .ai-formula__blurb--3 { grid-column: 1; grid-row: 8; max-width: 44ch; }
+    }
+    /* Column blurbs — small supporting copy directly under each term. Sits
+       on row 2 of the equation grid, flush beneath the term it supports.
+       No second header; the term IS the header. */
+    :root[data-theme="editorial"] .ai-formula__blurb {
+        grid-row: 2;
+        font-family: var(--body);
+        font-size: clamp(13.5px, 0.95vw, 15px);
+        line-height: 1.5;
+        letter-spacing: -0.003em;
+        color: var(--mid);
+        margin: 0 auto;
+        max-width: 28ch;
+        text-align: center;
+        font-feature-settings: "kern";
+    }
+    :root[data-theme="editorial"] .ai-formula__blurb--1 { grid-column: 1; }
+    :root[data-theme="editorial"] .ai-formula__blurb--2 { grid-column: 2; }
+    :root[data-theme="editorial"] .ai-formula__blurb--3 { grid-column: 3; }
+
+    /* =============================================
+       AI INTENT — 4-pillar editorial rail under the formula. Typography-led,
+       no cards, no containers. Thin top rule + column rhythm carry it.
+    ============================================= */
+    :root[data-theme="editorial"] .ai-intent__pillars {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: clamp(28px, 3.5vw, 56px);
+        row-gap: clamp(32px, 4vw, 48px);
+        max-width: var(--ed-max);
+        margin: clamp(48px, 6vw, 80px) auto 0;
+        border-top: 1px solid var(--rule);
+        padding-top: clamp(36px, 4.5vw, 56px);
+    }
+    :root[data-theme="editorial"] .ai-intent__pillar {
+        /* No card chrome — typography only. */
+    }
+    :root[data-theme="editorial"] .ai-intent__name {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: clamp(18px, 1.6vw, 22px);
+        line-height: 1.2;
         letter-spacing: -0.014em;
         color: var(--ink);
         margin: 0 0 var(--ed-space-2);
     }
-    :root[data-theme="editorial"] .ai-applied__desc {
+    :root[data-theme="editorial"] .ai-intent__body {
         font-family: var(--body);
         font-size: 15px;
         line-height: 1.55;
         color: var(--mid);
         margin: 0;
+        max-width: 28ch;
     }
-    @media (max-width: 920px) {
-        :root[data-theme="editorial"] .ai-applied__grid { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 880px) {
+        :root[data-theme="editorial"] .ai-intent__pillars {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
-    @media (max-width: 600px) {
-        :root[data-theme="editorial"] .ai-applied__grid { grid-template-columns: 1fr; }
+    @media (max-width: 480px) {
+        :root[data-theme="editorial"] .ai-intent__pillars {
+            grid-template-columns: 1fr;
+        }
     }
 
     /* =============================================
-       LIFECYCLE DIAGRAM — circular SVG, AI at center.
-       Six nodes spaced 60° around a ring; labels outside; "AI / accelerated"
-       as the center anchor. Pure SVG with CSS-driven fills so the palette
-       stays consistent with the rest of the editorial theme.
+       AI STATS — 2×2 grid of compact proof cells. Large stat, tiny line.
+       Hairlines between cells from a single border on the grid + negative-
+       offset cell borders.
     ============================================= */
-    :root[data-theme="editorial"] .ai-lifecycle-wrap {
-        max-width: 520px;
-        margin: 0 auto clamp(64px, 8vw, 96px);
-        aspect-ratio: 1;
-    }
-    :root[data-theme="editorial"] .ai-lifecycle {
-        width: 100%;
-        height: 100%;
-        display: block;
-    }
-    :root[data-theme="editorial"] .ai-lifecycle__ring {
-        fill: none;
-        stroke: var(--rule);
-        stroke-width: 1;
-    }
-    :root[data-theme="editorial"] .ai-lifecycle__node-halo {
-        fill: none;
-        stroke: var(--rule);
-        stroke-width: 1;
-        transition: stroke 280ms ease-out, stroke-width 280ms ease-out;
-    }
-    :root[data-theme="editorial"] .ai-lifecycle__node {
-        fill: var(--ink);
-        transition: fill 280ms ease-out;
-    }
-    :root[data-theme="editorial"] .ai-lifecycle__label {
-        fill: var(--ink);
-        font-family: var(--body);
-        font-size: 14px;
-        font-weight: 600;
-        transition: fill 280ms ease-out;
-    }
-    /* Active state — driven by the tabs below. When a tab is active or hovered,
-       the matching node halo + dot pick up the blue accent, and a radial
-       connector from the center to that node fades in. */
-    :root[data-theme="editorial"] .ai-lifecycle__connector {
-        fill: none;
-        stroke: var(--lime);
-        stroke-width: 1.25;
-        opacity: 0;
-        transition: opacity 320ms ease-out;
-    }
-    :root[data-theme="editorial"] .ai-lifecycle__connector.is-active {
-        opacity: 0.55;
-    }
-    :root[data-theme="editorial"] .ai-lifecycle__node.is-active {
-        fill: var(--lime);
-    }
-    :root[data-theme="editorial"] .ai-lifecycle__node-halo.is-active {
-        stroke: var(--lime);
-        stroke-width: 1.5;
-    }
-    :root[data-theme="editorial"] .ai-lifecycle__label.is-active {
-        fill: var(--lime);
-    }
-    /* Center anchor — filled dark disc with light text, the page's strongest
-       single visual mark. */
-    :root[data-theme="editorial"] .ai-lifecycle__center-bg {
-        fill: var(--ink);
-    }
-    :root[data-theme="editorial"] .ai-lifecycle__center-h {
-        fill: var(--paper);
-        font-family: var(--display);
-        font-size: 36px;
-        font-weight: 700;
-        letter-spacing: -0.025em;
-    }
-    :root[data-theme="editorial"] .ai-lifecycle__center-sub {
-        fill: var(--paper);
-        font-family: var(--body);
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        opacity: 0.7;
-    }
-
-    /* === TAB CARDS — 3 cards per tab with integrated stat. Replaces the
-       old left-list/right-table pattern. Stat is anchored to bottom of
-       each card behind a thin rule. */
-    :root[data-theme="editorial"] .ai-tab-cards {
+    :root[data-theme="editorial"] .ai-stats__grid {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        max-width: var(--ed-max);
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
+        grid-template-columns: 1fr 1fr;
+        column-gap: clamp(32px, 4vw, 64px);
+        row-gap: clamp(40px, 4.5vw, 64px);
+        border-top: 1px solid var(--rule);
+        padding-top: clamp(32px, 4vw, 56px);
     }
-    :root[data-theme="editorial"] .ai-tab-card {
-        padding: 28px;
-        background: var(--paper-2);
-        border-radius: 14px;
+    :root[data-theme="editorial"] .ai-stats__cell {
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        align-items: center;
+        text-align: center;
+        gap: clamp(12px, 1.5vw, 20px);
     }
-    :root[data-theme="editorial"] .ai-tab-card__title {
+    :root[data-theme="editorial"] .ai-stats__num {
         font-family: var(--display);
-        font-weight: 700;
-        font-size: 22px;
-        line-height: 1.18;
-        letter-spacing: -0.012em;
+        font-weight: 600;
+        font-size: clamp(48px, 6.5vw, 88px);
+        line-height: 1;
+        letter-spacing: -0.04em;
         color: var(--ink);
-        margin: 0;
+        font-feature-settings: "kern", "ss01", "tnum";
     }
-    :root[data-theme="editorial"] .ai-tab-card__body {
+    /* Phrase variant (Days → Hours) reads narrower than the % stats. */
+    :root[data-theme="editorial"] .ai-stats__num--phrase {
+        font-size: clamp(34px, 4.5vw, 56px);
+        letter-spacing: -0.025em;
+    }
+    :root[data-theme="editorial"] .ai-stats__times,
+    :root[data-theme="editorial"] .ai-stats__arrow {
+        font-weight: 300;
+        color: var(--mid);
+        padding: 0 0.05em;
+    }
+    :root[data-theme="editorial"] .ai-stats__body {
         font-family: var(--body);
-        font-size: 14px;
+        font-size: clamp(15px, 1.05vw, 17px);
         line-height: 1.55;
         color: var(--mid);
-        margin: 0;
-        flex: 1;
+        margin: 0 auto;
+        max-width: 42ch;
     }
-    :root[data-theme="editorial"] .ai-tab-card__stat {
-        font-family: var(--body);
-        font-size: 13px;
-        font-weight: 600;
-        color: var(--ink);
-        margin: 0;
-        padding-top: 14px;
-        border-top: 1px solid var(--rule);
-        letter-spacing: -0.005em;
-    }
-    @media (max-width: 720px) {
-        :root[data-theme="editorial"] .ai-tab-cards {
+    @media (max-width: 640px) {
+        :root[data-theme="editorial"] .ai-stats__grid {
             grid-template-columns: 1fr;
+            row-gap: 36px;
         }
+        :root[data-theme="editorial"] .ai-stats__num { font-size: clamp(40px, 12vw, 64px); }
+        :root[data-theme="editorial"] .ai-stats__num--phrase { font-size: clamp(30px, 9vw, 44px); }
     }
 
     /* ai-h2 multiline support — stacked lines via direct <span> children. */
@@ -4713,115 +4329,6 @@
         display: block;
     }
 
-    /* =============================================
-       WORKFLOW LOOP — emphasize the cycle return
-    ============================================= */
-    :root[data-theme="editorial"] .ai-flow__line {
-        opacity: 0.35;
-    }
-    :root[data-theme="editorial"] .ai-flow__line--ai {
-        opacity: 0.45;
-    }
-    :root[data-theme="editorial"] .ai-flow__loop {
-        position: relative;
-        height: 64px;
-        margin: 44px 8.333% 0;
-    }
-    :root[data-theme="editorial"] .ai-flow__loop-curve {
-        display: block;
-        width: 100%;
-        height: 100%;
-        overflow: visible;
-    }
-    :root[data-theme="editorial"] .ai-flow__loop-curve path {
-        fill: none;
-        stroke: var(--lime);
-        stroke-width: 2.25;
-        stroke-linecap: round;
-        opacity: 0.9;
-    }
-    :root[data-theme="editorial"] .ai-flow__loop-arrow {
-        position: absolute;
-        top: -8px;
-        left: -11px;
-        pointer-events: none;
-    }
-    :root[data-theme="editorial"] .ai-flow__loop-arrow .ai-flow__loop-head {
-        stroke: var(--lime);
-        stroke-width: 2.5;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-    }
-    :root[data-theme="editorial"] .ai-flow__loop-label {
-        background: var(--paper);
-        color: var(--lime);
-        border-color: var(--lime);
-        font-weight: 700;
-        letter-spacing: 0.12em;
-        bottom: -14px;
-    }
-
-    /* =============================================
-       RESULTS STATS STRIP — dark
-    ============================================= */
-    :root[data-theme="editorial"] .ai-stats-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        margin-top: clamp(32px, 4vw, 56px);
-        max-width: var(--ed-max);
-    }
-    :root[data-theme="editorial"] .ai-stat-item {
-        padding: 28px 0;
-        border-top: 1px solid rgba(251,251,253,0.12);
-        display: flex;
-        align-items: baseline;
-        gap: clamp(20px, 2.4vw, 36px);
-    }
-    :root[data-theme="editorial"] .ai-stat-item:nth-child(odd) {
-        padding-right: clamp(20px, 3vw, 48px);
-        border-right: 1px solid rgba(251,251,253,0.08);
-    }
-    :root[data-theme="editorial"] .ai-stat-item:nth-child(even) {
-        padding-left: clamp(20px, 3vw, 48px);
-    }
-    :root[data-theme="editorial"] .ai-stat-num {
-        font-family: var(--display);
-        font-weight: 700;
-        font-size: clamp(36px, 4.4vw, 56px);
-        letter-spacing: -0.025em;
-        line-height: 1;
-        color: var(--paper);
-        margin: 0;
-        white-space: nowrap;
-        flex-shrink: 0;
-    }
-    :root[data-theme="editorial"] .ai-stat-text {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-    }
-    :root[data-theme="editorial"] .ai-stat-desc {
-        font-family: var(--body);
-        font-size: 14px;
-        line-height: 1.5;
-        color: rgba(251,251,253,0.7);
-        margin: 0;
-    }
-    :root[data-theme="editorial"] .ai-stat-src {
-        font-family: var(--body);
-        font-size: 11px;
-        letter-spacing: 0.04em;
-        color: rgba(251,251,253,0.4);
-        margin: 0;
-    }
-    @media (max-width: 880px) {
-        :root[data-theme="editorial"] .ai-stats-grid { grid-template-columns: 1fr; }
-        :root[data-theme="editorial"] .ai-stat-item:nth-child(odd) {
-            padding-right: 0;
-            border-right: 0;
-        }
-        :root[data-theme="editorial"] .ai-stat-item:nth-child(even) { padding-left: 0; }
-    }
 </style>
 
 </head>
@@ -4869,9 +4376,9 @@
     <div class="ai-hero__inner">
         <p class="ai-eyebrow">AI Speed</p>
         <h1 class="ai-hero__title">
-            <span class="ai-hero__line">Get the AI advantage.</span>
+            <span class="ai-hero__line">Supercharge your brand and products with AI.</span>
         </h1>
-        <p class="ai-hero__sub">Better concepts. Faster iteration. Stronger execution. Less drag between idea and outcome.</p>
+        <p class="ai-hero__sub">Better concepts. Faster iteration. Stronger execution.</p>
         <div class="ai-hero__ctas">
             <a href="/#ed-contact" class="ai-btn ai-btn--primary">Let's talk →</a>
         </div>
@@ -4879,42 +4386,100 @@
 </section>
 
 <!-- =============================================
-     2. WHY IT MATTERS — smaller teams, bigger output
+     2. SIGNATURE FORMULA — the page's editorial centerpiece. Three terms
+     stacked across a 3-col grid; operators hang at the last-baseline of
+     each term, reading as a real formula. Notes underneath align to the
+     same columns so the structure reinforces itself.
 ============================================= -->
-<section class="ai-section" aria-label="AI, applied with intent">
+<section class="ai-section ai-formula" aria-label="The PromptUX formula">
     <div class="ai-section__inner">
-        <div class="ai-applied__head ai-reveal">
+        <div class="ai-section__head ai-reveal">
+            <p class="ai-eyebrow">The PromptUX formula</p>
+        </div>
+        <div class="ai-formula__equation ai-reveal" role="presentation">
+            <div class="ai-formula__term ai-formula__term--1">
+                <span class="ai-formula__word">PromptUX</span>
+                <span class="ai-formula__word">Strategy</span>
+            </div>
+            <div class="ai-formula__term ai-formula__term--2">
+                <span class="ai-formula__word">AI-native</span>
+                <span class="ai-formula__word">Workflows</span>
+            </div>
+            <div class="ai-formula__term ai-formula__term--3">
+                <span class="ai-formula__word">Supercharged</span>
+                <span class="ai-formula__word">Results</span>
+            </div>
+            <span class="ai-formula__op ai-formula__op--1" aria-hidden="true">×</span>
+            <span class="ai-formula__op ai-formula__op--2" aria-hidden="true">=</span>
+            <p class="ai-formula__blurb ai-formula__blurb--1">30+ years of product, UX, and growth expertise guide the work.</p>
+            <p class="ai-formula__blurb ai-formula__blurb--2">AI compresses production, iteration, prototyping, and execution cycles.</p>
+            <p class="ai-formula__blurb ai-formula__blurb--3">Outcome-driven solutions at speed and scale.</p>
+        </div>
+    </div>
+</section>
+
+<!-- =============================================
+     3. AI APPLIED WITH INTENT — the conceptual articulation under the
+     formula. Eyebrow + headline + body, then a 4-pillar editorial rail
+     (typography-led, no cards). The pillars articulate what makes
+     PromptUX's flavor of AI distinct.
+============================================= -->
+<section class="ai-section ai-section--paper-2 ai-intent" aria-label="AI, applied with intent">
+    <div class="ai-section__inner">
+        <div class="ai-section__head ai-reveal">
             <p class="ai-eyebrow">AI, applied with intent</p>
-            <p class="ai-applied__tagline">AI is creative advantage.</p>
-            <h2 class="ai-h2"><span>Experts lead.</span><span>AI accelerates.</span></h2>
-            <p class="ai-applied__intro">AI is changing how products, brands, and experiences are created. PromptUX combines senior product, UX, and growth expertise with AI-assisted execution to help teams move faster, explore more directions, and reduce production drag without losing quality or control.</p>
+            <h2 class="ai-h2">The way products and brands get built has changed.</h2>
+            <p class="ai-lede">AI is changing how products, brands, and experiences are created. PromptUX combines expert product, UX, and growth expertise with AI-assisted execution to help teams move faster, explore more directions, and reduce production drag without losing quality or control.</p>
         </div>
-        <div class="ai-applied__grid ai-reveal">
-            <div class="ai-applied__card">
-                <h3 class="ai-applied__name">Expert-led. AI-accelerated.</h3>
-                <p class="ai-applied__desc">Senior experts guide the work. AI helps compress production, iteration, and execution cycles.</p>
+        <div class="ai-intent__pillars ai-reveal">
+            <div class="ai-intent__pillar">
+                <h3 class="ai-intent__name">Expert-led</h3>
+                <p class="ai-intent__body">Senior product, UX, and growth expertise guide the work from strategy through execution.</p>
             </div>
-            <div class="ai-applied__card">
-                <h3 class="ai-applied__name">Faster by design</h3>
-                <p class="ai-applied__desc">Research, concepts, prototypes, content, and production move at the pace modern teams need.</p>
+            <div class="ai-intent__pillar">
+                <h3 class="ai-intent__name">Elevated work</h3>
+                <p class="ai-intent__body">More exploration. Better execution. Stronger outcomes.</p>
             </div>
-            <div class="ai-applied__card">
-                <h3 class="ai-applied__name">More shots on goal</h3>
-                <p class="ai-applied__desc">Explore more directions, test ideas earlier, and generate stronger creative and product outcomes.</p>
+            <div class="ai-intent__pillar">
+                <h3 class="ai-intent__name">Accelerated delivery</h3>
+                <p class="ai-intent__body">Research, concepts, prototypes, and production move faster.</p>
             </div>
-            <div class="ai-applied__card">
-                <h3 class="ai-applied__name">Transparency and controls</h3>
-                <p class="ai-applied__desc">You choose where AI accelerates the work and where human craft, review, and judgment stay hands-on.</p>
-            </div>
-            <div class="ai-applied__card">
-                <h3 class="ai-applied__name">New toys</h3>
-                <p class="ai-applied__desc">AI unlocks new ways to prototype, animate, visualize, localize, and scale ideas.</p>
-            </div>
-            <div class="ai-applied__card">
-                <h3 class="ai-applied__name">Less drag</h3>
-                <p class="ai-applied__desc">Reduce operational drag, repetitive production work, and unnecessary overhead.</p>
+            <div class="ai-intent__pillar">
+                <h3 class="ai-intent__name">Transparency and control</h3>
+                <p class="ai-intent__body">AI is applied intentionally, with human oversight built in.</p>
             </div>
         </div>
+    </div>
+</section>
+
+<!-- =============================================
+     4. RESULTS — editorial proof-of-value. 2×2 grid of compact stat
+     cells. Large number + tiny supporting line per cell.
+============================================= -->
+<section class="ai-section ai-stats" aria-label="Results">
+    <div class="ai-section__inner">
+        <div class="ai-section__head ai-reveal">
+            <p class="ai-eyebrow">Results, not hype</p>
+            <h2 class="ai-h2">What AI acceleration looks like.</h2>
+        </div>
+        <ul class="ai-stats__grid ai-reveal">
+            <li class="ai-stats__cell">
+                <span class="ai-stats__num">75%</span>
+                <p class="ai-stats__body">Less time spent on production. AI handles the heavy lifting on visuals, copy variants, and assets, so senior experts focus on judgment and craft.</p>
+            </li>
+            <li class="ai-stats__cell">
+                <span class="ai-stats__num">3<span class="ai-stats__times" aria-hidden="true">×</span></span>
+                <p class="ai-stats__body">More concepts explored. AI generates directions in parallel, so teams test more ideas before committing to one — and pick the strongest.</p>
+            </li>
+            <li class="ai-stats__cell">
+                <span class="ai-stats__num ai-stats__num--phrase">Days <span class="ai-stats__arrow" aria-hidden="true">→</span> Hours</span>
+                <p class="ai-stats__body">What used to take a sprint, like prototypes, content, and visuals, now gets produced and refined the same day.</p>
+            </li>
+            <li class="ai-stats__cell">
+                <span class="ai-stats__num">90%</span>
+                <p class="ai-stats__body">Less repetitive production work. Variants, localization, exports, and asset adaptation get automated end-to-end.</p>
+            </li>
+        </ul>
     </div>
 </section>
 
@@ -4923,68 +4488,82 @@
      Sits above the AI Accelerated lifecycle so prospects see tangible
      creative outputs before the process deep-dive.
 ============================================= -->
-<section class="ai-section ai-section--paper-2" aria-label="Visual capability examples">
+<section class="ai-section ai-section--paper-2" aria-label="What AI elevation looks like">
     <div class="ai-section__inner">
         <div class="ai-section__head ai-reveal">
             <p class="ai-eyebrow">In action</p>
-            <h2 class="ai-h2">More shots on goal.</h2>
-            <p class="ai-lede">AI expands what teams can produce, test, visualize, prototype, animate, and refine in the same amount of time.</p>
+            <h2 class="ai-h2">What AI elevation looks like.</h2>
+            <p class="ai-lede">AI unlocks new ways to generate, prototype, animate, and scale work that wasn't possible a year ago.</p>
         </div>
         <div class="ai-cap-grid">
             <article class="ai-cap-card ai-reveal">
-                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-campaign/800/600?grayscale&amp;blur=2" alt="" loading="lazy">
+                <div class="ai-cap-card-thumb">
+                    <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-campaign/800/600?grayscale&amp;blur=2" alt="" loading="lazy">
+                </div>
                 <div class="ai-cap-card-content">
-                    <p class="ai-cap-card-tag">No stock. No shoot. No delay.</p>
-                    <h3 class="ai-cap-card-title">Campaign concepts in hours, not weeks</h3>
-                    <p class="ai-cap-card-body">Campaign visuals, lifestyle imagery, product mockups, generated on brief, on brand, ready to ship.</p>
+                    <p class="ai-cap-card-tag">No stock. No shoot.</p>
+                    <h3 class="ai-cap-card-title">Campaign concepts in hours.</h3>
+                    <p class="ai-cap-card-body">Visuals, mockups, and lifestyle imagery on brief, ready to ship.</p>
                 </div>
             </article>
             <article class="ai-cap-card ai-reveal">
-                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-video/800/600?grayscale&amp;blur=2" alt="" loading="lazy">
+                <div class="ai-cap-card-thumb">
+                    <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-video/800/600?grayscale&amp;blur=2" alt="" loading="lazy">
+                </div>
                 <div class="ai-cap-card-content">
                     <p class="ai-cap-card-tag">Runway · Sora</p>
-                    <h3 class="ai-cap-card-title">Image-to-video storytelling</h3>
+                    <h3 class="ai-cap-card-title">Image-to-video storytelling.</h3>
                     <p class="ai-cap-card-body">Static assets brought to life. No crew, no studio.</p>
                 </div>
             </article>
             <article class="ai-cap-card ai-reveal">
-                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-motion/800/600?grayscale&amp;blur=2" alt="" loading="lazy">
+                <div class="ai-cap-card-thumb">
+                    <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-motion/800/600?grayscale&amp;blur=2" alt="" loading="lazy">
+                </div>
                 <div class="ai-cap-card-content">
                     <p class="ai-cap-card-tag">Web &amp; product</p>
-                    <h3 class="ai-cap-card-title">Product storytelling with motion built in</h3>
+                    <h3 class="ai-cap-card-title">Motion built in.</h3>
                     <p class="ai-cap-card-body">Micro-interactions and animated sequences, without a motion team.</p>
                 </div>
             </article>
             <article class="ai-cap-card ai-reveal">
-                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-avatars/800/600?grayscale&amp;blur=2" alt="" loading="lazy">
+                <div class="ai-cap-card-thumb">
+                    <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-avatars/800/600?grayscale&amp;blur=2" alt="" loading="lazy">
+                </div>
                 <div class="ai-cap-card-content">
                     <p class="ai-cap-card-tag">ElevenLabs · HeyGen</p>
-                    <h3 class="ai-cap-card-title">Content that scales across markets</h3>
-                    <p class="ai-cap-card-body">Digital personas and AI-generated narration for demos, video, onboarding, and localized content at scale.</p>
+                    <h3 class="ai-cap-card-title">Personas and AI narration.</h3>
+                    <p class="ai-cap-card-body">Digital personas and AI narration for demos, video, and localized content.</p>
                 </div>
             </article>
             <article class="ai-cap-card ai-reveal">
-                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-brand/800/600?grayscale&amp;blur=2" alt="" loading="lazy">
+                <div class="ai-cap-card-thumb">
+                    <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-brand/800/600?grayscale&amp;blur=2" alt="" loading="lazy">
+                </div>
                 <div class="ai-cap-card-content">
                     <p class="ai-cap-card-tag">On brand. Always.</p>
-                    <h3 class="ai-cap-card-title">Brand imagery at speed</h3>
-                    <p class="ai-cap-card-body">A library of visuals trained to your aesthetic. No usage fees, no style drift.</p>
+                    <h3 class="ai-cap-card-title">Brand imagery at speed.</h3>
+                    <p class="ai-cap-card-body">Visuals trained to your aesthetic. No usage fees, no drift.</p>
                 </div>
             </article>
             <article class="ai-cap-card ai-reveal">
-                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-ux/800/600?grayscale&amp;blur=2" alt="" loading="lazy">
+                <div class="ai-cap-card-thumb">
+                    <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-ux/800/600?grayscale&amp;blur=2" alt="" loading="lazy">
+                </div>
                 <div class="ai-cap-card-content">
                     <p class="ai-cap-card-tag">Figma AI · v0</p>
-                    <h3 class="ai-cap-card-title">UX and prototype generation</h3>
+                    <h3 class="ai-cap-card-title">UX and prototype generation.</h3>
                     <p class="ai-cap-card-body">Screens and flows from a prompt. Testable before anything gets built.</p>
                 </div>
             </article>
             <article class="ai-cap-card ai-reveal">
-                <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-copy/800/600?grayscale&amp;blur=2" alt="" loading="lazy">
+                <div class="ai-cap-card-thumb">
+                    <img class="ai-cap-card-img" src="https://picsum.photos/seed/promptux-copy/800/600?grayscale&amp;blur=2" alt="" loading="lazy">
+                </div>
                 <div class="ai-cap-card-content">
                     <p class="ai-cap-card-tag">Scale without drift</p>
-                    <h3 class="ai-cap-card-title">High-volume content exploration</h3>
-                    <p class="ai-cap-card-body">Messaging variants, UX copy, scripts, generated in volume, edited to standard.</p>
+                    <h3 class="ai-cap-card-title">High-volume content exploration.</h3>
+                    <p class="ai-cap-card-body">Messaging variants and copy in volume, edited to standard.</p>
                 </div>
             </article>
         </div>
@@ -4992,224 +4571,15 @@
 </section>
 
 <!-- =============================================
-     4. AI ACCELERATED — merged conceptual anchor: lifecycle diagram +
-     six-tab acceleration cards in one cohesive beat.
+     6. CONTACT — services-style editorial contact section; the same
+     pattern used across the site so the close is design-consistent.
+     Links the prospect into the full form on /index.html#ed-contact.
 ============================================= -->
-<section class="ai-section" id="ai-stages" aria-label="AI accelerated">
-    <div class="ai-section__inner">
-        <div class="ai-section__head ai-reveal">
-            <p class="ai-eyebrow">Across the cycle</p>
-            <h2 class="ai-h2">AI accelerated.</h2>
-            <p class="ai-lede">AI can compress the cycle across research, strategy, design, content, delivery, and optimization without turning the work into a process maze.</p>
-        </div>
-        <div class="ai-lifecycle-wrap ai-reveal">
-            <svg class="ai-lifecycle" viewBox="0 0 600 600" role="img" aria-label="AI accelerates the product and growth lifecycle: research, strategy, design, content, growth, delivery">
-                <circle class="ai-lifecycle__ring" cx="300" cy="300" r="180"/>
-                <!-- Radial connectors (center → node) — hidden by default, fade in when the
-                     matching tab is active. -->
-                <line class="ai-lifecycle__connector" data-node="research" x1="300" y1="300" x2="300" y2="120"/>
-                <line class="ai-lifecycle__connector" data-node="strategy" x1="300" y1="300" x2="455.9" y2="210"/>
-                <line class="ai-lifecycle__connector" data-node="design"   x1="300" y1="300" x2="455.9" y2="390"/>
-                <line class="ai-lifecycle__connector" data-node="content"  x1="300" y1="300" x2="300"   y2="480"/>
-                <line class="ai-lifecycle__connector" data-node="growth"   x1="300" y1="300" x2="144.1" y2="390"/>
-                <line class="ai-lifecycle__connector" data-node="delivery" x1="300" y1="300" x2="144.1" y2="210"/>
-                <g class="ai-lifecycle__nodes">
-                    <circle class="ai-lifecycle__node-halo" data-node="research" cx="300" cy="120" r="14"/>
-                    <circle class="ai-lifecycle__node"      data-node="research" cx="300" cy="120" r="6"/>
-                    <circle class="ai-lifecycle__node-halo" data-node="strategy" cx="455.9" cy="210" r="14"/>
-                    <circle class="ai-lifecycle__node"      data-node="strategy" cx="455.9" cy="210" r="6"/>
-                    <circle class="ai-lifecycle__node-halo" data-node="design"   cx="455.9" cy="390" r="14"/>
-                    <circle class="ai-lifecycle__node"      data-node="design"   cx="455.9" cy="390" r="6"/>
-                    <circle class="ai-lifecycle__node-halo" data-node="content"  cx="300" cy="480" r="14"/>
-                    <circle class="ai-lifecycle__node"      data-node="content"  cx="300" cy="480" r="6"/>
-                    <circle class="ai-lifecycle__node-halo" data-node="growth"   cx="144.1" cy="390" r="14"/>
-                    <circle class="ai-lifecycle__node"      data-node="growth"   cx="144.1" cy="390" r="6"/>
-                    <circle class="ai-lifecycle__node-halo" data-node="delivery" cx="144.1" cy="210" r="14"/>
-                    <circle class="ai-lifecycle__node"      data-node="delivery" cx="144.1" cy="210" r="6"/>
-                </g>
-                <text class="ai-lifecycle__label" data-node="research" x="300" y="80"  text-anchor="middle">Research</text>
-                <text class="ai-lifecycle__label" data-node="strategy" x="485" y="205" text-anchor="start">Strategy</text>
-                <text class="ai-lifecycle__label" data-node="design"   x="485" y="400" text-anchor="start">Design</text>
-                <text class="ai-lifecycle__label" data-node="content"  x="300" y="525" text-anchor="middle">Content</text>
-                <text class="ai-lifecycle__label" data-node="growth"   x="115" y="400" text-anchor="end">Growth</text>
-                <text class="ai-lifecycle__label" data-node="delivery" x="115" y="205" text-anchor="end">Delivery</text>
-                <circle class="ai-lifecycle__center-bg" cx="300" cy="300" r="64"/>
-                <text class="ai-lifecycle__center-h" x="300" y="298" text-anchor="middle">AI</text>
-                <text class="ai-lifecycle__center-sub" x="300" y="322" text-anchor="middle">Speed</text>
-            </svg>
-        </div>
-        <div class="ai-tabs ai-reveal">
-            <div class="ai-tabs-nav" role="tablist">
-                <button type="button" class="ai-tab-btn is-active" data-tab="research" role="tab" aria-selected="true">Research</button>
-                <button type="button" class="ai-tab-btn" data-tab="strategy" role="tab" aria-selected="false">Strategy</button>
-                <button type="button" class="ai-tab-btn" data-tab="design" role="tab" aria-selected="false">Design</button>
-                <button type="button" class="ai-tab-btn" data-tab="content" role="tab" aria-selected="false">Content</button>
-                <button type="button" class="ai-tab-btn" data-tab="growth" role="tab" aria-selected="false">Growth</button>
-                <button type="button" class="ai-tab-btn" data-tab="delivery" role="tab" aria-selected="false">Delivery</button>
-            </div>
-
-            <div class="ai-tab-panel is-active" data-tab="research" role="tabpanel">
-                <div class="ai-tab-cards">
-                    <article class="ai-tab-card">
-                        <h3 class="ai-tab-card__title">Synthesis</h3>
-                        <p class="ai-tab-card__body">AI-assisted clustering and summarization reduce the time spent organizing interviews and themes.</p>
-                        <p class="ai-tab-card__stat">2–3 weeks → 2–3 days</p>
-                    </article>
-                    <article class="ai-tab-card">
-                        <h3 class="ai-tab-card__title">Coverage</h3>
-                        <p class="ai-tab-card__body">More interviews synthesized in less time, so broader signal lands in every sprint.</p>
-                        <p class="ai-tab-card__stat">8–10 conversations → 20+</p>
-                    </article>
-                    <article class="ai-tab-card">
-                        <h3 class="ai-tab-card__title">Iteration cycles</h3>
-                        <p class="ai-tab-card__body">Research findings shape prototypes and testing the same week, not the next quarter.</p>
-                        <p class="ai-tab-card__stat">Days between cycles → same-day refinement</p>
-                    </article>
-                </div>
-            </div>
-
-            <div class="ai-tab-panel" data-tab="strategy" role="tabpanel">
-                <div class="ai-tab-cards">
-                    <article class="ai-tab-card">
-                        <h3 class="ai-tab-card__title">Positioning exploration</h3>
-                        <p class="ai-tab-card__body">Multiple positioning routes generated and stress-tested in parallel, not one at a time.</p>
-                        <p class="ai-tab-card__stat">1–2 directions → 6+ directions</p>
-                    </article>
-                    <article class="ai-tab-card">
-                        <h3 class="ai-tab-card__title">Competitive mapping</h3>
-                        <p class="ai-tab-card__body">The full landscape mapped overnight. You walk in knowing the market.</p>
-                        <p class="ai-tab-card__stat">1–2 weeks → Overnight</p>
-                    </article>
-                    <article class="ai-tab-card">
-                        <h3 class="ai-tab-card__title">Strategic brief</h3>
-                        <p class="ai-tab-card__body">Direction synthesized and stress-tested before the first client review.</p>
-                        <p class="ai-tab-card__stat">1 week → 2–3 days</p>
-                    </article>
-                </div>
-            </div>
-
-            <div class="ai-tab-panel" data-tab="design" role="tabpanel">
-                <div class="ai-tab-cards">
-                    <article class="ai-tab-card">
-                        <h3 class="ai-tab-card__title">Concept generation</h3>
-                        <p class="ai-tab-card__body">More design directions explored before committing to one.</p>
-                        <p class="ai-tab-card__stat">1–2 routes → 6+ routes</p>
-                    </article>
-                    <article class="ai-tab-card">
-                        <h3 class="ai-tab-card__title">Rapid prototyping</h3>
-                        <p class="ai-tab-card__body">A testable prototype in users' hands before the sprint closes.</p>
-                        <p class="ai-tab-card__stat">2 weeks → 48 hours</p>
-                    </article>
-                    <article class="ai-tab-card">
-                        <h3 class="ai-tab-card__title">UX cycles</h3>
-                        <p class="ai-tab-card__body">Test, refine, retest in a fraction of the time.</p>
-                        <p class="ai-tab-card__stat">2 weeks → 1 week</p>
-                    </article>
-                </div>
-            </div>
-
-            <div class="ai-tab-panel" data-tab="content" role="tabpanel">
-                <div class="ai-tab-cards">
-                    <article class="ai-tab-card">
-                        <h3 class="ai-tab-card__title">Variants at speed</h3>
-                        <p class="ai-tab-card__body">Headlines, body copy, social, and email tested in parallel, not sequentially.</p>
-                        <p class="ai-tab-card__stat">3–5 variants → 20+</p>
-                    </article>
-                    <article class="ai-tab-card">
-                        <h3 class="ai-tab-card__title">Localization</h3>
-                        <p class="ai-tab-card__body">Translation and adaptation across markets without a separate production cycle.</p>
-                        <p class="ai-tab-card__stat">Weeks → Days</p>
-                    </article>
-                    <article class="ai-tab-card">
-                        <h3 class="ai-tab-card__title">On-brand at scale</h3>
-                        <p class="ai-tab-card__body">Voice-trained generation produces volume without drift.</p>
-                        <p class="ai-tab-card__stat">Manual edit per asset → Edited to standard at speed</p>
-                    </article>
-                </div>
-            </div>
-
-            <div class="ai-tab-panel" data-tab="growth" role="tabpanel">
-                <div class="ai-tab-cards">
-                    <article class="ai-tab-card">
-                        <h3 class="ai-tab-card__title">Messaging variants</h3>
-                        <p class="ai-tab-card__body">More variants generated, tested, and narrowed in a single sprint.</p>
-                        <p class="ai-tab-card__stat">3–5 per sprint → 20+</p>
-                    </article>
-                    <article class="ai-tab-card">
-                        <h3 class="ai-tab-card__title">Campaign imagery</h3>
-                        <p class="ai-tab-card__body">On-brand visuals for every campaign moment, without a shoot day.</p>
-                        <p class="ai-tab-card__stat">1–2 week shoot → Hours</p>
-                    </article>
-                    <article class="ai-tab-card">
-                        <h3 class="ai-tab-card__title">Funnel optimization</h3>
-                        <p class="ai-tab-card__body">AI surfaces friction; copy and layout variants address it fast.</p>
-                        <p class="ai-tab-card__stat">2–3 weeks → Days</p>
-                    </article>
-                </div>
-            </div>
-
-            <div class="ai-tab-panel" data-tab="delivery" role="tabpanel">
-                <div class="ai-tab-cards">
-                    <article class="ai-tab-card">
-                        <h3 class="ai-tab-card__title">Asset production</h3>
-                        <p class="ai-tab-card__body">Visuals, copy, and components produced across every surface in parallel.</p>
-                        <p class="ai-tab-card__stat">Baseline → −25% cost</p>
-                    </article>
-                    <article class="ai-tab-card">
-                        <h3 class="ai-tab-card__title">Iteration cycle</h3>
-                        <p class="ai-tab-card__body">Daily refinement instead of weekly review checkpoints.</p>
-                        <p class="ai-tab-card__stat">Weekly → Daily</p>
-                    </article>
-                    <article class="ai-tab-card">
-                        <h3 class="ai-tab-card__title">Output quality</h3>
-                        <p class="ai-tab-card__body">Compressed cycles, higher signal, fewer compromises.</p>
-                        <p class="ai-tab-card__stat">Baseline → +18% quality</p>
-                    </article>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- =============================================
-     6. CUT THE DRAG — two typography-led shifts
-============================================= -->
-<section class="ai-section ai-section--paper-2" aria-label="The operational shift">
-    <div class="ai-section__inner">
-        <div class="ai-section__head ai-reveal">
-            <p class="ai-eyebrow">The shift</p>
-            <h2 class="ai-h2">Cut the drag.</h2>
-        </div>
-        <div class="ai-shifts__grid">
-            <article class="ai-shift ai-reveal">
-                <p class="ai-shift__from">From relay races</p>
-                <p class="ai-shift__to">To focused pods.</p>
-                <p class="ai-shift__body">Fewer handoffs, less translation loss. The people defining the work are the people doing it.</p>
-            </article>
-            <article class="ai-shift ai-reveal">
-                <p class="ai-shift__from">From quarterly cycles</p>
-                <p class="ai-shift__to">To weekly outcomes.</p>
-                <p class="ai-shift__body">Decisions get tested faster, on real interaction, not opinion. Days replace weeks.</p>
-            </article>
-        </div>
-    </div>
-</section>
-
-<!-- =============================================
-     8. FINAL CTA — large dark curved panel
-============================================= -->
-<section class="ai-cta-section" aria-label="Get in touch">
-    <div class="ai-cta ai-reveal">
-        <div class="ai-cta__grain" aria-hidden="true"></div>
-        <div class="ai-cta__inner">
-            <p class="ai-cta__eyebrow">Let's talk</p>
-            <h2 class="ai-cta__title">Tell us what you're building.</h2>
-            <p class="ai-cta__sub">Drop us a line. We’ll show you where AI-assisted execution actually compresses the work, and where the judgment matters.</p>
-            <div class="ai-hero__ctas">
-                <a href="/#ed-contact" class="ai-btn ai-btn--accent">Book a call →</a>
-                <a href="/components.html" class="ai-btn ai-btn--ghost" style="border-color: rgba(251,251,253,0.2); color: rgba(251,251,253,0.85);">Explore the work</a>
-            </div>
-        </div>
+<section class="ed-contact" aria-label="Contact">
+    <p class="ed-contact__eyebrow">Ready to start</p>
+    <h2>Tell us what you're working on.</h2>
+    <div class="sv-cta-wrap">
+        <a href="/index.html#ed-contact" class="ed-btn">Let's talk &rarr;</a>
     </div>
 </section>
 
@@ -5296,18 +4666,13 @@
     });
 })();
 
-// Nav: transparent over hero, white once scrolled past it.
+// Nav: transparent at the very top, white as soon as scrolling starts (matches home).
 (function () {
     const nav = document.querySelector('nav');
-    const hero = document.querySelector('.ai-hero');
     if (!nav) return;
-    const threshold = () => {
-        const h = hero ? hero.getBoundingClientRect().height : 0;
-        return Math.max(8, h - 8);
-    };
     const update = () => {
         const y = window.scrollY || document.documentElement.scrollTop || 0;
-        nav.classList.toggle('is-scrolled', y > threshold());
+        nav.classList.toggle('is-scrolled', y > 4);
     };
     update();
     window.addEventListener('scroll', update, { passive: true });
@@ -5334,44 +4699,6 @@
     els.forEach(el => io.observe(el));
 })();
 
-// AI accelerated — tab switcher + lifecycle node sync. Clicking a tab also
-// highlights the matching lifecycle node (node fill, halo stroke, label,
-// and radial connector all flip to the blue accent). Default-active tab
-// matches the default-active node via the initial `.is-active` markup.
-(function () {
-    const btns = document.querySelectorAll('.ai-tab-btn');
-    const panels = document.querySelectorAll('.ai-tab-panel');
-    if (!btns.length || !panels.length) return;
-    const lifecycleEls = document.querySelectorAll('.ai-lifecycle [data-node]');
-    const syncLifecycle = (target) => {
-        lifecycleEls.forEach((el) => {
-            el.classList.toggle('is-active', el.getAttribute('data-node') === target);
-        });
-    };
-    // Initial sync — pick up whichever tab is `.is-active` in the markup.
-    const initial = document.querySelector('.ai-tab-btn.is-active');
-    if (initial) syncLifecycle(initial.getAttribute('data-tab'));
-    btns.forEach((btn) => {
-        btn.addEventListener('click', () => {
-            const target = btn.getAttribute('data-tab');
-            btns.forEach((b) => {
-                const isActive = b === btn;
-                b.classList.toggle('is-active', isActive);
-                b.setAttribute('aria-selected', String(isActive));
-            });
-            panels.forEach((p) => {
-                p.classList.toggle('is-active', p.getAttribute('data-tab') === target);
-            });
-            syncLifecycle(target);
-        });
-        btn.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                btn.click();
-            }
-        });
-    });
-})();
 
 </script>
 

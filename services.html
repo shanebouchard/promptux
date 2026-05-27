@@ -2498,12 +2498,24 @@
        side (sv-cat4 = paper-2, this = paper, ed-engage = paper-2). === */
     :root[data-theme="editorial"] .ed-credibility {
         background: var(--paper);
-        padding: clamp(64px, 8vw, 96px) var(--gutter);
+        padding: clamp(88px, 11vw, 144px) var(--gutter);
     }
     :root[data-theme="editorial"] .ed-credibility__inner {
         max-width: var(--ed-max);
         margin: 0 auto;
         text-align: center;
+    }
+    :root[data-theme="editorial"] .ed-credibility__head {
+        max-width: 720px;
+        margin: 0 auto clamp(40px, 5vw, 72px);
+    }
+    :root[data-theme="editorial"] .ed-credibility__lede {
+        font-family: var(--body);
+        font-size: clamp(16px, 1.2vw, 19px);
+        line-height: 1.55;
+        color: var(--mid);
+        max-width: 56ch;
+        margin: var(--ed-space-3) auto 0;
     }
     :root[data-theme="editorial"] .ed-credibility__row {
         display: flex;
@@ -3420,68 +3432,80 @@
     }
 
 
-    /* === SERVICES page-local (sv-*) — 4 service categories as alternating full-width bands.
-       Each .sv-cat is its own full-width band carrying its own background (paper-2 / paper /
-       paper-2 / paper). Inside, .sv-cat__inner is the max-width 2-col grid: strategy claim
-       on the left, capability ledger on the right. Same paper/paper-2 alternation rhythm the
-       home page uses to give each section its own moment. === */
+    /* === SERVICES page-local (sv-*) — "How we work" section. One cohesive
+       section: shared paper background, centered "How we work" header on top,
+       four category items (Strategize / Visualize / Systemize / Maximize)
+       stacked vertically with hairline rule separators. Peer in structure to
+       "What we build" above (same head treatment, same section padding rhythm).
+       === */
     :root[data-theme="editorial"] .sv-services {
-        background: transparent;
-        padding: 0;
+        background: var(--paper);
+        padding: clamp(96px, 12vw, 144px) var(--gutter);
     }
-    :root[data-theme="editorial"] .sv-cat {
-        padding: clamp(96px, 11vw, 144px) var(--gutter);
+    :root[data-theme="editorial"] .sv-services__head {
+        max-width: 720px;
+        margin: 0 auto clamp(64px, 8vw, 96px);
+        text-align: center;
     }
-    :root[data-theme="editorial"] .sv-cat:nth-child(odd)  { background: var(--paper); }
-    :root[data-theme="editorial"] .sv-cat:nth-child(even) { background: var(--paper-2); }
-    :root[data-theme="editorial"] .sv-cat__inner {
-        max-width: var(--ed-max);
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-        gap: var(--ed-space-5);
-        align-items: start;
-    }
-    /* Even rows: flip composition — caps on the left, head on the right.
-       Creates a left/right rhythm down the page without changing markup. */
-    :root[data-theme="editorial"] .sv-cat:nth-child(even) .sv-cat__inner {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-    }
-    :root[data-theme="editorial"] .sv-cat:nth-child(even) .sv-cat__head {
-        grid-column: 2;
-        grid-row: 1;
-    }
-    :root[data-theme="editorial"] .sv-cat:nth-child(even) .sv-cat__caps {
-        grid-column: 1;
-        grid-row: 1;
-    }
-    :root[data-theme="editorial"] .sv-cat__eyebrow {
-        font-family: var(--body);
-        font-weight: 600;
-        font-size: 12px;
-        letter-spacing: 0.06em;
-        color: var(--mid);
-        margin: 0 0 var(--ed-space-2);
-    }
-    :root[data-theme="editorial"] .sv-cat__title {
+    :root[data-theme="editorial"] .sv-services__title {
         font-family: var(--display);
         font-weight: 700;
-        font-size: clamp(36px, 4.2vw, 56px);
-        line-height: 1.06;
-        letter-spacing: -0.02em;
+        font-size: clamp(36px, 5vw, 56px);
+        line-height: 1.05;
+        letter-spacing: -0.022em;
         color: var(--ink);
-        margin: 0 0 var(--ed-space-3);
+        margin: 0;
+    }
+    :root[data-theme="editorial"] .sv-cat {
+        max-width: var(--ed-max);
+        margin: 0 auto;
+        padding: clamp(40px, 5vw, 56px) 0;
+        border-top: 1px solid var(--rule);
+    }
+    /* First category sits flush against the section head — no top rule there;
+       the head's margin already separates it. Last category gets no extra
+       bottom padding so the section's own padding governs the close. */
+    :root[data-theme="editorial"] .sv-cat:first-of-type {
+        padding-top: 0;
+        border-top: 0;
+    }
+    :root[data-theme="editorial"] .sv-cat:last-of-type {
+        padding-bottom: 0;
+    }
+    /* Inner 2-col: head (icon / title / body) tracks tight; caps ledger gets
+       the wider right column to absorb 2-col bullet lists at varying lengths. */
+    :root[data-theme="editorial"] .sv-cat__inner {
+        display: grid;
+        grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+        gap: clamp(48px, 6vw, 80px);
+        align-items: start;
+    }
+    /* Cat title sized as a peer to .sv-build__name, scaled up one step:
+       these heads anchor a sub-section, so they need authority without
+       reading as a full H2. 1.25+ ratio above .sv-build__name preserved. */
+    :root[data-theme="editorial"] .sv-cat__title {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: clamp(22px, 2vw, 28px);
+        line-height: 1.18;
+        letter-spacing: -0.014em;
+        color: var(--ink);
+        margin: 0 0 var(--ed-space-2);
+        font-feature-settings: "kern", "ss01";
     }
     :root[data-theme="editorial"] .sv-cat__body {
         font-family: var(--body);
-        font-size: clamp(16px, 1.15vw, 18px);
+        font-size: clamp(15px, 1.05vw, 17px);
         line-height: 1.55;
         color: var(--mid);
         margin: 0;
-        max-width: 52ch;
+        max-width: 48ch;
+        font-feature-settings: "kern";
     }
-    /* Ledger capability list — adapted from components.html .cm-capabilities__caps:
-       top-rule on the group, bottom-rule on each item, dash-bullet glyph. */
+    /* Ledger capability list — top-rule on the group, bottom-rule on each item,
+       lime checkmark glyph. Tightened from 14px to 11px vertical padding and
+       from 15px to 14px type so each item reads as a list entry rather than
+       a paragraph row, matching the .sv-build grid's density. */
     :root[data-theme="editorial"] .sv-cat__caps {
         list-style: none;
         padding: 0;
@@ -3493,10 +3517,11 @@
     }
     :root[data-theme="editorial"] .sv-cat__caps li {
         font-family: var(--body);
-        font-size: 15px;
-        line-height: 1.55;
+        font-size: 14px;
+        line-height: 1.5;
+        letter-spacing: -0.005em;
         color: var(--ink);
-        padding: 14px 0 14px 22px;
+        padding: 11px 0 11px 22px;
         border-bottom: 1px solid var(--rule);
         position: relative;
     }
@@ -3507,7 +3532,7 @@
         content: "";
         position: absolute;
         left: 2px;
-        top: 17px;
+        top: 14px;
         width: 5px;
         height: 10px;
         border-right: 1.75px solid var(--lime);
@@ -3519,42 +3544,10 @@
         text-align: center;
         margin-top: var(--ed-space-4);
     }
-    /* Small monochrome glyph sitting above the eyebrow — line-only, currentColor.
-       Used to give each category a quiet identity mark without dropping into icon-tray
-       territory. 28px square; SVGs are drawn at viewBox 0 0 28 28. */
-    :root[data-theme="editorial"] .sv-cat__glyph {
-        display: block;
-        width: 28px;
-        height: 28px;
-        margin: 0 0 var(--ed-space-3);
-        color: var(--ink);
-    }
-    :root[data-theme="editorial"] .sv-cat__glyph svg {
-        display: block;
-        width: 100%;
-        height: 100%;
-    }
-    /* Micro headline — the value statement between the section title and body paragraph. */
-    :root[data-theme="editorial"] .sv-cat__micro {
-        font-family: var(--display);
-        font-weight: 600;
-        font-size: clamp(18px, 1.4vw, 22px);
-        line-height: 1.25;
-        letter-spacing: -0.012em;
-        color: var(--ink);
-        margin: 0 0 var(--ed-space-3);
-    }
     @media (max-width: 720px) {
-        :root[data-theme="editorial"] .sv-cat__inner,
-        :root[data-theme="editorial"] .sv-cat:nth-child(even) .sv-cat__inner {
+        :root[data-theme="editorial"] .sv-cat__inner {
             grid-template-columns: 1fr;
             gap: var(--ed-space-4);
-        }
-        /* Reset even-row column assignments so head reads first on mobile. */
-        :root[data-theme="editorial"] .sv-cat:nth-child(even) .sv-cat__head,
-        :root[data-theme="editorial"] .sv-cat:nth-child(even) .sv-cat__caps {
-            grid-column: 1;
-            grid-row: auto;
         }
         :root[data-theme="editorial"] .sv-cat__caps {
             grid-template-columns: 1fr;
@@ -3787,23 +3780,26 @@
 
 
 <!-- =============================================
-     SERVICES — four process categories (Strategize / Visualize / Systemize /
-     Maximize), each as a full-width band with title, description, and the
-     service items underneath. Drops the previous micro-headline + body-paragraph
-     pattern in favor of one description per category, matching the new structure.
+     HOW WE WORK — the four process categories (Strategize / Visualize /
+     Systemize / Maximize) grouped under one section header, peer to
+     "What we build". Single shared paper background; categories stack
+     vertically as rule-separated items rather than alternating bands.
 ============================================= -->
-<section class="sv-services" id="sv-categories" aria-label="Service categories">
+<section class="sv-services" id="sv-categories" aria-label="How we work">
+    <div class="sv-services__head">
+        <h2 class="sv-services__title">How we work</h2>
+    </div>
     <div class="sv-cat">
         <div class="sv-cat__inner">
             <div class="sv-cat__head">
-                <span class="sv-cat__glyph" aria-hidden="true">
-                    <svg viewBox="0 0 28 28">
-                        <circle cx="14" cy="14" r="10" fill="none" stroke="currentColor" stroke-width="1.25"/>
-                        <circle cx="14" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="1.25"/>
-                        <circle cx="14" cy="14" r="2" fill="currentColor"/>
+                <span class="sv-build__icon" aria-hidden="true">
+                    <svg viewBox="0 0 32 32">
+                        <circle cx="16" cy="16" r="11" fill="none" stroke="currentColor" stroke-width="1.25"/>
+                        <circle cx="16" cy="16" r="7" fill="none" stroke="currentColor" stroke-width="1.25"/>
+                        <circle cx="16" cy="16" r="2.5" fill="currentColor"/>
                     </svg>
                 </span>
-                <h2 class="sv-cat__title">Strategize</h2>
+                <h3 class="sv-cat__title">Strategize</h3>
                 <p class="sv-cat__body">Align teams around the right problems, sharper opportunities, and faster paths to market.</p>
             </div>
             <ul class="sv-cat__caps">
@@ -3819,13 +3815,13 @@
     <div class="sv-cat">
         <div class="sv-cat__inner">
             <div class="sv-cat__head">
-                <span class="sv-cat__glyph" aria-hidden="true">
-                    <svg viewBox="0 0 28 28">
-                        <path d="M 2 14 Q 14 5 26 14 Q 14 23 2 14 Z" fill="none" stroke="currentColor" stroke-width="1.25"/>
-                        <circle cx="14" cy="14" r="3" fill="currentColor"/>
+                <span class="sv-build__icon" aria-hidden="true">
+                    <svg viewBox="0 0 32 32">
+                        <path d="M 3 16 Q 16 6 29 16 Q 16 26 3 16 Z" fill="none" stroke="currentColor" stroke-width="1.25"/>
+                        <circle cx="16" cy="16" r="3.5" fill="currentColor"/>
                     </svg>
                 </span>
-                <h2 class="sv-cat__title">Visualize</h2>
+                <h3 class="sv-cat__title">Visualize</h3>
                 <p class="sv-cat__body">Turn complex product, brand, and growth challenges into clear, usable, high-performing digital experiences.</p>
             </div>
             <ul class="sv-cat__caps">
@@ -3841,15 +3837,15 @@
     <div class="sv-cat">
         <div class="sv-cat__inner">
             <div class="sv-cat__head">
-                <span class="sv-cat__glyph" aria-hidden="true">
-                    <svg viewBox="0 0 28 28">
-                        <rect x="4" y="4" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.25"/>
-                        <rect x="16" y="4" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.25"/>
-                        <rect x="4" y="16" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.25"/>
-                        <rect x="16" y="16" width="8" height="8" fill="none" stroke="currentColor" stroke-width="1.25"/>
+                <span class="sv-build__icon" aria-hidden="true">
+                    <svg viewBox="0 0 32 32">
+                        <rect x="5" y="5" width="9" height="9" fill="none" stroke="currentColor" stroke-width="1.25"/>
+                        <rect x="18" y="5" width="9" height="9" fill="none" stroke="currentColor" stroke-width="1.25"/>
+                        <rect x="5" y="18" width="9" height="9" fill="none" stroke="currentColor" stroke-width="1.25"/>
+                        <rect x="18" y="18" width="9" height="9" fill="none" stroke="currentColor" stroke-width="1.25"/>
                     </svg>
                 </span>
-                <h2 class="sv-cat__title">Systemize</h2>
+                <h3 class="sv-cat__title">Systemize</h3>
                 <p class="sv-cat__body">Create the standards, components, and documentation teams need to move faster without losing quality or consistency.</p>
             </div>
             <ul class="sv-cat__caps">
@@ -3863,13 +3859,13 @@
     <div class="sv-cat">
         <div class="sv-cat__inner">
             <div class="sv-cat__head">
-                <span class="sv-cat__glyph" aria-hidden="true">
-                    <svg viewBox="0 0 28 28">
-                        <path d="M 4 20 L 11 13 L 16 17 L 24 7" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M 19 7 L 24 7 L 24 12" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                <span class="sv-build__icon" aria-hidden="true">
+                    <svg viewBox="0 0 32 32">
+                        <path d="M 5 23 L 12 15 L 18 19 L 27 8" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M 22 8 L 27 8 L 27 13" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </span>
-                <h2 class="sv-cat__title">Maximize</h2>
+                <h3 class="sv-cat__title">Maximize</h3>
                 <p class="sv-cat__body">Use data, experimentation, and iteration to improve performance after launch and keep momentum moving.</p>
             </div>
             <ul class="sv-cat__caps">
@@ -3890,8 +3886,13 @@
      the fit question — "where do we apply this" — at the moment a
      prospect is deciding whether to engage.
 ============================================= -->
-<section class="ed-credibility" aria-label="Industry and company-scale experience">
+<section class="ed-credibility" aria-label="Industries and company scale">
     <div class="ed-credibility__inner">
+        <div class="ed-credibility__head">
+            <p class="ed-eyebrow">Industries</p>
+            <h2 class="ed-h2">30 years, every kind of team.</h2>
+            <p class="ed-credibility__lede">Healthcare to entertainment, startups to enterprise. The work has shipped across industries and at every scale.</p>
+        </div>
         <div class="ed-credibility__row">
             <span class="ed-credibility__pill">Healthcare</span>
             <span class="ed-credibility__pill">Financial Services</span>
@@ -3961,7 +3962,7 @@
 ============================================= -->
 <section class="ed-contact" aria-label="Contact">
     <p class="ed-contact__eyebrow">Ready to start</p>
-    <h2>Let's see if we're a fit.</h2>
+    <h2>Tell us what you're working on.</h2>
     <div class="sv-cta-wrap">
         <a href="/index.html#ed-contact" class="ed-btn">Let's talk →</a>
     </div>
